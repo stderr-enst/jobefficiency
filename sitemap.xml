@@ -13,6 +13,9 @@
     <loc>https://stderr-enst.github.io/jobefficiency/aio.html</loc>
   </url>
   <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/gatheringdata.html</loc>
+  </url>
+  <url>
     <loc>https://stderr-enst.github.io/jobefficiency/images.html</loc>
   </url>
   <url>
@@ -31,6 +34,9 @@
     <loc>https://stderr-enst.github.io/jobefficiency/instructor/aio.html</loc>
   </url>
   <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/gatheringdata.html</loc>
+  </url>
+  <url>
     <loc>https://stderr-enst.github.io/jobefficiency/instructor/images.html</loc>
   </url>
   <url>
@@ -38,6 +44,9 @@
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/instructor/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/interpretresults.html</loc>
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/instructor/introduction.html</loc>
@@ -49,10 +58,16 @@
     <loc>https://stderr-enst.github.io/jobefficiency/instructor/profiles.html</loc>
   </url>
   <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/readingreports.html</loc>
+  </url>
+  <url>
     <loc>https://stderr-enst.github.io/jobefficiency/instructor/reference.html</loc>
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/instructor-notes.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/interpretresults.html</loc>
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/introduction.html</loc>
@@ -62,6 +77,9 @@
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/profiles.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/readingreports.html</loc>
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/reference.html</loc>
