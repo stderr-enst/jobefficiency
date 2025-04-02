@@ -1,12 +1,13 @@
 ---
-title: "Interpreting Results"
+title: "Job Resources"
 teaching: 10
 exercises: 2
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How to read and understand performance reports?
+- How well do requirements map to job resources?
+- Is the job requesting the right amount of resources?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -17,4 +18,5 @@ exercises: 2
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Introduction
-
+Only Slurm, or also cover PBS, HTCondor, others?
+Is there a scheduler-agnostic approach?
