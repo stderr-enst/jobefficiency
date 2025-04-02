@@ -6,7 +6,8 @@ exercises: 2
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- Question?
+- Which metrics are important?
+- What to look for?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
