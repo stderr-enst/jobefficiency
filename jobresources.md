@@ -19,4 +19,5 @@ exercises: 2
 
 ## Introduction
 Only Slurm, or also cover PBS, HTCondor, others?
+
 Is there a scheduler-agnostic approach?

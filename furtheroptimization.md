@@ -18,6 +18,7 @@ exercises: 2
 
 ## Introduction
 How far do we want to go?
+
 - Node-level performance
     - CPU Front-End and Backend
     - Data hierarchy (disk -> memory -> caches -> registers)
