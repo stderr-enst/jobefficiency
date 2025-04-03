@@ -243,7 +243,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="gatheringdata.html">1. Gathering Data</a>
+        <a href="introduction.html">1. Introduction</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -255,7 +255,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="readingreports.html">2. Reading Reports</a>
+        <a href="schedulertools.html">2. Scheduler Tools</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -267,7 +267,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="interpretresults.html">3. Interpreting Results</a>
+        <a href="schedulerresources.html">3. Scheduler Resource Parameters</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -279,7 +279,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="jobresources.html">4. Job Resources</a>
+        <a href="generatingreports.html">4. Generating Performance Reports</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -291,7 +291,43 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="furtheroptimization.html">5. Further Optimization</a>
+        <a href="readingreports.html">5. Reading Performance Reports</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush7">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading7">
+        <a href="commonsymptoms.html">6. Common Symptoms</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush8">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading8">
+        <a href="bottlenecks.html">7. How to identify a bottleneck?</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush9">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading9">
+        <a href="nextsteps.html">8. Next Steps</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -354,11 +390,11 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="aio-gatheringdata"><p>Content from <a href="gatheringdata.html">Gathering Data</a></p>
+<section id="aio-introduction"><p>Content from <a href="introduction.html">Introduction</a></p>
 <hr>
-<p>Last updated on 2025-04-02 |
+<p>Last updated on 2025-04-03 |
 
-        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/gatheringdata.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -370,7 +406,8 @@
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How to collect performance measurements for a specific job?</li>
+<li>Why should I care about my jobs performance?</li>
+<li>How many resources should it request initially?</li>
 </ul>
 </div>
 </div>
@@ -380,7 +417,8 @@
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Objective!</li>
+<li>Understand the benefits of efficient jobs.</li>
+<li>Use the <code>time</code> command for a first assessment.</li>
 </ul>
 </div>
 </div>
@@ -390,64 +428,18 @@
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <hr class="half-width">
-<div class="tabs">
-<nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
-<button class="nav-link active" id="nav-tab-1-ClusterCockpit" name="ClusterCockpit" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClusterCockpit" type="button" role="tab" aria-controls="nav-tabpanel-1-ClusterCockpit" aria-selected="true">
-  <h3 class="tab-header" id="nav-tab-heading-1-ClusterCockpit">
-  ClusterCockpit
-  </h3>
-</button>
-<button class="nav-link" id="nav-tab-1-Someopentool" name="Someopentool" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-Someopentool" type="button" role="tab" aria-controls="nav-tabpanel-1-Someopentool" aria-selected="false">
-  <h3 class="tab-header" id="nav-tab-heading-1-Someopentool">
-  Some open tool
-  </h3>
-</button>
-<button class="nav-link" id="nav-tab-1-LinaroForge" name="LinaroForge" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-LinaroForge" type="button" role="tab" aria-controls="nav-tabpanel-1-LinaroForge" aria-selected="false">
-  <h3 class="tab-header" id="nav-tab-heading-1-LinaroForge">
-  Linaro Forge
-  </h3>
-</button>
+<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
 </div>
-</nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClusterCockpit" class="tab-pane show active" aria-labelledby="nav-tab-1-ClusterCockpit" role="tabpanel">
-<p>How it looks in ClusterCockpit</p>
-</div>
-<div id="nav-tabpanel-1-Someopentool" class="tab-pane" aria-labelledby="nav-tab-1-Someopentool" role="tabpanel">
-<p>How it looks with an accessible open tool</p>
-</div>
-<div id="nav-tabpanel-1-LinaroForge" class="tab-pane" aria-labelledby="nav-tab-1-LinaroForge" role="tabpanel">
-<p>How it looks with a commercial tool like Linaro Forge</p>
-</div>
-</div>
-</div>
-<p>Some text.</p>
-<div class="tabs">
-<nav><div id="nav-tab-2" class="nav nav-tabs" role="tablist">
-<button class="nav-link active" id="nav-tab-2-ClusterCockpit" name="ClusterCockpit" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-ClusterCockpit" type="button" role="tab" aria-controls="nav-tabpanel-2-ClusterCockpit" aria-selected="true">
-  <h3 class="tab-header" id="nav-tab-heading-2-ClusterCockpit">
-  ClusterCockpit
-  </h3>
-</button>
-<button class="nav-link" id="nav-tab-2-Someopentool" name="Someopentool" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-Someopentool" type="button" role="tab" aria-controls="nav-tabpanel-2-Someopentool" aria-selected="false">
-  <h3 class="tab-header" id="nav-tab-heading-2-Someopentool">
-  Some open tool
-  </h3>
-</button>
-<button class="nav-link" id="nav-tab-2-LinaroForge" name="LinaroForge" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-LinaroForge" type="button" role="tab" aria-controls="nav-tabpanel-2-LinaroForge" aria-selected="false">
-  <h3 class="tab-header" id="nav-tab-heading-2-LinaroForge">
-  Linaro Forge
-  </h3>
-</button>
-</div>
-</nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-ClusterCockpit" class="tab-pane show active" aria-labelledby="nav-tab-2-ClusterCockpit" role="tabpanel">
-<p>How something else looks in ClusterCockpit</p>
-</div>
-<div id="nav-tabpanel-2-Someopentool" class="tab-pane" aria-labelledby="nav-tab-2-Someopentool" role="tabpanel">
-<p>How something else looks with an accessible open tool</p>
-</div>
-<div id="nav-tabpanel-2-LinaroForge" class="tab-pane" aria-labelledby="nav-tab-2-LinaroForge" role="tabpanel">
-<p>How something else looks with a commercial tool like Linaro Forge</p>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+<ul>
+<li>Efficiency is efficient</li>
+<li>
+<code>time</code> and <code>time</code> again. Maybe also <a href="https://github.com/sharkdp/hyperfine" class="external-link uri">https://github.com/sharkdp/hyperfine</a> ?</li>
+</ul>
 </div>
 </div>
 </div>
@@ -455,9 +447,188 @@
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-readingreports"><p>Content from <a href="readingreports.html">Reading Reports</a></p>
+</section></section><section id="aio-schedulertools"><p>Content from <a href="schedulertools.html">Scheduler Tools</a></p>
 <hr>
-<p>Last updated on 2025-04-02 |
+<p>Last updated on 2025-04-03 |
+
+        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/schedulertools.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>What information can the scheduler provide about my jobs
+performance?</li>
+<li>What’s the meaning of the collected metrics?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Familiarize with basic performance metrics.</li>
+<li>Learn the schedulers tools to gather performance metrics about a
+job.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="scheduler-tools">Scheduler Tools<a class="anchor" aria-label="anchor" href="#scheduler-tools"></a>
+</h2>
+<hr class="half-width">
+<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+<ul>
+<li>
+<code>sacct</code> and <code>seff</code> for first results</li>
+<li>CPU and Memory Utilization</li>
+<li>Core-h and relationship to power efficiency</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-schedulerresources"><p>Content from <a href="schedulerresources.html">Scheduler Resource Parameters</a></p>
+<hr>
+<p>Last updated on 2025-04-03 |
+
+        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/schedulerresources.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>What options does the scheduler give to request resources?</li>
+<li>How do I know if they are used well?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Learn how to request the right amount of resources from the
+scheduler.</li>
+<li>Learn how to change the parameters if the applications’ resource
+requirements change.</li>
+<li>See the direct benefits of requesting the right amount of
+resources.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="scheduler-resource-parameters">Scheduler Resource Parameters<a class="anchor" aria-label="anchor" href="#scheduler-resource-parameters"></a>
+</h2>
+<hr class="half-width">
+<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+<ul>
+<li>Don’t over-/underuse resources</li>
+<li>Optimal time-to-solution by minimizing batch queue times and
+maximizing parallelism</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-generatingreports"><p>Content from <a href="generatingreports.html">Generating Performance Reports</a></p>
+<hr>
+<p>Last updated on 2025-04-03 |
+
+        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/generatingreports.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>Are there tools providing more information about a jobs
+performance?</li>
+<li>What benefits do they bring beyond the basic metrics?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Create a performance report through a third-party tool.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="generating-performance-reports">Generating Performance Reports<a class="anchor" aria-label="anchor" href="#generating-performance-reports"></a>
+</h2>
+<hr class="half-width">
+<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+<ul>
+<li>Different HPC centers may provide different approaches to this
+workflow</li>
+<li>Performance reports offer more insight into the job and application
+behavior</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-readingreports"><p>Content from <a href="readingreports.html">Reading Performance Reports</a></p>
+<hr>
+<p>Last updated on 2025-04-03 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/readingreports.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -471,8 +642,7 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>Which metrics are important?</li>
-<li>What to look for?</li>
+<li>How should I read a performance report?</li>
 </ul>
 </div>
 </div>
@@ -482,106 +652,48 @@ any links that you are not going to use.
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Objective!</li>
+<li>Learn how to read performance reports and what to look for.</li>
+<li>First short overview of typical “smoking guns” with regard to
+performance issues.</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+<section><h2 class="section-heading" id="reading-performance-reports">Reading Performance Reports<a class="anchor" aria-label="anchor" href="#reading-performance-reports"></a>
 </h2>
 <hr class="half-width">
-<!--
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use.
- --></section></section><section id="aio-interpretresults"><p>Content from <a href="interpretresults.html">Interpreting Results</a></p>
-<hr>
-<p>Last updated on 2025-04-02 |
-
-        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/interpretresults.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
+<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
 <ul>
-<li>How to read and understand performance reports?</li>
+<li>Performance reports may provide an automated summary with
+recommendations</li>
+<li>Performance metrics can be categorized by the underlying hardware,
+e.g. CPU, memory, I/O, accelerators.</li>
+<li>Bottlenecks can appear by metrics being saturated at the physical
+limits of the hardware or indirectly by other metrics being far from
+what the physical limits are.</li>
+<li>Interpreting bottlenecks is closely related to what the application
+is supposed to do.</li>
 </ul>
 </div>
 </div>
 </div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>Objective!</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
-</h2>
-<hr class="half-width">
-<!--
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use.
- --></section></section><section id="aio-jobresources"><p>Content from <a href="jobresources.html">Job Resources</a></p>
-<hr>
-<p>Last updated on 2025-04-02 |
-
-        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/jobresources.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>How well do requirements map to job resources?</li>
-<li>Is the job requesting the right amount of resources?</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>Objective!</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
-</h2>
-<hr class="half-width">
-<p>Only Slurm, or also cover PBS, HTCondor, others?</p>
-<p>Is there a scheduler-agnostic approach?</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-furtheroptimization"><p>Content from <a href="furtheroptimization.html">Further Optimization</a></p>
+</section></section><section id="aio-commonsymptoms"><p>Content from <a href="commonsymptoms.html">Common Symptoms</a></p>
 <hr>
-<p>Last updated on 2025-04-02 |
+<p>Last updated on 2025-04-03 |
 
-        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/furtheroptimization.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/commonsymptoms.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
         </div>
@@ -593,7 +705,8 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>Question?</li>
+<li>What are common performance issues and how do they look in
+performance reports?</li>
 </ul>
 </div>
 </div>
@@ -603,38 +716,154 @@ any links that you are not going to use.
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Objective!</li>
+<li>Provide an overview of how common symptoms of performance issues
+appear in reports.</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+<section><h2 class="section-heading" id="common-symptoms">Common Symptoms<a class="anchor" aria-label="anchor" href="#common-symptoms"></a>
 </h2>
 <hr class="half-width">
-<p>How far do we want to go?</p>
+<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
 <ul>
-<li>Node-level performance
-<ul>
-<li>CPU Front-End and Backend</li>
-<li>Data hierarchy (disk -&gt; memory -&gt; caches -&gt; registers)</li>
-<li>Accelerators</li>
-<li>NUMA</li>
-<li>Vectorization, multi-threading, multi-processing</li>
+<li>I/O</li>
+<li>CPU Front End</li>
+<li>CPU Back End</li>
+<li>Memory leak</li>
+<li>Oversubscription</li>
+<li>Underutilization</li>
+<li>…</li>
 </ul>
-</li>
-<li>Cluster-level performance
-<ul>
-<li>Assuming single nodes are utilized well</li>
-<li>Interconnect &amp; scaling</li>
-</ul>
-</li>
-</ul>
+</div>
+</div>
+</div>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
- --></section></section>
+ -->
+</section></section><section id="aio-bottlenecks"><p>Content from <a href="bottlenecks.html">How to identify a bottleneck?</a></p>
+<hr>
+<p>Last updated on 2025-04-03 |
+
+        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/bottlenecks.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How can I find the bottlenecks in a job I have in front of me?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Find the bottlenecks in a job in front of me.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="how-to-identify-a-bottleneck">How to identify a bottleneck?<a class="anchor" aria-label="anchor" href="#how-to-identify-a-bottleneck"></a>
+</h2>
+<hr class="half-width">
+<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+<ul>
+<li>General advice on the workflow</li>
+<li>Relative measurements (baseline vs. change)</li>
+<li>Scanning results for smoking guns</li>
+<li>Any best practices etc.</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section><section id="aio-nextsteps"><p>Content from <a href="nextsteps.html">Next Steps</a></p>
+<hr>
+<p>Last updated on 2025-04-03 |
+
+        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/nextsteps.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>How can I assess the performance of my application, opposed to just
+how well the application is utilizing the job resources?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Dipping our toes in profiling.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="next-steps">Next Steps<a class="anchor" aria-label="anchor" href="#next-steps"></a>
+</h2>
+<hr class="half-width">
+<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+<ul>
+<li>There are many profilers, some are language-specific, others are
+vendor-related, …</li>
+<li>Simple profile with exclusive resources</li>
+<li>Repeated measurements for reliability</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
+</section></section>
 </div>
     </main>
 </div>
@@ -682,8 +911,8 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/aio.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/aio.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-04-02",
-  "datePublished": "2025-04-02"
+  "dateModified": "2025-04-03",
+  "datePublished": "2025-04-03"
 }
 
   </script><script>

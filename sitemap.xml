@@ -13,10 +13,19 @@
     <loc>https://stderr-enst.github.io/jobefficiency/aio.html</loc>
   </url>
   <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/bottlenecks.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/commonsymptoms.html</loc>
+  </url>
+  <url>
     <loc>https://stderr-enst.github.io/jobefficiency/furtheroptimization.html</loc>
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/gatheringdata.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/generatingreports.html</loc>
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/images.html</loc>
@@ -37,10 +46,19 @@
     <loc>https://stderr-enst.github.io/jobefficiency/instructor/aio.html</loc>
   </url>
   <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/bottlenecks.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/commonsymptoms.html</loc>
+  </url>
+  <url>
     <loc>https://stderr-enst.github.io/jobefficiency/instructor/furtheroptimization.html</loc>
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/instructor/gatheringdata.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/generatingreports.html</loc>
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/instructor/images.html</loc>
@@ -64,6 +82,9 @@
     <loc>https://stderr-enst.github.io/jobefficiency/instructor/key-points.html</loc>
   </url>
   <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/nextsteps.html</loc>
+  </url>
+  <url>
     <loc>https://stderr-enst.github.io/jobefficiency/instructor/profiles.html</loc>
   </url>
   <url>
@@ -71,6 +92,12 @@
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/instructor/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/schedulerresources.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/schedulertools.html</loc>
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/instructor-notes.html</loc>
@@ -88,6 +115,9 @@
     <loc>https://stderr-enst.github.io/jobefficiency/key-points.html</loc>
   </url>
   <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/nextsteps.html</loc>
+  </url>
+  <url>
     <loc>https://stderr-enst.github.io/jobefficiency/profiles.html</loc>
   </url>
   <url>
@@ -95,5 +125,11 @@
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/reference.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/schedulerresources.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/schedulertools.html</loc>
   </url>
 </urlset>
