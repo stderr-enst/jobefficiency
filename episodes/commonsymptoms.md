@@ -1,28 +1,31 @@
 ---
-title: "Introduction"
+title: "Common Symptoms"
 teaching: 10
 exercises: 0
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- Why should I care about my jobs performance?
-- How many resources should it request initially?
+- What are common performance issues and how do they look in performance reports?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Understand the benefits of efficient jobs.
-- Use the `time` command for a first assessment.
+- Provide an overview of how common symptoms of performance issues appear in reports.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Introduction
+## Common Symptoms
 
 <!-- EPISODE CONTENT HERE -->
 
 :::::::::::::::::::::::::::::::::::::: keypoints
-- Efficiency is efficient
-- `time` and `time` again. Maybe also https://github.com/sharkdp/hyperfine ?
+- I/O
+- CPU Front End
+- CPU Back End
+- Memory leak
+- Oversubscription
+- Underutilization
+- ...
 ::::::::::::::::::::::::::::::::::::::::::::::::

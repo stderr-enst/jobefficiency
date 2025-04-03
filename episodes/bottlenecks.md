@@ -1,28 +1,28 @@
 ---
-title: "Introduction"
+title: "How to identify a bottleneck?"
 teaching: 10
 exercises: 0
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- Why should I care about my jobs performance?
-- How many resources should it request initially?
+- How can I find the bottlenecks in a job I have in front of me?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Understand the benefits of efficient jobs.
-- Use the `time` command for a first assessment.
+- Find the bottlenecks in a job in front of me.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Introduction
+## How to identify a bottleneck?
 
 <!-- EPISODE CONTENT HERE -->
 
 :::::::::::::::::::::::::::::::::::::: keypoints
-- Efficiency is efficient
-- `time` and `time` again. Maybe also https://github.com/sharkdp/hyperfine ?
+- General advice on the workflow 
+- Relative measurements (baseline vs. change)
+- Scanning results for smoking guns
+- Any best practices etc.
 ::::::::::::::::::::::::::::::::::::::::::::::::

@@ -1,28 +1,27 @@
 ---
-title: "Introduction"
+title: "Next Steps"
 teaching: 10
 exercises: 0
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- Why should I care about my jobs performance?
-- How many resources should it request initially?
+- How can I assess the performance of my application, opposed to just how well the application is utilizing the job resources?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Understand the benefits of efficient jobs.
-- Use the `time` command for a first assessment.
+- Dipping our toes in profiling.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Introduction
+## Next Steps
 
 <!-- EPISODE CONTENT HERE -->
 
 :::::::::::::::::::::::::::::::::::::: keypoints
-- Efficiency is efficient
-- `time` and `time` again. Maybe also https://github.com/sharkdp/hyperfine ?
+- There are many profilers, some are language-specific, others are vendor-related, ...
+- Simple profile with exclusive resources
+- Repeated measurements for reliability
 ::::::::::::::::::::::::::::::::::::::::::::::::
