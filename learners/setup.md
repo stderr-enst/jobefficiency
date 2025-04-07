@@ -2,38 +2,42 @@
 title: Setup
 ---
 
-FIXME: Setup instructions live in this document. Please specify the tools and
-the data sets the Learner needs to have installed.
-
 ## Data Sets
 
 <!--
 FIXME: place any data you want learners to use in `episodes/data` and then use
        a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
        link to it, replacing the example.com link.
--->
+
 Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
+-->
 
 Maybe some example workload / job script?
 
 ## Software Setup
 
+You will need access to an *HPC* cluster to run the examples in this lesson.
+Refer to the HPC Introduction lessons to learn how to access and use a compute cluster of that scale.
+
 ::::::::::::::::::::::::::::::::::::::: discussion
 
-### Details
+### Common Software on HPC Systems
+Working on an HPC system commonly involves a
 
-Setup for different systems can be presented in dropdown menus via a `spoiler`
-tag. They will join to this discussion block, so you can give a general overview
-of the software used in this lesson here and fill out the individual operating
-systems (and potentially add more, e.g. online setup) in the solutions blocks.
+- *batch system* to schedule *jobs* (e.g. Slurm, PBS Pro, HTCondor, ...), a
+- *module* system to load certain versions of centrally provided software and a
+- way to log in to a *login node* of the cluster.
 
 :::::::::::::::::::::::::::::::::::::::::::::::::::
+
+To login via `ssh`, you can use on
 
 :::::::::::::::: spoiler
 
 ### Windows
 
-Use PuTTY
+- PuTTY
+- `ssh` in PowerShell
 
 ::::::::::::::::::::::::
 
@@ -41,7 +45,7 @@ Use PuTTY
 
 ### MacOS
 
-Use Terminal.app
+- `ssh` in Terminal.app
 
 ::::::::::::::::::::::::
 
@@ -50,7 +54,7 @@ Use Terminal.app
 
 ### Linux
 
-Use Terminal
+- `ssh` in Terminal
 
 ::::::::::::::::::::::::
 
