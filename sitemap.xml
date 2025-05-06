@@ -10,6 +10,9 @@
     <loc>https://stderr-enst.github.io/jobefficiency/LICENSE.html</loc>
   </url>
   <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/accelerators.html</loc>
+  </url>
+  <url>
     <loc>https://stderr-enst.github.io/jobefficiency/aio.html</loc>
   </url>
   <url>
@@ -41,6 +44,9 @@
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/instructor/LICENSE.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/accelerators.html</loc>
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/instructor/aio.html</loc>
@@ -100,6 +106,9 @@
     <loc>https://stderr-enst.github.io/jobefficiency/instructor/schedulertools.html</loc>
   </url>
   <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/workflow.html</loc>
+  </url>
+  <url>
     <loc>https://stderr-enst.github.io/jobefficiency/instructor-notes.html</loc>
   </url>
   <url>
@@ -131,5 +140,8 @@
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/schedulertools.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/workflow.html</loc>
   </url>
 </urlset>
