@@ -12,7 +12,7 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Find the bottlenecks in a job in front of me.
+- Find the bottlenecks in a job at hand.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
