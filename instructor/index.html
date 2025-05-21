@@ -219,7 +219,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="schedulertools.html">2. Scheduler Tools</a>
+        <a href="schedulerresources.html">2. Scheduler Resource Parameters</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -228,7 +228,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="schedulerresources.html">3. Scheduler Resource Parameters</a>
+        <a href="schedulertools.html">3. Scheduler Tools</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -364,28 +364,29 @@ any links that you are not going to use.
  1. <a href="introduction.html">Introduction</a>
 </td>
 <td>
-Why should I care about my jobs performance?<br>How many resources
-should it request initially?
+Why should I care about my jobs performance?<br>How is efficiency
+defined?<br>How many resources should it request initially?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00h 10m
 </td>
 <td>
- 2. <a href="schedulertools.html">Scheduler Tools</a>
+ 2. <a href="schedulerresources.html">Scheduler Resource Parameters</a>
 </td>
 <td>
-What information can the scheduler provide about my jobs
-performance?<br>What’s the meaning of the collected metrics?
+What options does the scheduler give to request resources?<br>How do I
+know if they are used well?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00h 20m
 </td>
 <td>
- 3. <a href="schedulerresources.html">Scheduler Resource Parameters</a>
+ 3. <a href="schedulertools.html">Scheduler Tools</a>
 </td>
 <td>
-What options does the scheduler give to request resources?<br>How do I
-know if they are used well?
+What information can the scheduler provide about my jobs
+performance?<br>What’s the meaning of the collected metrics?<br>How
+large is my HPC cluster?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00h 30m
@@ -395,7 +396,9 @@ know if they are used well?
 </td>
 <td>
 What steps can I take to assess a jobs performance?<br>Which steps
-should I take first?<br>Are there alternative routes I could take?
+should I take first?<br>Are there alternative routes I could
+take?<br>Why are simple tools like <code>seff</code> and
+<code>sacct</code> not enough?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00h 40m
@@ -404,8 +407,10 @@ should I take first?<br>Are there alternative routes I could take?
  5. <a href="generatingreports.html">Generating Performance Reports</a>
 </td>
 <td>
-Are there tools providing more information about a jobs
-performance?<br>What benefits do they bring beyond the basic metrics?
+Why would I run other tools?<br>Are there tools providing more
+information about a jobs performance?<br>What benefits do they bring
+beyond the basic metrics?<br>What popular types of reports exist?
+(e.g. Roofline)
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00h 50m
@@ -481,7 +486,14 @@ Download the [data zip file](https://example.com/FIXME) and unzip it to your Des
 <hr class="half-width"><p>You will need access to an <em>HPC</em> cluster to run the examples
 in this lesson. Refer to the HPC Introduction lessons to learn how to
 access and use a compute cluster of that scale.</p>
-<div id="common-software-on-hpc-systems" class="callout discussion">
+<ul><li>Executive summary of typical HPC workflow? Or refer to other HPCC
+courses that cover this</li>
+<li>“HPC Etiquette”
+<ul><li>E.g. don’t run benchmarks on login node</li>
+<li>Don’t disturb jobs on shared nodes</li>
+</ul></li>
+<li>Setup of example for performance studies</li>
+</ul><div id="common-software-on-hpc-systems" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
@@ -508,7 +520,7 @@ provided software and a</li>
   Windows
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <ul><li>PuTTY</li>
 <li>
@@ -525,7 +537,7 @@ provided software and a</li>
   MacOS
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <ul><li>
 <code>ssh</code> in Terminal.app</li>
@@ -541,7 +553,7 @@ provided software and a</li>
   Linux
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <ul><li>
 <code>ssh</code> in Terminal</li>
@@ -602,8 +614,8 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/instructor/index.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/instructor/index.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-05-20",
-  "datePublished": "2025-05-20"
+  "dateModified": "2025-05-21",
+  "datePublished": "2025-05-21"
 }
 
   </script><script>

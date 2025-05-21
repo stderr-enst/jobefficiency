@@ -256,7 +256,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="schedulertools.html">2. Scheduler Tools</a>
+        <a href="schedulerresources.html">2. Scheduler Resource Parameters</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -268,7 +268,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="schedulerresources.html">3. Scheduler Resource Parameters</a>
+        <a href="schedulertools.html">3. Scheduler Tools</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -418,7 +418,7 @@
         
 <section id="aio-introduction"><p>Content from <a href="introduction.html">Introduction</a></p>
 <hr>
-<p>Last updated on 2025-04-03 |
+<p>Last updated on 2025-05-21 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
@@ -434,6 +434,7 @@
 <h3 class="card-title">Questions</h3>
 <ul>
 <li>Why should I care about my jobs performance?</li>
+<li>How is efficiency defined?</li>
 <li>How many resources should it request initially?</li>
 </ul>
 </div>
@@ -463,7 +464,13 @@
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
 <ul>
-<li>Efficiency is efficient</li>
+<li>Efficiency is efficient
+<ul>
+<li>Definitions: wall/human-time, compute-time, time-to-solution, energy
+(costs / environment), Money, opportunity cost (less research
+output)</li>
+</ul>
+</li>
 <li>
 <code>time</code> and <code>time</code> again. Maybe also <a href="https://github.com/sharkdp/hyperfine" class="external-link uri">https://github.com/sharkdp/hyperfine</a> ?</li>
 </ul>
@@ -474,70 +481,9 @@
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-schedulertools"><p>Content from <a href="schedulertools.html">Scheduler Tools</a></p>
-<hr>
-<p>Last updated on 2025-04-03 |
-
-        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/schedulertools.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>What information can the scheduler provide about my jobs
-performance?</li>
-<li>What’s the meaning of the collected metrics?</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>Familiarize with basic performance metrics.</li>
-<li>Learn the schedulers tools to gather performance metrics about a
-job.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<section><h2 class="section-heading" id="scheduler-tools">Scheduler Tools<a class="anchor" aria-label="anchor" href="#scheduler-tools"></a>
-</h2>
-<hr class="half-width">
-<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
-<div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Key Points</h3>
-<div class="callout-content">
-<ul>
-<li>
-<code>sacct</code> and <code>seff</code> for first results</li>
-<li>CPU and Memory Utilization</li>
-<li>Core-h and relationship to power efficiency</li>
-</ul>
-</div>
-</div>
-</div>
-<!--
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use.
- -->
 </section></section><section id="aio-schedulerresources"><p>Content from <a href="schedulerresources.html">Scheduler Resource Parameters</a></p>
 <hr>
-<p>Last updated on 2025-04-03 |
+<p>Last updated on 2025-05-21 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/schedulerresources.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
@@ -578,7 +524,11 @@ resources.</li>
 <section><h2 class="section-heading" id="scheduler-resource-parameters">Scheduler Resource Parameters<a class="anchor" aria-label="anchor" href="#scheduler-resource-parameters"></a>
 </h2>
 <hr class="half-width">
-<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
+<!-- EPISODE CONTENT HERE --><p>Didactic path: I have no idea how many resources to ask for -&gt;
+just guess and start with some combinations. Next identify slower, or
+failed (OOM, timelimit) and choose the best What does that say about
+efficiency?</p>
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -597,9 +547,76 @@ maximizing parallelism</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
+</section></section><section id="aio-schedulertools"><p>Content from <a href="schedulertools.html">Scheduler Tools</a></p>
+<hr>
+<p>Last updated on 2025-05-21 |
+
+        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/schedulertools.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
+<div class="text-end">
+          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
+        </div>
+<div class="overview card">
+<h2 class="card-header">Overview</h2>
+<div class="row g-0">
+<div class="col-md-4">
+<div class="card-body">
+<div class="inner">
+<h3 class="card-title">Questions</h3>
+<ul>
+<li>What information can the scheduler provide about my jobs
+performance?</li>
+<li>What’s the meaning of the collected metrics?</li>
+<li>How large is my HPC cluster?</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="col-md-8">
+<div class="card-body">
+<div class="inner bordered">
+<h3 class="card-title">Objectives</h3>
+<ul>
+<li>Familiarize with basic performance metrics.</li>
+<li>Learn the schedulers tools to gather performance metrics about a
+job.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</div>
+<section><h2 class="section-heading" id="scheduler-tools">Scheduler Tools<a class="anchor" aria-label="anchor" href="#scheduler-tools"></a>
+</h2>
+<hr class="half-width">
+<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
+<div class="callout-square">
+<i class="callout-icon" data-feather="key"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Key Points</h3>
+<div class="callout-content">
+<ul>
+<li>
+<code>sacct</code> and <code>seff</code> for first results</li>
+<li>Small scaling study, maximum of X% overhead is “still good” (larger
+resource req. vs. speedup)</li>
+<li>Getting a feel for scale of the HPC system, e.g. “is 64 cores a
+lot?”, how large is my job in comparison?</li>
+<li>CPU and Memory Utilization</li>
+<li>Core-h and relationship to power efficiency</li>
+<li>I/O (disk, network, interconnect)</li>
+</ul>
+</div>
+</div>
+</div>
+<!--
+Place links that you need to refer to multiple times across pages here. Delete
+any links that you are not going to use.
+ -->
 </section></section><section id="aio-workflow"><p>Content from <a href="workflow.html">Workflow of Performance Measurements</a></p>
 <hr>
-<p>Last updated on 2025-05-06 |
+<p>Last updated on 2025-05-21 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/workflow.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
@@ -617,6 +634,8 @@ any links that you are not going to use.
 <li>What steps can I take to assess a jobs performance?</li>
 <li>Which steps should I take first?</li>
 <li>Are there alternative routes I could take?</li>
+<li>Why are simple tools like <code>seff</code> and <code>sacct</code>
+not enough?</li>
 </ul>
 </div>
 </div>
@@ -660,7 +679,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-generatingreports"><p>Content from <a href="generatingreports.html">Generating Performance Reports</a></p>
 <hr>
-<p>Last updated on 2025-04-03 |
+<p>Last updated on 2025-05-21 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/generatingreports.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
@@ -675,9 +694,11 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
+<li>Why would I run other tools?</li>
 <li>Are there tools providing more information about a jobs
 performance?</li>
 <li>What benefits do they bring beyond the basic metrics?</li>
+<li>What popular types of reports exist? (e.g. Roofline)</li>
 </ul>
 </div>
 </div>
@@ -688,6 +709,10 @@ performance?</li>
 <h3 class="card-title">Objectives</h3>
 <ul>
 <li>Create a performance report through a third-party tool.</li>
+<li>Learn intentions behind performance reports (establish baseline,
+documentation of issues and improvements through optimization,
+publication of results, finding the next thread to pull in a quest for
+optimization)</li>
 </ul>
 </div>
 </div>
@@ -783,7 +808,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-bottlenecks"><p>Content from <a href="bottlenecks.html">How to identify a bottleneck?</a></p>
 <hr>
-<p>Last updated on 2025-05-08 |
+<p>Last updated on 2025-05-21 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/bottlenecks.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
@@ -827,7 +852,12 @@ any links that you are not going to use.
 <div class="callout-content">
 <ul>
 <li>General advice on the workflow</li>
-<li>Relative measurements (baseline vs. change)</li>
+<li>Relative measurements (baseline vs. change)
+<ul>
+<li>system is quiescent, fixed CPU freq + affinity, warmups, …</li>
+<li>Reproducibility -&gt; link to git course?</li>
+</ul>
+</li>
 <li>Scanning results for smoking guns</li>
 <li>Any best practices etc.</li>
 </ul>
@@ -1065,8 +1095,8 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/instructor/aio.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/instructor/aio.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-05-20",
-  "datePublished": "2025-05-20"
+  "dateModified": "2025-05-21",
+  "datePublished": "2025-05-21"
 }
 
   </script><script>

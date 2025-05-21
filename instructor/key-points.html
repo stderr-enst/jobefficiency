@@ -256,7 +256,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="schedulertools.html">2. Scheduler Tools</a>
+        <a href="schedulerresources.html">2. Scheduler Resource Parameters</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -268,7 +268,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="schedulerresources.html">3. Scheduler Resource Parameters</a>
+        <a href="schedulertools.html">3. Scheduler Tools</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -419,22 +419,33 @@
 <section id="introduction"><h2 class="section-heading"><a href="introduction.html">Introduction</a></h2>
 <hr class="half-width">
 <ul>
-<li>Efficiency is efficient</li>
+<li>Efficiency is efficient
+<ul>
+<li>Definitions: wall/human-time, compute-time, time-to-solution, energy
+(costs / environment), Money, opportunity cost (less research
+output)</li>
+</ul>
+</li>
 <li>
 <code>time</code> and <code>time</code> again. Maybe also <a href="https://github.com/sharkdp/hyperfine" class="external-link uri">https://github.com/sharkdp/hyperfine</a> ?</li>
-</ul></section><section id="schedulertools"><h2 class="section-heading"><a href="schedulertools.html">Scheduler Tools</a></h2>
-<hr class="half-width">
-<ul>
-<li>
-<code>sacct</code> and <code>seff</code> for first results</li>
-<li>CPU and Memory Utilization</li>
-<li>Core-h and relationship to power efficiency</li>
 </ul></section><section id="schedulerresources"><h2 class="section-heading"><a href="schedulerresources.html">Scheduler Resource Parameters</a></h2>
 <hr class="half-width">
 <ul>
 <li>Don’t over-/underuse resources</li>
 <li>Optimal time-to-solution by minimizing batch queue times and
 maximizing parallelism</li>
+</ul></section><section id="schedulertools"><h2 class="section-heading"><a href="schedulertools.html">Scheduler Tools</a></h2>
+<hr class="half-width">
+<ul>
+<li>
+<code>sacct</code> and <code>seff</code> for first results</li>
+<li>Small scaling study, maximum of X% overhead is “still good” (larger
+resource req. vs. speedup)</li>
+<li>Getting a feel for scale of the HPC system, e.g. “is 64 cores a
+lot?”, how large is my job in comparison?</li>
+<li>CPU and Memory Utilization</li>
+<li>Core-h and relationship to power efficiency</li>
+<li>I/O (disk, network, interconnect)</li>
 </ul></section><section id="workflow"><h2 class="section-heading"><a href="workflow.html">Workflow of Performance Measurements</a></h2>
 <hr class="half-width">
 <ul>
@@ -464,7 +475,12 @@ is supposed to do.</li>
 <hr class="half-width">
 <ul>
 <li>General advice on the workflow</li>
-<li>Relative measurements (baseline vs. change)</li>
+<li>Relative measurements (baseline vs. change)
+<ul>
+<li>system is quiescent, fixed CPU freq + affinity, warmups, …</li>
+<li>Reproducibility -&gt; link to git course?</li>
+</ul>
+</li>
 <li>Scanning results for smoking guns</li>
 <li>Any best practices etc.</li>
 </ul></section><section id="commonsymptoms"><h2 class="section-heading"><a href="commonsymptoms.html">Common Symptoms</a></h2>
@@ -537,8 +553,8 @@ vendor-related, …</li>
   "url": "https://stderr-enst.github.io/jobefficiency/instructor/key-points.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/instructor/key-points.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-05-20",
-  "datePublished": "2025-05-20"
+  "dateModified": "2025-05-21",
+  "datePublished": "2025-05-21"
 }
 
   </script><script>

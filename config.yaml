@@ -67,8 +67,8 @@ contact: 'helpdesk@hpc.nrw'
 # Order of episodes in your lesson
 episodes: 
 - introduction.md
-- schedulertools.md
 - schedulerresources.md
+- schedulertools.md
 - workflow.md
 - generatingreports.md
 - readingreports.md
