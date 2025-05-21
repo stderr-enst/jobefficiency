@@ -23,6 +23,8 @@ exercises: 0
 :::::::::::::::::::::::::::::::::::::: keypoints
 - General advice on the workflow 
 - Relative measurements (baseline vs. change)
+   - system is quiescent, fixed CPU freq + affinity, warmups, ...
+   - Reproducibility -> link to git course?
 - Scanning results for smoking guns
 - Any best practices etc.
 ::::::::::::::::::::::::::::::::::::::::::::::::

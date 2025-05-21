@@ -19,6 +19,12 @@ Maybe some example workload / job script?
 You will need access to an *HPC* cluster to run the examples in this lesson.
 Refer to the HPC Introduction lessons to learn how to access and use a compute cluster of that scale.
 
+- Executive summary of typical HPC workflow? Or refer to other HPCC courses that cover this
+- "HPC Etiquette"
+   - E.g. don't run benchmarks on login node
+   - Don't disturb jobs on shared nodes
+- Setup of example for performance studies
+
 ::::::::::::::::::::::::::::::::::::::: discussion
 
 ### Common Software on HPC Systems
