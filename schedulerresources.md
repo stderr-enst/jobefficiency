@@ -22,6 +22,9 @@ exercises: 0
 ## Scheduler Resource Parameters
 
 <!-- EPISODE CONTENT HERE -->
+Didactic path: I have no idea how many resources to ask for -> just guess and start with some combinations.
+Next identify slower, or failed (OOM, timelimit) and choose the best
+What does that say about efficiency?
 
 :::::::::::::::::::::::::::::::::::::: keypoints
 - Don't over-/underuse resources

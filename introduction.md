@@ -7,6 +7,7 @@ exercises: 0
 :::::::::::::::::::::::::::::::::::::: questions 
 
 - Why should I care about my jobs performance?
+- How is efficiency defined?
 - How many resources should it request initially?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -24,5 +25,6 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: keypoints
 - Efficiency is efficient
+   - Definitions: wall/human-time, compute-time, time-to-solution, energy (costs / environment), Money, opportunity cost (less research output)
 - `time` and `time` again. Maybe also https://github.com/sharkdp/hyperfine ?
 ::::::::::::::::::::::::::::::::::::::::::::::::

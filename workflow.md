@@ -9,6 +9,7 @@ exercises: 0
 - What steps can I take to assess a jobs performance?
 - Which steps should I take first?
 - Are there alternative routes I could take?
+- Why are simple tools like `seff` and `sacct` not enough?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
