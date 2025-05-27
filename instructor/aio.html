@@ -256,7 +256,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="02_schedulerresources.html">2. Scheduler Resource Parameters</a>
+        <a href="02_resourcerequirements.html">2. Resource Requirements</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -422,13 +422,16 @@
 <hr class="half-width"></section><section><h2 class="section-heading" id="efficiency">Efficiency<a class="anchor" aria-label="anchor" href="#efficiency"></a>
 </h2>
 <hr class="half-width">
-<p>Definitions of efficiency (to be ordered and discussed): 1. Minimal
-wall-/human-time of the job 2. Minimal compute-time 3. Minimal
-time-to-solution (like 1, including queue wait times) 4. Minimal cost in
-terms of energy/someones money 5. With regards to opportunity costs.
-Amount of research per job (including waiting times, computation time,
-slowdown through larger iteration cycles (turn around times))</p>
-</section><section><h2 class="section-heading" id="performance-in-relation-to-hardware">Performance in Relation to Hardware<a class="anchor" aria-label="anchor" href="#performance-in-relation-to-hardware"></a>
+<p>Definitions of efficiency (to be ordered and discussed):</p>
+<ol style="list-style-type: decimal">
+<li>Minimal wall-/human-time of the job</li>
+<li>Minimal compute-time</li>
+<li>Minimal time-to-solution (like 1, including queue wait times)</li>
+<li>Minimal cost in terms of energy/someones money</li>
+<li>With regards to opportunity costs. Amount of research per job
+(including waiting times, computation time, slowdown through larger
+iteration cycles (turn around times))</li>
+</ol></section><section><h2 class="section-heading" id="performance-in-relation-to-hardware">Performance in Relation to Hardware<a class="anchor" aria-label="anchor" href="#performance-in-relation-to-hardware"></a>
 </h2>
 <hr class="half-width">
 <p>(Following this structure throughout the course, trying to understand
@@ -464,11 +467,11 @@ output)</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-02_schedulerresources"><p>Content from <a href="02_schedulerresources.html">Scheduler Resource Parameters</a></p>
+</section></section><section id="aio-02_resourcerequirements"><p>Content from <a href="02_resourcerequirements.html">Resource Requirements</a></p>
 <hr>
 <p>Last updated on 2025-05-27 |
 
-        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/02_schedulerresources.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/02_resourcerequirements.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -504,13 +507,16 @@ resources.</li>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="scheduler-resource-parameters">Scheduler Resource Parameters<a class="anchor" aria-label="anchor" href="#scheduler-resource-parameters"></a>
+<section><h2 class="section-heading" id="starting-somewhere">Starting Somewhere<a class="anchor" aria-label="anchor" href="#starting-somewhere"></a>
 </h2>
 <hr class="half-width">
-<!-- EPISODE CONTENT HERE --><p>Didactic path: I have no idea how many resources to ask for -&gt;
+<p>Didactic path: I have no idea how many resources to ask for -&gt;
 just guess and start with some combinations. Next identify slower, or
 failed (OOM, timelimit) and choose the best What does that say about
 efficiency?</p>
+</section><section><h2 class="section-heading" id="requesting-resources">Requesting Resources<a class="anchor" aria-label="anchor" href="#requesting-resources"></a>
+</h2>
+<hr class="half-width">
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
