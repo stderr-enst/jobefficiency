@@ -25,6 +25,7 @@ exercises: 0
 
 ## Efficiency
 Definitions of efficiency (to be ordered and discussed):
+
 1. Minimal wall-/human-time of the job
 2. Minimal compute-time
 3. Minimal time-to-solution (like 1, including queue wait times)
