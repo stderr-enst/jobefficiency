@@ -66,16 +66,16 @@ contact: 'helpdesk@hpc.nrw'
 
 # Order of episodes in your lesson
 episodes: 
-- introduction.md
-- schedulerresources.md
-- schedulertools.md
-- workflow.md
-- generatingreports.md
-- readingreports.md
-- bottlenecks.md
-- commonsymptoms.md
-- accelerators.md
-- nextsteps.md
+- 01_introduction.md
+- 02_schedulerresources.md
+- 03_schedulertools.md
+- 04_workflow.md
+- 05_generatingreports.md
+- 06_readingreports.md
+- 07_bottlenecks.md
+- 08_commonsymptoms.md
+- 09_accelerators.md
+- 10_nextsteps.md
 
 # Information for Learners
 learners: 

@@ -31,3 +31,5 @@ Batch system
 Module
 : A provided software of a specific version that can be loaded when needed.
 
+Slurm CPU
+: "CPU" in the context of Slurm options and mentions is often referring to a single core of a multi-core CPU.
