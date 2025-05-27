@@ -67,7 +67,7 @@ contact: 'helpdesk@hpc.nrw'
 # Order of episodes in your lesson
 episodes: 
 - 01_introduction.md
-- 02_schedulerresources.md
+- 02_resourcerequirements.md
 - 03_schedulertools.md
 - 04_performancereports.md
 - 05_bottlenecks.md

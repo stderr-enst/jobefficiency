@@ -1,5 +1,5 @@
 ---
-title: "Scheduler Resource Parameters"
+title: "Resource Requirements"
 teaching: 10
 exercises: 0
 ---
@@ -19,12 +19,14 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Scheduler Resource Parameters
-
 <!-- EPISODE CONTENT HERE -->
+## Starting Somewhere
 Didactic path: I have no idea how many resources to ask for -> just guess and start with some combinations.
 Next identify slower, or failed (OOM, timelimit) and choose the best
 What does that say about efficiency?
+
+## Requesting Resources
+
 
 :::::::::::::::::::::::::::::::::::::: keypoints
 - Don't over-/underuse resources
