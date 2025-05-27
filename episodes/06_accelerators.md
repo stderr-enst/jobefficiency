@@ -1,13 +1,13 @@
 ---
-title: "Job Efficiency on Accelerators"
+title: "Special Aspects of Accelerators"
 teaching: 10
 exercises: 0
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- What are accelerators and how do they affect my job performance?
-- How efficient are my jobs if they use accelerators?
+- What are accelerators? 
+- How do they affect my jobs performance?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -19,6 +19,7 @@ exercises: 0
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Introduction
+Run the same example workload on GPU and compare.
 
 <!-- EPISODE CONTENT HERE -->
 

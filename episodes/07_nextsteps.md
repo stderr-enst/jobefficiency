@@ -6,17 +6,27 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How can I assess the performance of my application, opposed to just how well the application is utilizing the job resources?
+- Are there common patterns of "pathological" performance?
+- How can I evaluate the performance of my application in greater detail?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
+- Learn about the collection of performance patterns on hpc-wiki.info
 - Dipping our toes in profiling.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 ## Next Steps
+
+hpc-wiki.info
+- I/O
+- CPU Front End
+- CPU Back End
+- Memory leak
+- Oversubscription
+- Underutilization
 
 <!-- EPISODE CONTENT HERE -->
 
