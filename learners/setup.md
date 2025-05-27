@@ -2,8 +2,7 @@
 title: Setup
 ---
 
-## Data Sets
-
+## Example Workload
 <!--
 FIXME: place any data you want learners to use in `episodes/data` and then use
        a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
@@ -12,10 +11,17 @@ FIXME: place any data you want learners to use in `episodes/data` and then use
 Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
 -->
 
-Maybe some example workload / job script?
+Example workload that:
+
+- Has some instructive performance issues that can be discovered, e.g.
+   - Mismatch between requested resources in job script and used resources
+   - Memory leak or unnecessary allocation with a quick fix? Either triggers OOM or just wasting resources, dependent on side and default memory/core
+   - No vectorization?
+   - Parallelism issues?
+- Software that can run on CPU and GPU, to discuss both with the example
+
 
 ## Software Setup
-
 You will need access to an *HPC* cluster to run the examples in this lesson.
 Refer to the HPC Introduction lessons to learn how to access and use a compute cluster of that scale.
 
