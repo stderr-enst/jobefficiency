@@ -1,6 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/01_introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/02_schedulerresources.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/03_schedulertools.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/04_performancereports.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/05_bottlenecks.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/06_accelerators.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/07_nextsteps.html</loc>
+  </url>
+  <url>
     <loc>https://stderr-enst.github.io/jobefficiency/404.html</loc>
   </url>
   <url>
@@ -35,6 +56,27 @@
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/index.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/01_introduction.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/02_schedulerresources.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/03_schedulertools.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/04_performancereports.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/05_bottlenecks.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/06_accelerators.html</loc>
+  </url>
+  <url>
+    <loc>https://stderr-enst.github.io/jobefficiency/instructor/07_nextsteps.html</loc>
   </url>
   <url>
     <loc>https://stderr-enst.github.io/jobefficiency/instructor/404.html</loc>

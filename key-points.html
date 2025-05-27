@@ -243,7 +243,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. Introduction</a>
+        <a href="01_introduction.html">1. Introduction</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -255,7 +255,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="schedulerresources.html">2. Scheduler Resource Parameters</a>
+        <a href="02_schedulerresources.html">2. Scheduler Resource Parameters</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -267,7 +267,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="schedulertools.html">3. Scheduler Tools</a>
+        <a href="03_schedulertools.html">3. Scheduler Tools</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -279,7 +279,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="workflow.html">4. Workflow of Performance Measurements</a>
+        <a href="04_performancereports.html">4. Workflow of Performance Measurements</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -291,7 +291,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="generatingreports.html">5. Generating Performance Reports</a>
+        <a href="05_bottlenecks.html">5. How to identify a bottleneck?</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -303,7 +303,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="readingreports.html">6. Reading Performance Reports</a>
+        <a href="06_accelerators.html">6. Special Aspects of Accelerators</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -315,43 +315,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="bottlenecks.html">7. How to identify a bottleneck?</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush9">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading9">
-        <a href="commonsymptoms.html">8. Common Symptoms</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush10">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading10">
-        <a href="accelerators.html">9. Job Efficiency on Accelerators</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush11">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading11">
-        <a href="nextsteps.html">10. Next Steps</a>
+        <a href="07_nextsteps.html">7. Next Steps</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -414,7 +378,7 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="introduction"><h2 class="section-heading"><a href="introduction.html">Introduction</a></h2>
+<section id="01_introduction"><h2 class="section-heading"><a href="01_introduction.html">Introduction</a></h2>
 <hr class="half-width">
 <ul>
 <li>Efficiency is efficient
@@ -426,13 +390,13 @@ output)</li>
 </li>
 <li>
 <code>time</code> and <code>time</code> again. Maybe also <a href="https://github.com/sharkdp/hyperfine" class="external-link uri">https://github.com/sharkdp/hyperfine</a> ?</li>
-</ul></section><section id="schedulerresources"><h2 class="section-heading"><a href="schedulerresources.html">Scheduler Resource Parameters</a></h2>
+</ul></section><section id="02_schedulerresources"><h2 class="section-heading"><a href="02_schedulerresources.html">Scheduler Resource Parameters</a></h2>
 <hr class="half-width">
 <ul>
 <li>Don’t over-/underuse resources</li>
 <li>Optimal time-to-solution by minimizing batch queue times and
 maximizing parallelism</li>
-</ul></section><section id="schedulertools"><h2 class="section-heading"><a href="schedulertools.html">Scheduler Tools</a></h2>
+</ul></section><section id="03_schedulertools"><h2 class="section-heading"><a href="03_schedulertools.html">Scheduler Tools</a></h2>
 <hr class="half-width">
 <ul>
 <li>
@@ -443,23 +407,20 @@ resource req. vs. speedup)</li>
 lot?”, how large is my job in comparison?</li>
 <li>CPU and Memory Utilization</li>
 <li>Core-h and relationship to power efficiency</li>
-<li>I/O (disk, network, interconnect)</li>
-</ul></section><section id="workflow"><h2 class="section-heading"><a href="workflow.html">Workflow of Performance Measurements</a></h2>
+</ul></section><section id="04_performancereports"><h2 class="section-heading"><a href="04_performancereports.html">Workflow of Performance Measurements</a></h2>
 <hr class="half-width">
 <ul>
 <li>First things first, second things second, …</li>
 <li>Profiling, tracing</li>
 <li>Sampling, summation</li>
-</ul></section><section id="generatingreports"><h2 class="section-heading"><a href="generatingreports.html">Generating Performance Reports</a></h2>
-<hr class="half-width">
-<ul>
 <li>Different HPC centers may provide different approaches to this
 workflow</li>
 <li>Performance reports offer more insight into the job and application
 behavior</li>
-</ul></section><section id="readingreports"><h2 class="section-heading"><a href="readingreports.html">Reading Performance Reports</a></h2>
+</ul></section><section id="05_bottlenecks"><h2 class="section-heading"><a href="05_bottlenecks.html">How to identify a bottleneck?</a></h2>
 <hr class="half-width">
 <ul>
+<li>General advice on the workflow</li>
 <li>Performance reports may provide an automated summary with
 recommendations</li>
 <li>Performance metrics can be categorized by the underlying hardware,
@@ -469,10 +430,6 @@ limits of the hardware or indirectly by other metrics being far from
 what the physical limits are.</li>
 <li>Interpreting bottlenecks is closely related to what the application
 is supposed to do.</li>
-</ul></section><section id="bottlenecks"><h2 class="section-heading"><a href="bottlenecks.html">How to identify a bottleneck?</a></h2>
-<hr class="half-width">
-<ul>
-<li>General advice on the workflow</li>
 <li>Relative measurements (baseline vs. change)
 <ul>
 <li>system is quiescent, fixed CPU freq + affinity, warmups, …</li>
@@ -481,22 +438,12 @@ is supposed to do.</li>
 </li>
 <li>Scanning results for smoking guns</li>
 <li>Any best practices etc.</li>
-</ul></section><section id="commonsymptoms"><h2 class="section-heading"><a href="commonsymptoms.html">Common Symptoms</a></h2>
-<hr class="half-width">
-<ul>
-<li>I/O</li>
-<li>CPU Front End</li>
-<li>CPU Back End</li>
-<li>Memory leak</li>
-<li>Oversubscription</li>
-<li>Underutilization</li>
-<li>…</li>
-</ul></section><section id="accelerators"><h2 class="section-heading"><a href="accelerators.html">Job Efficiency on Accelerators</a></h2>
+</ul></section><section id="06_accelerators"><h2 class="section-heading"><a href="06_accelerators.html">Special Aspects of Accelerators</a></h2>
 <hr class="half-width">
 <ul>
 <li>Tools to measure GPU/FPGA performance of a job</li>
 <li>Common symptoms of GPU/FPGA problems</li>
-</ul></section><section id="nextsteps"><h2 class="section-heading"><a href="nextsteps.html">Next Steps</a></h2>
+</ul></section><section id="07_nextsteps"><h2 class="section-heading"><a href="07_nextsteps.html">Next Steps</a></h2>
 <hr class="half-width">
 <ul>
 <li>There are many profilers, some are language-specific, others are

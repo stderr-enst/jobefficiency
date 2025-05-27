@@ -244,7 +244,7 @@
 <div class="accordion accordion-flush" id="accordionFlush2">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading2">
-        <a href="introduction.html">1. Introduction</a>
+        <a href="01_introduction.html">1. Introduction</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -256,7 +256,7 @@
 <div class="accordion accordion-flush" id="accordionFlush3">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading3">
-        <a href="schedulerresources.html">2. Scheduler Resource Parameters</a>
+        <a href="02_schedulerresources.html">2. Scheduler Resource Parameters</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -268,7 +268,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="schedulertools.html">3. Scheduler Tools</a>
+        <a href="03_schedulertools.html">3. Scheduler Tools</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -280,7 +280,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="workflow.html">4. Workflow of Performance Measurements</a>
+        <a href="04_performancereports.html">4. Workflow of Performance Measurements</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -292,7 +292,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="generatingreports.html">5. Generating Performance Reports</a>
+        <a href="05_bottlenecks.html">5. How to identify a bottleneck?</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -304,7 +304,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="readingreports.html">6. Reading Performance Reports</a>
+        <a href="06_accelerators.html">6. Special Aspects of Accelerators</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -316,43 +316,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="bottlenecks.html">7. How to identify a bottleneck?</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush9">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading9">
-        <a href="commonsymptoms.html">8. Common Symptoms</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush10">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading10">
-        <a href="accelerators.html">9. Job Efficiency on Accelerators</a>
-    </div>
-<!--/div.accordion-header-->
-
-  </div>
-<!--/div.accordion-item-->
-</div>
-<!--/div.accordion-flush-->
-
-<div class="accordion accordion-flush" id="accordionFlush11">
-  <div class="accordion-item">
-    <div class="accordion-header" id="flush-heading11">
-        <a href="nextsteps.html">10. Next Steps</a>
+        <a href="07_nextsteps.html">7. Next Steps</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -416,11 +380,11 @@
     <main id="main-content" class="main-content"><div class="container lesson-content">
         
         
-<section id="aio-introduction"><p>Content from <a href="introduction.html">Introduction</a></p>
+<section id="aio-01_introduction"><p>Content from <a href="01_introduction.html">Introduction</a></p>
 <hr>
-<p>Last updated on 2025-05-21 |
+<p>Last updated on 2025-05-27 |
 
-        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/01_introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -453,10 +417,29 @@
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
+<section><h2 class="section-heading" id="motivation">Motivation<a class="anchor" aria-label="anchor" href="#motivation"></a>
+</h2>
+<hr class="half-width"></section><section><h2 class="section-heading" id="efficiency">Efficiency<a class="anchor" aria-label="anchor" href="#efficiency"></a>
 </h2>
 <hr class="half-width">
-<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
+<p>Definitions of efficiency (to be ordered and discussed): 1. Minimal
+wall-/human-time of the job 2. Minimal compute-time 3. Minimal
+time-to-solution (like 1, including queue wait times) 4. Minimal cost in
+terms of energy/someones money 5. With regards to opportunity costs.
+Amount of research per job (including waiting times, computation time,
+slowdown through larger iteration cycles (turn around times))</p>
+</section><section><h2 class="section-heading" id="performance-in-relation-to-hardware">Performance in Relation to Hardware<a class="anchor" aria-label="anchor" href="#performance-in-relation-to-hardware"></a>
+</h2>
+<hr class="half-width">
+<p>(Following this structure throughout the course, trying to understand
+the performance in these terms)</p>
+<p>Basic/broad dimensions of performance: - CPU (Front- and Backend,
+FLOPS) - Memory (data hierarchy) - I/O (broader data hierarchy: disk,
+network) - Parallel timeline (synchronization, etc.)</p>
+</section><section><h2 class="section-heading" id="baseline">Baseline<a class="anchor" aria-label="anchor" href="#baseline"></a>
+</h2>
+<hr class="half-width">
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -481,11 +464,11 @@ output)</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-schedulerresources"><p>Content from <a href="schedulerresources.html">Scheduler Resource Parameters</a></p>
+</section></section><section id="aio-02_schedulerresources"><p>Content from <a href="02_schedulerresources.html">Scheduler Resource Parameters</a></p>
 <hr>
-<p>Last updated on 2025-05-21 |
+<p>Last updated on 2025-05-27 |
 
-        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/schedulerresources.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/02_schedulerresources.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -547,11 +530,11 @@ maximizing parallelism</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-schedulertools"><p>Content from <a href="schedulertools.html">Scheduler Tools</a></p>
+</section></section><section id="aio-03_schedulertools"><p>Content from <a href="03_schedulertools.html">Scheduler Tools</a></p>
 <hr>
-<p>Last updated on 2025-05-21 |
+<p>Last updated on 2025-05-27 |
 
-        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/schedulertools.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/03_schedulertools.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -589,7 +572,15 @@ job.</li>
 <section><h2 class="section-heading" id="scheduler-tools">Scheduler Tools<a class="anchor" aria-label="anchor" href="#scheduler-tools"></a>
 </h2>
 <hr class="half-width">
-<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
+<!-- EPISODE CONTENT HERE --></section><section><h2 class="section-heading" id="shortcomings">Shortcomings<a class="anchor" aria-label="anchor" href="#shortcomings"></a>
+</h2>
+<hr class="half-width">
+<ul>
+<li>Not enough info about e.g. I/O, no timeline of metrics during job
+execution, …</li>
+<li>=&gt; trying other tools! (motivation for subsequent episodes)</li>
+</ul>
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -605,7 +596,6 @@ resource req. vs. speedup)</li>
 lot?”, how large is my job in comparison?</li>
 <li>CPU and Memory Utilization</li>
 <li>Core-h and relationship to power efficiency</li>
-<li>I/O (disk, network, interconnect)</li>
 </ul>
 </div>
 </div>
@@ -614,74 +604,11 @@ lot?”, how large is my job in comparison?</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-workflow"><p>Content from <a href="workflow.html">Workflow of Performance Measurements</a></p>
+</section></section><section id="aio-04_performancereports"><p>Content from <a href="04_performancereports.html">Workflow of Performance Measurements</a></p>
 <hr>
-<p>Last updated on 2025-05-21 |
+<p>Last updated on 2025-05-27 |
 
-        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/workflow.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>What steps can I take to assess a jobs performance?</li>
-<li>Which steps should I take first?</li>
-<li>Are there alternative routes I could take?</li>
-<li>Why are simple tools like <code>seff</code> and <code>sacct</code>
-not enough?</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>Develop a better understanding of alternative concepts in
-performance measurements.</li>
-<li>Introduce central terms of performance measurements and how they
-relate.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
-</h2>
-<hr class="half-width">
-<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
-<div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Key Points</h3>
-<div class="callout-content">
-<ul>
-<li>First things first, second things second, …</li>
-<li>Profiling, tracing</li>
-<li>Sampling, summation</li>
-</ul>
-</div>
-</div>
-</div>
-<!--
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use.
- -->
-</section></section><section id="aio-generatingreports"><p>Content from <a href="generatingreports.html">Generating Performance Reports</a></p>
-<hr>
-<p>Last updated on 2025-05-21 |
-
-        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/generatingreports.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/04_performancereports.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -695,9 +622,13 @@ any links that you are not going to use.
 <h3 class="card-title">Questions</h3>
 <ul>
 <li>Why would I run other tools?</li>
+<li>Why are simple tools like <code>seff</code> and <code>sacct</code>
+not enough?</li>
 <li>Are there tools providing more information about a jobs
 performance?</li>
-<li>What benefits do they bring beyond the basic metrics?</li>
+<li>What steps can I take to assess a jobs performance?</li>
+<li>Which steps should I take first?</li>
+<li>Are there alternative routes I could take?</li>
 <li>What popular types of reports exist? (e.g. Roofline)</li>
 </ul>
 </div>
@@ -708,6 +639,10 @@ performance?</li>
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
+<li>Develop a better understanding of alternative concepts in
+performance measurements.</li>
+<li>Introduce central terms of performance measurements and how they
+relate.</li>
 <li>Create a performance report through a third-party tool.</li>
 <li>Learn intentions behind performance reports (establish baseline,
 documentation of issues and improvements through optimization,
@@ -719,9 +654,24 @@ optimization)</li>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="generating-performance-reports">Generating Performance Reports<a class="anchor" aria-label="anchor" href="#generating-performance-reports"></a>
+<section><h2 class="section-heading" id="workflow">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a>
 </h2>
 <hr class="half-width">
+<ul>
+<li>Define sampling and tracing</li>
+<li>Describe common approaches</li>
+</ul></section><section><h2 class="section-heading" id="tools">Tools<a class="anchor" aria-label="anchor" href="#tools"></a>
+</h2>
+<hr class="half-width"></section><section><h2 class="section-heading" id="general-report">General report<a class="anchor" aria-label="anchor" href="#general-report"></a>
+</h2>
+<hr class="half-width">
+<ul>
+<li>General reports show direction in which to continue
+<ul>
+<li>Specialized tools may be necessary</li>
+</ul>
+</li>
+</ul>
 <!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -730,6 +680,9 @@ optimization)</li>
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
 <ul>
+<li>First things first, second things second, …</li>
+<li>Profiling, tracing</li>
+<li>Sampling, summation</li>
 <li>Different HPC centers may provide different approaches to this
 workflow</li>
 <li>Performance reports offer more insight into the job and application
@@ -742,11 +695,11 @@ behavior</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-readingreports"><p>Content from <a href="readingreports.html">Reading Performance Reports</a></p>
+</section></section><section id="aio-05_bottlenecks"><p>Content from <a href="05_bottlenecks.html">How to identify a bottleneck?</a></p>
 <hr>
-<p>Last updated on 2025-04-03 |
+<p>Last updated on 2025-05-27 |
 
-        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/readingreports.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/05_bottlenecks.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -759,7 +712,7 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How should I read a performance report?</li>
+<li>How can I find the bottlenecks in a job at hand?</li>
 </ul>
 </div>
 </div>
@@ -769,70 +722,8 @@ any links that you are not going to use.
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
-<li>Learn how to read performance reports and what to look for.</li>
 <li>First short overview of typical “smoking guns” with regard to
 performance issues.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<section><h2 class="section-heading" id="reading-performance-reports">Reading Performance Reports<a class="anchor" aria-label="anchor" href="#reading-performance-reports"></a>
-</h2>
-<hr class="half-width">
-<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
-<div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Key Points</h3>
-<div class="callout-content">
-<ul>
-<li>Performance reports may provide an automated summary with
-recommendations</li>
-<li>Performance metrics can be categorized by the underlying hardware,
-e.g. CPU, memory, I/O, accelerators.</li>
-<li>Bottlenecks can appear by metrics being saturated at the physical
-limits of the hardware or indirectly by other metrics being far from
-what the physical limits are.</li>
-<li>Interpreting bottlenecks is closely related to what the application
-is supposed to do.</li>
-</ul>
-</div>
-</div>
-</div>
-<!--
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use.
- -->
-</section></section><section id="aio-bottlenecks"><p>Content from <a href="bottlenecks.html">How to identify a bottleneck?</a></p>
-<hr>
-<p>Last updated on 2025-05-21 |
-
-        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/bottlenecks.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>How can I find the bottlenecks in a job I have in front of me?</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
 <li>Find the bottlenecks in a job at hand.</li>
 </ul>
 </div>
@@ -852,6 +743,15 @@ any links that you are not going to use.
 <div class="callout-content">
 <ul>
 <li>General advice on the workflow</li>
+<li>Performance reports may provide an automated summary with
+recommendations</li>
+<li>Performance metrics can be categorized by the underlying hardware,
+e.g. CPU, memory, I/O, accelerators.</li>
+<li>Bottlenecks can appear by metrics being saturated at the physical
+limits of the hardware or indirectly by other metrics being far from
+what the physical limits are.</li>
+<li>Interpreting bottlenecks is closely related to what the application
+is supposed to do.</li>
 <li>Relative measurements (baseline vs. change)
 <ul>
 <li>system is quiescent, fixed CPU freq + affinity, warmups, …</li>
@@ -868,11 +768,11 @@ any links that you are not going to use.
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-commonsymptoms"><p>Content from <a href="commonsymptoms.html">Common Symptoms</a></p>
+</section></section><section id="aio-06_accelerators"><p>Content from <a href="06_accelerators.html">Special Aspects of Accelerators</a></p>
 <hr>
-<p>Last updated on 2025-04-03 |
+<p>Last updated on 2025-05-27 |
 
-        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/commonsymptoms.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/06_accelerators.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -885,71 +785,8 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>What are common performance issues and how do they look in
-performance reports?</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="col-md-8">
-<div class="card-body">
-<div class="inner bordered">
-<h3 class="card-title">Objectives</h3>
-<ul>
-<li>Provide an overview of how common symptoms of performance issues
-appear in reports.</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-</div>
-<section><h2 class="section-heading" id="common-symptoms">Common Symptoms<a class="anchor" aria-label="anchor" href="#common-symptoms"></a>
-</h2>
-<hr class="half-width">
-<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
-<div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
-</div>
-<div class="callout-inner">
-<h3 class="callout-title">Key Points</h3>
-<div class="callout-content">
-<ul>
-<li>I/O</li>
-<li>CPU Front End</li>
-<li>CPU Back End</li>
-<li>Memory leak</li>
-<li>Oversubscription</li>
-<li>Underutilization</li>
-<li>…</li>
-</ul>
-</div>
-</div>
-</div>
-<!--
-Place links that you need to refer to multiple times across pages here. Delete
-any links that you are not going to use.
- -->
-</section></section><section id="aio-accelerators"><p>Content from <a href="accelerators.html">Job Efficiency on Accelerators</a></p>
-<hr>
-<p>Last updated on 2025-05-06 |
-
-        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/accelerators.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
-<p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
-<div class="text-end">
-          <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
-        </div>
-<div class="overview card">
-<h2 class="card-header">Overview</h2>
-<div class="row g-0">
-<div class="col-md-4">
-<div class="card-body">
-<div class="inner">
-<h3 class="card-title">Questions</h3>
-<ul>
-<li>What are accelerators and how do they affect my job
-performance?</li>
-<li>How efficient are my jobs if they use accelerators?</li>
+<li>What are accelerators?</li>
+<li>How do they affect my jobs performance?</li>
 </ul>
 </div>
 </div>
@@ -971,7 +808,9 @@ treat accelerators.</li>
 <section><h2 class="section-heading" id="introduction">Introduction<a class="anchor" aria-label="anchor" href="#introduction"></a>
 </h2>
 <hr class="half-width">
-<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
+<p>Run the same example workload on GPU and compare.</p>
+<!-- EPISODE CONTENT HERE -->
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -989,11 +828,11 @@ treat accelerators.</li>
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
  -->
-</section></section><section id="aio-nextsteps"><p>Content from <a href="nextsteps.html">Next Steps</a></p>
+</section></section><section id="aio-07_nextsteps"><p>Content from <a href="07_nextsteps.html">Next Steps</a></p>
 <hr>
-<p>Last updated on 2025-04-03 |
+<p>Last updated on 2025-05-27 |
 
-        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/nextsteps.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
+        <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/07_nextsteps.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
 <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -1006,8 +845,9 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>How can I assess the performance of my application, opposed to just
-how well the application is utilizing the job resources?</li>
+<li>Are there common patterns of “pathological” performance?</li>
+<li>How can I evaluate the performance of my application in greater
+detail?</li>
 </ul>
 </div>
 </div>
@@ -1017,6 +857,8 @@ how well the application is utilizing the job resources?</li>
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <ul>
+<li>Learn about the collection of performance patterns on
+hpc-wiki.info</li>
 <li>Dipping our toes in profiling.</li>
 </ul>
 </div>
@@ -1027,7 +869,10 @@ how well the application is utilizing the job resources?</li>
 <section><h2 class="section-heading" id="next-steps">Next Steps<a class="anchor" aria-label="anchor" href="#next-steps"></a>
 </h2>
 <hr class="half-width">
-<!-- EPISODE CONTENT HERE --><div id="keypoints1" class="callout keypoints">
+<p>hpc-wiki.info - I/O - CPU Front End - CPU Back End - Memory leak -
+Oversubscription - Underutilization</p>
+<!-- EPISODE CONTENT HERE -->
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
