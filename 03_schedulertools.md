@@ -23,11 +23,14 @@ exercises: 0
 
 <!-- EPISODE CONTENT HERE -->
 
+## Shortcomings
+- Not enough info about e.g. I/O, no timeline of metrics during job execution, ...
+- => trying other tools! (motivation for subsequent episodes)
+
 :::::::::::::::::::::::::::::::::::::: keypoints
 - `sacct` and `seff` for first results
 - Small scaling study, maximum of X% overhead is "still good" (larger resource req. vs. speedup)
 - Getting a feel for scale of the HPC system, e.g. "is 64 cores a lot?", how large is my job in comparison?
 - CPU and Memory Utilization
 - Core-h and relationship to power efficiency
-- I/O (disk, network, interconnect)
 ::::::::::::::::::::::::::::::::::::::::::::::::
