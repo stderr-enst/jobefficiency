@@ -14,8 +14,10 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Familiarize with basic performance metrics.
-- Learn the schedulers tools to gather performance metrics about a job.
+After completing this episode, participants should be able to …
+
+- Explain basic performance metrics.
+- Use tools provided by the scheduler to collect basic performance metrics of their jobs.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

@@ -12,8 +12,10 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- First short overview of typical "smoking guns" with regard to performance issues.
-- Find the bottlenecks in a job at hand.
+After completing this episode, participants should be able to …
+
+- Name typical performance issues.
+- Determine if their job is affected by one of these issues.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

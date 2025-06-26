@@ -47,22 +47,6 @@ contact: 'helpdesk@hpc.nrw'
 # Use the following menu items to specify the order of
 # individual pages in each dropdown section. Leave blank to
 # include all pages in the folder.
-#
-# Example -------------
-#
-# episodes:
-# - introduction.md
-# - first-steps.md
-#
-# learners:
-# - setup.md
-#
-# instructors:
-# - instructor-notes.md
-#
-# profiles:
-# - one-learner.md
-# - another-learner.md
 
 # Order of episodes in your lesson
 episodes: 
@@ -76,12 +60,18 @@ episodes:
 
 # Information for Learners
 learners: 
+- setup.md
+- reference.md
 
 # Information for Instructors
 instructors: 
+- instructor-notes.md
 
 # Learner Profiles
-profiles: 
+profiles:
+- learner-profiles.md
+# - one-learner.md
+# - another-learner.md
 
 # Customisation ---------------------------------------------
 #

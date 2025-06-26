@@ -13,8 +13,10 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Learn about the collection of performance patterns on hpc-wiki.info
-- Dipping our toes in profiling.
+After completing this episode, participants should be able to …
+
+- Find collection of performance patterns on hpc-wiki.info
+- Identify next steps to take with regard to performance optimization.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
