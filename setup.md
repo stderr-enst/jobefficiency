@@ -2,7 +2,27 @@
 title: Setup
 ---
 
-## Example Workload
+## Learning Objectives
+After attending this training, participants will be able to:
+
+- Explain efficiency in the context of *HPC* systems
+- Use batch system tools and third party tools to measure job efficiency
+- Describe common concepts and terms related to performance on HPC systems
+- Identify hardware components involved in performance considerations
+- Achieve first results in performance optimization of their application
+- Remember next steps to take towards learning performance optimization
+
+:::::::::::::::::::::::::::::::::::::::::: prereq
+
+- Access to a HPC system
+- Example workload setup
+- Basic knowledge of HPC systems (batch systems, parallel file systems) -- being able to submit a simple job and understand what happens in broad terms
+
+::::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+
+## Example Workload & Setup
 <!--
 FIXME: place any data you want learners to use in `episodes/data` and then use
        a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
@@ -21,17 +41,18 @@ Example workload that:
 - Software that can run on CPU and GPU, to discuss both with the example
 
 
-## Software Setup
-You will need access to an *HPC* cluster to run the examples in this lesson.
-Refer to the HPC Introduction lessons to learn how to access and use a compute cluster of that scale.
+You will need access to an HPC cluster to run the examples in this lesson.
+Discuss how to find out where to apply for access as a researcher (in general, in EU, in Germany, in NRW?).
+Refer to the [HPC Introduction lessons](https://nesi.github.io/hpc-intro/) to learn how to access and use a compute cluster of that scale.
 
 - Executive summary of typical HPC workflow? Or refer to other HPCC courses that cover this
-- "HPC Etiquette"
+- "HPC etiquette"
    - E.g. don't run benchmarks on login node
    - Don't disturb jobs on shared nodes
 - Setup of example for performance studies
 
-::::::::::::::::::::::::::::::::::::::: discussion
+
+:::::::::::::::::::::::::::::::::::::::::: discussion 
 
 ### Common Software on HPC Systems
 Working on an HPC system commonly involves a
@@ -40,9 +61,9 @@ Working on an HPC system commonly involves a
 - *module* system to load certain versions of centrally provided software and a
 - way to log in to a *login node* of the cluster.
 
-:::::::::::::::::::::::::::::::::::::::::::::::::::
+::::::::::::::::::::::::::::::::::::::::::::::::::::::
 
-To login via `ssh`, you can use on
+To login via `ssh`, you can use on (remove this since it's discussed in HPC introduction?)
 
 :::::::::::::::: spoiler
 
@@ -69,4 +90,3 @@ To login via `ssh`, you can use on
 - `ssh` in Terminal
 
 ::::::::::::::::::::::::
-

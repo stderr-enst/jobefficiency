@@ -13,7 +13,9 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Learn about accelerators like GPUs and FPGAs.
+After completing this episode, participants should be able to …
+
+- Understand difference of performance measurements on accelerators (GPUs, FPGAs) to CPUs.
 - Understand how batch systems and performance measurements tools treat accelerators.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

@@ -6,6 +6,7 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
+- How many resources should it request initially?
 - What options does the scheduler give to request resources?
 - How do I know if they are used well?
 
@@ -13,8 +14,10 @@ exercises: 0
 
 ::::::::::::::::::::::::::::::::::::: objectives
 
-- Learn how to request the right amount of resources from the scheduler.
-- Learn how to change the parameters if the applications' resource requirements change.
+After completing this episode, participants should be able to …
+
+- Request the right amount of resources from the scheduler.
+- Change the parameters if the applications' resource requirements change.
 - See the direct benefits of requesting the right amount of resources.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
