@@ -380,7 +380,7 @@
         
 <section id="aio-01_introduction"><p>Content from <a href="01_introduction.html">Introduction</a></p>
 <hr>
-<p>Last updated on 2025-05-27 |
+<p>Last updated on 2025-06-26 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/01_introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -396,7 +396,6 @@
 <ul>
 <li>Why should I care about my jobs performance?</li>
 <li>How is efficiency defined?</li>
-<li>How many resources should it request initially?</li>
 </ul>
 </div>
 </div>
@@ -405,6 +404,7 @@
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
+<p>After completing this episode, participants should be able to …</p>
 <ul>
 <li>Understand the benefits of efficient jobs.</li>
 <li>Use the <code>time</code> command for a first assessment.</li>
@@ -414,11 +414,59 @@
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="motivation">Motivation<a class="anchor" aria-label="anchor" href="#motivation"></a>
-</h2>
-<hr class="half-width"></section><section><h2 class="section-heading" id="efficiency">Efficiency<a class="anchor" aria-label="anchor" href="#efficiency"></a>
+<section><h2 class="section-heading" id="why-care-about-performance">Why Care About Performance?<a class="anchor" aria-label="anchor" href="#why-care-about-performance"></a>
 </h2>
 <hr class="half-width">
+<p>Reasons from the perspective of learners (see profiles)</p>
+<ul>
+<li>Faster output, shorter iteration time
+<ul>
+<li>More research per time</li>
+</ul>
+</li>
+<li>Potentially less wasted energy
+<ul>
+<li>Production of hardware and its operation costs energy (even when
+idle)</li>
+<li>=&gt; Buy as little hardware as possible and use it as much as you
+can, if you have meaningful computations</li>
+</ul>
+</li>
+<li>Applying for HPC resources in a larger center</li>
+</ul></section><section><h2 class="section-heading" id="what-is-efficient">What is Efficient?<a class="anchor" aria-label="anchor" href="#what-is-efficient"></a>
+</h2>
+<hr class="half-width">
+<div id="challenge1" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge</h3>
+<div class="callout-content">
+<p>Write down your current definition or understanding of efficiency
+with respect to HPC jobs. (Shared document?)</p>
+</div>
+</div>
+</div>
+<div id="accordionHint1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
+  <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
+</button>
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div class="accordion-body">
+<p>E.g. shortest time from submission to job completion.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
 <p>Definitions of efficiency (to be ordered and discussed):</p>
 <ol style="list-style-type: decimal">
 <li>Minimal wall-/human-time of the job</li>
@@ -428,17 +476,37 @@
 <li>With regards to opportunity costs. Amount of research per job
 (including waiting times, computation time, slowdown through larger
 iteration cycles (turn around times))</li>
-</ol></section><section><h2 class="section-heading" id="performance-in-relation-to-hardware">Performance in Relation to Hardware<a class="anchor" aria-label="anchor" href="#performance-in-relation-to-hardware"></a>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div id="discussion1" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Discussion</h3>
+<div class="callout-content">
+<p>Which definition of efficiency is most useful for us?</p>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="how-does-performance-relate-to-hardware">How Does Performance Relate to Hardware?<a class="anchor" aria-label="anchor" href="#how-does-performance-relate-to-hardware"></a>
 </h2>
 <hr class="half-width">
 <p>(Following this structure throughout the course, trying to understand
 the performance in these terms)</p>
-<p>Basic/broad dimensions of performance: - CPU (Front- and Backend,
-FLOPS) - Memory (data hierarchy) - I/O (broader data hierarchy: disk,
-network) - Parallel timeline (synchronization, etc.)</p>
-</section><section><h2 class="section-heading" id="baseline">Baseline<a class="anchor" aria-label="anchor" href="#baseline"></a>
+<p>Basic/broad dimensions of performance:</p>
+<ul>
+<li>CPU (Front- and Backend, FLOPS)</li>
+<li>Memory (data hierarchy)</li>
+<li>I/O (broader data hierarchy: disk, network)</li>
+<li>Parallel timeline (synchronization, etc.)</li>
+</ul></section><section><h2 class="section-heading" id="setting-the-baseline">Setting the Baseline<a class="anchor" aria-label="anchor" href="#setting-the-baseline"></a>
 </h2>
 <hr class="half-width">
+<p>Often relative improvements</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -466,7 +534,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-02_resourcerequirements"><p>Content from <a href="02_resourcerequirements.html">Resource Requirements</a></p>
 <hr>
-<p>Last updated on 2025-05-27 |
+<p>Last updated on 2025-06-26 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/02_resourcerequirements.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -480,6 +548,7 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
+<li>How many resources should it request initially?</li>
 <li>What options does the scheduler give to request resources?</li>
 <li>How do I know if they are used well?</li>
 </ul>
@@ -490,11 +559,11 @@ any links that you are not going to use.
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
+<p>After completing this episode, participants should be able to …</p>
 <ul>
-<li>Learn how to request the right amount of resources from the
-scheduler.</li>
-<li>Learn how to change the parameters if the applications’ resource
-requirements change.</li>
+<li>Request the right amount of resources from the scheduler.</li>
+<li>Change the parameters if the applications’ resource requirements
+change.</li>
 <li>See the direct benefits of requesting the right amount of
 resources.</li>
 </ul>
@@ -534,7 +603,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-03_schedulertools"><p>Content from <a href="03_schedulertools.html">Scheduler Tools</a></p>
 <hr>
-<p>Last updated on 2025-05-27 |
+<p>Last updated on 2025-06-26 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/03_schedulertools.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -560,10 +629,11 @@ performance?</li>
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
+<p>After completing this episode, participants should be able to …</p>
 <ul>
-<li>Familiarize with basic performance metrics.</li>
-<li>Learn the schedulers tools to gather performance metrics about a
-job.</li>
+<li>Explain basic performance metrics.</li>
+<li>Use tools provided by the scheduler to collect basic performance
+metrics of their jobs.</li>
 </ul>
 </div>
 </div>
@@ -607,7 +677,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-04_performancereports"><p>Content from <a href="04_performancereports.html">Workflow of Performance Measurements</a></p>
 <hr>
-<p>Last updated on 2025-05-27 |
+<p>Last updated on 2025-06-26 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/04_performancereports.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -621,14 +691,9 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>Why would I run other tools?</li>
 <li>Why are simple tools like <code>seff</code> and <code>sacct</code>
 not enough?</li>
-<li>Are there tools providing more information about a jobs
-performance?</li>
 <li>What steps can I take to assess a jobs performance?</li>
-<li>Which steps should I take first?</li>
-<li>Are there alternative routes I could take?</li>
 <li>What popular types of reports exist? (e.g. Roofline)</li>
 </ul>
 </div>
@@ -638,16 +703,17 @@ performance?</li>
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
+<p>After completing this episode, participants should be able to …</p>
 <ul>
-<li>Develop a better understanding of alternative concepts in
-performance measurements.</li>
-<li>Introduce central terms of performance measurements and how they
-relate.</li>
+<li>Explain different approaches to performance measurements.</li>
+<li>Understand common terms and concepts in performance analyses.</li>
 <li>Create a performance report through a third-party tool.</li>
-<li>Learn intentions behind performance reports (establish baseline,
+<li>Describe what a performance report is meant for (establish baseline,
 documentation of issues and improvements through optimization,
 publication of results, finding the next thread to pull in a quest for
 optimization)</li>
+<li>Measure the performance of central components of underlying hardware
+(CPU, Memory, I/O, …) (split episode?)</li>
 </ul>
 </div>
 </div>
@@ -697,7 +763,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-05_bottlenecks"><p>Content from <a href="05_bottlenecks.html">How to identify a bottleneck?</a></p>
 <hr>
-<p>Last updated on 2025-05-27 |
+<p>Last updated on 2025-06-26 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/05_bottlenecks.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -720,10 +786,10 @@ any links that you are not going to use.
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
+<p>After completing this episode, participants should be able to …</p>
 <ul>
-<li>First short overview of typical “smoking guns” with regard to
-performance issues.</li>
-<li>Find the bottlenecks in a job at hand.</li>
+<li>Name typical performance issues.</li>
+<li>Determine if their job is affected by one of these issues.</li>
 </ul>
 </div>
 </div>
@@ -769,7 +835,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-06_accelerators"><p>Content from <a href="06_accelerators.html">Special Aspects of Accelerators</a></p>
 <hr>
-<p>Last updated on 2025-05-27 |
+<p>Last updated on 2025-06-26 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/06_accelerators.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -793,8 +859,10 @@ any links that you are not going to use.
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
+<p>After completing this episode, participants should be able to …</p>
 <ul>
-<li>Learn about accelerators like GPUs and FPGAs.</li>
+<li>Understand difference of performance measurements on accelerators
+(GPUs, FPGAs) to CPUs.</li>
 <li>Understand how batch systems and performance measurements tools
 treat accelerators.</li>
 </ul>
@@ -828,7 +896,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-07_nextsteps"><p>Content from <a href="07_nextsteps.html">Next Steps</a></p>
 <hr>
-<p>Last updated on 2025-05-27 |
+<p>Last updated on 2025-06-26 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/07_nextsteps.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -853,10 +921,11 @@ detail?</li>
 <div class="card-body">
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
+<p>After completing this episode, participants should be able to …</p>
 <ul>
-<li>Learn about the collection of performance patterns on
-hpc-wiki.info</li>
-<li>Dipping our toes in profiling.</li>
+<li>Find collection of performance patterns on hpc-wiki.info</li>
+<li>Identify next steps to take with regard to performance
+optimization.</li>
 </ul>
 </div>
 </div>
@@ -937,8 +1006,8 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/aio.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/aio.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-06-24",
-  "datePublished": "2025-06-24"
+  "dateModified": "2025-06-26",
+  "datePublished": "2025-06-26"
 }
 
   </script><script>

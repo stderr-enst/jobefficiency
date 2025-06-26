@@ -321,15 +321,28 @@
       <hr></nav><main id="main-content" class="main-content"><h1 class="schedule-heading">Summary and Schedule</h1>
       
 
-<p>This is a new lesson built with <a href="https://carpentries.github.io/sandpaper-docs" class="external-link">The Carpentries
-Workbench</a>.</p>
-<!--
+<p>Outlining the course</p>
+<ul><li>Targeted audience (see learner profiles: New HPC users, RSE with
+users on HPC systems, researchers in HPC.NRW)</li>
+<li>Estimated length and recommended formats (e.g. X full days, X * 2
+half days, in-person/online, live-coding)</li>
+<li>Course intentions (focus on learners perspective!):
+<ul><li>Speed up research</li>
+<li>Improve batch utilization through matching application requirements
+to requested hardware (minimal resource requirements, maximum resource
+utilization)</li>
+<li>Convey intuition about job-sizes. What is considered large, what
+small?</li>
+<li>Sharpen awareness for importance to avoid wasting time/energy on a
+shared system</li>
+<li>Teach common concepts and terms of performance</li>
+<li>First steps into performance optimizations (cluster-, node-,
+application level)</li>
+</ul></li>
+</ul><!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
- -->
-
-
-      <section id="schedule"><table class="table table schedule table-striped" role="presentation"><tbody><tr><td></td><td><a href="#setup">Setup Instructions</a></td><td> Download files required for the lesson</td>
+ --><section id="schedule"><table class="table table schedule table-striped" role="presentation"><tbody><tr><td></td><td><a href="#setup">Setup Instructions</a></td><td> Download files required for the lesson</td>
           </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00h 00m
 </td>
@@ -338,7 +351,7 @@ any links that you are not going to use.
 </td>
 <td>
 Why should I care about my jobs performance?<br>How is efficiency
-defined?<br>How many resources should it request initially?
+defined?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00h 10m
@@ -347,8 +360,9 @@ defined?<br>How many resources should it request initially?
  2. <a href="02_resourcerequirements.html">Resource Requirements</a>
 </td>
 <td>
-What options does the scheduler give to request resources?<br>How do I
-know if they are used well?
+How many resources should it request initially?<br>What options does
+the scheduler give to request resources?<br>How do I know if they are
+used well?
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00h 20m
@@ -369,12 +383,9 @@ large is my HPC cluster?
 Measurements</a>
 </td>
 <td>
-Why would I run other tools?<br>Why are simple tools like
-<code>seff</code> and <code>sacct</code> not enough?<br>Are there tools
-providing more information about a jobs performance?<br>What steps can
-I take to assess a jobs performance?<br>Which steps should I take
-first?<br>Are there alternative routes I could take?<br>What popular
-types of reports exist? (e.g. Roofline)
+Why are simple tools like <code>seff</code> and <code>sacct</code> not
+enough?<br>What steps can I take to assess a jobs performance?<br>What
+popular types of reports exist? (e.g. Roofline)
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>00h 40m
@@ -418,7 +429,35 @@ any links that you are not going to use.
  --></tbody></table><p>
       The actual schedule may vary slightly depending on the topics and exercises chosen by the instructor.
       </p>
-      </section><section id="setup"><section><h2 class="section-heading" id="example-workload">Example Workload<a class="anchor" aria-label="anchor" href="#example-workload"></a></h2>
+      </section><section id="setup"><section><h2 class="section-heading" id="learning-objectives">Learning Objectives<a class="anchor" aria-label="anchor" href="#learning-objectives"></a></h2>
+<hr class="half-width"><p>After attending this training, participants will be able to:</p>
+<ul><li>Explain efficiency in the context of <em>HPC</em> systems</li>
+<li>Use batch system tools and third party tools to measure job
+efficiency</li>
+<li>Describe common concepts and terms related to performance on HPC
+systems</li>
+<li>Identify hardware components involved in performance
+considerations</li>
+<li>Achieve first results in performance optimization of their
+application</li>
+<li>Remember next steps to take towards learning performance
+optimization</li>
+</ul><div id="prereq1" class="callout prereq">
+<div class="callout-square">
+<i class="callout-icon" data-feather="check"></i>
+</div>
+<div class="callout-inner">
+<h3 class="callout-title">Prerequisite</h3>
+<div class="callout-content">
+<ul><li>Access to a HPC system</li>
+<li>Example workload setup</li>
+<li>Basic knowledge of HPC systems (batch systems, parallel file
+systems) – being able to submit a simple job and understand what happens
+in broad terms</li>
+</ul></div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="example-workload-setup">Example Workload &amp; Setup<a class="anchor" aria-label="anchor" href="#example-workload-setup"></a></h2>
 <hr class="half-width"><!--
 FIXME: place any data you want learners to use in `episodes/data` and then use
        a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
@@ -437,13 +476,13 @@ memory/core</li>
 </ul></li>
 <li>Software that can run on CPU and GPU, to discuss both with the
 example</li>
-</ul></section><section><h2 class="section-heading" id="software-setup">Software Setup<a class="anchor" aria-label="anchor" href="#software-setup"></a></h2>
-<hr class="half-width"><p>You will need access to an <em>HPC</em> cluster to run the examples
-in this lesson. Refer to the HPC Introduction lessons to learn how to
-access and use a compute cluster of that scale.</p>
+</ul><p>You will need access to an HPC cluster to run the examples in this
+lesson. Discuss how to find out where to apply for access as a
+researcher (in general, in EU, in Germany, in NRW?). Refer to the <a href="https://nesi.github.io/hpc-intro/" class="external-link">HPC Introduction lessons</a> to
+learn how to access and use a compute cluster of that scale.</p>
 <ul><li>Executive summary of typical HPC workflow? Or refer to other HPCC
 courses that cover this</li>
-<li>“HPC Etiquette”
+<li>“HPC etiquette”
 <ul><li>E.g. don’t run benchmarks on login node</li>
 <li>Don’t disturb jobs on shared nodes</li>
 </ul></li>
@@ -466,7 +505,8 @@ provided software and a</li>
 </ul></div>
 </div>
 </div>
-<p>To login via <code>ssh</code>, you can use on</p>
+<p>To login via <code>ssh</code>, you can use on (remove this since it’s
+discussed in HPC introduction?)</p>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
@@ -475,7 +515,7 @@ provided software and a</li>
   Windows
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <ul><li>PuTTY</li>
 <li>
@@ -492,7 +532,7 @@ provided software and a</li>
   MacOS
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <ul><li>
 <code>ssh</code> in Terminal.app</li>
@@ -508,7 +548,7 @@ provided software and a</li>
   Linux
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <ul><li>
 <code>ssh</code> in Terminal</li>
@@ -569,8 +609,8 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/instructor/index.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/instructor/index.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-06-24",
-  "datePublished": "2025-06-24"
+  "dateModified": "2025-06-26",
+  "datePublished": "2025-06-26"
 }
 
   </script><script>
