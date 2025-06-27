@@ -823,8 +823,7 @@ any links that you are not going to use.
 <li>Identify the size of their jobs in relation to the HPC system.</li>
 <li>Change the parameters if the applications’ resource requirements
 change.</li>
-<li>See the direct benefits of requesting the right amount of
-resources.</li>
+<li>Perform a simple scaling study for a given application.</li>
 </ul>
 </div>
 </div>
@@ -841,6 +840,76 @@ efficiency?</p>
 </section><section><h2 class="section-heading" id="requesting-resources">Requesting Resources<a class="anchor" aria-label="anchor" href="#requesting-resources"></a>
 </h2>
 <hr class="half-width">
+<p>Slurm provides: - Number of nodes - Number of tasks/processes -
+Number of CPUs per task/process - Number of Threads per CPU - Number of
+GPUs per task/process</p>
+<p>Hints for CPU- and memory-bound</p>
+<p>Mapping of application &lt;-&gt; job resources</p>
+<p>Maybe discuss:</p>
+<ul>
+<li>Minimizing/maximizing involved number of nodes</li>
+<li>Different wait times for certain configurations</li>
+<li>What is a task / process</li>
+<li>Requesting memory, more than mem/core -&gt; idle cores</li>
+</ul></section><section><h2 class="section-heading" id="compared-to-the-hpc-system">Compared to the HPC System<a class="anchor" aria-label="anchor" href="#compared-to-the-hpc-system"></a>
+</h2>
+<hr class="half-width">
+<ul>
+<li>Is my job large or small?</li>
+<li>How many resources are currently free?</li>
+<li>How long do I have to wait? (looking up scheduler estimate + apply
+common sense)</li>
+</ul></section><section><h2 class="section-heading" id="changing-requirements">Changing requirements<a class="anchor" aria-label="anchor" href="#changing-requirements"></a>
+</h2>
+<hr class="half-width">
+<ul>
+<li>How to change requested resources if application should run
+differently? (e.g. more processes)</li>
+<li>Considerations &amp; estimates for
+<ul>
+<li>changing compute-time (more/less workload)</li>
+<li>changing memory requirements (smaller/larger model)</li>
+<li>changing number of processes / nodes</li>
+<li>changing I/O -&gt; more/less or larger/smaller files</li>
+</ul>
+</li>
+</ul></section><section><h2 class="section-heading" id="scaling-study">Scaling study<a class="anchor" aria-label="anchor" href="#scaling-study"></a>
+</h2>
+<hr class="half-width">
+<ul>
+<li>Define example payload
+<ul>
+<li>Long enough to be significant</li>
+<li>Short enough to be feasible for a quick study</li>
+</ul>
+</li>
+<li>Identify dimension for scaling study, e.g.
+<ul>
+<li>number of processes (on a single node)</li>
+<li>number of processes (across nodes)</li>
+<li>number of nodes involved (network-communication boundary)</li>
+<li>size of workload</li>
+<li>Decide on number of processes across node, fixed workload size</li>
+</ul>
+</li>
+<li>Take measurements
+<ul>
+<li>Use <code>time</code> and repeating measurements (something like 3
+or 10)</li>
+<li>Vary scaling parameter</li>
+</ul>
+</li>
+<li>Analyze scaling behavior
+<ul>
+<li>Goal: best working point for job production</li>
+<li>Plot data and see how it scales</li>
+<li>Identify sweet-spots and points where behavior changes</li>
+</ul>
+</li>
+<li>Conclude on best configuration for given setup</li>
+</ul></section><section><h2 class="section-heading" id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
+</h2>
+<hr class="half-width">
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -849,6 +918,8 @@ efficiency?</p>
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
 <ul>
+<li>Estimate resource requirements and request them in terms the
+scheduler understands</li>
 <li>Don’t over-/underuse resources</li>
 <li>Optimal time-to-solution by minimizing batch queue times and
 maximizing parallelism</li>
