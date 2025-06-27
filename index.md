@@ -13,3 +13,7 @@ Outlining the course
    - Sharpen awareness for importance to avoid wasting time/energy on a shared system
    - Teach common concepts and terms of performance
    - First steps into performance optimizations (cluster-, node-, application level)
+- Well defined context:
+   - HPC Systems
+   - Performance of jobs
+   - Application performance is touched (related to job efficiency), but in-depth is outside of the scope. Next steps point towards deeper performance analyses
