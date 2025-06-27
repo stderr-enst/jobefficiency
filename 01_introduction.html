@@ -220,6 +220,7 @@
 <li><a href="#what-is-efficient">What is Efficient?</a></li>
 <li><a href="#how-does-performance-relate-to-hardware">How Does Performance Relate to Hardware?</a></li>
 <li><a href="#setting-the-baseline">Setting the Baseline</a></li>
+<li><a href="#summary">Summary</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -338,7 +339,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Introduction</h1>
-        <p>Last updated on 2025-06-26 |
+        <p>Last updated on 2025-06-27 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/01_introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -359,6 +360,7 @@
 <h3 class="card-title">Questions</h3>
 <ul><li>Why should I care about my jobs performance?</li>
 <li>How is efficiency defined?</li>
+<li>How do I start measuring?</li>
 </ul></div>
 </div>
 </div>
@@ -368,35 +370,98 @@
 <h3 class="card-title">Objectives</h3>
 <p>After completing this episode, participants should be able to …</p>
 <ul><li>Understand the benefits of efficient jobs.</li>
-<li>Use the <code>time</code> command for a first assessment.</li>
+<li>Identify which areas of computer hardware may affect
+performance.</li>
+<li>Use the <code>time</code> command for a first measurement.</li>
 </ul></div>
 </div>
 </div>
 </div>
 </div>
-<!-- EPISODE CONTENT HERE -->
 <section><h2 class="section-heading" id="why-care-about-performance">Why Care About Performance?<a class="anchor" aria-label="anchor" href="#why-care-about-performance"></a></h2>
 <hr class="half-width"><p>Reasons from the perspective of learners (see profiles)</p>
-<ul><li>Faster output, shorter iteration time
+<ul><li>Faster output, shorter iteration-/turn-around-time
 <ul><li>More research per time</li>
+<li>Opportunity costs when “accepting” worse performance</li>
+<li>Trade of between time spent on optimizing vs. doing actual
+research</li>
 </ul></li>
 <li>Potentially less wasted energy
-<ul><li>Production of hardware and its operation costs energy (even when
+<ul><li>Core-h / device-h directly correlate to wattage</li>
+<li>Production of hardware and its operation costs energy (even when
 idle)</li>
 <li>=&gt; Buy as little hardware as possible and use it as much as you
 can, if you have meaningful computations</li>
 </ul></li>
-<li>Applying for HPC resources in a larger center</li>
-</ul></section><section><h2 class="section-heading" id="what-is-efficient">What is Efficient?<a class="anchor" aria-label="anchor" href="#what-is-efficient"></a></h2>
-<hr class="half-width"><div id="challenge1" class="callout challenge">
+<li>Applying for HPC resources in a larger center
+<ul><li>Need estimate for expected resources</li>
+<li>Jobs need to be sufficiently efficient</li>
+<li>Is provided hardware a good fit for the applied computational
+workload?</li>
+</ul></li>
+</ul><div id="exercise-why-care-about-performance" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Challenge</h3>
+<div id="exercise-why-care-about-performance" class="callout-inner">
+<h3 class="callout-title">Exercise: Why care about performance?</h3>
+<div class="callout-content">
+<p>maybe true-false statements as warmup exercise? E.g. something
+like</p>
+<ul><li>Better performance allows for more research</li>
+<li>Application performance matters less on new computer hardware</li>
+<li>Computations directory correlate to energy consumption</li>
+<li>Good performance does not matter on my own hardware</li>
+</ul></div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<ul><li>True, shorter turn around times, more results per time, more nobel
+prices per second!</li>
+<li>False, new hardware might make performance issues less pressing, but
+it is still important (opportunity costs, wasted energy, shared
+resources)</li>
+<li>True, device-hours consume energy (variable depending on utilized
+features, amount of communication, etc.), but there is a direct
+correlation to W</li>
+<li>False, performance is especially important on shared systems, but
+energy and opportunity costs also affect researchers on their own
+hardware and exclusive allocations.</li>
+</ul></div>
+</div>
+</div>
+</div>
+<div id="discussion-how-important-is-performance" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="discussion-how-important-is-performance" class="callout-inner">
+<h3 class="callout-title">Discussion: How important is performance?</h3>
+<div class="callout-content">
+<ul><li>Did you change your opinion about the importance of good
+performance?</li>
+<li>How much time do you want to/can you spend on assessing your jobs
+performance?</li>
+</ul></div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="what-is-efficient">What is Efficient?<a class="anchor" aria-label="anchor" href="#what-is-efficient"></a></h2>
+<hr class="half-width"><div id="challenge-many-perspectives-on-efficiency" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="challenge-many-perspectives-on-efficiency" class="callout-inner">
+<h3 class="callout-title">Challenge: Many perspectives on Efficiency</h3>
 <div class="callout-content">
 <p>Write down your current definition or understanding of efficiency
 with respect to HPC jobs. (Shared document?)</p>
+<p>(Exercise as think, pair, share?)</p>
 </div>
 </div>
 </div>
@@ -405,53 +470,187 @@ with respect to HPC jobs. (Shared document?)</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
 <div class="accordion-body">
 <p>E.g. shortest time from submission to job completion.</p>
 </div>
 </div>
 </div>
 </div>
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
-<p>Definitions of efficiency (to be ordered and discussed):</p>
+<p>Many definitions of efficiency (see below)</p>
+</div>
+</div>
+</div>
+</div>
+<div id="discussion-which-definition-should-we-take" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="discussion-which-definition-should-we-take" class="callout-inner">
+<h3 class="callout-title">Discussion: Which definition should we take?</h3>
+<div class="callout-content">
+<p>Are these perspectives equally useful? Is one particularly suited to
+our discussion?</p>
+</div>
+</div>
+</div>
+<p>Many definitions of efficiency (to be ordered and discussed):</p>
 <ol style="list-style-type: decimal"><li>Minimal wall-/human-time of the job</li>
 <li>Minimal compute-time</li>
-<li>Minimal time-to-solution (like 1, including queue wait times)</li>
+<li>Minimal time-to-solution (like 1, including queue wait times,
+potentially multiple jobs for combined results)</li>
 <li>Minimal cost in terms of energy/someones money</li>
 <li>With regards to opportunity costs. Amount of research per job
 (including waiting times, computation time, slowdown through larger
 iteration cycles (turn around times))</li>
+</ol><p>Assuming only “useful” computations, no redundancies.</p>
+<p>Which definition do refer to by default in the following episodes?
+(Do we need a default?)</p>
+</section><section><h2 class="section-heading" id="how-does-performance-relate-to-hardware">How Does Performance Relate to Hardware?<a class="anchor" aria-label="anchor" href="#how-does-performance-relate-to-hardware"></a></h2>
+<hr class="half-width"><p>(Following this structure throughout the course, trying to understand
+the performance in these terms)</p>
+<p>Broad dimensions of performance:</p>
+<ul><li>CPU (Front- and Backend, FLOPS)
+<ul><li>Frontend: decoding instructions, branch prediction, pipeline</li>
+<li>Backend: getting data from memory, cache hierarchy &amp;
+alignment</li>
+<li>Raw calculations</li>
+<li>Vectorization</li>
+<li>Out-of-order execution</li>
+</ul></li>
+<li>Accelerators (e.g. GPUs)
+<ul><li>More calculations</li>
+<li>Offloading</li>
+<li>Memory &amp; communication models</li>
+</ul></li>
+<li>Memory (data hierarchy)
+<ul><li>Working memory, reading data from/to disk</li>
+<li>Bandwidth of data</li>
+</ul></li>
+<li>I/O (broader data hierarchy: disk, network)
+<ul><li>Stored data</li>
+<li>Local disk (caching)</li>
+<li>Parallel fs (cluster-wide)</li>
+<li>MPI-Communiction</li>
+</ul></li>
+<li>Parallel timeline (synchronization, etc.)
+<ul><li>Application logic</li>
+</ul></li>
+</ul><div id="exercise-match-application-behavior-to-hardware" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<div id="exercise-match-application-behavior-to-hardware" class="callout-inner">
+<h3 class="callout-title">Exercise: Match application behavior to hardware</h3>
+<div class="callout-content">
+<p>Which part of the computer hardware may become an issue for the
+following application patterns:</p>
+<ol style="list-style-type: decimal"><li>Calculating matrix multiplications</li>
+<li>Reading data from processes on other computers</li>
+<li>Calling many different functions from many equally likely if/else
+branches</li>
+<li>Writing very large files (TB)</li>
+<li>Comparing many different strings if they match</li>
+<li>Constructing a large simulation model</li>
+<li>Reading thousands of small files for each iteration</li>
+</ol><p>Maybe not the best questions, also missing something for
+accelerators.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div class="accordion-body">
+<ol style="list-style-type: decimal"><li>CPU (FLOPS) and/or Parallel timeline</li>
+<li>I/O (network)</li>
+<li>CPU (Front-End)</li>
+<li>I/O (disk)</li>
+<li>(?) CPU-Backend, getting strings through the cache?</li>
+<li>Memory (size)</li>
+<li>I/O (disk)</li>
 </ol></div>
 </div>
 </div>
 </div>
-<div id="discussion1" class="callout discussion">
+</section><section><h2 class="section-heading" id="setting-the-baseline">Setting the Baseline<a class="anchor" aria-label="anchor" href="#setting-the-baseline"></a></h2>
+<hr class="half-width"><p>Absolute performance is hard to determine:</p>
+<ul><li>In comparison to current hardware (theoretical limits vs. real
+usage)</li>
+<li>Still important, if long way from theoretical limits</li>
+<li>Always limited by something</li>
+</ul><p>During optimization, performance is often expressed in relative terms
+to a baseline measurement. Define “baseline”. Comparison between before
+and after a change.</p>
+<div id="exercise-baseline-measurement-with-time" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
 </div>
-<div class="callout-inner">
-<h3 class="callout-title">Discussion</h3>
+<div id="exercise-baseline-measurement-with-time" class="callout-inner">
+<h3 class="callout-title">Exercise: Baseline Measurement with
+<code>time</code>
+</h3>
 <div class="callout-content">
-<p>Which definition of efficiency is most useful for us?</p>
+<p>Simple measurement with <code>time</code> of example application.
+Maybe also with <a href="https://github.com/sharkdp/hyperfine" class="external-link">hyperfine</a> ?</p>
+<p>Observe system, user, and wall time.</p>
+<p>Repeat measurements somewhere 3-10 times to reduce noise</p>
+<ul><li>Average time</li>
+<li>Minimum (observed best case)</li>
+</ul><p>Maybe make a simple/obvious change to compare change to baseline. How
+much relative improvement?</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="how-does-performance-relate-to-hardware">How Does Performance Relate to Hardware?<a class="anchor" aria-label="anchor" href="#how-does-performance-relate-to-hardware"></a></h2>
-<hr class="half-width"><p>(Following this structure throughout the course, trying to understand
-the performance in these terms)</p>
-<p>Basic/broad dimensions of performance:</p>
-<ul><li>CPU (Front- and Backend, FLOPS)</li>
-<li>Memory (data hierarchy)</li>
-<li>I/O (broader data hierarchy: disk, network)</li>
-<li>Parallel timeline (synchronization, etc.)</li>
-</ul></section><section><h2 class="section-heading" id="setting-the-baseline">Setting the Baseline<a class="anchor" aria-label="anchor" href="#setting-the-baseline"></a></h2>
-<hr class="half-width"><p>Often relative improvements</p>
+<p>Discuss meaning of system, user, wall-time. Relate to efficiencies
+(minimal wall-time vs. minimal compute-time)</p>
+<p>Define core-h. Device usage for X seconds correlates to estimated
+power draw. Real power usage depends on:</p>
+<ul><li>Utilized features of the device (some more power-hungry than
+others)</li>
+<li>Amount of data movement through memory, data, network</li>
+<li>Cooling (rule of thumb factor <span class="math inline">\(\times
+2\)</span>)</li>
+</ul><div id="exercise-core-h-and-energy-consumption" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="exercise-core-h-and-energy-consumption" class="callout-inner">
+<h3 class="callout-title">Exercise: Core-h and Energy consumption</h3>
+<div class="callout-content">
+<ul><li>Figure out your current hardware (docu, cpuinfo, websearch,
+LLM)</li>
+<li>Calculate core-h for above test (either including or excluding
+repetitions)</li>
+<li>Estimate power usage with TDP</li>
+</ul></div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a></h2>
+<hr class="half-width"><div id="exercise-recollecting-efficiency" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="exercise-recollecting-efficiency" class="callout-inner">
+<h3 class="callout-title">Exercise: Recollecting efficiency</h3>
+<div class="callout-content">
+<p>Exercise to raise the question if example workload is efficient or
+not. Do we know yet? -&gt; No, we can only tell how long it takes,
+estimate how much time/resources it consumes, and if there is a relative
+improvement on a change</p>
+</div>
+</div>
+</div>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -459,13 +658,18 @@ the performance in these terms)</p>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<ul><li>Efficiency is efficient
+<ul><li>Job performance affects you as a user</li>
+<li>Different perspectives on efficiency
 <ul><li>Definitions: wall/human-time, compute-time, time-to-solution, energy
 (costs / environment), Money, opportunity cost (less research
 output)</li>
 </ul></li>
-<li>
-<code>time</code> and <code>time</code> again. Maybe also <a href="https://github.com/sharkdp/hyperfine" class="external-link uri">https://github.com/sharkdp/hyperfine</a> ?</li>
+<li>Relationship between performance and computer hardware</li>
+<li>Absolute vs. relative performance measurements
+<ul><li>
+<code>time</code> to establish a baseline</li>
+<li>Estimating energy consumption</li>
+</ul></li>
 </ul></div>
 </div>
 </div>
@@ -531,8 +735,8 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/01_introduction.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/01_introduction.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-06-26",
-  "datePublished": "2025-06-26"
+  "dateModified": "2025-06-27",
+  "datePublished": "2025-06-27"
 }
 
   </script><script>
