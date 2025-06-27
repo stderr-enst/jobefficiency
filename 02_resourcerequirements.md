@@ -17,6 +17,7 @@ exercises: 0
 After completing this episode, participants should be able to …
 
 - Request the right amount of resources from the scheduler.
+- Identify the size of their jobs in relation to the HPC system.
 - Change the parameters if the applications' resource requirements change.
 - See the direct benefits of requesting the right amount of resources.
 

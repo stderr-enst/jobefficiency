@@ -7,6 +7,7 @@ After attending this training, participants will be able to:
 
 - Explain efficiency in the context of *HPC* systems
 - Use batch system tools and third party tools to measure job efficiency
+- Discern between worse and better performing jobs
 - Describe common concepts and terms related to performance on HPC systems
 - Identify hardware components involved in performance considerations
 - Achieve first results in performance optimization of their application
@@ -17,6 +18,9 @@ After attending this training, participants will be able to:
 - Access to a HPC system
 - Example workload setup
 - Basic knowledge of HPC systems (batch systems, parallel file systems) -- being able to submit a simple job and understand what happens in broad terms
+- Knowledge of tools to work with HPC systems:
+   - Bash shell & scripting
+   - ssh & scp
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
