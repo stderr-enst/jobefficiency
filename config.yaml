@@ -52,6 +52,7 @@ contact: 'helpdesk@hpc.nrw'
 episodes: 
 - 01_introduction.md
 - 02_resourcerequirements.md
+- 02_scalingstudy.md
 - 03_schedulertools.md
 - 04_performancereports.md
 - 05_bottlenecks.md

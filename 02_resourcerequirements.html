@@ -118,11 +118,11 @@
   Job Efficiency
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 14%" class="percentage">
-    14%
+<aside class="col-md-12 lesson-progress"><div style="width: 12%" class="percentage">
+    12%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 14%" aria-valuenow="14" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 12%" aria-valuenow="12" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -226,10 +226,9 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#starting-somewhere">Starting Somewhere</a></li>
-<li><a href="#requesting-resources">Requesting Resources</a></li>
 <li><a href="#compared-to-the-hpc-system">Compared to the HPC System</a></li>
+<li><a href="#requesting-resources">Requesting Resources</a></li>
 <li><a href="#changing-requirements">Changing requirements</a></li>
-<li><a href="#scaling-study">Scaling study</a></li>
 <li><a href="#summary">Summary</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -240,7 +239,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="03_schedulertools.html">3. Scheduler Tools</a>
+        <a href="02_scalingstudy.html">3. Scaling Study</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -249,7 +248,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="04_performancereports.html">4. Workflow of Performance Measurements</a>
+        <a href="03_schedulertools.html">4. Scheduler Tools</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -258,7 +257,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="05_bottlenecks.html">5. How to identify a bottleneck?</a>
+        <a href="04_performancereports.html">5. Workflow of Performance Measurements</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -267,7 +266,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="06_accelerators.html">6. Special Aspects of Accelerators</a>
+        <a href="05_bottlenecks.html">6. How to identify a bottleneck?</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -276,7 +275,16 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="07_nextsteps.html">7. Next Steps</a>
+        <a href="06_accelerators.html">7. Special Aspects of Accelerators</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush9">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading9">
+        <a href="07_nextsteps.html">8. Next Steps</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -325,7 +333,7 @@
   <div class="col-xl-8 col-lg-12 primary-content">
     <nav class="lesson-content mx-md-4" aria-label="Previous and Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="01_introduction.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="03_schedulertools.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="02_scalingstudy.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
@@ -333,14 +341,14 @@
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
           Previous: Introduction
         </a>
-        <a class="chapter-link float-end" href="03_schedulertools.html" rel="next">
-          Next: Scheduler Tools...
+        <a class="chapter-link float-end" href="02_scalingstudy.html" rel="next">
+          Next: Scaling Study...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Resource Requirements</h1>
-        <p>Last updated on 2025-06-27 |
+        <p>Last updated on 2025-07-01 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/02_resourcerequirements.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -370,11 +378,10 @@
 <div class="inner bordered">
 <h3 class="card-title">Objectives</h3>
 <p>After completing this episode, participants should be able to …</p>
-<ul><li>Request the right amount of resources from the scheduler.</li>
-<li>Identify the size of their jobs in relation to the HPC system.</li>
+<ul><li>Identify the size of their jobs in relation to the HPC system.</li>
+<li>Request the right amount of resources from the scheduler.</li>
 <li>Change the parameters if the applications’ resource requirements
 change.</li>
-<li>Perform a simple scaling study for a given application.</li>
 </ul></div>
 </div>
 </div>
@@ -385,24 +392,114 @@ change.</li>
 just guess and start with some combinations. Next identify slower, or
 failed (OOM, timelimit) and choose the best What does that say about
 efficiency?</p>
-</section><section><h2 class="section-heading" id="requesting-resources">Requesting Resources<a class="anchor" aria-label="anchor" href="#requesting-resources"></a></h2>
-<hr class="half-width"><p>Slurm provides: - Number of nodes - Number of tasks/processes -
-Number of CPUs per task/process - Number of Threads per CPU - Number of
-GPUs per task/process</p>
-<p>Hints for CPU- and memory-bound</p>
-<p>Mapping of application &lt;-&gt; job resources</p>
-<p>Maybe discuss:</p>
-<ul><li>Minimizing/maximizing involved number of nodes</li>
-<li>Different wait times for certain configurations</li>
-<li>What is a task / process</li>
-<li>Requesting memory, more than mem/core -&gt; idle cores</li>
-</ul></section><section><h2 class="section-heading" id="compared-to-the-hpc-system">Compared to the HPC System<a class="anchor" aria-label="anchor" href="#compared-to-the-hpc-system"></a></h2>
-<hr class="half-width"><ul><li>Is my job large or small?</li>
+<div id="exercise-starting-somewhere" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="exercise-starting-somewhere" class="callout-inner">
+<h3 class="callout-title">Exercise: Starting Somewhere</h3>
+<div class="callout-content">
+<ul><li>Run job with a timelimit of 1 minute -&gt; Trigger timelimit. What’s
+a good timelimit for our task?</li>
+<li>Run job with few cores, but too much memory/core -&gt; Trigger OOM.
+What’s a good memory limit for our task?</li>
+<li>Run job with requesting way too many cores -&gt; Endless waiting or
+not accepted due to account limits. What’s a good CPU limit for our
+task?</li>
+<li>
+<code>squeue</code> to learn about scheduling issues / reasons</li>
+</ul></div>
+</div>
+</div>
+<p>Summarize dimensions in which a job has to be sized correctly (time,
+cores, memory, gpus, …).</p>
+</section><section><h2 class="section-heading" id="compared-to-the-hpc-system">Compared to the HPC System<a class="anchor" aria-label="anchor" href="#compared-to-the-hpc-system"></a></h2>
+<hr class="half-width"><ul><li>What’s the relationship between your job and existing hardware of
+the system?
+<ul><li>What hardware does your HPC system offer?</li>
+<li>Documentation and Slurm commands</li>
+</ul></li>
+<li>Is my job large or small?
+<ul><li>What’s considered large, medium, small? Maybe as percentage of whole
+system?</li>
+<li>Issues of large jobs: long waiting times</li>
+<li>Issues of many (thousands) small jobs:</li>
+</ul></li>
 <li>How many resources are currently free?</li>
 <li>How long do I have to wait? (looking up scheduler estimate + apply
 common sense)</li>
+</ul><div id="exercise-comparing-to-the-system" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="exercise-comparing-to-the-system" class="callout-inner">
+<h3 class="callout-title">Exercise: Comparing to the system</h3>
+<div class="callout-content">
+<ul><li>
+<code>sinfo</code> to learn about partitions and free resources</li>
+<li>
+<code>scontrol</code> to learn about nodes in those partitions</li>
+<li>
+<code>lscpu</code> and <code>cat /proc/cpuinfo</code>
+</li>
+<li>Submit a job with a reasonable number of resources and use
+<code>squeue</code> and/or <code>scontrol show job</code> to learn about
+Slurms estimated start time</li>
+</ul><p>Answer questions about number and type of CPUs, HT/SMT, memory/core,
+timelimits.</p>
+<p>Summarize with a well sized job that’s a good start for the
+example.</p>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="requesting-resources">Requesting Resources<a class="anchor" aria-label="anchor" href="#requesting-resources"></a></h2>
+<hr class="half-width"><p>More detail about what <a href="https://slurm.schedmd.com/sbatch.html" class="external-link">Slurm provides</a> (among
+others):</p>
+<ul><li>
+<code>-t, --time=&lt;time&gt;</code>: Time limit of the job</li>
+<li>
+<code>-N, --nodes</code>: Number of nodes</li>
+<li>
+<code>-n, --ntasks</code>: Number of tasks/processes</li>
+<li>
+<code>-c, --cpus-per-task</code>: Number of CPUs per
+task/process</li>
+<li>
+<code>--threads-per-core=&lt;threads&gt;</code>: Select nodes with
+at least the number threads per CPU</li>
+<li>
+<code>--mem=&lt;size&gt;[units]</code>: Memory, but can also be as
+<code>--mem-per-cpu</code>, …</li>
+<li>
+<code>-G, --gpus</code>: Number of GPUs</li>
+<li><code>--exclusive</code></li>
+</ul><p>Binding:</p>
+<ul><li><code>--mem-bind=[{quiet|verbose},]&lt;type&gt;</code></li>
+<li><code>-m, --distribution={*|block|cyclic|arbitrary|plane=&lt;size&gt;}[:{*|block|cyclic|fcyclic}[:{*|block|cyclic|fcyclic}]][,{Pack|NoPack}]</code></li>
+<li>
+<code>--hint=</code>: Hints for CPU- (<code>compute_bound</code>)
+and memory-bound (<code>memory_bound</code>), but also
+<code>multithread</code>, <code>nomultithread</code>
+</li>
+<li>
+<code>--cpu-bind=[{quiet|verbose},]&lt;type&gt;</code>
+(<code>srun</code>)</li>
+<li>Mapping of application &lt;-&gt; job resources</li>
+</ul><p>Maybe discuss:</p>
+<ul><li>Minimizing/maximizing involved number of nodes
+<ul><li>Shared nodes: longer waiting times until a whole node is empty</li>
+<li>Min/max number of nodes min/maximizes communication</li>
+</ul></li>
+<li>Different wait times for certain configurations
+<ul><li>Few tasks on many shared nodes might schedule faster than many tasks
+on few exclusive nodes.</li>
+</ul></li>
+<li>What is a task / process – Difference?</li>
+<li>Requesting memory, more than mem/core -&gt; idle cores</li>
 </ul></section><section><h2 class="section-heading" id="changing-requirements">Changing requirements<a class="anchor" aria-label="anchor" href="#changing-requirements"></a></h2>
-<hr class="half-width"><ul><li>How to change requested resources if application should run
+<hr class="half-width"><ul><li>Motivate why requirements might change (resolution in simulation,
+more data, more complex model, …)</li>
+<li>How to change requested resources if application should run
 differently? (e.g. more processes)</li>
 <li>Considerations &amp; estimates for
 <ul><li>changing compute-time (more/less workload)</li>
@@ -410,31 +507,34 @@ differently? (e.g. more processes)</li>
 <li>changing number of processes / nodes</li>
 <li>changing I/O -&gt; more/less or larger/smaller files</li>
 </ul></li>
-</ul></section><section><h2 class="section-heading" id="scaling-study">Scaling study<a class="anchor" aria-label="anchor" href="#scaling-study"></a></h2>
-<hr class="half-width"><ul><li>Define example payload
-<ul><li>Long enough to be significant</li>
-<li>Short enough to be feasible for a quick study</li>
-</ul></li>
-<li>Identify dimension for scaling study, e.g.
-<ul><li>number of processes (on a single node)</li>
-<li>number of processes (across nodes)</li>
-<li>number of nodes involved (network-communication boundary)</li>
-<li>size of workload</li>
-<li>Decide on number of processes across node, fixed workload size</li>
-</ul></li>
-<li>Take measurements
-<ul><li>Use <code>time</code> and repeating measurements (something like 3
-or 10)</li>
-<li>Vary scaling parameter</li>
-</ul></li>
-<li>Analyze scaling behavior
-<ul><li>Goal: best working point for job production</li>
-<li>Plot data and see how it scales</li>
-<li>Identify sweet-spots and points where behavior changes</li>
-</ul></li>
-<li>Conclude on best configuration for given setup</li>
-</ul></section><section><h2 class="section-heading" id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a></h2>
-<hr class="half-width"><div id="keypoints1" class="callout keypoints">
+</ul><div id="exercise-changing-requirements" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="exercise-changing-requirements" class="callout-inner">
+<h3 class="callout-title">Exercise: Changing requirements</h3>
+<div class="callout-content">
+<ul><li>Walk through how to estimate increase in CPU cores / memory,
+etc.</li>
+<li>Run previous job with larger workload</li>
+<li>Check if and how it behaves differently than the smaller job</li>
+</ul></div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a></h2>
+<hr class="half-width"><div id="discussion-recollection" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="discussion-recollection" class="callout-inner">
+<h3 class="callout-title">Discussion: Recollection</h3>
+<div class="callout-content">
+<p>Circle back to efficiency. What’s considered good/efficient in
+context of job requirements and parameters?</p>
+</div>
+</div>
+</div>
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
@@ -443,7 +543,9 @@ or 10)</li>
 <div class="callout-content">
 <ul><li>Estimate resource requirements and request them in terms the
 scheduler understands</li>
-<li>Don’t over-/underuse resources</li>
+<li>Be aware of your job in relation to the whole system (available
+hardware, size)</li>
+<li>Aim for a good match between requested and utilized resources</li>
 <li>Optimal time-to-solution by minimizing batch queue times and
 maximizing parallelism</li>
 </ul></div>
@@ -456,7 +558,7 @@ any links that you are not going to use.
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="01_introduction.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="03_schedulertools.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="02_scalingstudy.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
@@ -464,8 +566,8 @@ any links that you are not going to use.
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
           Previous: Introduction
         </a>
-        <a class="chapter-link float-end" href="03_schedulertools.html" rel="next">
-          Next: Scheduler Tools...
+        <a class="chapter-link float-end" href="02_scalingstudy.html" rel="next">
+          Next: Scaling Study...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
@@ -511,7 +613,7 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/02_resourcerequirements.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/02_resourcerequirements.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-06-27",
+  "dateModified": "2025-07-01",
   "datePublished": "2025-07-01"
 }
 
