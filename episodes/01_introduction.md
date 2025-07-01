@@ -131,6 +131,7 @@ Broad dimensions of performance:
 
 
 ::::: instructor
+## ToDo
 Maybe we should either focus on components (CPUs, memory, disk, accelerators, network cards) or functional entities (compute, data hierarchy, bandwidth, latency, parallel timelines)
 ::::::::::::::::
 
