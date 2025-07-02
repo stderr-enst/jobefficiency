@@ -9,6 +9,7 @@ exercises: 0
 - How many resources should it request initially?
 - What options does the scheduler give to request resources?
 - How do I know if they are used well?
+- How large is my HPC cluster?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

@@ -6,7 +6,8 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- A?
+- How can I decide the amount of resources I should request for my job?
+- How do I know how my application behaves at different scales?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -15,21 +16,26 @@ exercises: 0
 After completing this episode, participants should be able to …
 
 - Perform a simple scaling study for a given application.
-- B?
+- Identify good working points for the job configuration.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
-## Scaling study
 
-:::::::::::::::::::::::::: instructor
-## ToDo
-Simple scaling study could become its own episode right after this one:
+## What do we look at?
 
-- Pick dimension (e.g. number of cores) (Amdahl's vs. Gustavson's Law?)
-- Pick limits & stepsize
-- Run scaling study
-- Make a nice plot
-- Discuss ideal scaling, difference to reality, overhead, what's optimal, time-to-solution with queue-wait-times
+- Amdahl's vs. Gustavsons's law / strong and weak scaling
+- Walltime, Speedup, efficiency
+
+:::::::::::::::::::::::::: discussion
+## Discussion: What dimensions can we look at?
+
+::::: solution
+
+- CPUs
+- Nodes
+- Workload/problem size
+
+::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::
 
@@ -42,17 +48,43 @@ Simple scaling study could become its own episode right after this one:
    - number of nodes involved (network-communication boundary)
    - size of workload
    - Decide on number of processes across node, fixed workload size
+- Choose limits (e.g. 1, 2, 4, ... cores), within reasonable size for given Cluster
+- Beyond nodes? Set to one node?
+
+
+## Parameter Scan
+
 - Take measurements
    - Use `time` and repeating measurements (something like 3 or 10)
    - Vary scaling parameter
-- Analyze scaling behavior
-   - Goal: best working point for job production
-   - Plot data and see how it scales
-   - Identify sweet-spots and points where behavior changes
-- Conclude on best configuration for given setup
+
+:::::::::::::::::::::::::: challenge
+## Exercise: Run the Example with different -n
+
+- 1, 2, 4, 8, 16, 32, ... cores and same workload
+- Take `time` measurements (ideally multiple and with `--exclusive`)
+
+::::::::::::::::::::::::::::::::::::
+
+
+## Analyzing results
+
+:::::::::::::::::::::::::: challenge
+## Exercise: Plot the scaling
+
+- Plot it against `time`
+- Calculate speedup with respect to baseline with 1 core
+
+::::::::::::::::::::::::::::::::::::
+
+- What's a good working point? How 
+- Overhead
+- Efficiency: not wasting cores if adding them doesn't do much
 
 
 ## Summary
+
+What's a good working point for our example (at a given workload)?
 
 :::::::::::::::::::::::::: challenge
 ## Exercise:
@@ -60,6 +92,8 @@ Simple scaling study could become its own episode right after this one:
 
 :::::::::::::::::::::::::::::::::::::: keypoints
 
-- A
+- Jobs behave differently with varying resources and workloads
+- Scaling study is necessary to proof a certain behavior of the application
+- Good working points defined by sections where more cores still provide sufficient speedup, but no costs due to overhead etc. occurs
 
 ::::::::::::::::::::::::::::::::::::::::::::::::

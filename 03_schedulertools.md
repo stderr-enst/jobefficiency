@@ -8,7 +8,6 @@ exercises: 0
 
 - What information can the scheduler provide about my jobs performance?
 - What's the meaning of the collected metrics?
-- How large is my HPC cluster?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -23,11 +22,37 @@ After completing this episode, participants should be able to …
 
 ## Scheduler Tools
 
-<!-- EPISODE CONTENT HERE -->
+- `sacct`
+   - `MaxRSS`, `AvgRSS`
+   - `MaxPages`, `AvgPages`
+   - `AvgCPU`, `AllocCPUS`
+   - `ElapsedI
+   - `MaxDiskRead`, AvgDiskRead`,
+   - `MaxDiskWrite`, `AvgDiskWrite`
+   - `energy`
+- `seff`
+   - Utilization of time allocation
+   - Utilization of allocated CPUs (is 100% <=> efficient? Not if calculations are redundant etc.!)
+   - Utilization of allocated memory
+
+
 
 ## Shortcomings
 - Not enough info about e.g. I/O, no timeline of metrics during job execution, ...
+   - I/O may be available, but likely only for local disks
+   - => no parallel FS
+   - => no network
+- Energy demand may be missing or wrong
+   - Depends on available features
+   - Doesn't estimate energy for network switches, cooling, etc.
 - => trying other tools! (motivation for subsequent episodes)
+
+
+## Summary
+
+:::::::::::::::::::::::::: challenge
+## Exercise:
+::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::: keypoints
 - `sacct` and `seff` for first results
