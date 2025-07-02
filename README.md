@@ -5,6 +5,11 @@ Pre-alpha, WIP.
 
 View the [rendered version of the lesson here](https://stderr-enst.github.io/jobefficiency/).
 
+## Contributing
+We are following the [iterative backward design](https://carpentries.github.io/lesson-development-training) as described in the carpentries' collaborative lesson development training.
+
+For changes, feel free to open a pull/merge request or open a new issue for discussions.
+
 
 ## Contact
 You can reach us via [the contact info on our website](https://hpc.dh.nrw/) in German or English.
