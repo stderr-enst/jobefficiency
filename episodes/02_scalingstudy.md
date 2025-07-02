@@ -86,6 +86,10 @@ After completing this episode, participants should be able to …
 
 What's a good working point for our example (at a given workload)?
 
+:::::::::::::::::::::::::: challenge
+## Exercise:
+::::::::::::::::::::::::::::::::::::
+
 :::::::::::::::::::::::::::::::::::::: keypoints
 
 - Jobs behave differently with varying resources and workloads
