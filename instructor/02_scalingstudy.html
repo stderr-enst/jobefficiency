@@ -234,7 +234,9 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#scaling-study">Scaling study</a></li>
+        <ul><li><a href="#what-do-we-look-at">What do we look at?</a></li>
+<li><a href="#parameter-scan">Parameter Scan</a></li>
+<li><a href="#analyzing-results">Analyzing results</a></li>
 <li><a href="#summary">Summary</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -345,7 +347,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Scaling Study</h1>
-        <p>Last updated on 2025-07-01 |
+        <p>Last updated on 2025-07-02 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/02_scalingstudy.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -366,7 +368,9 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>A?</li>
+<ul><li>How can I decide the amount of resources I should request for my
+job?</li>
+<li>How do I know how my application behaves at different scales?</li>
 </ul></div>
 </div>
 </div>
@@ -376,33 +380,36 @@
 <h3 class="card-title">Objectives</h3>
 <p>After completing this episode, participants should be able to …</p>
 <ul><li>Perform a simple scaling study for a given application.</li>
-<li>B?</li>
+<li>Identify good working points for the job configuration.</li>
 </ul></div>
 </div>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="scaling-study">Scaling study<a class="anchor" aria-label="anchor" href="#scaling-study"></a></h2>
-<hr class="half-width"><div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
+<section><h2 class="section-heading" id="what-do-we-look-at">What do we look at?<a class="anchor" aria-label="anchor" href="#what-do-we-look-at"></a></h2>
+<hr class="half-width"><ul><li>Amdahl’s vs. Gustavsons’s law / strong and weak scaling</li>
+<li>Walltime, Speedup, efficiency</li>
+</ul><div id="discussion-what-dimensions-can-we-look-at" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="discussion-what-dimensions-can-we-look-at" class="callout-inner">
+<h3 class="callout-title">Discussion: What dimensions can we look at?</h3>
+<div class="callout-content">
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
-  <h3 class="accordion-header" id="headingInstructor1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
-  ToDo
-  </h3>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<p>Simple scaling study could become its own episode right after this
-one:</p>
-<ul><li>Pick dimension (e.g. number of cores) (Amdahl’s vs. Gustavson’s
-Law?)</li>
-<li>Pick limits &amp; stepsize</li>
-<li>Run scaling study</li>
-<li>Make a nice plot</li>
-<li>Discuss ideal scaling, difference to reality, overhead, what’s
-optimal, time-to-solution with queue-wait-times</li>
+<ul><li>CPUs</li>
+<li>Nodes</li>
+<li>Workload/problem size</li>
 </ul></div>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -417,26 +424,61 @@ optimal, time-to-solution with queue-wait-times</li>
 <li>size of workload</li>
 <li>Decide on number of processes across node, fixed workload size</li>
 </ul></li>
-<li>Take measurements
+<li>Choose limits (e.g. 1, 2, 4, … cores), within reasonable size for
+given Cluster</li>
+<li>Beyond nodes? Set to one node?</li>
+</ul></section><section><h2 class="section-heading" id="parameter-scan">Parameter Scan<a class="anchor" aria-label="anchor" href="#parameter-scan"></a></h2>
+<hr class="half-width"><ul><li>Take measurements
 <ul><li>Use <code>time</code> and repeating measurements (something like 3
 or 10)</li>
 <li>Vary scaling parameter</li>
 </ul></li>
-<li>Analyze scaling behavior
-<ul><li>Goal: best working point for job production</li>
-<li>Plot data and see how it scales</li>
-<li>Identify sweet-spots and points where behavior changes</li>
-</ul></li>
-<li>Conclude on best configuration for given setup</li>
+</ul><div id="exercise-run-the-example-with-different--n" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="exercise-run-the-example-with-different--n" class="callout-inner">
+<h3 class="callout-title">Exercise: Run the Example with different -n</h3>
+<div class="callout-content">
+<ul><li>1, 2, 4, 8, 16, 32, … cores and same workload</li>
+<li>Take <code>time</code> measurements (ideally multiple and with
+<code>--exclusive</code>)</li>
+</ul></div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="analyzing-results">Analyzing results<a class="anchor" aria-label="anchor" href="#analyzing-results"></a></h2>
+<hr class="half-width"><div id="exercise-plot-the-scaling" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="exercise-plot-the-scaling" class="callout-inner">
+<h3 class="callout-title">Exercise: Plot the scaling</h3>
+<div class="callout-content">
+<ul><li>Plot it against <code>time</code>
+</li>
+<li>Calculate speedup with respect to baseline with 1 core</li>
+</ul></div>
+</div>
+</div>
+<ul><li>What’s a good working point? How</li>
+<li>Overhead</li>
+<li>Efficiency: not wasting cores if adding them doesn’t do much</li>
 </ul></section><section><h2 class="section-heading" id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a></h2>
-<hr class="half-width"><div id="keypoints1" class="callout keypoints">
+<hr class="half-width"><p>What’s a good working point for our example (at a given
+workload)?</p>
+<div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
 </div>
 <div class="callout-inner">
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
-<ul><li>A</li>
+<ul><li>Jobs behave differently with varying resources and workloads</li>
+<li>Scaling study is necessary to proof a certain behavior of the
+application</li>
+<li>Good working points defined by sections where more cores still
+provide sufficient speedup, but no costs due to overhead etc.
+occurs</li>
 </ul></div>
 </div>
 </div>
@@ -502,7 +544,7 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/instructor/02_scalingstudy.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/instructor/02_scalingstudy.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-07-01",
+  "dateModified": "2025-07-02",
   "datePublished": "2025-07-02"
 }
 

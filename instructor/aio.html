@@ -486,7 +486,7 @@ like</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ul>
 <li>True, shorter turn around times, more results per time, more nobel
@@ -542,7 +542,7 @@ with respect to HPC jobs. (Shared document?)</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
 <div class="accordion-body">
 <p>E.g. shortest time from submission to job completion.</p>
 </div>
@@ -554,7 +554,7 @@ with respect to HPC jobs. (Shared document?)</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <p>Many definitions of efficiency (see below)</p>
 </div>
@@ -636,7 +636,7 @@ alignment</li>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> ToDo </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Maybe we should either focus on components (CPUs, memory, disk,
 accelerators, network cards) or functional entities (compute, data
@@ -674,7 +674,7 @@ accelerators.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>CPU (FLOPS) and/or Parallel timeline</li>
@@ -803,7 +803,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-02_resourcerequirements"><p>Content from <a href="02_resourcerequirements.html">Resource Requirements</a></p>
 <hr>
-<p>Last updated on 2025-07-01 |
+<p>Last updated on 2025-07-02 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/02_resourcerequirements.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
@@ -821,6 +821,7 @@ any links that you are not going to use.
 <li>How many resources should it request initially?</li>
 <li>What options does the scheduler give to request resources?</li>
 <li>How do I know if they are used well?</li>
+<li>How large is my HPC cluster?</li>
 </ul>
 </div>
 </div>
@@ -1082,7 +1083,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-02_scalingstudy"><p>Content from <a href="02_scalingstudy.html">Scaling Study</a></p>
 <hr>
-<p>Last updated on 2025-07-01 |
+<p>Last updated on 2025-07-02 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/02_scalingstudy.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
@@ -1097,7 +1098,9 @@ any links that you are not going to use.
 <div class="inner">
 <h3 class="card-title">Questions</h3>
 <ul>
-<li>A?</li>
+<li>How can I decide the amount of resources I should request for my
+job?</li>
+<li>How do I know how my application behaves at different scales?</li>
 </ul>
 </div>
 </div>
@@ -1109,37 +1112,42 @@ any links that you are not going to use.
 <p>After completing this episode, participants should be able to …</p>
 <ul>
 <li>Perform a simple scaling study for a given application.</li>
-<li>B?</li>
+<li>Identify good working points for the job configuration.</li>
 </ul>
 </div>
 </div>
 </div>
 </div>
 </div>
-<section><h2 class="section-heading" id="scaling-study">Scaling study<a class="anchor" aria-label="anchor" href="#scaling-study"></a>
+<section><h2 class="section-heading" id="what-do-we-look-at">What do we look at?<a class="anchor" aria-label="anchor" href="#what-do-we-look-at"></a>
 </h2>
 <hr class="half-width">
-<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
-  <h3 class="accordion-header" id="headingInstructor1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
-  ToDo
-  </h3>
-</button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
-<div class="accordion-body">
-<p>Simple scaling study could become its own episode right after this
-one:</p>
 <ul>
-<li>Pick dimension (e.g. number of cores) (Amdahl’s vs. Gustavson’s
-Law?)</li>
-<li>Pick limits &amp; stepsize</li>
-<li>Run scaling study</li>
-<li>Make a nice plot</li>
-<li>Discuss ideal scaling, difference to reality, overhead, what’s
-optimal, time-to-solution with queue-wait-times</li>
+<li>Amdahl’s vs. Gustavsons’s law / strong and weak scaling</li>
+<li>Walltime, Speedup, efficiency</li>
 </ul>
+<div id="discussion-what-dimensions-can-we-look-at" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="discussion-what-dimensions-can-we-look-at" class="callout-inner">
+<h3 class="callout-title">Discussion: What dimensions can we look at?</h3>
+<div class="callout-content">
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div class="accordion-body">
+<ul>
+<li>CPUs</li>
+<li>Nodes</li>
+<li>Workload/problem size</li>
+</ul>
+</div>
+</div>
+</div>
 </div>
 </div>
 </div>
@@ -1160,6 +1168,13 @@ optimal, time-to-solution with queue-wait-times</li>
 <li>Decide on number of processes across node, fixed workload size</li>
 </ul>
 </li>
+<li>Choose limits (e.g. 1, 2, 4, … cores), within reasonable size for
+given Cluster</li>
+<li>Beyond nodes? Set to one node?</li>
+</ul></section><section><h2 class="section-heading" id="parameter-scan">Parameter Scan<a class="anchor" aria-label="anchor" href="#parameter-scan"></a>
+</h2>
+<hr class="half-width">
+<ul>
 <li>Take measurements
 <ul>
 <li>Use <code>time</code> and repeating measurements (something like 3
@@ -1167,17 +1182,49 @@ or 10)</li>
 <li>Vary scaling parameter</li>
 </ul>
 </li>
-<li>Analyze scaling behavior
-<ul>
-<li>Goal: best working point for job production</li>
-<li>Plot data and see how it scales</li>
-<li>Identify sweet-spots and points where behavior changes</li>
 </ul>
+<div id="exercise-run-the-example-with-different--n" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="exercise-run-the-example-with-different--n" class="callout-inner">
+<h3 class="callout-title">Exercise: Run the Example with different -n</h3>
+<div class="callout-content">
+<ul>
+<li>1, 2, 4, 8, 16, 32, … cores and same workload</li>
+<li>Take <code>time</code> measurements (ideally multiple and with
+<code>--exclusive</code>)</li>
+</ul>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="analyzing-results">Analyzing results<a class="anchor" aria-label="anchor" href="#analyzing-results"></a>
+</h2>
+<hr class="half-width">
+<div id="exercise-plot-the-scaling" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<div id="exercise-plot-the-scaling" class="callout-inner">
+<h3 class="callout-title">Exercise: Plot the scaling</h3>
+<div class="callout-content">
+<ul>
+<li>Plot it against <code>time</code>
 </li>
-<li>Conclude on best configuration for given setup</li>
+<li>Calculate speedup with respect to baseline with 1 core</li>
+</ul>
+</div>
+</div>
+</div>
+<ul>
+<li>What’s a good working point? How</li>
+<li>Overhead</li>
+<li>Efficiency: not wasting cores if adding them doesn’t do much</li>
 </ul></section><section><h2 class="section-heading" id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
 </h2>
 <hr class="half-width">
+<p>What’s a good working point for our example (at a given
+workload)?</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -1186,7 +1233,12 @@ or 10)</li>
 <h3 class="callout-title">Key Points</h3>
 <div class="callout-content">
 <ul>
-<li>A</li>
+<li>Jobs behave differently with varying resources and workloads</li>
+<li>Scaling study is necessary to proof a certain behavior of the
+application</li>
+<li>Good working points defined by sections where more cores still
+provide sufficient speedup, but no costs due to overhead etc.
+occurs</li>
 </ul>
 </div>
 </div>
@@ -1197,7 +1249,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-03_schedulertools"><p>Content from <a href="03_schedulertools.html">Scheduler Tools</a></p>
 <hr>
-<p>Last updated on 2025-06-26 |
+<p>Last updated on 2025-07-02 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/03_schedulertools.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
@@ -1215,7 +1267,6 @@ any links that you are not going to use.
 <li>What information can the scheduler provide about my jobs
 performance?</li>
 <li>What’s the meaning of the collected metrics?</li>
-<li>How large is my HPC cluster?</li>
 </ul>
 </div>
 </div>
@@ -1238,14 +1289,59 @@ metrics of their jobs.</li>
 <section><h2 class="section-heading" id="scheduler-tools">Scheduler Tools<a class="anchor" aria-label="anchor" href="#scheduler-tools"></a>
 </h2>
 <hr class="half-width">
-<!-- EPISODE CONTENT HERE --></section><section><h2 class="section-heading" id="shortcomings">Shortcomings<a class="anchor" aria-label="anchor" href="#shortcomings"></a>
+<ul>
+<li>
+<code>sacct</code>
+<ul>
+<li>
+<code>MaxRSS</code>, <code>AvgRSS</code>
+</li>
+<li>
+<code>MaxPages</code>, <code>AvgPages</code>
+</li>
+<li>
+<code>AvgCPU</code>, <code>AllocCPUS</code>
+</li>
+<li>`ElapsedI</li>
+<li>
+<code>MaxDiskRead</code>, AvgDiskRead`,</li>
+<li>
+<code>MaxDiskWrite</code>, <code>AvgDiskWrite</code>
+</li>
+<li><code>energy</code></li>
+</ul>
+</li>
+<li>
+<code>seff</code>
+<ul>
+<li>Utilization of time allocation</li>
+<li>Utilization of allocated CPUs (is 100% &lt;=&gt; efficient? Not if
+calculations are redundant etc.!)</li>
+<li>Utilization of allocated memory</li>
+</ul>
+</li>
+</ul></section><section><h2 class="section-heading" id="shortcomings">Shortcomings<a class="anchor" aria-label="anchor" href="#shortcomings"></a>
 </h2>
 <hr class="half-width">
 <ul>
 <li>Not enough info about e.g. I/O, no timeline of metrics during job
-execution, …</li>
-<li>=&gt; trying other tools! (motivation for subsequent episodes)</li>
+execution, …
+<ul>
+<li>I/O may be available, but likely only for local disks</li>
+<li>=&gt; no parallel FS</li>
+<li>=&gt; no network</li>
 </ul>
+</li>
+<li>Energy demand may be missing or wrong
+<ul>
+<li>Depends on available features</li>
+<li>Doesn’t estimate energy for network switches, cooling, etc.</li>
+</ul>
+</li>
+<li>=&gt; trying other tools! (motivation for subsequent episodes)</li>
+</ul></section><section><h2 class="section-heading" id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
+</h2>
+<hr class="half-width">
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
