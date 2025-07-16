@@ -29,10 +29,16 @@ After completing this episode, participants should be able to …
 - Describe common approaches
 
 ## Tools
+Performance counters and permissions, may require `--exclusive`, depends on system! Look at documentation / talk to your administrators / support.
+```
+cap_perfmon,cap_sys_ptrace,cap_syslog=ep
+kernel.perf_event_paranoid
+```
 
 ## General report
 - General reports show direction in which to continue
    - Specialized tools may be necessary
+
 
 <!-- EPISODE CONTENT HERE -->
 

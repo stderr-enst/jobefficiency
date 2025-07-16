@@ -23,6 +23,17 @@ After completing this episode, participants should be able to …
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
+
+:::::::::::::::::::::::::: instructor
+## ToDo: Rewrite to start with the narrative from the very beginning
+
+- Needs a specific example job.
+- Gradual improvement would be great
+- Start with baseline measurement at the very beginning?
+   - `time` can raise questions of efficiency, "what's good?", etc.
+
+:::::::::::::::::::::::::::::::::::::
+
 ## Why Care About Performance?
 
 Reasons from the perspective of learners (see profiles)
