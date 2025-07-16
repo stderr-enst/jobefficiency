@@ -16,9 +16,10 @@ exercises: 0
 
 After completing this episode, participants should be able to …
 
-- Understand the benefits of efficient jobs.
-- Identify which areas of computer hardware may affect performance.
 - Use the `time` command for a first measurement.
+- Understand the benefits of efficient jobs.
+- Roughly estimate a job energy consumption based on core-h.
+- Identify which general areas of computer hardware may affect performance.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -33,6 +34,42 @@ After completing this episode, participants should be able to …
    - `time` can raise questions of efficiency, "what's good?", etc.
 
 :::::::::::::::::::::::::::::::::::::
+
+
+## Setting the Baseline
+Absolute performance is hard to determine:
+
+- In comparison to current hardware (theoretical limits vs. real usage)
+- Still important, if long way from theoretical limits
+- Always limited by something (one optimization just shifts to the next saturated bottleneck)
+
+During optimization, performance is often expressed in relative terms to a baseline measurement.
+Define "baseline".
+Comparison between before and after a change.
+
+:::::::::::::::::::::::::: challenge
+## Exercise: Baseline Measurement with `time`
+
+Simple measurement with `time` of example application.
+Maybe also with [hyperfine](https://github.com/sharkdp/hyperfine) ?
+
+Observe system, user, and wall time.
+
+Repeat measurements somewhere 3-10 times to reduce noise
+
+- Average time
+- Minimum (observed best case)
+
+Maybe make a simple/obvious change to compare change to baseline.
+How much relative improvement?
+
+::::: solution
+Example of how to run it and what the result looks like
+::::::::::::::
+::::::::::::::::::::::::::::::::::::
+
+Discuss meaning of system, user, wall-time.
+Relate to efficiencies (minimal wall-time vs. minimal compute-time)
 
 ## Why Care About Performance?
 
@@ -61,6 +98,8 @@ maybe true-false statements as warmup exercise? E.g. something like
 - Computations directory correlate to energy consumption
 - Good performance does not matter on my own hardware
 
+**All statements should be connected to the example job & narrative!**
+
 :::::: solution
 - True, shorter turn around times, more results per time, more nobel prices per second!
 - False, new hardware might make performance issues less pressing, but it is still important (opportunity costs, wasted energy, shared resources)
@@ -69,12 +108,33 @@ maybe true-false statements as warmup exercise? E.g. something like
 :::::::::::::::
 ::::::::::::::::::::::::::::::::::::
 
-:::::::::::::::::::::::::: discussion
-## Discussion: How important is performance?
 
-- Did you change your opinion about the importance of good performance?
-- How much time do you want to/can you spend on assessing your jobs performance?
-:::::::::::::::::::::::::::::::::::::
+## Core-h and Energy
+
+Define core-h.
+Device usage for X seconds correlates to estimated power draw.
+Real power usage depends on:
+
+- Utilized features of the device (some more power-hungry than others)
+- Amount of data movement through memory, data, network
+- Cooling (rule of thumb factor $\times 2$)
+
+Looking at energy is one perspective on "efficiency".
+
+:::::::::::::::::::::::::: challenge
+## Exercise: Core-h and Energy consumption
+
+- Figure out your current hardware (docu, cpuinfo, websearch, LLM)
+- Calculate core-h for above test (either including or excluding repetitions)
+- Estimate power usage with TDP
+- Keep it simple, back of the envelope calculations
+
+::::: solution
+Example for an existing cluster.
+Stick to CPU TDP, maybe rough number for whole node from somewhere, multiply factor 2 for cooling, mention not-covered network and storage infrastructure
+::::::::::::::
+::::::::::::::::::::::::::::::::::::
+
 
 
 ## What is Efficient?
@@ -142,9 +202,18 @@ Broad dimensions of performance:
 
 
 ::::: instructor
-## ToDo
+## ToDo: Clarify relation to hardware in this course
 Maybe we should either focus on components (CPUs, memory, disk, accelerators, network cards) or functional entities (compute, data hierarchy, bandwidth, latency, parallel timelines)
+
+We shouldn't go into too much detail here.
+Define broad categories where performance can be good or bad. (calculations, data transfers, application logic, research objective (is the calculation meaningful?))
+
+Reuse categories in the same order and fashion throughout the course, i.e. point out in what area a discovered inefficiency occurs.
+
+Introduce detail about hardware later where it is needed, e.g. NUMA for pinning and hints.
 ::::::::::::::::
+
+![Hardware](fig/JobEfficiency.drawio.png)
 
 :::::::::::::::::::::::::: challenge
 ## Exercise: Match application behavior to hardware
@@ -173,54 +242,6 @@ Maybe not the best questions, also missing something for accelerators.
 ::::::::::::::::::::::::::::::::::::
 
 
-## Setting the Baseline
-Absolute performance is hard to determine:
-
-- In comparison to current hardware (theoretical limits vs. real usage)
-- Still important, if long way from theoretical limits
-- Always limited by something
-
-During optimization, performance is often expressed in relative terms to a baseline measurement.
-Define "baseline".
-Comparison between before and after a change.
-
-:::::::::::::::::::::::::: challenge
-## Exercise: Baseline Measurement with `time`
-
-Simple measurement with `time` of example application.
-Maybe also with [hyperfine](https://github.com/sharkdp/hyperfine) ?
-
-Observe system, user, and wall time.
-
-Repeat measurements somewhere 3-10 times to reduce noise
-
-- Average time
-- Minimum (observed best case)
-
-Maybe make a simple/obvious change to compare change to baseline.
-How much relative improvement?
-::::::::::::::::::::::::::::::::::::
-
-Discuss meaning of system, user, wall-time.
-Relate to efficiencies (minimal wall-time vs. minimal compute-time)
-
-Define core-h.
-Device usage for X seconds correlates to estimated power draw.
-Real power usage depends on:
-
-- Utilized features of the device (some more power-hungry than others)
-- Amount of data movement through memory, data, network
-- Cooling (rule of thumb factor $\times 2$)
-
-:::::::::::::::::::::::::: challenge
-## Exercise: Core-h and Energy consumption
-
-- Figure out your current hardware (docu, cpuinfo, websearch, LLM)
-- Calculate core-h for above test (either including or excluding repetitions)
-- Estimate power usage with TDP
-::::::::::::::::::::::::::::::::::::
-
-
 ## Summary
 
 :::::::::::::::::::::::::: challenge
@@ -232,12 +253,13 @@ Do we know yet? -> No, we can only tell how long it takes, estimate how much tim
 
 :::::::::::::::::::::::::::::::::::::: keypoints
 
-- Job performance affects you as a user
-- Different perspectives on efficiency
-   - Definitions: wall/human-time, compute-time, time-to-solution, energy (costs / environment), Money, opportunity cost (less research output)
-- Relationship between performance and computer hardware
 - Absolute vs. relative performance measurements
    - `time` to establish a baseline
    - Estimating energy consumption
+- Job performance affects you as a user
+- Core-h and very rough energy estimate
+- Different perspectives on efficiency
+   - Definitions: wall/human-time, compute-time, time-to-solution, energy (costs / environment), Money, opportunity cost (less research output)
+- Relationship between performance and computer hardware
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
