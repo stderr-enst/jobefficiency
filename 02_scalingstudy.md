@@ -90,6 +90,14 @@ What's a good working point for our example (at a given workload)?
 ## Exercise:
 ::::::::::::::::::::::::::::::::::::
 
+
+:::::::::::::::::::::::::: instructor
+## ToDo
+Note on compute time application that need estimate of required compute resources and touch on scaling behavior here?
+Could be important for one type of learner, if this is given in a context like HPC.NRW.
+Optional for many others, but maybe interesting.
+:::::::::::::::::::::::::::::::::::::
+
 :::::::::::::::::::::::::::::::::::::: keypoints
 
 - Jobs behave differently with varying resources and workloads

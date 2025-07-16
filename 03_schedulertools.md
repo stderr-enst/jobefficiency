@@ -48,6 +48,15 @@ After completing this episode, participants should be able to …
 - => trying other tools! (motivation for subsequent episodes)
 
 
+:::::::::::::::::::::::::: instructor
+## ToDo
+Can / should we cover I/O and energy metrics at this point?
+
+E.g. use something like `beegfs-ctl` to get a rough estimate of parallel FS performance.
+Use pidstat etc. to get numbers on node-local I/O (and much more)
+:::::::::::::::::::::::::::::::::::::
+
+
 ## Summary
 
 :::::::::::::::::::::::::: challenge

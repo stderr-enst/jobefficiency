@@ -82,18 +82,24 @@ More detail about what [Slurm provides](https://slurm.schedmd.com/sbatch.html) (
 - `-G, --gpus`: Number of GPUs
 - `--exclusive`
 
-Binding:
+
+:::::::::::::::::::::::::: instructor
+## ToDo: Extract episode about pinning
+
+Stick to simple options here.
+Put more complex options for pinning / hints, etc. into its own episode somewhere later in the course
+
+Pinning is an important part of job optimization, but requires some knowledge, e.g. about the hardware hierarchies in a cluster, NUMA, etc.
+
+:::::::::::::::::::::::::::::::::::::
+
+Binding / pinning:
 
 - `--mem-bind=[{quiet|verbose},]<type>`
 - `-m, --distribution={*|block|cyclic|arbitrary|plane=<size>}[:{*|block|cyclic|fcyclic}[:{*|block|cyclic|fcyclic}]][,{Pack|NoPack}]`
 - `--hint=`: Hints for CPU- (`compute_bound`) and memory-bound (`memory_bound`), but also `multithread`, `nomultithread`
 - `--cpu-bind=[{quiet|verbose},]<type>` (`srun`)
 - Mapping of application <-> job resources
-
-:::::::::::::::::::::::::: instructor
-## ToDo
-Binding to resources could be complex/large enough to become its own episode?
-:::::::::::::::::::::::::::::::::::::
 
 Maybe discuss:
 
