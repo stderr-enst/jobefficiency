@@ -208,7 +208,8 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#learning-objectives">Learning Objectives</a></li>
-<li><a href="#example-workload-setup">Example Workload &amp; Setup</a></li>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#acknowledgements">Acknowledgements</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
 
@@ -344,7 +345,8 @@ users on HPC systems, researchers in HPC.NRW)</li>
 <li>Estimated length and recommended formats (e.g. X full days, X * 2
 half days, in-person/online, live-coding)</li>
 <li>Course intentions (focus on learners perspective!):
-<ul><li>Speed up research</li>
+<ul><li>Speed up research (efficient computations, more per time, shorter
+iteration times, “less in the way”)</li>
 <li>Improve batch utilization through matching application requirements
 to requested hardware (minimal resource requirements, maximum resource
 utilization)</li>
@@ -357,7 +359,8 @@ shared system</li>
 application level)</li>
 </ul></li>
 <li>Well defined context:
-<ul><li>HPC Systems</li>
+<ul><li>Working on HPC Systems (Batch system, shared file systems, software
+modules, …)</li>
 <li>Performance of jobs</li>
 <li>Application performance is touched (related to job efficiency), but
 in-depth is outside of the scope. Next steps point towards deeper
@@ -378,16 +381,17 @@ systems</li>
 considerations</li>
 <li>Achieve first results in performance optimization of their
 application</li>
-<li>Remember next steps to take towards learning performance
+<li>Recall next steps to take towards learning performance
 optimization</li>
-</ul><div id="prereq1" class="callout prereq">
+</ul></section><section><h2 class="section-heading" id="prerequisites">Prerequisites<a class="anchor" aria-label="anchor" href="#prerequisites"></a></h2>
+<hr class="half-width"><div id="prereq1" class="callout prereq">
 <div class="callout-square">
 <i class="callout-icon" data-feather="check"></i>
 </div>
 <div class="callout-inner">
 <h3 class="callout-title">Prerequisite</h3>
 <div class="callout-content">
-<ul><li>Access to a HPC system</li>
+<ul><li>Access to an HPC system</li>
 <li>Example workload setup</li>
 <li>Basic knowledge of HPC systems (batch systems, parallel file
 systems) – being able to submit a simple job and understand what happens
@@ -395,18 +399,24 @@ in broad terms</li>
 <li>Knowledge of tools to work with HPC systems:
 <ul><li>Bash shell &amp; scripting</li>
 <li>ssh &amp; scp</li>
+<li>Simple slurm jobscripts and commands like <code>srun</code>,
+<code>sbatch</code>, <code>squeue</code>, <code>scancel</code>
+</li>
 </ul></li>
 </ul></div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="example-workload-setup">Example Workload &amp; Setup<a class="anchor" aria-label="anchor" href="#example-workload-setup"></a></h2>
-<hr class="half-width"><!--
+
+<div class="section level3">
+<h3 id="example-workload-setup">Example Workload &amp; Setup<a class="anchor" aria-label="anchor" href="#example-workload-setup"></a></h3>
+<!--
 FIXME: place any data you want learners to use in `episodes/data` and then use
        a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
        link to it, replacing the example.com link.
 
 Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
---><p>Example workload that:</p>
+-->
+<p>Example workload that:</p>
 <ul><li>Has some instructive performance issues that can be discovered, e.g.
 <ul><li>Mismatch between requested resources in job script and used
 resources</li>
@@ -415,10 +425,29 @@ triggers OOM or just wasting resources, dependent on side and default
 memory/core</li>
 <li>No vectorization?</li>
 <li>Parallelism issues?</li>
+<li>Uncover several performance issues in layers, one after the
+other?</li>
 </ul></li>
 <li>Software that can run on CPU and GPU, to discuss both with the
 example</li>
-</ul><p>You will need access to an HPC cluster to run the examples in this
+<li>Should be easy to download, compile, run, and be understood
+(readability)</li>
+<li>Meaningful workflow for batch processing</li>
+<li>Using commonly used programming languages / libraries in HPC</li>
+<li>Will likely not show all performance issues that could exist, only
+used as a vehicle to follow a narrative with particular performance
+issues</li>
+</ul><p>We are still looking, but are considering:</p>
+<ul><li>Kuwahara filter</li>
+<li>Raytracer</li>
+<li>Simple agent-based simulation game</li>
+<li>(Benchmarks are portable, but they don’t really show performance
+issues and are often complex)</li>
+</ul></div>
+<div class="section level3">
+<h3 id="hpc-access">HPC Access<a class="anchor" aria-label="anchor" href="#hpc-access"></a></h3>
+
+<p>You will need access to an HPC cluster to run the examples in this
 lesson. Discuss how to find out where to apply for access as a
 researcher (in general, in EU, in Germany, in NRW?). Refer to the <a href="https://nesi.github.io/hpc-intro/" class="external-link">HPC Introduction lessons</a> to
 learn how to access and use a compute cluster of that scale.</p>
@@ -498,6 +527,9 @@ discussed in HPC introduction?)</p>
 </div>
 </div>
 </div>
+</div>
+</section><section><h2 class="section-heading" id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a></h2>
+<hr class="half-width"><p>Course created in context of <a href="https://hpc.dh.nrw/" class="external-link">HPC.NRW</a>.</p>
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
@@ -551,8 +583,8 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/index.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/index.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-07-15",
-  "datePublished": "2025-07-15"
+  "dateModified": "2025-07-16",
+  "datePublished": "2025-07-16"
 }
 
   </script><script>

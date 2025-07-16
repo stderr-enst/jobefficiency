@@ -403,7 +403,22 @@ any links that you are not going to use.
       <section id="aggregate-instructor-notes"><section id="01_introduction"><h2 class="section-heading"><a href="01_introduction.html">Introduction</a></h2>
 <hr class="half-width">
 <h3 id="01_introduction-headingInstructor1">
-<a href="01_introduction.html#headingInstructor1">ToDo</a><a class="anchor" aria-label="anchor" href="#01_introduction-headingInstructor1"></a>
+<a href="01_introduction.html#headingInstructor1">ToDo: Rewrite to start with the narrative from the very beginning</a><a class="anchor" aria-label="anchor" href="#01_introduction-headingInstructor1"></a>
+</h3>
+<ul>
+<li>Needs a specific example job.</li>
+<li>Gradual improvement would be great</li>
+<li>Start with baseline measurement at the very beginning?
+<ul>
+<li>
+<code>time</code> can raise questions of efficiency, “what’s good?”,
+etc.</li>
+</ul>
+</li>
+</ul>
+<hr>
+<br><h3 id="01_introduction-headingInstructor2">
+<a href="01_introduction.html#headingInstructor2">ToDo</a><a class="anchor" aria-label="anchor" href="#01_introduction-headingInstructor2"></a>
 </h3>
 <p>Maybe we should either focus on components (CPUs, memory, disk,
 accelerators, network cards) or functional entities (compute, data
@@ -412,10 +427,13 @@ hierarchy, bandwidth, latency, parallel timelines)</p>
 <br></section><section id="02_resourcerequirements"><h2 class="section-heading"><a href="02_resourcerequirements.html">Resource Requirements</a></h2>
 <hr class="half-width">
 <h3 id="02_resourcerequirements-headingInstructor1">
-<a href="02_resourcerequirements.html#headingInstructor1">ToDo</a><a class="anchor" aria-label="anchor" href="#02_resourcerequirements-headingInstructor1"></a>
+<a href="02_resourcerequirements.html#headingInstructor1">ToDo: Extract episode about pinning</a><a class="anchor" aria-label="anchor" href="#02_resourcerequirements-headingInstructor1"></a>
 </h3>
-<p>Binding to resources could be complex/large enough to become its own
-episode?</p>
+<p>Stick to simple options here. Put more complex options for pinning /
+hints, etc. into its own episode somewhere later in the course</p>
+<p>Pinning is an important part of job optimization, but requires some
+knowledge, e.g. about the hardware hierarchies in a cluster, NUMA,
+etc.</p>
 <hr>
 <br><h3 id="02_resourcerequirements-headingInstructor2">
 <a href="02_resourcerequirements.html#headingInstructor2">ToDo</a><a class="anchor" aria-label="anchor" href="#02_resourcerequirements-headingInstructor2"></a>
@@ -425,11 +443,43 @@ approachable? What’s a useful exercise? Maybe put info here in other
 sections?</p>
 <hr>
 <br></section><section id="02_scalingstudy"><h2 class="section-heading"><a href="02_scalingstudy.html">Scaling Study</a></h2>
-<hr class="half-width"></section><section id="03_schedulertools"><h2 class="section-heading"><a href="03_schedulertools.html">Scheduler Tools</a></h2>
-<hr class="half-width"></section><section id="04_performancereports"><h2 class="section-heading"><a href="04_performancereports.html">Workflow of Performance Measurements</a></h2>
+<hr class="half-width">
+<h3 id="02_scalingstudy-headingInstructor1">
+<a href="02_scalingstudy.html#headingInstructor1">ToDo</a><a class="anchor" aria-label="anchor" href="#02_scalingstudy-headingInstructor1"></a>
+</h3>
+<p>Note on compute time application that need estimate of required
+compute resources and touch on scaling behavior here? Could be important
+for one type of learner, if this is given in a context like HPC.NRW.
+Optional for many others, but maybe interesting.</p>
+<hr>
+<br></section><section id="03_schedulertools"><h2 class="section-heading"><a href="03_schedulertools.html">Scheduler Tools</a></h2>
+<hr class="half-width">
+<h3 id="03_schedulertools-headingInstructor1">
+<a href="03_schedulertools.html#headingInstructor1">ToDo</a><a class="anchor" aria-label="anchor" href="#03_schedulertools-headingInstructor1"></a>
+</h3>
+<p>Can / should we cover I/O and energy metrics at this point?</p>
+<p>E.g. use something like <code>beegfs-ctl</code> to get a rough
+estimate of parallel FS performance. Use pidstat etc. to get numbers on
+node-local I/O (and much more)</p>
+<hr>
+<br></section><section id="04_performancereports"><h2 class="section-heading"><a href="04_performancereports.html">Workflow of Performance Measurements</a></h2>
 <hr class="half-width"></section><section id="05_bottlenecks"><h2 class="section-heading"><a href="05_bottlenecks.html">How to identify a bottleneck?</a></h2>
 <hr class="half-width"></section><section id="06_accelerators"><h2 class="section-heading"><a href="06_accelerators.html">Special Aspects of Accelerators</a></h2>
-<hr class="half-width"></section><section id="07_nextsteps"><h2 class="section-heading"><a href="07_nextsteps.html">Next Steps</a></h2>
+<hr class="half-width">
+<h3 id="06_accelerators-headingInstructor1">
+<a href="06_accelerators.html#headingInstructor1">ToDo</a><a class="anchor" aria-label="anchor" href="#06_accelerators-headingInstructor1"></a>
+</h3>
+<p>Don’t mention FPGAs too much, maybe just a node what accelerators
+could be, besides GPU. Goal is to keep it simple and accessible, focus
+on what’s common in most HPC systems these days</p>
+<hr>
+<br><h3 id="06_accelerators-headingInstructor2">
+<a href="06_accelerators.html#headingInstructor2">ToDo</a><a class="anchor" aria-label="anchor" href="#06_accelerators-headingInstructor2"></a>
+</h3>
+<p>Explain how to decide where to run something. CPU vs. small GPU
+vs. high-end GPUs. Touches on transfer overhead etc.</p>
+<hr>
+<br></section><section id="07_nextsteps"><h2 class="section-heading"><a href="07_nextsteps.html">Next Steps</a></h2>
 <hr class="half-width"></section></section>
 </div>
     </main>
@@ -478,8 +528,8 @@ sections?</p>
   "url": "https://stderr-enst.github.io/jobefficiency/instructor/instructor-notes.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/instructor/instructor-notes.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-07-15",
-  "datePublished": "2025-07-15"
+  "dateModified": "2025-07-16",
+  "datePublished": "2025-07-16"
 }
 
   </script><script>
