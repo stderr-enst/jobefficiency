@@ -37,6 +37,15 @@ After completing this episode, participants should be able to …
 
 ::::::::::::::
 
+:::::::::::::::::::::::::: challenge
+## Exercise: Factors effecting scaling
+
+- How serial portion of the code effects the scaling? (May be a numerical would help)
+- If we have a infinte number of workers or processes doing a higy parallel code which is 99% is parallized but 1% is serial execution. The speedup will be 100. What is a ideal limit to the speedup.
+- How the communication effects the scaling?
+
+::::::::::::::::::::::::::::::::::::
+
 :::::::::::::::::::::::::::::::::::::
 
 - Define example payload
@@ -57,6 +66,12 @@ After completing this episode, participants should be able to …
 - Take measurements
    - Use `time` and repeating measurements (something like 3 or 10)
    - Vary scaling parameter
+
+::::: instructor
+## ToDo: Advanced details in pinning
+The below excercise could be the best place to also introduce about mpre detailed pinning options
+The results of below challenge are also dpendent on the pinning options
+::::::::::::::::
 
 :::::::::::::::::::::::::: challenge
 ## Exercise: Run the Example with different -n
