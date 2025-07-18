@@ -75,6 +75,7 @@ Example workload that:
   - Changing workload might still be necessary at certain points. We have to be intentional and clear about it in the course and limit these!
 - Software that can run on CPU and GPU, to discuss both with the example
 - Should be easy to download, compile, run, and be understood (readability)
+  - Provide example application in a container as a generic fallback solution?
 - Meaningful workflow for batch processing
 - Using commonly used programming languages / libraries in HPC
 - Will likely not show all performance issues that could exist, only used as a vehicle to follow a narrative with particular performance issues
