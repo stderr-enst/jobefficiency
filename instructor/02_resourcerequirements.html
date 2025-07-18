@@ -118,11 +118,11 @@
   Job Efficiency
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 12%" class="percentage">
-    12%
+<aside class="col-md-12 lesson-progress"><div style="width: 11%" class="percentage">
+    11%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 12%" aria-valuenow="12" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 11%" aria-valuenow="11" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -239,7 +239,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="02_scalingstudy.html">3. Scaling Study</a>
+        <a href="03_schedulertools.html">3. Scheduler Tools</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -248,7 +248,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="03_schedulertools.html">4. Scheduler Tools</a>
+        <a href="04_scalingstudy.html">4. Scaling Study</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -257,7 +257,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="04_performancereports.html">5. Workflow of Performance Measurements</a>
+        <a href="05_performancereports.html">5. Performance Overview</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -266,7 +266,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="05_bottlenecks.html">6. How to identify a bottleneck?</a>
+        <a href="06_pinning.html">6. Pinning</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -275,7 +275,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="06_accelerators.html">7. Special Aspects of Accelerators</a>
+        <a href="07_bottlenecks.html">7. How to identify a bottleneck?</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -284,7 +284,16 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="07_nextsteps.html">8. Next Steps</a>
+        <a href="08_accelerators.html">8. Special Aspects of Accelerators</a>
+    </div><!--/div.accordion-header-->
+
+  </div><!--/div.accordion-item-->
+</div><!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush10">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading10">
+        <a href="09_nextsteps.html">9. Next Steps</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -333,7 +342,7 @@
   <div class="col-xl-8 col-lg-12 primary-content">
     <nav class="lesson-content mx-md-4" aria-label="Previous and Next Chapter"><!-- content for small screens --><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/01_introduction.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="../instructor/02_scalingstudy.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/03_schedulertools.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
@@ -341,8 +350,8 @@
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
           Previous: Introduction
         </a>
-        <a class="chapter-link float-end" href="../instructor/02_scalingstudy.html" rel="next">
-          Next: Scaling Study...
+        <a class="chapter-link float-end" href="../instructor/03_schedulertools.html" rel="next">
+          Next: Scheduler Tools...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>
@@ -382,11 +391,28 @@
 <h3 class="card-title">Objectives</h3>
 <p>After completing this episode, participants should be able to …</p>
 <ul><li>Identify the size of their jobs in relation to the HPC system.</li>
-<li>Request the right amount of resources from the scheduler.</li>
-<li>Change the parameters if the applications’ resource requirements
-change.</li>
+<li>Request a good amount of resources from the scheduler.</li>
+<li>Change the parameters to see how the execution time changes.</li>
 </ul></div>
 </div>
+</div>
+</div>
+</div>
+<div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
+  <h3 class="accordion-header" id="headingInstructor1">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
+  Objective: Vary one parameter and compare to baseline
+  </h3>
+</button>
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div class="accordion-body">
+<ul><li>Learn about Slurm job parameters</li>
+<li>Develop intuition about job size with respect to the cluster</li>
+<li>First impression of whats a “good” amount of resources to request
+for a job</li>
+</ul></div>
 </div>
 </div>
 </div>
@@ -456,7 +482,24 @@ example.</p>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="requesting-resources">Requesting Resources<a class="anchor" aria-label="anchor" href="#requesting-resources"></a></h2>
-<hr class="half-width"><p>More detail about what <a href="https://slurm.schedmd.com/sbatch.html" class="external-link">Slurm provides</a> (among
+<hr class="half-width"><div id="accordionInstructor2" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
+  <h3 class="accordion-header" id="headingInstructor2">
+  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
+  ToDo
+  </h3>
+</button>
+<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
+<div class="accordion-body">
+<p>This section is just an info dump, how do we make it useful and
+approachable? What’s a useful exercise? Maybe put info here in other
+sections?</p>
+</div>
+</div>
+</div>
+</div>
+<p>More detail about what <a href="https://slurm.schedmd.com/sbatch.html" class="external-link">Slurm provides</a> (among
 others):</p>
 <ul><li>
 <code>-t, --time=&lt;time&gt;</code>: Time limit of the job</li>
@@ -476,41 +519,6 @@ at least the number threads per CPU</li>
 <li>
 <code>-G, --gpus</code>: Number of GPUs</li>
 <li><code>--exclusive</code></li>
-</ul><div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
-  <h3 class="accordion-header" id="headingInstructor1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
-  ToDo: Extract episode about pinning
-  </h3>
-</button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
-<div class="accordion-body">
-<p>Stick to simple options here. Put more complex options for pinning /
-hints, etc. into its own episode somewhere later in the course</p>
-<p>Pinning is an important part of job optimization, but requires some
-knowledge, e.g. about the hardware hierarchies in a cluster, NUMA, etc.
-So it should be done after we’ve introduced different performance
-reports and their perspective on hardware</p>
-<p>Maybe point to <a href="https://apps.fz-juelich.de/jsc/llview/pinning" class="external-link">JSC pinning
-simulator</a> and have similar diagrams as an independent “offline”
-version in this course</p>
-</div>
-</div>
-</div>
-</div>
-<p>Binding / pinning:</p>
-<ul><li><code>--mem-bind=[{quiet|verbose},]&lt;type&gt;</code></li>
-<li><code>-m, --distribution={*|block|cyclic|arbitrary|plane=&lt;size&gt;}[:{*|block|cyclic|fcyclic}[:{*|block|cyclic|fcyclic}]][,{Pack|NoPack}]</code></li>
-<li>
-<code>--hint=</code>: Hints for CPU- (<code>compute_bound</code>)
-and memory-bound (<code>memory_bound</code>), but also
-<code>multithread</code>, <code>nomultithread</code>
-</li>
-<li>
-<code>--cpu-bind=[{quiet|verbose},]&lt;type&gt;</code>
-(<code>srun</code>)</li>
-<li>Mapping of application &lt;-&gt; job resources</li>
 </ul><p>Maybe discuss:</p>
 <ul><li>Minimizing/maximizing involved number of nodes
 <ul><li>Shared nodes: longer waiting times until a whole node is empty</li>
@@ -522,24 +530,7 @@ on few exclusive nodes.</li>
 </ul></li>
 <li>What is a task / process – Difference?</li>
 <li>Requesting memory, more than mem/core -&gt; idle cores</li>
-</ul><div id="accordionInstructor2" class="accordion instructor-note accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
-  <h3 class="accordion-header" id="headingInstructor2">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
-  ToDo
-  </h3>
-</button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
-<div class="accordion-body">
-<p>This section is just an info dump, how do we make it useful and
-approachable? What’s a useful exercise? Maybe put info here in other
-sections?</p>
-</div>
-</div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="changing-requirements">Changing requirements<a class="anchor" aria-label="anchor" href="#changing-requirements"></a></h2>
+</ul></section><section><h2 class="section-heading" id="changing-requirements">Changing requirements<a class="anchor" aria-label="anchor" href="#changing-requirements"></a></h2>
 <hr class="half-width"><ul><li>Motivate why requirements might change (resolution in simulation,
 more data, more complex model, …)</li>
 <li>How to change requested resources if application should run
@@ -577,6 +568,9 @@ context of job requirements and parameters?</p>
 </div>
 </div>
 </div>
+<p>Leading question: <code>time</code> doesn’t give much information, is
+there an easy way to get more? -&gt; See what Slurm tools can tell about
+our previous jobs</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
 <i class="callout-icon" data-feather="key"></i>
@@ -601,7 +595,7 @@ any links that you are not going to use.
 </section></div> <!-- / div.lesson-content -->
     </main><!-- / main#main-content.main-content --><nav class="bottom-pagination mx-md-4" aria-label="Previous and Next Chapter"><div class="d-block d-sm-block d-md-none">
         <a class="chapter-link" href="../instructor/01_introduction.html"><i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>Previous</a>
-        <a class="chapter-link float-end" href="../instructor/02_scalingstudy.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
+        <a class="chapter-link float-end" href="../instructor/03_schedulertools.html">Next<i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i></a>
       </div>
       <!-- content for large screens -->
       <div class="d-none d-sm-none d-md-block">
@@ -609,8 +603,8 @@ any links that you are not going to use.
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-left"></i>
           Previous: Introduction
         </a>
-        <a class="chapter-link float-end" href="../instructor/02_scalingstudy.html" rel="next">
-          Next: Scaling Study...
+        <a class="chapter-link float-end" href="../instructor/03_schedulertools.html" rel="next">
+          Next: Scheduler Tools...
           <i aria-hidden="true" class="small-arrow" data-feather="arrow-right"></i>
         </a>
       </div>

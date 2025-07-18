@@ -268,7 +268,7 @@
 <div class="accordion accordion-flush" id="accordionFlush4">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading4">
-        <a href="02_scalingstudy.html">3. Scaling Study</a>
+        <a href="03_schedulertools.html">3. Scheduler Tools</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -280,7 +280,7 @@
 <div class="accordion accordion-flush" id="accordionFlush5">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading5">
-        <a href="03_schedulertools.html">4. Scheduler Tools</a>
+        <a href="04_scalingstudy.html">4. Scaling Study</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -292,7 +292,7 @@
 <div class="accordion accordion-flush" id="accordionFlush6">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading6">
-        <a href="04_performancereports.html">5. Workflow of Performance Measurements</a>
+        <a href="05_performancereports.html">5. Performance Overview</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -304,7 +304,7 @@
 <div class="accordion accordion-flush" id="accordionFlush7">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading7">
-        <a href="05_bottlenecks.html">6. How to identify a bottleneck?</a>
+        <a href="06_pinning.html">6. Pinning</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -316,7 +316,7 @@
 <div class="accordion accordion-flush" id="accordionFlush8">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading8">
-        <a href="06_accelerators.html">7. Special Aspects of Accelerators</a>
+        <a href="07_bottlenecks.html">7. How to identify a bottleneck?</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -328,7 +328,19 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="07_nextsteps.html">8. Next Steps</a>
+        <a href="08_accelerators.html">8. Special Aspects of Accelerators</a>
+    </div>
+<!--/div.accordion-header-->
+
+  </div>
+<!--/div.accordion-item-->
+</div>
+<!--/div.accordion-flush-->
+
+<div class="accordion accordion-flush" id="accordionFlush10">
+  <div class="accordion-item">
+    <div class="accordion-header" id="flush-heading10">
+        <a href="09_nextsteps.html">9. Next Steps</a>
     </div>
 <!--/div.accordion-header-->
 
@@ -403,22 +415,105 @@ any links that you are not going to use.
       <section id="aggregate-instructor-notes"><section id="01_introduction"><h2 class="section-heading"><a href="01_introduction.html">Introduction</a></h2>
 <hr class="half-width">
 <h3 id="01_introduction-headingInstructor1">
-<a href="01_introduction.html#headingInstructor1">ToDo: Rewrite to start with the narrative from the very beginning</a><a class="anchor" aria-label="anchor" href="#01_introduction-headingInstructor1"></a>
+<a href="01_introduction.html#headingInstructor1">Intention: Step into the narrative</a><a class="anchor" aria-label="anchor" href="#01_introduction-headingInstructor1"></a>
 </h3>
 <ul>
-<li>Needs a specific example job.</li>
-<li>Gradual improvement would be great</li>
-<li>Start with baseline measurement at the very beginning?
-<ul>
-<li>
-<code>time</code> can raise questions of efficiency, “what’s good?”,
-etc.</li>
-</ul>
-</li>
+<li>Simple <code>time</code> measurement to get started</li>
+<li>Introduce different perspectives on efficiency</li>
+<li>Core-h and correlation to cost in energy/money</li>
 </ul>
 <hr>
 <br><h3 id="01_introduction-headingInstructor2">
-<a href="01_introduction.html#headingInstructor2">ToDo: Find good place for hardware discussion</a><a class="anchor" aria-label="anchor" href="#01_introduction-headingInstructor2"></a>
+<a href="01_introduction.html#headingInstructor2">ToDo: Start with the narrative from the very beginning</a><a class="anchor" aria-label="anchor" href="#01_introduction-headingInstructor2"></a>
+</h3>
+<ul>
+<li>Needs a specific example job.</li>
+<li>Gradual improvement throughout the course</li>
+<li>Introduce only topics that are directly observed/experienced with
+the example</li>
+<li>Point to additional information/overview in hpc-wiki where
+useful</li>
+</ul>
+<hr>
+<br></section><section id="02_resourcerequirements"><h2 class="section-heading"><a href="02_resourcerequirements.html">Resource Requirements</a></h2>
+<hr class="half-width">
+<h3 id="02_resourcerequirements-headingInstructor1">
+<a href="02_resourcerequirements.html#headingInstructor1">Objective: Vary one parameter and compare to baseline</a><a class="anchor" aria-label="anchor" href="#02_resourcerequirements-headingInstructor1"></a>
+</h3>
+<ul>
+<li>Learn about Slurm job parameters</li>
+<li>Develop intuition about job size with respect to the cluster</li>
+<li>First impression of whats a “good” amount of resources to request
+for a job</li>
+</ul>
+<hr>
+<br><h3 id="02_resourcerequirements-headingInstructor2">
+<a href="02_resourcerequirements.html#headingInstructor2">ToDo</a><a class="anchor" aria-label="anchor" href="#02_resourcerequirements-headingInstructor2"></a>
+</h3>
+<p>This section is just an info dump, how do we make it useful and
+approachable? What’s a useful exercise? Maybe put info here in other
+sections?</p>
+<hr>
+<br></section><section id="03_schedulertools"><h2 class="section-heading"><a href="03_schedulertools.html">Scheduler Tools</a></h2>
+<hr class="half-width">
+<h3 id="03_schedulertools-headingInstructor1">
+<a href="03_schedulertools.html#headingInstructor1">Intention: Introduce more basic performance metrics</a><a class="anchor" aria-label="anchor" href="#03_schedulertools-headingInstructor1"></a>
+</h3>
+<ul>
+<li>What <code>seff</code> and <code>sacct</code> have to offer</li>
+<li>Introduce simple relation to hardware, what does RSS, CPU, Disk
+read/write and their utilization mean?</li>
+<li>Point out what’s missing from a complete picture</li>
+</ul>
+<hr>
+<br><h3 id="03_schedulertools-headingInstructor2">
+<a href="03_schedulertools.html#headingInstructor2">ToDo</a><a class="anchor" aria-label="anchor" href="#03_schedulertools-headingInstructor2"></a>
+</h3>
+<p>Can / should we cover I/O and energy metrics at this point?</p>
+<p>E.g. use something like <code>beegfs-ctl</code> to get a rough
+estimate of parallel FS performance. Use pidstat etc. to get numbers on
+node-local I/O (and much more)</p>
+<hr>
+<br></section><section id="04_scalingstudy"><h2 class="section-heading"><a href="04_scalingstudy.html">Scaling Study</a></h2>
+<hr class="half-width">
+<h3 id="04_scalingstudy-headingInstructor1">
+<a href="04_scalingstudy.html#headingInstructor1">Intention: Introduce/Recollect concept of Speedup and do a simple scaling study</a><a class="anchor" aria-label="anchor" href="#04_scalingstudy-headingInstructor1"></a>
+</h3>
+<ul>
+<li>Vary number of cores</li>
+<li>Which metrics are most useful?</li>
+<li>Define speedup</li>
+<li>Visualize results</li>
+</ul>
+<hr>
+<br><h3 id="04_scalingstudy-headingInstructor2">
+<a href="04_scalingstudy.html#headingInstructor2">ToDo: Advanced details in pinning</a><a class="anchor" aria-label="anchor" href="#04_scalingstudy-headingInstructor2"></a>
+</h3>
+<p>The below excercise could be the best place to also introduce about
+mpre detailed pinning options The results of below challenge are also
+dpendent on the pinning options</p>
+<hr>
+<br><h3 id="04_scalingstudy-headingInstructor3">
+<a href="04_scalingstudy.html#headingInstructor3">ToDo</a><a class="anchor" aria-label="anchor" href="#04_scalingstudy-headingInstructor3"></a>
+</h3>
+<p>Note on compute time application that need estimate of required
+compute resources and touch on scaling behavior here? Could be important
+for one type of learner, if this is given in a context like HPC.NRW.
+Optional for many others, but maybe interesting.</p>
+<hr>
+<br></section><section id="05_performancereports"><h2 class="section-heading"><a href="05_performancereports.html">Performance Overview</a></h2>
+<hr class="half-width">
+<h3 id="05_performancereports-headingInstructor1">
+<a href="05_performancereports.html#headingInstructor1">Intention: Introduce third party tools for performance reports</a><a class="anchor" aria-label="anchor" href="#05_performancereports-headingInstructor1"></a>
+</h3>
+<ul>
+<li>Get a complete picture</li>
+<li>Introduce missing metrics / definitions</li>
+<li>Relate to hardware on the same level of detail</li>
+</ul>
+<hr>
+<br><h3 id="05_performancereports-headingInstructor2">
+<a href="05_performancereports.html#headingInstructor2">ToDo: Connect Hardware to Performance Measurements</a><a class="anchor" aria-label="anchor" href="#05_performancereports-headingInstructor2"></a>
 </h3>
 <p>Introduce hardware on the same level of detail and with the same
 terms as the performance reports by ClusterCockpit, LinaroForge, etc.,
@@ -426,8 +521,8 @@ as soon as they appear. Only introduce what we need, to avoid info dump.
 But point to additional information that gives a complete overview -&gt;
 hpc-wiki!</p>
 <hr>
-<br><h3 id="01_introduction-headingInstructor3">
-<a href="01_introduction.html#headingInstructor3">ToDo: Clarify relation to hardware in this course</a><a class="anchor" aria-label="anchor" href="#01_introduction-headingInstructor3"></a>
+<br><h3 id="05_performancereports-headingInstructor3">
+<a href="05_performancereports.html#headingInstructor3">ToDo: Clarify relation to hardware in this course</a><a class="anchor" aria-label="anchor" href="#05_performancereports-headingInstructor3"></a>
 </h3>
 <p>Maybe we should either focus on components (CPUs, memory, disk,
 accelerators, network cards) or functional entities (compute, data
@@ -441,10 +536,19 @@ i.e. point out in what area a discovered inefficiency occurs.</p>
 <p>Introduce detail about hardware later where it is needed, e.g. NUMA
 for pinning and hints.</p>
 <hr>
-<br></section><section id="02_resourcerequirements"><h2 class="section-heading"><a href="02_resourcerequirements.html">Resource Requirements</a></h2>
+<br></section><section id="06_pinning"><h2 class="section-heading"><a href="06_pinning.html">Pinning</a></h2>
 <hr class="half-width">
-<h3 id="02_resourcerequirements-headingInstructor1">
-<a href="02_resourcerequirements.html#headingInstructor1">ToDo: Extract episode about pinning</a><a class="anchor" aria-label="anchor" href="#02_resourcerequirements-headingInstructor1"></a>
+<h3 id="06_pinning-headingInstructor1">
+<a href="06_pinning.html#headingInstructor1">Intention: Go deeper in performance and hardware relationship</a><a class="anchor" aria-label="anchor" href="#06_pinning-headingInstructor1"></a>
+</h3>
+<ul>
+<li>Introduce pinning and slurm hint options</li>
+<li>Relate to hardware effects</li>
+<li>Use third party performance tools to observe effects!</li>
+</ul>
+<hr>
+<br><h3 id="06_pinning-headingInstructor2">
+<a href="06_pinning.html#headingInstructor2">ToDo: Extract episode about pinning</a><a class="anchor" aria-label="anchor" href="#06_pinning-headingInstructor2"></a>
 </h3>
 <p>Stick to simple options here. Put more complex options for pinning /
 hints, etc. into its own episode somewhere later in the course</p>
@@ -456,59 +560,58 @@ reports and their perspective on hardware</p>
 simulator</a> and have similar diagrams as an independent “offline”
 version in this course</p>
 <hr>
-<br><h3 id="02_resourcerequirements-headingInstructor2">
-<a href="02_resourcerequirements.html#headingInstructor2">ToDo</a><a class="anchor" aria-label="anchor" href="#02_resourcerequirements-headingInstructor2"></a>
-</h3>
-<p>This section is just an info dump, how do we make it useful and
-approachable? What’s a useful exercise? Maybe put info here in other
-sections?</p>
-<hr>
-<br></section><section id="02_scalingstudy"><h2 class="section-heading"><a href="02_scalingstudy.html">Scaling Study</a></h2>
+<br></section><section id="07_bottlenecks"><h2 class="section-heading"><a href="07_bottlenecks.html">How to identify a bottleneck?</a></h2>
 <hr class="half-width">
-<h3 id="02_scalingstudy-headingInstructor1">
-<a href="02_scalingstudy.html#headingInstructor1">ToDo: Advanced details in pinning</a><a class="anchor" aria-label="anchor" href="#02_scalingstudy-headingInstructor1"></a>
+<h3 id="07_bottlenecks-headingInstructor1">
+<a href="07_bottlenecks.html#headingInstructor1">Intention: Uncover one or two issues in the application</a><a class="anchor" aria-label="anchor" href="#07_bottlenecks-headingInstructor1"></a>
 </h3>
-<p>The below excercise could be the best place to also introduce about
-mpre detailed pinning options The results of below challenge are also
-dpendent on the pinning options</p>
+<ul>
+<li>What’s a bottleneck?</li>
+<li>How can we identify a bottleneck?</li>
+<li>Point to additional resources of common performance/bottleneck
+issues, e.g. on hpc-wiki</li>
+</ul>
+<p>Maybe something like this already occurred before in 4. Scaling
+Study, or 5. Performance Overview</p>
 <hr>
-<br><h3 id="02_scalingstudy-headingInstructor2">
-<a href="02_scalingstudy.html#headingInstructor2">ToDo</a><a class="anchor" aria-label="anchor" href="#02_scalingstudy-headingInstructor2"></a>
-</h3>
-<p>Note on compute time application that need estimate of required
-compute resources and touch on scaling behavior here? Could be important
-for one type of learner, if this is given in a context like HPC.NRW.
-Optional for many others, but maybe interesting.</p>
-<hr>
-<br></section><section id="03_schedulertools"><h2 class="section-heading"><a href="03_schedulertools.html">Scheduler Tools</a></h2>
+<br></section><section id="08_accelerators"><h2 class="section-heading"><a href="08_accelerators.html">Special Aspects of Accelerators</a></h2>
 <hr class="half-width">
-<h3 id="03_schedulertools-headingInstructor1">
-<a href="03_schedulertools.html#headingInstructor1">ToDo</a><a class="anchor" aria-label="anchor" href="#03_schedulertools-headingInstructor1"></a>
+<h3 id="08_accelerators-headingInstructor1">
+<a href="08_accelerators.html#headingInstructor1">Intention: Jump onto accelerator with the example application</a><a class="anchor" aria-label="anchor" href="#08_accelerators-headingInstructor1"></a>
 </h3>
-<p>Can / should we cover I/O and energy metrics at this point?</p>
-<p>E.g. use something like <code>beegfs-ctl</code> to get a rough
-estimate of parallel FS performance. Use pidstat etc. to get numbers on
-node-local I/O (and much more)</p>
+<ul>
+<li>What changes?</li>
+<li>New metrics</li>
+<li>Transfer to/from accelerator</li>
+<li>Different options/requirements to scheduler &amp; performance
+measurement tools</li>
+</ul>
 <hr>
-<br></section><section id="04_performancereports"><h2 class="section-heading"><a href="04_performancereports.html">Workflow of Performance Measurements</a></h2>
-<hr class="half-width"></section><section id="05_bottlenecks"><h2 class="section-heading"><a href="05_bottlenecks.html">How to identify a bottleneck?</a></h2>
-<hr class="half-width"></section><section id="06_accelerators"><h2 class="section-heading"><a href="06_accelerators.html">Special Aspects of Accelerators</a></h2>
-<hr class="half-width">
-<h3 id="06_accelerators-headingInstructor1">
-<a href="06_accelerators.html#headingInstructor1">ToDo</a><a class="anchor" aria-label="anchor" href="#06_accelerators-headingInstructor1"></a>
+<br><h3 id="08_accelerators-headingInstructor2">
+<a href="08_accelerators.html#headingInstructor2">ToDo</a><a class="anchor" aria-label="anchor" href="#08_accelerators-headingInstructor2"></a>
 </h3>
 <p>Don’t mention FPGAs too much, maybe just a node what accelerators
 could be, besides GPU. Goal is to keep it simple and accessible, focus
 on what’s common in most HPC systems these days</p>
 <hr>
-<br><h3 id="06_accelerators-headingInstructor2">
-<a href="06_accelerators.html#headingInstructor2">ToDo</a><a class="anchor" aria-label="anchor" href="#06_accelerators-headingInstructor2"></a>
+<br><h3 id="08_accelerators-headingInstructor3">
+<a href="08_accelerators.html#headingInstructor3">ToDo</a><a class="anchor" aria-label="anchor" href="#08_accelerators-headingInstructor3"></a>
 </h3>
 <p>Explain how to decide where to run something. CPU vs. small GPU
 vs. high-end GPUs. Touches on transfer overhead etc.</p>
 <hr>
-<br></section><section id="07_nextsteps"><h2 class="section-heading"><a href="07_nextsteps.html">Next Steps</a></h2>
-<hr class="half-width"></section></section>
+<br></section><section id="09_nextsteps"><h2 class="section-heading"><a href="09_nextsteps.html">Next Steps</a></h2>
+<hr class="half-width">
+<h3 id="09_nextsteps-headingInstructor1">
+<a href="09_nextsteps.html#headingInstructor1">Intention: Provide a roadmap learners could follow</a><a class="anchor" aria-label="anchor" href="#09_nextsteps-headingInstructor1"></a>
+</h3>
+<ul>
+<li>Learning important programming concepts (parallel programming on
+many levels)</li>
+<li>Deeper application profiling &amp; tools to use</li>
+</ul>
+<hr>
+<br></section></section>
 </div>
     </main>
 </div>
