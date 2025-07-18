@@ -1,5 +1,5 @@
 ---
-title: "Special Aspects of Accelerators"
+title: "Performance of Accelerators"
 teaching: 10
 exercises: 0
 ---
