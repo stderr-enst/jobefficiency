@@ -67,6 +67,12 @@ Example workload that:
    - No vectorization?
    - Parallelism issues?
    - Uncover several performance issues in layers, one after the other?
+- Reasonable execution time
+  - Not too long to not slow the pacing of the course (e.g. 10 minutes)
+  - Long enough to show real workflow and performance issues
+  - E.g. 1 minute with 1 core doesn't leave enough headroom for scaling studies
+  - We should avoid to switch problem size with each exercise to keep things consistent and go through an experience of improvement if things get faster
+  - Changing workload might still be necessary at certain points. We have to be intentional and clear about it in the course and limit these!
 - Software that can run on CPU and GPU, to discuss both with the example
 - Should be easy to download, compile, run, and be understood (readability)
 - Meaningful workflow for batch processing
