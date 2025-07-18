@@ -21,6 +21,17 @@ After completing this episode, participants should be able to …
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
+:::::::::::::::::::::::::: instructor
+## Intention: Introduce/Recollect concept of Speedup and do a simple scaling study
+
+- Vary number of cores
+- Which metrics are most useful?
+- Define speedup
+- Visualize results
+
+:::::::::::::::::::::::::::::::::::::
+
+
 ## What do we look at?
 
 - Amdahl's vs. Gustavsons's law / strong and weak scaling
@@ -112,6 +123,8 @@ Note on compute time application that need estimate of required compute resource
 Could be important for one type of learner, if this is given in a context like HPC.NRW.
 Optional for many others, but maybe interesting.
 :::::::::::::::::::::::::::::::::::::
+
+Leading question: `time` and scheduler tools still don't provide a complete picture, what other ways are there? -> Introduce third party tools to get a good performance overview
 
 :::::::::::::::::::::::::::::::::::::: keypoints
 

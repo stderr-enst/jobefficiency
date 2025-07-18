@@ -20,6 +20,17 @@ After completing this episode, participants should be able to …
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+
+:::::::::::::::::::::::::: instructor
+## Intention: Introduce more basic performance metrics
+
+- What `seff` and `sacct` have to offer
+- Introduce simple relation to hardware, what does RSS, CPU, Disk read/write and their utilization mean?
+- Point out what's missing from a complete picture
+
+:::::::::::::::::::::::::::::::::::::
+
+
 ## Scheduler Tools
 
 - `sacct`
@@ -62,6 +73,8 @@ Use pidstat etc. to get numbers on node-local I/O (and much more)
 :::::::::::::::::::::::::: challenge
 ## Exercise:
 ::::::::::::::::::::::::::::::::::::
+
+Leading question: Is there a systematic approach to study a jobs performance at different scales? -> Scaling study
 
 :::::::::::::::::::::::::::::::::::::: keypoints
 - `sacct` and `seff` for first results

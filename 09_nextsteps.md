@@ -20,6 +20,16 @@ After completing this episode, participants should be able to …
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+
+:::::::::::::::::::::::::: instructor
+## Intention: Provide a roadmap learners could follow
+
+- Learning important programming concepts (parallel programming on many levels)
+- Deeper application profiling & tools to use
+
+:::::::::::::::::::::::::::::::::::::
+
+
 ## Next Steps
 
 hpc-wiki.info
@@ -31,6 +41,11 @@ hpc-wiki.info
 - Underutilization
 
 <!-- EPISODE CONTENT HERE -->
+## Summary
+
+:::::::::::::::::::::::::: challenge
+## Exercise:
+::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::::::::::::::: keypoints
 - There are many profilers, some are language-specific, others are vendor-related, ...
