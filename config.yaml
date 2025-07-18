@@ -52,12 +52,13 @@ contact: 'helpdesk@hpc.nrw'
 episodes: 
 - 01_introduction.md
 - 02_resourcerequirements.md
-- 02_scalingstudy.md
 - 03_schedulertools.md
-- 04_performancereports.md
-- 05_bottlenecks.md
-- 06_accelerators.md
-- 07_nextsteps.md
+- 04_scalingstudy.md
+- 05_performancereports.md
+- 06_pinning.md
+- 07_bottlenecks.md
+- 08_accelerators.md
+- 09_nextsteps.md
 
 # Information for Learners
 learners: 

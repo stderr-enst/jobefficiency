@@ -18,10 +18,20 @@ exercises: 0
 After completing this episode, participants should be able to …
 
 - Identify the size of their jobs in relation to the HPC system.
-- Request the right amount of resources from the scheduler.
-- Change the parameters if the applications' resource requirements change.
+- Request a good amount of resources from the scheduler.
+- Change the parameters to see how the execution time changes.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
+
+
+:::::::::::::::::::::::::: instructor
+## Objective: Vary one parameter and compare to baseline
+
+- Learn about Slurm job parameters
+- Develop intuition about job size with respect to the cluster
+- First impression of whats a "good" amount of resources to request for a job
+
+:::::::::::::::::::::::::::::::::::::
 
 ## Starting Somewhere
 
@@ -70,6 +80,12 @@ Summarize with a well sized job that's a good start for the example.
 
 
 ## Requesting Resources
+:::::::::::::::::::::::::: instructor
+## ToDo
+This section is just an info dump, how do we make it useful and approachable?
+What's a useful exercise?
+Maybe put info here in other sections?
+:::::::::::::::::::::::::::::::::::::
 
 More detail about what [Slurm provides](https://slurm.schedmd.com/sbatch.html) (among others):
 
@@ -83,27 +99,6 @@ More detail about what [Slurm provides](https://slurm.schedmd.com/sbatch.html) (
 - `--exclusive`
 
 
-:::::::::::::::::::::::::: instructor
-## ToDo: Extract episode about pinning
-
-Stick to simple options here.
-Put more complex options for pinning / hints, etc. into its own episode somewhere later in the course
-
-Pinning is an important part of job optimization, but requires some knowledge, e.g. about the hardware hierarchies in a cluster, NUMA, etc.
-So it should be done after we've introduced different performance reports and their perspective on hardware
-
-Maybe point to [JSC pinning simulator](https://apps.fz-juelich.de/jsc/llview/pinning) and have similar diagrams as an independent "offline" version in this course
-
-:::::::::::::::::::::::::::::::::::::
-
-Binding / pinning:
-
-- `--mem-bind=[{quiet|verbose},]<type>`
-- `-m, --distribution={*|block|cyclic|arbitrary|plane=<size>}[:{*|block|cyclic|fcyclic}[:{*|block|cyclic|fcyclic}]][,{Pack|NoPack}]`
-- `--hint=`: Hints for CPU- (`compute_bound`) and memory-bound (`memory_bound`), but also `multithread`, `nomultithread`
-- `--cpu-bind=[{quiet|verbose},]<type>` (`srun`)
-- Mapping of application <-> job resources
-
 Maybe discuss:
 
 - Minimizing/maximizing involved number of nodes
@@ -113,13 +108,6 @@ Maybe discuss:
    - Few tasks on many shared nodes might schedule faster than many tasks on few exclusive nodes.
 - What is a task / process -- Difference?
 - Requesting memory, more than mem/core -> idle cores
-
-:::::::::::::::::::::::::: instructor
-## ToDo
-This section is just an info dump, how do we make it useful and approachable?
-What's a useful exercise?
-Maybe put info here in other sections?
-:::::::::::::::::::::::::::::::::::::
 
 
 ## Changing requirements
@@ -151,6 +139,8 @@ Circle back to efficiency.
 What's considered good/efficient in context of job requirements and parameters?
 
 :::::::::::::::::::::::::::::::::::::
+
+Leading question: `time` doesn't give much information, is there an easy way to get more? -> See what Slurm tools can tell about our previous jobs
 
 :::::::::::::::::::::::::::::::::::::: keypoints
 

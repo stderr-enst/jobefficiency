@@ -20,6 +20,18 @@ After completing this episode, participants should be able to …
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
+
+:::::::::::::::::::::::::: instructor
+## Intention: Jump onto accelerator with the example application
+
+- What changes?
+- New metrics
+- Transfer to/from accelerator
+- Different options/requirements to scheduler & performance measurement tools
+
+:::::::::::::::::::::::::::::::::::::
+
+
 ## Introduction
 Run the same example workload on GPU and compare.
 
@@ -38,6 +50,14 @@ Touches on transfer overhead etc.
 :::::::::::::::::::::::::::::::::::::
 
 <!-- EPISODE CONTENT HERE -->
+
+## Summary
+
+:::::::::::::::::::::::::: challenge
+## Exercise:
+::::::::::::::::::::::::::::::::::::
+
+Leading question: Performance optimization is a deep topic and we are not done learning. How could I continue exploring the topic?
 
 :::::::::::::::::::::::::::::::::::::: keypoints
 - Tools to measure GPU/FPGA performance of a job

@@ -9,6 +9,7 @@ exercises: 0
 - Why should I care about my jobs performance?
 - How is efficiency defined?
 - How do I start measuring?
+- Is my job fast enough?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -19,19 +20,27 @@ After completing this episode, participants should be able to …
 - Use the `time` command for a first measurement.
 - Understand the benefits of efficient jobs.
 - Roughly estimate a job energy consumption based on core-h.
-- Identify which general areas of computer hardware may affect performance.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
 
+:::::::::::::::::::::::::: instructor
+## Intention: Step into the narrative
+
+- Simple `time` measurement to get started
+- Introduce different perspectives on efficiency
+- Core-h and correlation to cost in energy/money
+
+:::::::::::::::::::::::::::::::::::::
+
 
 :::::::::::::::::::::::::: instructor
-## ToDo: Rewrite to start with the narrative from the very beginning
+## ToDo: Start with the narrative from the very beginning
 
 - Needs a specific example job.
-- Gradual improvement would be great
-- Start with baseline measurement at the very beginning?
-   - `time` can raise questions of efficiency, "what's good?", etc.
+- Gradual improvement throughout the course
+- Introduce only topics that are directly observed/experienced with the example
+- Point to additional information/overview in hpc-wiki where useful
 
 :::::::::::::::::::::::::::::::::::::
 
@@ -174,83 +183,6 @@ Assuming only "useful" computations, no redundancies.
 Which definition do refer to by default in the following episodes? (Do we need a default?)
 
 
-## How Does Performance Relate to Hardware?
-:::::::::::::::::::::::::: instructor
-## ToDo: Find good place for hardware discussion
-
-Introduce hardware on the same level of detail and with the same terms as the performance reports by ClusterCockpit, LinaroForge, etc., as soon as they appear.
-Only introduce what we need, to avoid info dump.
-But point to additional information that gives a complete overview -> hpc-wiki!
-
-:::::::::::::::::::::::::::::::::::::
-
-(Following this structure throughout the course, trying to understand the performance in these terms)
-
-Broad dimensions of performance:
-
-- CPU (Front- and Backend, FLOPS)
-   - Frontend: decoding instructions, branch prediction, pipeline
-   - Backend: getting data from memory, cache hierarchy & alignment
-   - Raw calculations
-   - Vectorization
-   - Out-of-order execution
-- Accelerators (e.g. GPUs)
-   - More calculations
-   - Offloading
-   - Memory & communication models
-- Memory (data hierarchy)
-   - Working memory, reading data from/to disk
-   - Bandwidth of data
-- I/O (broader data hierarchy: disk, network)
-   - Stored data
-   - Local disk (caching)
-   - Parallel fs (cluster-wide)
-   - MPI-Communiction
-- Parallel timeline (synchronization, etc.)
-   - Application logic
-
-
-::::: instructor
-## ToDo: Clarify relation to hardware in this course
-Maybe we should either focus on components (CPUs, memory, disk, accelerators, network cards) or functional entities (compute, data hierarchy, bandwidth, latency, parallel timelines)
-
-We shouldn't go into too much detail here.
-Define broad categories where performance can be good or bad. (calculations, data transfers, application logic, research objective (is the calculation meaningful?))
-
-Reuse categories in the same order and fashion throughout the course, i.e. point out in what area a discovered inefficiency occurs.
-
-Introduce detail about hardware later where it is needed, e.g. NUMA for pinning and hints.
-::::::::::::::::
-
-![Hardware](fig/JobEfficiency.drawio.png)
-
-:::::::::::::::::::::::::: challenge
-## Exercise: Match application behavior to hardware
-
-Which part of the computer hardware may become an issue for the following application patterns:
-
-1. Calculating matrix multiplications
-2. Reading data from processes on other computers
-3. Calling many different functions from many equally likely if/else branches
-4. Writing very large files (TB)
-5. Comparing many different strings if they match
-6. Constructing a large simulation model
-7. Reading thousands of small files for each iteration
-
-Maybe not the best questions, also missing something for accelerators.
-
-:::: solution
-1. CPU (FLOPS) and/or Parallel timeline
-2. I/O (network)
-3. CPU (Front-End)
-4. I/O (disk)
-5. (?) CPU-Backend, getting strings through the cache?
-6. Memory (size)
-7. I/O (disk)
-:::::::::::::
-::::::::::::::::::::::::::::::::::::
-
-
 ## Summary
 
 :::::::::::::::::::::::::: challenge
@@ -258,6 +190,9 @@ Maybe not the best questions, also missing something for accelerators.
 Exercise to raise the question if example workload is efficient or not.
 Do we know yet? -> No, we can only tell how long it takes, estimate how much time/resources it consumes, and if there is a relative improvement on a change
 ::::::::::::::::::::::::::::::::::::
+
+
+Leading question: Single baseline measurement doesn't say much about the application performance, how can I get an understanding of performance? -> Vary a parameter in the next episode and touch on Slurm options
 
 
 :::::::::::::::::::::::::::::::::::::: keypoints
