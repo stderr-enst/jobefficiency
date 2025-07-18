@@ -175,6 +175,15 @@ Which definition do refer to by default in the following episodes? (Do we need a
 
 
 ## How Does Performance Relate to Hardware?
+:::::::::::::::::::::::::: instructor
+## ToDo: Find good place for hardware discussion
+
+Introduce hardware on the same level of detail and with the same terms as the performance reports by ClusterCockpit, LinaroForge, etc., as soon as they appear.
+Only introduce what we need, to avoid info dump.
+But point to additional information that gives a complete overview -> hpc-wiki!
+
+:::::::::::::::::::::::::::::::::::::
+
 (Following this structure throughout the course, trying to understand the performance in these terms)
 
 Broad dimensions of performance:

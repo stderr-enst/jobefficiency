@@ -90,6 +90,9 @@ Stick to simple options here.
 Put more complex options for pinning / hints, etc. into its own episode somewhere later in the course
 
 Pinning is an important part of job optimization, but requires some knowledge, e.g. about the hardware hierarchies in a cluster, NUMA, etc.
+So it should be done after we've introduced different performance reports and their perspective on hardware
+
+Maybe point to [JSC pinning simulator](https://apps.fz-juelich.de/jsc/llview/pinning) and have similar diagrams as an independent "offline" version in this course
 
 :::::::::::::::::::::::::::::::::::::
 
