@@ -13,6 +13,6 @@
 "episodes/06_accelerators.md" "7178cd22676de9d2131895ee8463b3b5" "site/built/06_accelerators.md" "2025-07-16"
 "episodes/07_nextsteps.md" "747b668c19d6acfe93fc2d3b7ebe492a" "site/built/07_nextsteps.md" "2025-06-26"
 "instructors/instructor-notes.md" "cae72b6712578d74a49fea7513099f8c" "site/built/instructor-notes.md" "2025-03-28"
-"learners/setup.md" "aed882fd8124537f063eb72f7ba4a207" "site/built/setup.md" "2025-07-18"
+"learners/setup.md" "9816eb047beaccba3a3f5cd8201918c0" "site/built/setup.md" "2025-07-18"
 "learners/reference.md" "7c88fc33ce4531218dbb2bc60f863e68" "site/built/reference.md" "2025-05-27"
 "profiles/learner-profiles.md" "c69198162ee2497978ebc523bb2f602e" "site/built/learner-profiles.md" "2025-06-26"
