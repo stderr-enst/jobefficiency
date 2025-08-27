@@ -282,7 +282,7 @@
 <div class="accordion accordion-flush" id="accordionFlush9">
   <div class="accordion-item">
     <div class="accordion-header" id="flush-heading9">
-        <a href="08_accelerators.html">8. Special Aspects of Accelerators</a>
+        <a href="08_accelerators.html">8. Performance of Accelerators</a>
     </div><!--/div.accordion-header-->
 
   </div><!--/div.accordion-item-->
@@ -403,8 +403,8 @@ optimization</li>
 <ul><li>Access to an HPC system</li>
 <li>Example workload setup</li>
 <li>Basic knowledge of HPC systems (batch systems, parallel file
-systems) – being able to submit a simple job and understand what happens
-in broad terms</li>
+systems, modules) – being able to submit a simple job and understand
+what happens in broad terms</li>
 <li>Knowledge of tools to work with HPC systems:
 <ul><li>Bash shell &amp; scripting</li>
 <li>ssh &amp; scp</li>
@@ -416,59 +416,6 @@ in broad terms</li>
 </div>
 </div>
 
-<div class="section level3">
-<h3 id="example-workload-setup">Example Workload &amp; Setup<a class="anchor" aria-label="anchor" href="#example-workload-setup"></a></h3>
-<!--
-FIXME: place any data you want learners to use in `episodes/data` and then use
-       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
-       link to it, replacing the example.com link.
-
-Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
--->
-<p>Example workload that:</p>
-<ul><li>Has some instructive performance issues that can be discovered, e.g.
-<ul><li>Mismatch between requested resources in job script and used
-resources</li>
-<li>Memory leak or unnecessary allocation with a quick fix? Either
-triggers OOM or just wasting resources, dependent on side and default
-memory/core</li>
-<li>No vectorization?</li>
-<li>Parallelism issues?</li>
-<li>Uncover several performance issues in layers, one after the
-other?</li>
-</ul></li>
-<li>Reasonable execution time
-<ul><li>Not too long to not slow the pacing of the course (e.g. 10
-minutes)</li>
-<li>Long enough to show real workflow and performance issues</li>
-<li>E.g. 1 minute with 1 core doesn’t leave enough headroom for scaling
-studies</li>
-<li>We should avoid to switch problem size with each exercise to keep
-things consistent and go through an experience of improvement if things
-get faster</li>
-<li>Changing workload might still be necessary at certain points. We
-have to be intentional and clear about it in the course and limit
-these!</li>
-</ul></li>
-<li>Software that can run on CPU and GPU, to discuss both with the
-example</li>
-<li>Should be easy to download, compile, run, and be understood
-(readability)
-<ul><li>Provide example application in a container as a generic fallback
-solution?</li>
-</ul></li>
-<li>Meaningful workflow for batch processing</li>
-<li>Using commonly used programming languages / libraries in HPC</li>
-<li>Will likely not show all performance issues that could exist, only
-used as a vehicle to follow a narrative with particular performance
-issues</li>
-</ul><p>We are still looking, but are considering:</p>
-<ul><li>Kuwahara filter</li>
-<li>Raytracer</li>
-<li>Simple agent-based simulation game</li>
-<li>(Benchmarks are portable, but they don’t really show performance
-issues and are often complex)</li>
-</ul></div>
 <div class="section level3">
 <h3 id="hpc-access">HPC Access<a class="anchor" aria-label="anchor" href="#hpc-access"></a></h3>
 
@@ -512,7 +459,7 @@ discussed in HPC introduction?)</p>
   Windows
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <ul><li>PuTTY</li>
 <li>
@@ -529,7 +476,7 @@ discussed in HPC introduction?)</p>
   MacOS
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <ul><li>
 <code>ssh</code> in Terminal.app</li>
@@ -545,7 +492,7 @@ discussed in HPC introduction?)</p>
   Linux
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <ul><li>
 <code>ssh</code> in Terminal</li>
@@ -553,6 +500,116 @@ discussed in HPC introduction?)</p>
 </div>
 </div>
 </div>
+</div>
+<div class="section level3">
+<h3 id="example-workload-snowman-raytracer">Example Workload: Snowman Raytracer<a class="anchor" aria-label="anchor" href="#example-workload-snowman-raytracer"></a></h3>
+<!--
+FIXME: place any data you want learners to use in `episodes/data` and then use
+       a relative link ( [data zip file](data/lesson-data.zip) ) to provide a
+       link to it, replacing the example.com link.
+
+Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
+-->
+<p>Get the code:</p>
+<div class="codewrapper sourceCode" id="cb1">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--recursive</span> git@github.com:HellmannM/raytracer-vectorization-example.git</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">cd</span> raytracer-vectorization-example.git</span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">git</span> checkout integrate-snowman</span></code></pre>
+</div>
+<p>Prepare the out-of-source build:</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">mkdir</span> build <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> build</span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span>Release ../raytracer-vectorization-example.git</span></code></pre>
+</div>
+<p>To build the example, you need to provide the following
+dependencies:</p>
+<ul><li>Compiler, e.g. GCC</li>
+<li>MPI, e.g. OpenMPI</li>
+<li>CMake</li>
+<li>Boost</li>
+<li>libpng</li>
+</ul><p>In HPC systems this often happens through loading software modules.
+How exactly the modules are named and what has to be loaded can very
+much depend on the specific configuration of your cluster. In this case
+it looks like this:</p>
+<div class="codewrapper sourceCode" id="cb3">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">module</span> load 2025 GCC/13.2.0 OpenMPI/4.1.6 buildenv/default Boost/1.83.0 CMake/3.27.6 libpng/1.6.40</span></code></pre>
+</div>
+<p>Finally build and run the code</p>
+<div class="codewrapper sourceCode" id="cb4">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">--build</span> . <span class="at">--parallel</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">mpirun</span> <span class="at">-n</span> 4 ./build/raytracer <span class="at">-width</span><span class="op">=</span>512 <span class="at">-height</span><span class="op">=</span>512 <span class="at">-spp</span><span class="op">=</span>128 <span class="at">-threads</span><span class="op">=</span>1 <span class="at">-png</span><span class="op">=</span>snowman.png</span></code></pre>
+</div>
+<p>This is</p>
+<ul><li>starting the raytracer, with a prepared scene,</li>
+<li>calculating the raytraced picture with <span class="math inline">\(N
+= 4\)</span> MPI processes, each using a single thread
+(<code>-threads=1</code>),</li>
+<li>calculating <span class="math inline">\(128 / N = 32\)</span>
+samples per pixel (<code>-spp=128</code>) in each MPI process,</li>
+<li>setting <code>height</code> and <code>width</code> of the resulting
+picture to <span class="math inline">\(512\)</span> pixel, and
+finally</li>
+<li>storing the picture as <code>snowman.png</code>.</li>
+</ul><p>More on what a raytracer is and how it works. How does it
+parallelize?</p>
+<div class="section level4">
+<h4 id="example-workload-requirments">Example Workload Requirments<a class="anchor" aria-label="anchor" href="#example-workload-requirments"></a></h4>
+<p>Example workload that:</p>
+<ul class="task-list"><li>
+<label><input type="checkbox">Has some instructive performance
+issues that can be discovered, e.g.</label>
+<ul class="task-list"><li><label><input type="checkbox" checked>Mismatch between
+requested resources in job script and used resources</label></li>
+<li><label><input type="checkbox">Memory leak or unnecessary
+allocation with a quick fix? Either triggers OOM or just wasting
+resources, dependent on side and default memory/core</label></li>
+<li><label><input type="checkbox">No vectorization?</label></li>
+<li><label><input type="checkbox">Parallelism issues?</label></li>
+<li><label><input type="checkbox">Uncover several performance issues
+in layers, one after the other?</label></li>
+</ul></li>
+<li>
+<label><input type="checkbox" checked>Reasonable execution
+time</label>
+<ul class="task-list"><li><label><input type="checkbox" checked>Not too long to not slow
+the pacing of the course (e.g. 10 minutes)</label></li>
+<li><label><input type="checkbox">Long enough to show real workflow
+and performance issues</label></li>
+<li><label><input type="checkbox" checked>E.g. 1 minute with 1 core
+doesn’t leave enough headroom for scaling studies</label></li>
+<li><label><input type="checkbox">We should avoid to switch problem
+size with each exercise to keep things consistent and go through an
+experience of improvement if things get faster</label></li>
+<li><label><input type="checkbox">Changing workload might still be
+necessary at certain points. We have to be intentional and clear about
+it in the course and limit these!</label></li>
+</ul></li>
+<li><label><input type="checkbox" checked>Software that can run on
+CPU and GPU, to discuss both with the example</label></li>
+<li>
+<label><input type="checkbox" checked>Should be easy to
+download, compile, run, and be understood (readability)</label>
+<ul class="task-list"><li><label><input type="checkbox">Provide example application in a
+container as a generic fallback solution?</label></li>
+</ul></li>
+<li><label><input type="checkbox" checked>Meaningful workflow for
+batch processing</label></li>
+<li><label><input type="checkbox" checked>Using commonly used
+programming languages / libraries in HPC</label></li>
+<li><label><input type="checkbox" checked>Will likely not show all
+performance issues that could exist, only used as a vehicle to follow a
+narrative with particular performance issues</label></li>
+</ul></div>
 </div>
 </section><section><h2 class="section-heading" id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a></h2>
 <hr class="half-width"><p>Course created in context of <a href="https://hpc.dh.nrw/" class="external-link">HPC.NRW</a>.</p>
@@ -609,8 +666,8 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/index.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/index.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-08-26",
-  "datePublished": "2025-08-26"
+  "dateModified": "2025-08-27",
+  "datePublished": "2025-08-27"
 }
 
   </script><script>
