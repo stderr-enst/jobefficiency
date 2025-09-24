@@ -28,6 +28,7 @@ After completing this episode, participants should be able to …
 ## Intention: Step into the narrative
 
 Set up narrative:
+
 - Important upcoming conference presentation
 - Time is ticking, the deadline is approaching way too fast
 - The talk is almost done, but, critically, we're missing a picture for the title slide
@@ -36,7 +37,9 @@ Set up narrative:
 - Issue: we need to try many different iterations of the scene to find the exact right picture. How can we maximise the number of raytraced snowman images before our conference deadline?
 - Ray tracing is expensive, but luckily we have access to an HPC system
 
+
 What we're doing here:
+
 - Run workflow example for the first time
 - Simple `time` measurement to get started
 - Introduce different perspectives on efficiency

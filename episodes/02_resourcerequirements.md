@@ -28,13 +28,16 @@ After completing this episode, participants should be able to …
 ## Objective: Vary one parameter and compare to baseline
 
 Narrative:
+
 - We didn't use the HPC system in a while
 - Not sure how many resources we need and what our HPC system even offer
 - How could I look it up again?
 - What were the parameters of scheduled jobs again?
 - What's a good first guess for the resources I need for an individual render?
 
+
 What we're doing here:
+
 - Learn about Slurm job parameters
 - Develop intuition about job size with respect to the cluster
 - First impression of whats a "good" amount of resources to request for a job

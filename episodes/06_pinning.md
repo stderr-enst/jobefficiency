@@ -28,11 +28,14 @@ After completing this episode, participants should be able to …
 ## Intention: Go deeper in performance and hardware relationship
 
 Narrative:
+
 - We get the feeling, that hardware has a lot to offer, but the rabbit hole is deep!
 - What are the "dimensions" in which we can optimize the throughput of snowman pictures per hour?
 - Can we improve how the work maps to certain CPUs / Memory regions?
 
+
 What we're doing here:
+
 - Introduce pinning and slurm hint options
 - Relate to hardware effects
 - Use third party performance tools to observe effects!

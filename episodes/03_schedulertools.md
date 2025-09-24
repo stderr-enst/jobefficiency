@@ -25,12 +25,15 @@ After completing this episode, participants should be able to …
 ## Intention: Introduce more basic performance metrics
 
 Narrative:
+
 - Okay, so first couple of jobs ran, but were they "quick enough"?
 - How many renders could I generate per minute/hour/day according to the current utilization
 - Our cluster uses certain hardware, maybe we didn't use it as much as we could have?
 - But I couldn't see all metrics (may be cluster dependent) (Energy, Disk I/O, Network I/O?)
 
+
 What we're doing here:
+
 - What `seff` and `sacct` have to offer
 - Introduce simple relation to hardware, what does RSS, CPU, Disk read/write and their utilization mean?
 - Point out what's missing from a complete picture
