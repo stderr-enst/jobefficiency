@@ -24,6 +24,7 @@ After attending this training, participants will be able to:
    - Bash shell & scripting
    - ssh & scp
    - Simple slurm jobscripts and commands like `srun`, `sbatch`, `squeue`, `scancel`
+   - git
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -126,16 +127,16 @@ Get the code:
 ```bash
 git clone --recursive git@github.com:HellmannM/raytracer-vectorization-example.git
 cd raytracer-vectorization-example.git
-git checkout integrate-snowman
+git checkout CUDA_snowman
 ```
 
-
+#### CPU Build
 Prepare the out-of-source build:
 
 ```bash
 cd ..
 mkdir build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release ../raytracer-vectorization-example.git
+cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_CUDA=OFF ../raytracer-vectorization-example.git
 ```
 
 To build the example, you need to provide the following dependencies:
@@ -171,6 +172,24 @@ This is
 
 More on what a raytracer is and how it works.
 How does it parallelize?
+
+#### CUDA Build
+Prepare the out-of-source build:
+
+```bash
+cd ..
+mkdir build_gpu && cd build_gpu
+cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_CUDA=ON ../raytracer-vectorization-example.git
+```
+
+Additionally to above dependencies, this relies on CUDA and corresponding modules of your site.
+The application is still run with MPI, but mostly to manage multiple processes, e.g. one per GPU:
+
+```bash
+cmake --build . --parallel
+export CUDA_VISIBLE_DEVICES=0,1,2,3
+mpirun -n 4 ./build/raytracer -width=512 -height=512 -spp=128 -threads=1 -png=snowman.png
+```
 
 
 ## Acknowledgements
