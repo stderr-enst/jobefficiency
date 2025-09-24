@@ -349,31 +349,32 @@
       
 
 <p>Outlining the course</p>
-<ul><li>Targeted audience (see learner profiles: New HPC users, RSE with
-users on HPC systems, researchers in HPC.NRW)</li>
+<ul><li>Targeted audience (see learner profiles: New HPC users, Research
+Software Engineers with users on HPC systems, researchers in
+HPC.NRW)</li>
 <li>Estimated length and recommended formats (e.g. X full days, X * 2
 half days, in-person/online, live-coding)</li>
 <li>Course intentions (focus on learners perspective!):
 <ul><li>Speed up research (efficient computations, more per time, shorter
 iteration times, “less in the way”)</li>
+<li>Convey intuition about job-sizes. What is considered large, what
+small?</li>
 <li>Improve batch utilization through matching application requirements
 to requested hardware (minimal resource requirements, maximum resource
 utilization)</li>
-<li>Convey intuition about job-sizes. What is considered large, what
-small?</li>
 <li>Sharpen awareness for importance to avoid wasting time/energy on a
 shared system</li>
 <li>Teach common concepts and terms of performance</li>
-<li>First steps into performance optimizations (cluster-, node-,
+<li>First steps into performance optimizations (cluster-, node-, and
 application level)</li>
 </ul></li>
-<li>Well defined context:
+<li>Course context for learners:
 <ul><li>Working on HPC Systems (Batch system, shared file systems, software
 modules, …)</li>
-<li>Performance of jobs</li>
+<li>Performance of scheduled batch jobs</li>
 <li>Application performance is touched (related to job efficiency), but
 in-depth is outside of the scope. Next steps point towards deeper
-performance analyses</li>
+performance analyses, e.g. with tracers and profilers</li>
 </ul></li>
 </ul><!--
 Place links that you need to refer to multiple times across pages here. Delete
@@ -411,6 +412,7 @@ what happens in broad terms</li>
 <li>Simple slurm jobscripts and commands like <code>srun</code>,
 <code>sbatch</code>, <code>squeue</code>, <code>scancel</code>
 </li>
+<li>git</li>
 </ul></li>
 </ul></div>
 </div>
@@ -510,21 +512,24 @@ FIXME: place any data you want learners to use in `episodes/data` and then use
 
 Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
 -->
+
 <p>Get the code:</p>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--recursive</span> git@github.com:HellmannM/raytracer-vectorization-example.git</span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">cd</span> raytracer-vectorization-example.git</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">git</span> checkout integrate-snowman</span></code></pre>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">git</span> checkout CUDA_snowman</span></code></pre>
 </div>
+<div class="section level4">
+<h4 id="cpu-build">CPU Build<a class="anchor" aria-label="anchor" href="#cpu-build"></a></h4>
 <p>Prepare the out-of-source build:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">cd</span> ..</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">mkdir</span> build <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> build</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span>Release ../raytracer-vectorization-example.git</span></code></pre>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span>Release <span class="at">-DENABLE_CUDA</span><span class="op">=</span>OFF ../raytracer-vectorization-example.git</span></code></pre>
 </div>
 <p>To build the example, you need to provide the following
 dependencies:</p>
@@ -562,54 +567,28 @@ finally</li>
 <li>storing the picture as <code>snowman.png</code>.</li>
 </ul><p>More on what a raytracer is and how it works. How does it
 parallelize?</p>
+</div>
 <div class="section level4">
-<h4 id="example-workload-requirments">Example Workload Requirments<a class="anchor" aria-label="anchor" href="#example-workload-requirments"></a></h4>
-<p>Example workload that:</p>
-<ul class="task-list"><li>
-<label><input type="checkbox">Has some instructive performance
-issues that can be discovered, e.g.</label>
-<ul class="task-list"><li><label><input type="checkbox" checked>Mismatch between
-requested resources in job script and used resources</label></li>
-<li><label><input type="checkbox">Memory leak or unnecessary
-allocation with a quick fix? Either triggers OOM or just wasting
-resources, dependent on side and default memory/core</label></li>
-<li><label><input type="checkbox">No vectorization?</label></li>
-<li><label><input type="checkbox">Parallelism issues?</label></li>
-<li><label><input type="checkbox">Uncover several performance issues
-in layers, one after the other?</label></li>
-</ul></li>
-<li>
-<label><input type="checkbox" checked>Reasonable execution
-time</label>
-<ul class="task-list"><li><label><input type="checkbox" checked>Not too long to not slow
-the pacing of the course (e.g. 10 minutes)</label></li>
-<li><label><input type="checkbox">Long enough to show real workflow
-and performance issues</label></li>
-<li><label><input type="checkbox" checked>E.g. 1 minute with 1 core
-doesn’t leave enough headroom for scaling studies</label></li>
-<li><label><input type="checkbox">We should avoid to switch problem
-size with each exercise to keep things consistent and go through an
-experience of improvement if things get faster</label></li>
-<li><label><input type="checkbox">Changing workload might still be
-necessary at certain points. We have to be intentional and clear about
-it in the course and limit these!</label></li>
-</ul></li>
-<li><label><input type="checkbox" checked>Software that can run on
-CPU and GPU, to discuss both with the example</label></li>
-<li>
-<label><input type="checkbox" checked>Should be easy to
-download, compile, run, and be understood (readability)</label>
-<ul class="task-list"><li><label><input type="checkbox">Provide example application in a
-container as a generic fallback solution?</label></li>
-</ul></li>
-<li><label><input type="checkbox" checked>Meaningful workflow for
-batch processing</label></li>
-<li><label><input type="checkbox" checked>Using commonly used
-programming languages / libraries in HPC</label></li>
-<li><label><input type="checkbox" checked>Will likely not show all
-performance issues that could exist, only used as a vehicle to follow a
-narrative with particular performance issues</label></li>
-</ul></div>
+<h4 id="cuda-build">CUDA Build<a class="anchor" aria-label="anchor" href="#cuda-build"></a></h4>
+<p>Prepare the out-of-source build:</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="bu">cd</span> ..</span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">mkdir</span> build_gpu <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> build_gpu</span>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span>Release <span class="at">-DENABLE_CUDA</span><span class="op">=</span>ON ../raytracer-vectorization-example.git</span></code></pre>
+</div>
+<p>Additionally to above dependencies, this relies on CUDA and
+corresponding modules of your site. The application is still run with
+MPI, but mostly to manage multiple processes, e.g. one per GPU:</p>
+<div class="codewrapper sourceCode" id="cb6">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb6-1"><a href="#cb6-1" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">--build</span> . <span class="at">--parallel</span></span>
+<span id="cb6-2"><a href="#cb6-2" tabindex="-1"></a><span class="bu">export</span> <span class="va">CUDA_VISIBLE_DEVICES</span><span class="op">=</span>0,1,2,3</span>
+<span id="cb6-3"><a href="#cb6-3" tabindex="-1"></a><span class="ex">mpirun</span> <span class="at">-n</span> 4 ./build/raytracer <span class="at">-width</span><span class="op">=</span>512 <span class="at">-height</span><span class="op">=</span>512 <span class="at">-spp</span><span class="op">=</span>128 <span class="at">-threads</span><span class="op">=</span>1 <span class="at">-png</span><span class="op">=</span>snowman.png</span></code></pre>
+</div>
+</div>
 </div>
 </section><section><h2 class="section-heading" id="acknowledgements">Acknowledgements<a class="anchor" aria-label="anchor" href="#acknowledgements"></a></h2>
 <hr class="half-width"><p>Course created in context of <a href="https://hpc.dh.nrw/" class="external-link">HPC.NRW</a>.</p>
@@ -666,8 +645,8 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/index.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/index.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-09-23",
-  "datePublished": "2025-09-23"
+  "dateModified": "2025-09-24",
+  "datePublished": "2025-09-24"
 }
 
   </script><script>
