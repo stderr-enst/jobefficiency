@@ -29,6 +29,14 @@ After completing this episode, participants should be able to …
 :::::::::::::::::::::::::: instructor
 ## Intention: Introduce third party tools for performance reports
 
+Narrative:
+- Scaling study, scheduler tools, project proposal is written and handed in
+- Maybe I can squeeze out more from my current system by trying to understand better how it behaves
+- Another colleague told us about performance measurement tools
+- We are learning more about our application
+- Aha, there IS room to optimize! Compile with vectorization
+
+What we're doing here:
 - Get a complete picture
 - Introduce missing metrics / definitions
 - Relate to hardware on the same level of detail

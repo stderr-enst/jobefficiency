@@ -122,6 +122,21 @@ FIXME: place any data you want learners to use in `episodes/data` and then use
 Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
 -->
 
+:::::::::::::::::::::::::: instructor
+## Episodes are tied together with a narrative around the example job
+
+- Needs a specific example job.
+- Gradual improvement throughout the course
+- Introduce only topics that are directly observed/experienced with the example
+- Point to additional information/overview in hpc-wiki where useful
+- Maybe close every episode with the same metric? (snowman pictures / hour at a given energy?)
+  - Could start with "?" when we didn't learn yet how to do it in the first episodes
+  - Motivates the discovery of certain metrics, tools, etc.
+
+:::::::::::::::::::::::::::::::::::::
+
+
+
 Get the code:
 
 ```bash

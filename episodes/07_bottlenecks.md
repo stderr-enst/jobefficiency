@@ -26,6 +26,11 @@ After completing this episode, participants should be able to …
 :::::::::::::::::::::::::: instructor
 ## Intention: Uncover one or two issues in the application
 
+Narrative:
+- Okay, what's slowest with creating snowman pictures?
+- Where does our system choke?
+
+What we're doing here:
 - What's a bottleneck?
 - How can we identify a bottleneck?
 - "Online" and "after the fact" workflows of performance measurements (trace, accumulated results, attached to the process (live), or after it ran)
