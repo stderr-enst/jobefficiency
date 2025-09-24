@@ -6,8 +6,8 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How can I decide the amount of resources I should request for my job?
-- How do I know how my application behaves at different scales?
+- How to decide the amount of resources for a job?
+- How does my application behave at different scales?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

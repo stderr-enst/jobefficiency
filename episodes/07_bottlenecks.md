@@ -6,7 +6,9 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How can I find the bottlenecks in a job at hand?
+- How can I find the bottlenecks in a given job?
+- What are common workflows to evaluate performance?
+- What are some common types of bottlenecks?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -14,6 +16,7 @@ exercises: 0
 
 After completing this episode, participants should be able to …
 
+- Choose between multiple workflows to evaluate job performance.
 - Name typical performance issues.
 - Determine if their job is affected by one of these issues.
 
@@ -25,6 +28,7 @@ After completing this episode, participants should be able to …
 
 - What's a bottleneck?
 - How can we identify a bottleneck?
+- "Online" and "after the fact" workflows of performance measurements (trace, accumulated results, attached to the process (live), or after it ran)
 - Point to additional resources of common performance/bottleneck issues, e.g. on hpc-wiki
 
 Maybe something like this already occurred before in 4. Scaling Study, or 5. Performance Overview

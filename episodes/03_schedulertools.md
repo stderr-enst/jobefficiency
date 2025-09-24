@@ -6,8 +6,8 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- What information can the scheduler provide about my jobs performance?
-- What's the meaning of the collected metrics?
+- What can the scheduler tell about job performance?
+- What's the meaning of collected metrics?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

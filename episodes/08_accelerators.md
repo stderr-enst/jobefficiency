@@ -8,6 +8,7 @@ exercises: 0
 
 - What are accelerators? 
 - How do they affect my jobs performance?
+- How can I measure accelerator utilization?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 

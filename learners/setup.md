@@ -173,29 +173,6 @@ More on what a raytracer is and how it works.
 How does it parallelize?
 
 
-#### Example Workload Requirments
-Example workload that:
-
-- [ ] Has some instructive performance issues that can be discovered, e.g.
-   - [x] Mismatch between requested resources in job script and used resources
-   - [ ] Memory leak or unnecessary allocation with a quick fix? Either triggers OOM or just wasting resources, dependent on side and default memory/core
-   - [ ] No vectorization?
-   - [ ] Parallelism issues?
-   - [ ] Uncover several performance issues in layers, one after the other?
-- [x] Reasonable execution time
-  - [x] Not too long to not slow the pacing of the course (e.g. 10 minutes)
-  - [ ] Long enough to show real workflow and performance issues
-  - [x] E.g. 1 minute with 1 core doesn't leave enough headroom for scaling studies
-  - [ ] We should avoid to switch problem size with each exercise to keep things consistent and go through an experience of improvement if things get faster
-  - [ ] Changing workload might still be necessary at certain points. We have to be intentional and clear about it in the course and limit these!
-- [x] Software that can run on CPU and GPU, to discuss both with the example
-- [x] Should be easy to download, compile, run, and be understood (readability)
-  - [ ] Provide example application in a container as a generic fallback solution?
-- [x] Meaningful workflow for batch processing
-- [x] Using commonly used programming languages / libraries in HPC
-- [x] Will likely not show all performance issues that could exist, only used as a vehicle to follow a narrative with particular performance issues
-
-
 ## Acknowledgements
 
 Course created in context of [HPC.NRW](https://hpc.dh.nrw/).

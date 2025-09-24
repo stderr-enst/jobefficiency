@@ -6,7 +6,7 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- Why are simple tools like `seff` and `sacct` not enough?
+- Why are tools like `seff` and `sacct` not enough?
 - What steps can I take to assess a jobs performance?
 - What popular types of reports exist? (e.g. Roofline)
 

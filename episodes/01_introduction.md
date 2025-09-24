@@ -6,7 +6,7 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- Why should I care about my jobs performance?
+- Why should I care about job performance?
 - How is efficiency defined?
 - How do I start measuring?
 - Is my job fast enough?

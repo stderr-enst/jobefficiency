@@ -6,8 +6,8 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- Are there common patterns of "pathological" performance?
-- How can I evaluate the performance of my application in greater detail?
+- What are other patterns of performance bottlenecks?
+- How to evaluate an application in more detail?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
