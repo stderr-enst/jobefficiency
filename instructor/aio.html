@@ -449,23 +449,31 @@
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Intention: Step into the narrative </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
-<p>Set up narrative: - Important upcoming conference presentation - Time
-is ticking, the deadline is approaching way too fast - The talk is
-almost done, but, critically, we’re missing a picture for the title
-slide - It should contain three snowmen, and we’ve exhausted our credits
-for all generative AI models in previous chats with colleagues - =&gt;
-Ray tracing a scene to the rescue! - Issue: we need to try many
-different iterations of the scene to find the exact right picture. How
-can we maximise the number of raytraced snowman images before our
-conference deadline? - Ray tracing is expensive, but luckily we have
-access to an HPC system</p>
-<p>What we’re doing here: - Run workflow example for the first time -
-Simple <code>time</code> measurement to get started - Introduce
-different perspectives on efficiency - Core-h and correlation to cost in
-energy/money - Either set up the first Slurm job here or in the next
-episode</p>
+<p>Set up narrative:</p>
+<ul>
+<li>Important upcoming conference presentation</li>
+<li>Time is ticking, the deadline is approaching way too fast</li>
+<li>The talk is almost done, but, critically, we’re missing a picture
+for the title slide</li>
+<li>It should contain three snowmen, and we’ve exhausted our credits for
+all generative AI models in previous chats with colleagues</li>
+<li>=&gt; Ray tracing a scene to the rescue!</li>
+<li>Issue: we need to try many different iterations of the scene to find
+the exact right picture. How can we maximise the number of raytraced
+snowman images before our conference deadline?</li>
+<li>Ray tracing is expensive, but luckily we have access to an HPC
+system</li>
+</ul>
+<p>What we’re doing here:</p>
+<ul>
+<li>Run workflow example for the first time</li>
+<li>Simple <code>time</code> measurement to get started</li>
+<li>Introduce different perspectives on efficiency</li>
+<li>Core-h and correlation to cost in energy/money</li>
+<li>Either set up the first Slurm job here or in the next episode</li>
+</ul>
 </div>
 </div>
 </div>
@@ -512,7 +520,7 @@ much relative improvement?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <p>Example of how to run it and what the result looks like</p>
 </div>
@@ -578,7 +586,7 @@ narrative!</strong></p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
 <div class="accordion-body">
 <ul>
 <li>True, shorter turn around times, more results per time, more nobel
@@ -634,7 +642,7 @@ repetitions)</li>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
 <div class="accordion-body">
 <p>Example for an existing cluster. Stick to CPU TDP, maybe rough number
 for whole node from somewhere, multiply factor 2 for cooling, mention
@@ -666,7 +674,7 @@ with respect to HPC jobs. (Shared document?)</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
 <div class="accordion-body">
 <p>E.g. shortest time from submission to job completion.</p>
 </div>
@@ -678,7 +686,7 @@ with respect to HPC jobs. (Shared document?)</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
 <div class="accordion-body">
 <p>Many definitions of efficiency (see below)</p>
 </div>
@@ -816,16 +824,25 @@ any links that you are not going to use.
   Objective: Vary one parameter and compare to baseline
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
-<p>Narrative: - We didn’t use the HPC system in a while - Not sure how
-many resources we need and what our HPC system even offer - How could I
-look it up again? - What were the parameters of scheduled jobs again? -
-What’s a good first guess for the resources I need for an individual
-render?</p>
-<p>What we’re doing here: - Learn about Slurm job parameters - Develop
-intuition about job size with respect to the cluster - First impression
-of whats a “good” amount of resources to request for a job</p>
+<p>Narrative:</p>
+<ul>
+<li>We didn’t use the HPC system in a while</li>
+<li>Not sure how many resources we need and what our HPC system even
+offer</li>
+<li>How could I look it up again?</li>
+<li>What were the parameters of scheduled jobs again?</li>
+<li>What’s a good first guess for the resources I need for an individual
+render?</li>
+</ul>
+<p>What we’re doing here:</p>
+<ul>
+<li>Learn about Slurm job parameters</li>
+<li>Develop intuition about job size with respect to the cluster</li>
+<li>First impression of whats a “good” amount of resources to request
+for a job</li>
+</ul>
 </div>
 </div>
 </div>
@@ -922,7 +939,7 @@ example.</p>
   ToDo
   </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
 <div class="accordion-body">
 <p>This section is just an info dump, how do we make it useful and
 approachable? What’s a useful exercise? Maybe put info here in other
@@ -1093,16 +1110,24 @@ metrics of their jobs.</li>
 </button>
 <div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
-<p>Narrative: - Okay, so first couple of jobs ran, but were they “quick
-enough”? - How many renders could I generate per minute/hour/day
-according to the current utilization - Our cluster uses certain
-hardware, maybe we didn’t use it as much as we could have? - But I
-couldn’t see all metrics (may be cluster dependent) (Energy, Disk I/O,
-Network I/O?)</p>
-<p>What we’re doing here: - What <code>seff</code> and
-<code>sacct</code> have to offer - Introduce simple relation to
-hardware, what does RSS, CPU, Disk read/write and their utilization
-mean? - Point out what’s missing from a complete picture</p>
+<p>Narrative:</p>
+<ul>
+<li>Okay, so first couple of jobs ran, but were they “quick
+enough”?</li>
+<li>How many renders could I generate per minute/hour/day according to
+the current utilization</li>
+<li>Our cluster uses certain hardware, maybe we didn’t use it as much as
+we could have?</li>
+<li>But I couldn’t see all metrics (may be cluster dependent) (Energy,
+Disk I/O, Network I/O?)</li>
+</ul>
+<p>What we’re doing here:</p>
+<ul>
+<li>What <code>seff</code> and <code>sacct</code> have to offer</li>
+<li>Introduce simple relation to hardware, what does RSS, CPU, Disk
+read/write and their utilization mean?</li>
+<li>Point out what’s missing from a complete picture</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1250,15 +1275,25 @@ any links that you are not going to use.
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
   <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Intention: Introduce/Recollect concept of Speedup and do a simple scaling study </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
-<p>Narrative: - We panic, maybe we need more resources to meet the
-deadline with our title picture! - Requesting resources with bigger
-systems requires a project proposal with an estimate of the resource
-demand - Colleague told us that this can be answered with a scaling
-study - What is it? How could we do one?</p>
-<p>What we’re doing here: - Vary number of cores - Which metrics are
-most useful? - Define speedup - Visualize results</p>
+<p>Narrative:</p>
+<ul>
+<li>We panic, maybe we need more resources to meet the deadline with our
+title picture!</li>
+<li>Requesting resources with bigger systems requires a project proposal
+with an estimate of the resource demand</li>
+<li>Colleague told us that this can be answered with a scaling
+study</li>
+<li>What is it? How could we do one?</li>
+</ul>
+<p>What we’re doing here:</p>
+<ul>
+<li>Vary number of cores</li>
+<li>Which metrics are most useful?</li>
+<li>Define speedup</li>
+<li>Visualize results</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1284,7 +1319,7 @@ at?</h3>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ul>
 <li>CPUs</li>
@@ -1353,7 +1388,7 @@ or 10)</li>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
   <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> ToDo: Advanced details in pinning </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
 <div class="accordion-body">
 <p>The below excercise could be the best place to also introduce about
 mpre detailed pinning options The results of below challenge are also
@@ -1412,7 +1447,7 @@ workload)?</p>
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor3" aria-expanded="false" aria-controls="collapseInstructor3">
   <h3 class="accordion-header" id="headingInstructor3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> ToDo </h3>
 </button>
-<div id="collapseInstructor3" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor3" aria-labelledby="headingInstructor3">
+<div id="collapseInstructor3" class="accordion-collapse collapse" aria-labelledby="headingInstructor3" data-bs-parent="#accordionInstructor3">
 <div class="accordion-body">
 <p>Note on compute time application that need estimate of required
 compute resources and touch on scaling behavior here? Could be important
@@ -1502,15 +1537,22 @@ performance.</li>
 </button>
 <div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
-<p>Narrative: - Scaling study, scheduler tools, project proposal is
-written and handed in - Maybe I can squeeze out more from my current
-system by trying to understand better how it behaves - Another colleague
-told us about performance measurement tools - We are learning more about
-our application - Aha, there IS room to optimize! Compile with
-vectorization</p>
-<p>What we’re doing here: - Get a complete picture - Introduce missing
-metrics / definitions - Relate to hardware on the same level of
-detail</p>
+<p>Narrative:</p>
+<ul>
+<li>Scaling study, scheduler tools, project proposal is written and
+handed in</li>
+<li>Maybe I can squeeze out more from my current system by trying to
+understand better how it behaves</li>
+<li>Another colleague told us about performance measurement tools</li>
+<li>We are learning more about our application</li>
+<li>Aha, there IS room to optimize! Compile with vectorization</li>
+</ul>
+<p>What we’re doing here:</p>
+<ul>
+<li>Get a complete picture</li>
+<li>Introduce missing metrics / definitions</li>
+<li>Relate to hardware on the same level of detail</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1744,15 +1786,23 @@ performance.</li>
   Intention: Go deeper in performance and hardware relationship
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
-<p>Narrative: - We get the feeling, that hardware has a lot to offer,
-but the rabbit hole is deep! - What are the “dimensions” in which we can
-optimize the throughput of snowman pictures per hour? - Can we improve
-how the work maps to certain CPUs / Memory regions?</p>
-<p>What we’re doing here: - Introduce pinning and slurm hint options -
-Relate to hardware effects - Use third party performance tools to
-observe effects!</p>
+<p>Narrative:</p>
+<ul>
+<li>We get the feeling, that hardware has a lot to offer, but the rabbit
+hole is deep!</li>
+<li>What are the “dimensions” in which we can optimize the throughput of
+snowman pictures per hour?</li>
+<li>Can we improve how the work maps to certain CPUs / Memory
+regions?</li>
+</ul>
+<p>What we’re doing here:</p>
+<ul>
+<li>Introduce pinning and slurm hint options</li>
+<li>Relate to hardware effects</li>
+<li>Use third party performance tools to observe effects!</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1765,7 +1815,7 @@ observe effects!</p>
   ToDo: Extract episode about pinning
   </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
 <div class="accordion-body">
 <p>Stick to simple options here. Put more complex options for pinning /
 hints, etc. into its own episode somewhere later in the course</p>
@@ -1870,13 +1920,21 @@ any links that you are not going to use.
 </button>
 <div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
-<p>Narrative: - Okay, what’s slowest with creating snowman pictures? -
-Where does our system choke?</p>
-<p>What we’re doing here: - What’s a bottleneck? - How can we identify a
-bottleneck? - “Online” and “after the fact” workflows of performance
-measurements (trace, accumulated results, attached to the process
-(live), or after it ran) - Point to additional resources of common
-performance/bottleneck issues, e.g. on hpc-wiki</p>
+<p>Narrative:</p>
+<ul>
+<li>Okay, what’s slowest with creating snowman pictures?</li>
+<li>Where does our system choke?</li>
+</ul>
+<p>What we’re doing here:</p>
+<ul>
+<li>What’s a bottleneck?</li>
+<li>How can we identify a bottleneck?</li>
+<li>“Online” and “after the fact” workflows of performance measurements
+(trace, accumulated results, attached to the process (live), or after it
+ran)</li>
+<li>Point to additional resources of common performance/bottleneck
+issues, e.g. on hpc-wiki</li>
+</ul>
 <p>Maybe something like this already occurred before in 4. Scaling
 Study, or 5. Performance Overview</p>
 </div>
@@ -1974,14 +2032,22 @@ treat accelerators.</li>
   Intention: Jump onto accelerator with the example application
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
-<p>Narrative: - The deadline is creeping up, only few ways to go! - Hey,
-we have a GPU partition! Maybe this will help us speed up the
-process!</p>
-<p>What we’re doing here: - What changes? - New metrics - Transfer
-to/from accelerator - Different options/requirements to scheduler &amp;
-performance measurement tools</p>
+<p>Narrative:</p>
+<ul>
+<li>The deadline is creeping up, only few ways to go!</li>
+<li>Hey, we have a GPU partition! Maybe this will help us speed up the
+process!</li>
+</ul>
+<p>What we’re doing here:</p>
+<ul>
+<li>What changes?</li>
+<li>New metrics</li>
+<li>Transfer to/from accelerator</li>
+<li>Different options/requirements to scheduler &amp; performance
+measurement tools</li>
+</ul>
 </div>
 </div>
 </div>
@@ -1998,7 +2064,7 @@ performance measurement tools</p>
   ToDo
   </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
 <div class="accordion-body">
 <p>Don’t mention FPGAs too much, maybe just a node what accelerators
 could be, besides GPU. Goal is to keep it simple and accessible, focus
@@ -2015,7 +2081,7 @@ on what’s common in most HPC systems these days</p>
   ToDo
   </h3>
 </button>
-<div id="collapseInstructor3" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor3" aria-labelledby="headingInstructor3">
+<div id="collapseInstructor3" class="accordion-collapse collapse" aria-labelledby="headingInstructor3" data-bs-parent="#accordionInstructor3">
 <div class="accordion-body">
 <p>Explain how to decide where to run something. CPU vs. small GPU
 vs. high-end GPUs. Touches on transfer overhead etc.</p>
@@ -2095,15 +2161,22 @@ optimization.</li>
 </button>
 <div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
-<p>Narrative: - Start with picture of beautiful title slide of the talk
-with the snowman picture - Next time we want to tackle the issue way in
-advance - Approach our raytracing application more systematically, such
-that we can get the title slide done much quicker - What could we do to
-dive deeper in optimizing the raytracer? - Where can we go from
-here?</p>
-<p>What we’re doing here: - Learning important programming concepts
-(parallel programming on many levels) - Deeper application profiling
-&amp; tools to use</p>
+<p>Narrative:</p>
+<ul>
+<li>Start with picture of beautiful title slide of the talk with the
+snowman picture</li>
+<li>Next time we want to tackle the issue way in advance</li>
+<li>Approach our raytracing application more systematically, such that
+we can get the title slide done much quicker</li>
+<li>What could we do to dive deeper in optimizing the raytracer?</li>
+<li>Where can we go from here?</li>
+</ul>
+<p>What we’re doing here:</p>
+<ul>
+<li>Learning important programming concepts (parallel programming on
+many levels)</li>
+<li>Deeper application profiling &amp; tools to use</li>
+</ul>
 </div>
 </div>
 </div>
