@@ -6,8 +6,8 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- Are there common patterns of "pathological" performance?
-- How can I evaluate the performance of my application in greater detail?
+- What are other patterns of performance bottlenecks?
+- How to evaluate an application in more detail?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -24,6 +24,14 @@ After completing this episode, participants should be able to …
 :::::::::::::::::::::::::: instructor
 ## Intention: Provide a roadmap learners could follow
 
+Narrative:
+- Start with picture of beautiful title slide of the talk with the snowman picture
+- Next time we want to tackle the issue way in advance
+- Approach our raytracing application more systematically, such that we can get the title slide done much quicker
+- What could we do to dive deeper in optimizing the raytracer?
+- Where can we go from here?
+
+What we're doing here:
 - Learning important programming concepts (parallel programming on many levels)
 - Deeper application profiling & tools to use
 

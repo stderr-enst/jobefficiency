@@ -6,7 +6,10 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- Why what how?
+- What is "pinning" of job resources?
+- How can pinning improve the performance?
+- How can I see, if pinning resources would help?
+- What requirement hints can I give to the scheduler?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -14,7 +17,9 @@ exercises: 0
 
 After completing this episode, participants should be able to …
 
-- A
+- Define the concept of "pinning" and how it can affect job performance.
+- Name Slurms options for memory- and cpu- binding.
+- Use hints to tell Slurm how to optimize their job allocation.
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -22,6 +27,12 @@ After completing this episode, participants should be able to …
 :::::::::::::::::::::::::: instructor
 ## Intention: Go deeper in performance and hardware relationship
 
+Narrative:
+- We get the feeling, that hardware has a lot to offer, but the rabbit hole is deep!
+- What are the "dimensions" in which we can optimize the throughput of snowman pictures per hour?
+- Can we improve how the work maps to certain CPUs / Memory regions?
+
+What we're doing here:
 - Introduce pinning and slurm hint options
 - Relate to hardware effects
 - Use third party performance tools to observe effects!

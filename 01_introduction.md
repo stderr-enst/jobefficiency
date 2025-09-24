@@ -6,7 +6,7 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- Why should I care about my jobs performance?
+- Why should I care about job performance?
 - How is efficiency defined?
 - How do I start measuring?
 - Is my job fast enough?
@@ -27,20 +27,21 @@ After completing this episode, participants should be able to …
 :::::::::::::::::::::::::: instructor
 ## Intention: Step into the narrative
 
+Set up narrative:
+- Important upcoming conference presentation
+- Time is ticking, the deadline is approaching way too fast
+- The talk is almost done, but, critically, we're missing a picture for the title slide
+- It should contain three snowmen, and we've exhausted our credits for all generative AI models in previous chats with colleagues
+- => Ray tracing a scene to the rescue!
+- Issue: we need to try many different iterations of the scene to find the exact right picture. How can we maximise the number of raytraced snowman images before our conference deadline?
+- Ray tracing is expensive, but luckily we have access to an HPC system
+
+What we're doing here:
+- Run workflow example for the first time
 - Simple `time` measurement to get started
 - Introduce different perspectives on efficiency
 - Core-h and correlation to cost in energy/money
-
-:::::::::::::::::::::::::::::::::::::
-
-
-:::::::::::::::::::::::::: instructor
-## ToDo: Start with the narrative from the very beginning
-
-- Needs a specific example job.
-- Gradual improvement throughout the course
-- Introduce only topics that are directly observed/experienced with the example
-- Point to additional information/overview in hpc-wiki where useful
+- Either set up the first Slurm job here or in the next episode
 
 :::::::::::::::::::::::::::::::::::::
 

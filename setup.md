@@ -24,6 +24,7 @@ After attending this training, participants will be able to:
    - Bash shell & scripting
    - ssh & scp
    - Simple slurm jobscripts and commands like `srun`, `sbatch`, `squeue`, `scancel`
+   - git
 
 ::::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -121,21 +122,36 @@ FIXME: place any data you want learners to use in `episodes/data` and then use
 Download the [data zip file](https://example.com/FIXME) and unzip it to your Desktop
 -->
 
+:::::::::::::::::::::::::: instructor
+## Episodes are tied together with a narrative around the example job
+
+- Needs a specific example job.
+- Gradual improvement throughout the course
+- Introduce only topics that are directly observed/experienced with the example
+- Point to additional information/overview in hpc-wiki where useful
+- Maybe close every episode with the same metric? (snowman pictures / hour at a given energy?)
+  - Could start with "?" when we didn't learn yet how to do it in the first episodes
+  - Motivates the discovery of certain metrics, tools, etc.
+
+:::::::::::::::::::::::::::::::::::::
+
+
+
 Get the code:
 
 ```bash
 git clone --recursive git@github.com:HellmannM/raytracer-vectorization-example.git
 cd raytracer-vectorization-example.git
-git checkout integrate-snowman
+git checkout CUDA_snowman
 ```
 
-
+#### CPU Build
 Prepare the out-of-source build:
 
 ```bash
 cd ..
 mkdir build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release ../raytracer-vectorization-example.git
+cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_CUDA=OFF ../raytracer-vectorization-example.git
 ```
 
 To build the example, you need to provide the following dependencies:
@@ -172,28 +188,23 @@ This is
 More on what a raytracer is and how it works.
 How does it parallelize?
 
+#### CUDA Build
+Prepare the out-of-source build:
 
-#### Example Workload Requirments
-Example workload that:
+```bash
+cd ..
+mkdir build_gpu && cd build_gpu
+cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_CUDA=ON ../raytracer-vectorization-example.git
+```
 
-- [ ] Has some instructive performance issues that can be discovered, e.g.
-   - [x] Mismatch between requested resources in job script and used resources
-   - [ ] Memory leak or unnecessary allocation with a quick fix? Either triggers OOM or just wasting resources, dependent on side and default memory/core
-   - [ ] No vectorization?
-   - [ ] Parallelism issues?
-   - [ ] Uncover several performance issues in layers, one after the other?
-- [x] Reasonable execution time
-  - [x] Not too long to not slow the pacing of the course (e.g. 10 minutes)
-  - [ ] Long enough to show real workflow and performance issues
-  - [x] E.g. 1 minute with 1 core doesn't leave enough headroom for scaling studies
-  - [ ] We should avoid to switch problem size with each exercise to keep things consistent and go through an experience of improvement if things get faster
-  - [ ] Changing workload might still be necessary at certain points. We have to be intentional and clear about it in the course and limit these!
-- [x] Software that can run on CPU and GPU, to discuss both with the example
-- [x] Should be easy to download, compile, run, and be understood (readability)
-  - [ ] Provide example application in a container as a generic fallback solution?
-- [x] Meaningful workflow for batch processing
-- [x] Using commonly used programming languages / libraries in HPC
-- [x] Will likely not show all performance issues that could exist, only used as a vehicle to follow a narrative with particular performance issues
+Additionally to above dependencies, this relies on CUDA and corresponding modules of your site.
+The application is still run with MPI, but mostly to manage multiple processes, e.g. one per GPU:
+
+```bash
+cmake --build . --parallel
+export CUDA_VISIBLE_DEVICES=0,1,2,3
+mpirun -n 4 ./build/raytracer -width=512 -height=512 -spp=128 -threads=1 -png=snowman.png
+```
 
 
 ## Acknowledgements

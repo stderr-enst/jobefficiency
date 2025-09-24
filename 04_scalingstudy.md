@@ -6,8 +6,8 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How can I decide the amount of resources I should request for my job?
-- How do I know how my application behaves at different scales?
+- How to decide the amount of resources for a job?
+- How does my application behave at different scales?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -24,6 +24,13 @@ After completing this episode, participants should be able to …
 :::::::::::::::::::::::::: instructor
 ## Intention: Introduce/Recollect concept of Speedup and do a simple scaling study
 
+Narrative:
+- We panic, maybe we need more resources to meet the deadline with our title picture!
+- Requesting resources with bigger systems requires a project proposal with an estimate of the resource demand
+- Colleague told us that this can be answered with a scaling study
+- What is it? How could we do one?
+
+What we're doing here:
 - Vary number of cores
 - Which metrics are most useful?
 - Define speedup
