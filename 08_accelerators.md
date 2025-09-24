@@ -26,10 +26,13 @@ After completing this episode, participants should be able to …
 ## Intention: Jump onto accelerator with the example application
 
 Narrative:
+
 - The deadline is creeping up, only few ways to go!
 - Hey, we have a GPU partition! Maybe this will help us speed up the process!
 
+
 What we're doing here:
+
 - What changes?
 - New metrics
 - Transfer to/from accelerator
