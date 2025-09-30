@@ -4,7 +4,7 @@ teaching: 10
 exercises: 0
 ---
 
-:::::::::::::::::::::::::::::::::::::: questions 
+:::::::::::::::::::::::::::::::::::::: questions
 
 - How many resources should I request initially?
 - What scheduler options exist to request resources?
@@ -49,6 +49,31 @@ What we're doing here:
 Didactic path: I have no idea how many resources to ask for -> just guess and start with some combinations.
 Next identify slower, or failed (OOM, timelimit) and choose the best
 What does that say about efficiency?
+
+:::::::::::::::::::::::::: callout
+## What is a scheduler and why do we need one?
+
+HPC machines offer a large amount of compute power but are too expensive
+for a single person or a small research group. Therefore, HPC machines
+are deployed as shared resources with substantional user communities ranging
+from dozens to thousands of users. In such a scenario you need a way to manage
+who gets to run which calculation on what part of the machine at what time.
+A scheduler is a software package with users can request resources for a job,
+and it works out the schedule of what job gets to run on what resources and
+when.
+
+Historically, there have been many schedulers, for example,
+[`Loadbalancer`](https://www.ibm.com/products/load-balancer),
+[`GridEngine`](https://docs.oracle.com/cd/E19279-01/820-3257-12/n1ge.html),
+[`PBS`](https://www.openpbs.org/),
+[`Maui`](https://docs.adaptivecomputing.com/maui/), and others.
+In the early 2000s the development of
+"[SLURM](https://doi.org/10.1007/10968987_3): Simple Linux Utility for Resource
+Management"
+began. With the rise of Linux on HPC systems SLURM has become a widely used
+scheduling system. For that reason this course assumes that SLURM is
+available on your HPC system.
+::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::: challenge
 ## Exercise: Starting Somewhere
