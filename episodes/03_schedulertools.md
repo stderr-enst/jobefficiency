@@ -4,7 +4,7 @@ teaching: 10
 exercises: 0
 ---
 
-:::::::::::::::::::::::::::::::::::::: questions 
+:::::::::::::::::::::::::::::::::::::: questions
 
 - What can the scheduler tell about job performance?
 - What's the meaning of collected metrics?
@@ -47,8 +47,8 @@ What we're doing here:
    - `MaxRSS`, `AvgRSS`
    - `MaxPages`, `AvgPages`
    - `AvgCPU`, `AllocCPUS`
-   - `ElapsedI
-   - `MaxDiskRead`, AvgDiskRead`,
+   - `Elapsed`
+   - `MaxDiskRead`, `AvgDiskRead`,
    - `MaxDiskWrite`, `AvgDiskWrite`
    - `energy`
 - `seff`
