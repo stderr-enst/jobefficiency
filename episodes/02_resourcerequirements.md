@@ -58,8 +58,8 @@ for a single person or a small research group. Therefore, HPC machines
 are deployed as shared resources with substantional user communities ranging
 from dozens to thousands of users. In such a scenario you need a way to manage
 who gets to run which calculation on what part of the machine at what time.
-A scheduler is a software package with users can request resources for a job,
-and it works out the schedule of what job gets to run on what resources and
+A scheduler is a software package to let users request resources for a job.
+It creates the schedule of what job gets to run on what resources and
 when.
 
 Historically, there have been many schedulers, for example,
