@@ -140,9 +140,8 @@ Download the [data zip file](https://example.com/FIXME) and unzip it to your Des
 Get the code:
 
 ```bash
-git clone --recursive git@github.com:HellmannM/raytracer-vectorization-example.git
-cd raytracer-vectorization-example.git
-git checkout CUDA_snowman
+git clone --recursive ssh://git@codeberg.org/HPC-NRW/SnowmanRaytracer.git
+cd SnowmanRaytracer.git
 ```
 
 #### CPU Build
@@ -151,7 +150,7 @@ Prepare the out-of-source build:
 ```bash
 cd ..
 mkdir build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_CUDA=OFF ../raytracer-vectorization-example.git
+cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_CUDA=OFF ../SnowmanRaytracer.git
 ```
 
 To build the example, you need to provide the following dependencies:
@@ -194,7 +193,7 @@ Prepare the out-of-source build:
 ```bash
 cd ..
 mkdir build_gpu && cd build_gpu
-cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_CUDA=ON ../raytracer-vectorization-example.git
+cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_CUDA=ON ../SnowmanRaytracer.git
 ```
 
 Additionally to above dependencies, this relies on CUDA and corresponding modules of your site.
