@@ -525,7 +525,7 @@ what happens in broad terms</li>
   ToDo: Improve prerequisites
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Link to external resources in prerequisites:</p>
 <ul><li>HPC Intro</li>
@@ -558,7 +558,7 @@ mostly red</p>
   Tell learners how to get access to an HPC System
   </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
 <div class="accordion-body">
 <ul><li>Do they need to apply somewhere?</li>
 <li>Are they eligible to request access to another system?</li>
@@ -609,7 +609,7 @@ discussed in HPC introduction?)</p>
   Windows
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <ul><li>PuTTY</li>
 <li>
@@ -626,7 +626,7 @@ discussed in HPC introduction?)</p>
   MacOS
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <ul><li>
 <code>ssh</code> in Terminal.app</li>
@@ -642,7 +642,7 @@ discussed in HPC introduction?)</p>
   Linux
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
 <div class="accordion-body">
 <ul><li>
 <code>ssh</code> in Terminal</li>
@@ -668,7 +668,7 @@ Download the [data zip file](https://example.com/FIXME) and unzip it to your Des
   Episodes are tied together with a narrative around the example job
   </h3>
 </button>
-<div id="collapseInstructor3" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor3" aria-labelledby="headingInstructor3">
+<div id="collapseInstructor3" class="accordion-collapse collapse" aria-labelledby="headingInstructor3" data-bs-parent="#accordionInstructor3">
 <div class="accordion-body">
 <ul><li>Needs a specific example job.</li>
 <li>Gradual improvement throughout the course</li>
@@ -690,9 +690,8 @@ first episodes</li>
 <div class="codewrapper sourceCode" id="cb1">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--recursive</span> git@github.com:HellmannM/raytracer-vectorization-example.git</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">cd</span> raytracer-vectorization-example.git</span>
-<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="fu">git</span> checkout CUDA_snowman</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--recursive</span> ssh://git@codeberg.org/HPC-NRW/SnowmanRaytracer.git</span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">cd</span> SnowmanRaytracer.git</span></code></pre>
 </div>
 <div class="section level4">
 <h4 id="cpu-build">CPU Build<a class="anchor" aria-label="anchor" href="#cpu-build"></a></h4>
@@ -702,7 +701,7 @@ first episodes</li>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">cd</span> ..</span>
 <span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">mkdir</span> build <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> build</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span>Release <span class="at">-DENABLE_CUDA</span><span class="op">=</span>OFF ../raytracer-vectorization-example.git</span></code></pre>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span>Release <span class="at">-DENABLE_CUDA</span><span class="op">=</span>OFF ../SnowmanRaytracer.git</span></code></pre>
 </div>
 <p>To build the example, you need to provide the following
 dependencies:</p>
@@ -749,7 +748,7 @@ parallelize?</p>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="bu">cd</span> ..</span>
 <span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="fu">mkdir</span> build_gpu <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> build_gpu</span>
-<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span>Release <span class="at">-DENABLE_CUDA</span><span class="op">=</span>ON ../raytracer-vectorization-example.git</span></code></pre>
+<span id="cb5-3"><a href="#cb5-3" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span>Release <span class="at">-DENABLE_CUDA</span><span class="op">=</span>ON ../SnowmanRaytracer.git</span></code></pre>
 </div>
 <p>Additionally to above dependencies, this relies on CUDA and
 corresponding modules of your site. The application is still run with
@@ -818,8 +817,8 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/instructor/index.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/instructor/index.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-09-30",
-  "datePublished": "2025-09-30"
+  "dateModified": "2025-10-02",
+  "datePublished": "2025-10-02"
 }
 
   </script><script>
