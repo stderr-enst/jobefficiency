@@ -71,7 +71,7 @@ seff $jobid
 ```output
 Job ID: 309489
 Cluster: bigiron
-User/Group: usr123/usr123
+User/Group: usr123/grp123
 State: COMPLETED (exit code 0)
 Nodes: 1
 Cores per node: 4
@@ -101,18 +101,18 @@ from `seff` shows basic statistics about the job, such as
 Clearly this job took a lot less time
 than the one hour we asked for. This can be problematic as the scheduler looks
 for time windows when it can fit a job in. Long running jobs cannot be squeezed
-in as easily as short running jobs. Therefore, jobs that request a long time
+in as easily as short running jobs. As a result, jobs that request a long time
 to complete typically have to wait longer before they can be started. Therefore
 asking for more than 10 times as much time as the job really needs, simply
 means that you will have to wait longer for the job to start. On the other hand
 you do not want to ask for too little time. Few things are more annoying than
 waiting for a long running calculation to finish, just to see the job being
 killed right before the end because it would have needed a couple of minutes more
-than you asked for. Therefore the best approach is to ask for more time than
+than you asked for. So the best approach is to ask for more time than
 the job needs, but not go overboard here. As the job elapse time depends on
 many machine conditions, including congestion in the data communication, disk
 access, operating system jitter, and so on, you might want to ask for a
-substantial buffer. Nevertheless asking for more than twice as much time as
+substantial buffer. Nevertheless, asking for more than twice as much time as
 job is expected to need is clearly senseless.
 
 Another thing is that SLURM by default reserves a certain amount of memory per
@@ -134,8 +134,8 @@ seff $jobid
 
 ```output
 Job ID: 310002
-Cluster: amplitude
-User/Group: cbm518i/cbm518i
+Cluster: bigiron
+User/Group: usr123/grp123
 State: COMPLETED (exit code 0)
 Nodes: 1
 Cores per node: 4
@@ -173,21 +173,142 @@ The `seff` command cannot give you any information about the I/O performance of
 your job. You have to use the `sacct` command for that.
 
 The `sacct` command shows data stored in the job accounting database. You can
-query the data of any of your previously run jobs.
+query the data of any of your previously run jobs. Just like with `seff` you
+will need to provide the job ID to query the accounting database. Rather than
+keeping track of all your jobs yourself you can ask `sacct` to provide you
+with an overview of the jobs you have run.
 
-- `sacct`
-   - `MaxRSS`, `AvgRSS`
-   - `MaxPages`, `AvgPages`
-   - `AvgCPU`, `AllocCPUS`
-   - `Elapsed`
-   - `MaxDiskRead`, `AvgDiskRead`,
-   - `MaxDiskWrite`, `AvgDiskWrite`
-   - `energy`
-- `seff`
-   - Utilization of time allocation
-   - Utilization of allocated CPUs (is 100% <=> efficient? Not if calculations are redundant etc.!)
-   - Utilization of allocated memory
+```bash
+sacct
+```
 
+```output
+JobID           JobName  Partition    Account  AllocCPUS      State ExitCode
+------------ ---------- ---------- ---------- ---------- ---------- --------
+309902       render_sn+  STD-s-96h  project_a          4  COMPLETED      0:0
+309902.batch      batch             project_a          4  COMPLETED      0:0
+309902.exte+     extern             project_a          4  COMPLETED      0:0
+309903       render_sn+  STD-s-96h  project_a          4  COMPLETED      0:0
+309903.batch      batch             project_a          4  COMPLETED      0:0
+309903.exte+     extern             project_a          4  COMPLETED      0:0
+310002       render_sn+  STD-s-96h  project_a          4  COMPLETED      0:0
+310002.batch      batch             project_a          4  COMPLETED      0:0
+310002.exte+     extern             project_a          4  COMPLETED      0:0
+```
+
+Note that by default `sacct` only lists the jobs that have been run today. You
+can use the `--starttime` option to list all jobs that have been run since
+the given start date. For example, try running
+
+```bash
+sacct --starttime=2025-09-25
+```
+
+```output
+JobID           JobName  Partition    Account  AllocCPUS      State ExitCode
+------------ ---------- ---------- ---------- ---------- ---------- --------
+308755       snowman.s+  STD-s-96h  project_a         16  COMPLETED      0:0
+308755.batch      batch             project_a         16  COMPLETED      0:0
+308755.exte+     extern             project_a         16  COMPLETED      0:0
+308756       snowman.s+  STD-s-96h  project_a          4  COMPLETED      0:0
+308756.batch      batch             project_a          4  COMPLETED      0:0
+308756.exte+     extern             project_a          4  COMPLETED      0:0
+309486       interacti+  STD-s-96h  project_a          4     FAILED      1:0
+309486.exte+     extern             project_a          4  COMPLETED      0:0
+309486.0          prted             project_a          4  COMPLETED      0:0
+309489       render_sn+  STD-s-96h  project_a          4  COMPLETED      0:0
+309489.batch      batch             project_a          4  COMPLETED      0:0
+309489.exte+     extern             project_a          4  COMPLETED      0:0
+309902       render_sn+  STD-s-96h  project_a          4  COMPLETED      0:0
+309902.batch      batch             project_a          4  COMPLETED      0:0
+309902.exte+     extern             project_a          4  COMPLETED      0:0
+309903       render_sn+  STD-s-96h  project_a          4  COMPLETED      0:0
+309903.batch      batch             project_a          4  COMPLETED      0:0
+309903.exte+     extern             project_a          4  COMPLETED      0:0
+310002       render_sn+  STD-s-96h  project_a          4  COMPLETED      0:0
+310002.batch      batch             project_a          4  COMPLETED      0:0
+310002.exte+     extern             project_a          4  COMPLETED      0:0
+```
+
+With the job ID you can ask `sacct` for information about a specific job
+as in
+
+```bash
+sacct --jobs=310002
+```
+
+```output
+JobID           JobName  Partition    Account  AllocCPUS      State ExitCode
+------------ ---------- ---------- ---------- ---------- ---------- --------
+310002       render_sn+  STD-s-96h  project_a          4  COMPLETED      0:0
+310002.batch      batch             project_a          4  COMPLETED      0:0
+310002.exte+     extern             project_a          4  COMPLETED      0:0
+```
+
+Clearly this does not provide any information beyond what we already could
+extract. To get more specific data we need to explicitly ask for the information
+we want. As SLURM collects a broad range of data about every job it is worth
+to evaluate what the most relevant items are.
+
+- `MaxRSS`, `AveRSS`, or the Maximum or Average Resident Size Set (RSS). The
+  RSS is the memory allocated by a program that is actually resident in the
+  main memory of the computer. If the computer gets low on memory then the
+  virtual memory manager can extend the apparently available memory by moving
+  some of the data from memory to disk. This is done entirely transparently to the
+  application, but the data that has been moved to disk is no longer resident
+  in main memory. As a result accessing it will be slower because it needs to
+  retrieved from disk first. Therefore if the RSS is small compared to the
+  total amount of memory the program uses this might affect the performance
+  of the program.
+- `MaxPages`, `AvePages`, or the Maximum or Average number of Page Faults.
+  These quantities are related to the Resident Size Sets. When the program
+  tries to access data that is not resident in main memory this triggers a
+  page fault.
+  The virtual memory manager responds to a page fault by retrieving the accessed
+  data from disk (and potentially migrating other data to disk to make
+  space). These operations are typically costly. Therefore high numbers of
+  page faults typically correspond to a significant reduction in the program's
+  performance. For example, the CPU utilization might drop from as high as 98%
+  to as low as 2% due to page faults. For that reason some HPC machines are
+  configured to kill your job if the application generates a high rate of
+  page faults.
+- `AllocCPUS` is the number of CPUs allocated for the job.
+- `Elapsed` is the amount of wall clock time it took to complete the job. I.e.
+  the amount of time that passed between the start and finish of the job.
+- `MaxDiskRead`, the Maximum amount of data read from disk.
+- `MaxDiskWrite`, the Maximum amount of data written to disk.
+- `ConsumedEnergy`, the amount of energy consumed by the job if that information  was collected. If that data is not collected the energy consumption will be
+  reported as 0.
+- `AveCPUFreq`, the average CPU frequency of all tasks in a job. In general the
+  higher the clock frequency of the processor the faster the calculation runs.
+  The exception is if the application is memory bandwidth limited and the data
+  cannot be moved to processor fast enough to keep it busy. In that case
+  modern hardware might throttle the frequency. This saves energy as the power
+  consumption scales linearly with the clock frequency.
+
+We can explicitly select the data elements that we are interested in. To select
+all of the above variables run
+
+```bash
+sacct --jobs=310002 --format=MaxRSS,AveRSS,MaxPages,AvePages,AllocCPUS,Elapsed,MaxDiskRead,MaxDiskWrite,ConsumedEnergy,AveCPUFreq
+```
+
+```output
+    MaxRSS     AveRSS MaxPages   AvePages  AllocCPUS    Elapsed  MaxDiskRead MaxDiskWrite ConsumedEnergy AveCPUFreq
+---------- ---------- -------- ---------- ---------- ---------- ------------ ------------ -------------- ----------
+                                                   4   00:01:58                                        0
+    51556K     51556K      132        132          4   00:01:58        6.91M        0.72M              0         3M
+         0          0        0          0          4   00:01:58        0.01M        0.00M              0         3M
+```
+
+While `sacct` provides a lot of information it is clearly incomplete. For
+example, the information is for the entire calculation. Variations in the
+metrics as a function of time throughout the job are not available.
+Communication between different MPI processes is not recorded. The collection
+of the energy consumption depends on the hardware and system configuration
+at the HPC center and might not be available. So while we might be able to
+glean some indications for different types of performance problems, for a
+proper analysis more detailed information is needed.
 
 
 ## Shortcomings
