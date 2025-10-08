@@ -140,7 +140,7 @@ Download the [data zip file](https://example.com/FIXME) and unzip it to your Des
 Get the code:
 
 ```bash
-git clone --recursive ssh://git@codeberg.org/HPC-NRW/SnowmanRaytracer.git
+git clone --recursive https://codeberg.org/HPC-NRW/SnowmanRaytracer.git
 cd SnowmanRaytracer.git
 ```
 
