@@ -185,7 +185,6 @@ This analogy helps illustrate why **mapping defines placement** and **binding en
 
 We will use `--bind-to core` (the smallest hardware unit) and `--map-by` to distribute MPI processes across sockets or NUMA or node regions efficiently.
 
-:::::::::::::::::::::::::::::::::::::: explanation
 ### Choosing the Smallest Hardware Unit
 
 Binding processes to the smallest unit (core) is recommended because:
