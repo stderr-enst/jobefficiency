@@ -100,6 +100,7 @@ This is cluster specific. It can possibly be  done in two ways:
 :::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::: challenge
+### Can be removed
 ## Exercise
 Follow any one of the option above and run for 2 threads per rank
 `mpirun -n 8 ./raytracer -width=512 -height=512 -spp=128 -threads=2 -alloc_mode=3 -png=snowman.png`
@@ -138,12 +139,13 @@ In this exercise we will explore how MPI process and thread binding works. We wi
 :::::::::::::::::::::::::::::::::::::
 
 :::::::::::::::::::::::::: challenge
+### Can be removed
 ## Exercise
 Case 1: `--bind-to numa`
 `mpirun -n 8 --bind-to numa ./raytracer -width=512 -height=512 -spp=128 -threads=12 -alloc_mode=3 -png=snowman.png`
 
 Case 2: `--bind-to socket`
-`mpirun -n 4 --bind to socket /raytracer -width=512 -height=512 -spp=128 -threads=48 -alloc_mode=3 -png=snowman.png`
+`mpirun -n 4 --bind-to socket /raytracer -width=512 -height=512 -spp=128 -threads=48 -alloc_mode=3 -png=snowman.png`
 
 Questions:
 - What is difference between Case 1 and Case 2. Any difference in performance? How many workers?
@@ -157,9 +159,43 @@ Questions:
 ::::::::::::::
 ::::::::::::::::::::::::::::::::::::
 
-#Best Practices for MPI Process and Thread Binding
+## Best Practices for MPI Process and Thread Pinning
+
+### Difference between Binding and Mapping
+
+**Mapping** is about distributing MPI ranks across hardware hierarchy which tells where your processes will be placed.
+
+**Binding* is locking your MPI processes/threads to a specific resource which prevents from moving it around from one to another.
+
+:::::::::::::::::::::::::: instructor
+## Mapping vs. Binding Analogy
+
+Think of running MPI processes and threads like booking seats for a group of friends:
+
+- **Mapping** is like planning where your group will sit in the theatre or on a flight.  
+  - Example: You decide some friends sit in Economy, some in Premium Economy, and some in Business.  
+  - Similarly, `--map-by` distributes MPI ranks across nodes, sockets, or NUMA regions.
+
+- **Binding** is like reserving the exact seats for each friend in the planned area.  
+  - Example: Once the seating area is chosen, you assign specific seat numbers to each friend.  
+  - Similarly, `--bind-to` pins each MPI process or thread to a specific core or hardware unit to avoid movement.
+
+This analogy helps illustrate why **mapping defines placement** and **binding enforces it**.
+:::::::::::::::::::::::::::::::::::::
 
 We will use `--bind-to core` (the smallest hardware unit) and `--map-by` to distribute MPI processes across sockets or NUMA or node regions efficiently.
+
+:::::::::::::::::::::::::::::::::::::: explanation
+### Choosing the Smallest Hardware Unit
+
+Binding processes to the smallest unit (core) is recommended because:
+
+1. **Exclusive use of resources**  
+   Each process or thread is pinned to its own core, preventing multiple threads or processes from competing for the same CPU.
+
+2. **Predictable performance**  
+   When processes share cores, execution times can fluctuate due to scheduling conflicts. Binding to cores ensures consistent timing across runs.
+
 
 - Best practice: Always bind processes to the smallest unit (core) and spread processes evenly across the available hardware using `--map-by`.
 - Example options:
@@ -167,23 +203,28 @@ We will use `--bind-to core` (the smallest hardware unit) and `--map-by` to dist
   - `--map-by socket:PE=<threads>` → spreads given number of threads as a processing element across the socket
   - `--map-by numa:PE=<threads>` → spreads processes across NUMA domains, assigning `<threads>` cores per process.
   - similarly `--map-by numa:PE=<threads>`
+  - `--cpus-per-rank <n>`→ Assigns `<n>` cores (hardware threads) to each MPI rank - ensuring that all threads within a rank occupy separate cores.
 
 :::::::::::::::::::::::::: challenge
 ## Exercise
-Use the given best practices above for  `-n 8` and `-threads=4`  and answer following questions
+Use the given best practices above for  `-n 8` and `-threads=1/4`  and answer following questions
 
 Questions:
+- How many cores does the both jobs use?
 - Did you get more workers than you requested?
+- Did you see the scaling when running with 4 threads?
 
 ::::: solution
-No.
+- 8 and 32
+- No.
+- Yes
 ::::::::::::::
 ::::::::::::::::::::::::::::::::::::  
 
 
 ## Summary
 
-:::::::::::::::::::::::::::::::::::::: key Takeaways
+:::::::::::::::::::::::::::::::::::::: keypoints
 - **Always check how pinning works**  
   Use verbose reporting (e.g., `--report-bindings`) to see how MPI processes and threads are mapped to cores and sockets.  
 
