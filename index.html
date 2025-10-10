@@ -518,7 +518,7 @@ Download the [data zip file](https://example.com/FIXME) and unzip it to your Des
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">git</span> clone <span class="at">--recursive</span> https://codeberg.org/HPC-NRW/SnowmanRaytracer.git</span>
-<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">cd</span> SnowmanRaytracer.git</span></code></pre>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="bu">cd</span> SnowmanRaytracer</span></code></pre>
 </div>
 <div class="section level4">
 <h4 id="cpu-build">CPU Build<a class="anchor" aria-label="anchor" href="#cpu-build"></a></h4>
@@ -527,8 +527,7 @@ Download the [data zip file](https://example.com/FIXME) and unzip it to your Des
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="bu">cd</span> ..</span>
-<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">mkdir</span> build <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> build</span>
-<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span>Release <span class="at">-DENABLE_CUDA</span><span class="op">=</span>OFF ../SnowmanRaytracer.git</span></code></pre>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="fu">mkdir</span> build <span class="kw">&amp;&amp;</span> <span class="bu">cd</span> build</span></code></pre>
 </div>
 <p>To build the example, you need to provide the following
 dependencies:</p>
@@ -550,8 +549,9 @@ it looks like this:</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">--build</span> . <span class="at">--parallel</span></span>
-<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">mpirun</span> <span class="at">-n</span> 4 ./build/raytracer <span class="at">-width</span><span class="op">=</span>512 <span class="at">-height</span><span class="op">=</span>512 <span class="at">-spp</span><span class="op">=</span>128 <span class="at">-threads</span><span class="op">=</span>1 <span class="at">-png</span><span class="op">=</span>snowman.png</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">-DCMAKE_BUILD_TYPE</span><span class="op">=</span>Release <span class="at">-DENABLE_CUDA</span><span class="op">=</span>OFF ../SnowmanRaytracer</span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">--build</span> . <span class="at">--parallel</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">mpirun</span> <span class="at">-n</span> 4 ./raytracer <span class="at">-width</span><span class="op">=</span>512 <span class="at">-height</span><span class="op">=</span>512 <span class="at">-spp</span><span class="op">=</span>128 <span class="at">-threads</span><span class="op">=</span>1 <span class="at">-png</span><span class="op">=</span>snowman.png</span></code></pre>
 </div>
 <p>This is</p>
 <ul><li>starting the raytracer, with a prepared scene,</li>
@@ -644,8 +644,8 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/index.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/index.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-10-08",
-  "datePublished": "2025-10-08"
+  "dateModified": "2025-10-10",
+  "datePublished": "2025-10-10"
 }
 
   </script><script>
