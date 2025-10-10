@@ -141,7 +141,7 @@ Get the code:
 
 ```bash
 git clone --recursive https://codeberg.org/HPC-NRW/SnowmanRaytracer.git
-cd SnowmanRaytracer.git
+cd SnowmanRaytracer
 ```
 
 #### CPU Build
@@ -150,7 +150,6 @@ Prepare the out-of-source build:
 ```bash
 cd ..
 mkdir build && cd build
-cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_CUDA=OFF ../SnowmanRaytracer.git
 ```
 
 To build the example, you need to provide the following dependencies:
@@ -172,8 +171,9 @@ module load 2025 GCC/13.2.0 OpenMPI/4.1.6 buildenv/default Boost/1.83.0 CMake/3.
 Finally build and run the code
 
 ```bash
+cmake -DCMAKE_BUILD_TYPE=Release -DENABLE_CUDA=OFF ../SnowmanRaytracer
 cmake --build . --parallel
-mpirun -n 4 ./build/raytracer -width=512 -height=512 -spp=128 -threads=1 -png=snowman.png
+mpirun -n 4 ./raytracer -width=512 -height=512 -spp=128 -threads=1 -png=snowman.png
 ```
 
 This is
