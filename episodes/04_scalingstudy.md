@@ -1,13 +1,13 @@
 ---
 title: "Scaling Study"
-teaching: 10
-exercises: 0
+teaching: 60
+exercises: 3
 ---
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- How to decide the amount of resources for a job?
-- How does my application behave at different scales?
+- How many resources should we request for a given job?
+- How does our application behave at different scales?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -39,36 +39,7 @@ What we're doing here:
 - Define speedup
 - Visualize results
 
-:::::::::::::::::::::::::::::::::::::
-
-
-## What do we look at?
-
-- Amdahl's vs. Gustavsons's law / strong and weak scaling
-- Walltime, Speedup, efficiency
-
-:::::::::::::::::::::::::: discussion
-## Discussion: What dimensions can we look at?
-
-::::: solution
-
-- CPUs
-- Nodes
-- Workload/problem size
-
-::::::::::::::
-
-:::::::::::::::::::::::::: challenge
-## Exercise: Factors effecting scaling
-
-- How serial portion of the code effects the scaling? (May be a numerical would help)
-- If we have a infinte number of workers or processes doing a higy parallel code which is 99% is parallized but 1% is serial execution. The speedup will be 100. What is a ideal limit to the speedup.
-- How the communication effects the scaling?
-
-::::::::::::::::::::::::::::::::::::
-
-:::::::::::::::::::::::::::::::::::::
-
+ToDo:
 - Define example payload
    - Long enough to be significant
    - Short enough to be feasible for a quick study
@@ -82,51 +53,131 @@ What we're doing here:
 - Beyond nodes? Set to one node?
 
 
-## Parameter Scan
+:::::::::::::::::::::::::::::::::::::
 
-- Take measurements
-   - Use `time` and repeating measurements (something like 3 or 10)
-   - Vary scaling parameter
+Panic!
+The deadline is approaching way too fast and we may not finish our project in time.
+Maybe requesting more resources from our clusters scheduler does the trick?
+How could we know if it helps and by how much?
 
-::::: instructor
-## ToDo: Advanced details in pinning
-The below excercise could be the best place to also introduce about mpre detailed pinning options
-The results of below challenge are also dpendent on the pinning options
-::::::::::::::::
+## What is Scaling?
+:::::::::::::::::::::::::: instructor
+## Todo: show, don't tell
+
+:::::::::::::::::::::::::::::::::::::
+
+Answer: how much does it help to add more CPU cores, if I keep the problem sized fixed. (Translates to: samples per pixel, number of pixels, same scene)
+Vary the number of CPU cores and look at behaviour with `time`, `seff`, `sacct`
+
+=> Strong scaling
+
+Strong scaling is limited by parallelizable fraction.
+At some point adding more cores does not help. => Amdahls Law.
+
+Additionally, adding more CPU cores can actively slow down the process.
+Each process introduces some communication overhead.
+Between processes, and if it is distributed among multiple servers/worker nodes, also between processes through the network.
+
+Answer: Why go in steps of $2^n$?
+
+Live coding, executing on single node (-N 1):
+
+- Run with 1 core as baseline (can we reuse value from before?)
+- Run with 2 cores
+- Run with 4 cores
+- Run with 8 cores
+
+Plot results (Black board, prepared python script, piece of paper?)
 
 :::::::::::::::::::::::::: challenge
-## Exercise: Run the Example with different -n
+## Exercise: Continue scaling study
 
-- 1, 2, 4, 8, 16, 32, ... cores and same workload
-- Take `time` measurements (ideally multiple and with `--exclusive`)
+- Run with 16 cores and increase in steps of $2^N$
+- Go beyond single node, use all cores of two nodes
+- Take `time` measurements (maybe: ideally multiple and with `--exclusive`)
+
+=> Can we "see" the network between both nodes?
+=> Is there a slow down already?
+=> What does it tell about the parallelization of the application?
+
+Some points may be:
+- How serial portion of the code effects the scaling? (May be a numerical would help)
+- If we have a infinite number of workers or processes doing a highly parallel code which is 99% is parallelized but 1% is serial execution. The speedup will be 100. What is a ideal limit to the speedup.
+- How the communication effects the scaling?
 
 ::::::::::::::::::::::::::::::::::::
 
 
-## Analyzing results
+## Speedup and Efficiency
+Different representation of the info above.
+Answers: how much does it help to add more cores?
+
+Define speedup & efficiency.
+Plot the same thing
 
 :::::::::::::::::::::::::: challenge
-## Exercise: Plot the scaling
-
-- Plot it against `time`
-- Calculate speedup with respect to baseline with 1 core
+## Exercise: Speedup and Efficiency
+Text
 
 ::::::::::::::::::::::::::::::::::::
 
-- What's a good working point? How 
-- Overhead
-- Efficiency: not wasting cores if adding them doesn't do much
+:::::::::::::::::::::::::: discussion
+## Discussion: When should we stop adding CPU cores?
+
+::::: solution
+
+Depends on XYZ.
+Could be around X cores
+
+::::::::::::::
+::::::::::::::::::::::::::::
+
+
+## If scaling is limited, why are there large HPC Systems at all?
+What if the project benefits from increasing the problem size:
+
+- More detail/resolution may lead to more accurate result.
+- More repetitions may improve statistics
+
+Scaling up the problem size, while also scaling up the compute resources (CPU cores) is called weak scaling.
+
+=> Gustavsons Law
+
+
+:::::::::::::::::::::::::: challenge
+## Exercise: Weak scaling
+
+- Run with 1, 2, 4, 8, 16, 32, 64 on single node
+- Increase problem size at the same time by same fraction
+- Take `time` measurements (maybe: ideally multiple and with `--exclusive`)
+
+=> How does it scale now?
+=> Would we benefit from increasing the problem size in this case?
+
+::::: solution
+
+Maybe not, if picture is good enough
+
+::::::::::::::
+
+::::::::::::::::::::::::::::::::::::
+
+
+## Parameter Scans
+We can look at different parameters this way.
+
+How does the memory consumption scale vs. CPU cores or problem size?
+How does the disk usage scale vs. CPU cores or problem size
 
 
 ## Summary
-
+What is scaling?
 What's a good working point for our example (at a given workload)?
 
-:::::::::::::::::::::::::: challenge
-## Exercise:
-::::::::::::::::::::::::::::::::::::
+What's a good working point? When is a overhead setting in?
+Not the same for all kinds of applications!
 
-
+Project proposals require scaling study.
 :::::::::::::::::::::::::: instructor
 ## ToDo
 Note on compute time application that need estimate of required compute resources and touch on scaling behavior here?
@@ -139,7 +190,7 @@ Leading question: `time` and scheduler tools still don't provide a complete pict
 :::::::::::::::::::::::::::::::::::::: keypoints
 
 - Jobs behave differently with varying resources and workloads
-- Scaling study is necessary to proof a certain behavior of the application
+- Scaling study is necessary to check behavior of the application
 - Good working points defined by sections where more cores still provide sufficient speedup, but no costs due to overhead etc. occurs
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
