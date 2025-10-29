@@ -514,9 +514,6 @@ node-local I/O (and much more)</p>
 title picture!</li>
 <li>Requesting resources with bigger systems requires a project proposal
 with an estimate of the resource demand</li>
-<li>Colleague told us that this can be answered with a scaling
-study</li>
-<li>What is it? How could we do one?</li>
 </ul>
 <p>What we’re doing here:</p>
 <ul>
@@ -525,21 +522,31 @@ study</li>
 <li>Define speedup</li>
 <li>Visualize results</li>
 </ul>
+<p>ToDo:</p>
+<ul>
+<li>Define example payload
+<ul>
+<li>Long enough to be significant</li>
+<li>Short enough to be feasible for a quick study</li>
+</ul>
+</li>
+<li>Identify dimension for scaling study, e.g.
+<ul>
+<li>number of processes (on a single node)</li>
+<li>number of processes (across nodes)</li>
+<li>number of nodes involved (network-communication boundary)</li>
+<li>size of workload</li>
+<li>Decide on number of processes across node, fixed workload size</li>
+</ul>
+</li>
+<li>Choose limits (e.g. 1, 2, 4, … cores), within reasonable size for
+given Cluster</li>
+<li>Beyond nodes? Set to one node?</li>
+</ul>
 <hr>
 <br><h3 id="04_scalingstudy-headingInstructor2">
-<a href="04_scalingstudy.html#headingInstructor2">ToDo: Advanced details in pinning</a><a class="anchor" aria-label="anchor" href="#04_scalingstudy-headingInstructor2"></a>
+<a href="04_scalingstudy.html#headingInstructor2">Todo: show, don’t tell</a><a class="anchor" aria-label="anchor" href="#04_scalingstudy-headingInstructor2"></a>
 </h3>
-<p>The below excercise could be the best place to also introduce about
-mpre detailed pinning options The results of below challenge are also
-dpendent on the pinning options</p>
-<hr>
-<br><h3 id="04_scalingstudy-headingInstructor3">
-<a href="04_scalingstudy.html#headingInstructor3">ToDo</a><a class="anchor" aria-label="anchor" href="#04_scalingstudy-headingInstructor3"></a>
-</h3>
-<p>Note on compute time application that need estimate of required
-compute resources and touch on scaling behavior here? Could be important
-for one type of learner, if this is given in a context like HPC.NRW.
-Optional for many others, but maybe interesting.</p>
 <hr>
 <br></section><section id="05_performancereports"><h2 class="section-heading"><a href="05_performancereports.html">Performance Overview</a></h2>
 <hr class="half-width">
@@ -564,7 +571,14 @@ understand better how it behaves</li>
 </ul>
 <hr>
 <br><h3 id="05_performancereports-headingInstructor2">
-<a href="05_performancereports.html#headingInstructor2">ToDo: Connect Hardware to Performance Measurements</a><a class="anchor" aria-label="anchor" href="#05_performancereports-headingInstructor2"></a>
+<a href="05_performancereports.html#headingInstructor2">Pick a main tool</a><a class="anchor" aria-label="anchor" href="#05_performancereports-headingInstructor2"></a>
+</h3>
+<p>We go with three alternatives here, pick one an stick to it
+throughout your course, but highlight that there are alternatives and
+learners may not have access to certain tools on any cluster.</p>
+<hr>
+<br><h3 id="05_performancereports-headingInstructor3">
+<a href="05_performancereports.html#headingInstructor3">ToDo: Connect Hardware to Performance Measurements</a><a class="anchor" aria-label="anchor" href="#05_performancereports-headingInstructor3"></a>
 </h3>
 <p>Introduce hardware on the same level of detail and with the same
 terms as the performance reports by ClusterCockpit, LinaroForge, etc.,
@@ -572,8 +586,8 @@ as soon as they appear. Only introduce what we need, to avoid info dump.
 But point to additional information that gives a complete overview -&gt;
 hpc-wiki!</p>
 <hr>
-<br><h3 id="05_performancereports-headingInstructor3">
-<a href="05_performancereports.html#headingInstructor3">ToDo: Clarify relation to hardware in this course</a><a class="anchor" aria-label="anchor" href="#05_performancereports-headingInstructor3"></a>
+<br><h3 id="05_performancereports-headingInstructor4">
+<a href="05_performancereports.html#headingInstructor4">ToDo: Clarify relation to hardware in this course</a><a class="anchor" aria-label="anchor" href="#05_performancereports-headingInstructor4"></a>
 </h3>
 <p>Maybe we should either focus on components (CPUs, memory, disk,
 accelerators, network cards) or functional entities (compute, data
@@ -682,6 +696,14 @@ vs. high-end GPUs. Touches on transfer overhead etc.</p>
 <h3 id="09_nextsteps-headingInstructor1">
 <a href="09_nextsteps.html#headingInstructor1">Intention: Provide a roadmap learners could follow</a><a class="anchor" aria-label="anchor" href="#09_nextsteps-headingInstructor1"></a>
 </h3>
+<p><strong>Most important:</strong> enable users to translate from
+example workload to their own code! Guide on how to translate learning
+goals and key points to their situation. Additionally, provide some info
+on where and how to dig deeper, if there is interest (application
+profiling, etc.)</p>
+<p>All ideas in this episode may need to be reworked, since they were
+made with the outlook in mind, not so much to help learners transfer
+insight</p>
 <p>Narrative:</p>
 <ul>
 <li>Start with picture of beautiful title slide of the talk with the
@@ -747,8 +769,8 @@ many levels)</li>
   "url": "https://stderr-enst.github.io/jobefficiency/instructor/instructor-notes.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/instructor/instructor-notes.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-10-28",
-  "datePublished": "2025-10-28"
+  "dateModified": "2025-10-29",
+  "datePublished": "2025-10-29"
 }
 
   </script><script>

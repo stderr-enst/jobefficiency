@@ -118,11 +118,11 @@
   Job Efficiency
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 44%" class="percentage">
-    44%
+<aside class="col-md-12 lesson-progress"><div style="width: 67%" class="percentage">
+    67%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 44%" aria-valuenow="44" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 67%" aria-valuenow="67" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -253,7 +253,6 @@
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
         <ul><li><a href="#workflow">Workflow</a></li>
-<li><a href="#tools">Tools</a></li>
 <li><a href="#general-report">General report</a></li>
 <li><a href="#how-does-performance-relate-to-hardware">How Does Performance Relate to Hardware?</a></li>
 <li><a href="#summary">Summary</a></li>
@@ -357,7 +356,7 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Performance Overview</h1>
-        <p>Last updated on 2025-09-24 |
+        <p>Last updated on 2025-10-29 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/05_performancereports.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
@@ -376,9 +375,8 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>Why are tools like <code>seff</code> and <code>sacct</code> not
-enough?</li>
-<li>What steps can I take to assess a jobs performance?</li>
+<ul><li>Is it enough to look at a jobs walltime?</li>
+<li>What steps can I take to evaluate a jobs performance?</li>
 <li>What popular types of reports exist? (e.g. Roofline)</li>
 </ul></div>
 </div>
@@ -406,19 +404,148 @@ performance.</li>
 </div>
 
 <section><h2 class="section-heading" id="workflow">Workflow<a class="anchor" aria-label="anchor" href="#workflow"></a></h2>
-<hr class="half-width"><ul><li>Define sampling and tracing</li>
-<li>Describe common approaches</li>
-</ul></section><section><h2 class="section-heading" id="tools">Tools<a class="anchor" aria-label="anchor" href="#tools"></a></h2>
-<hr class="half-width"><p>Performance counters and permissions, may require
+<hr class="half-width"><ul><li>Previously checked scaling behavior by looking at walltime</li>
+<li>what if we would count other things while our job is running? Could
+be
+<ul><li>CPU utilization</li>
+<li>FLOPS</li>
+<li>Memory uitilization</li>
+<li>…</li>
+</ul></li>
+<li>Two possible ways to look at this data with respect to time:
+<ol style="list-style-type: decimal"><li>
+<em>tracing</em>: over time</li>
+<li>
+<em>sampling</em>: accumulated results at the end</li>
+</ol></li>
+<li>Third-party tools to measure these things - you can use them with
+your jobs</li>
+</ul><div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>Here you can choose between three alternative perspectives on our
+job:</p>
+<ol style="list-style-type: decimal"><li>
+<a href="https://clustercockpit.org/" class="external-link"><em>ClusterCockpit</em></a>: A
+job monitoring service available on many of our clusters. Needs to be
+centrally maintained by your HPC administration team.</li>
+<li>
+<a href="https://docs.linaroforge.com/25.0.4/html/forge/performance_reports/index.html" class="external-link"><em>Linaro
+Forge Performance Reports</em></a>: A commercial application providing a
+single page performance overview of your job. Your cluster may have
+licenses available.</li>
+<li>
+<em>TBD</em>: A free, open source tool/set of tools, to get a
+general performance overview of your job.</li>
+</ol><p>Performance counters and permissions, may require
 <code>--exclusive</code>, depends on system! Look at documentation /
 talk to your administrators / support.</p>
 <pre><code>cap_perfmon,cap_sys_ptrace,cap_syslog=ep
 kernel.perf_event_paranoid</code></pre>
+</div>
+</div>
+</div>
+<p>Live coding:</p>
+<ul><li>Set up the main tool. How do I access it? How can I use it with my
+job?</li>
+<li>Run snowman with 8 cores</li>
+</ul><div class="tabs">
+<nav><div id="nav-tab-1" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-1-ClusterCockpit" name="ClusterCockpit" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-ClusterCockpit" type="button" role="tab" aria-controls="nav-tabpanel-1-ClusterCockpit" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-1-ClusterCockpit">
+  ClusterCockpit
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-1-PerformanceReports" name="PerformanceReports" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-PerformanceReports" type="button" role="tab" aria-controls="nav-tabpanel-1-PerformanceReports" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-1-PerformanceReports">
+  Performance Reports
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-1-TBD" name="TBD" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-1-TBD" type="button" role="tab" aria-controls="nav-tabpanel-1-TBD" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-1-TBD">
+  TBD
+  </h3>
+</button>
+</div>
+</nav><div id="nav-tabContent-1" class="tab-content">
+<div id="nav-tabpanel-1-ClusterCockpit" class="tab-pane show active" aria-labelledby="nav-tab-1-ClusterCockpit" role="tabpanel">
+<ol style="list-style-type: decimal"><li>Setup: webpage &amp; login. An conditions on when it is enabled in
+your particular cluster?</li>
+<li>If always enabled: figure out jobid of previous 8-core job from
+Episode 4</li>
+</ol></div>
+<div id="nav-tabpanel-1-PerformanceReports" class="tab-pane" aria-labelledby="nav-tab-1-PerformanceReports" role="tabpanel">
+<ol style="list-style-type: decimal"><li>(Check for licenses?)</li>
+<li>Setup: load software modules</li>
+<li>Submit job with <code>perf-report</code>
+</li>
+</ol></div>
+<div id="nav-tabpanel-1-TBD" class="tab-pane" aria-labelledby="nav-tab-1-TBD" role="tabpanel">
+<p>N/A</p>
+</div>
+</div>
+</div>
 </section><section><h2 class="section-heading" id="general-report">General report<a class="anchor" aria-label="anchor" href="#general-report"></a></h2>
-<hr class="half-width"><ul><li>General reports show direction in which to continue
-<ul><li>Specialized tools may be necessary</li>
+<hr class="half-width"><div class="tabs">
+<nav><div id="nav-tab-2" class="nav nav-tabs" role="tablist">
+<button class="nav-link active" id="nav-tab-2-ClusterCockpit" name="ClusterCockpit" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-ClusterCockpit" type="button" role="tab" aria-controls="nav-tabpanel-2-ClusterCockpit" aria-selected="true">
+  <h3 class="tab-header" id="nav-tab-heading-2-ClusterCockpit">
+  ClusterCockpit
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-2-PerformanceReports" name="PerformanceReports" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-PerformanceReports" type="button" role="tab" aria-controls="nav-tabpanel-2-PerformanceReports" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-2-PerformanceReports">
+  Performance Reports
+  </h3>
+</button>
+<button class="nav-link" id="nav-tab-2-TBD" name="TBD" data-bs-toggle="tab" data-bs-target="#nav-tabpanel-2-TBD" type="button" role="tab" aria-controls="nav-tabpanel-2-TBD" aria-selected="false">
+  <h3 class="tab-header" id="nav-tab-heading-2-TBD">
+  TBD
+  </h3>
+</button>
+</div>
+</nav><div id="nav-tabContent-2" class="tab-content">
+<div id="nav-tabpanel-2-ClusterCockpit" class="tab-pane show active" aria-labelledby="nav-tab-2-ClusterCockpit" role="tabpanel">
+<ul><li>Job meta data</li>
+<li>Footprint</li>
+<li>Roofline plot</li>
+<li>Detailed plots</li>
+<li>Tabled statistics</li>
+</ul><ol style="list-style-type: decimal"><li>Go to webpage</li>
+<li>Navigate to the job</li>
+<li>Discuss overall info on a broad level
+<ul><li>Job meta data</li>
+<li>Footprint</li>
+<li>Roofline plot</li>
+<li>Detailed plots</li>
+<li>Tabled statistics</li>
 </ul></li>
-</ul></section><section><h2 class="section-heading" id="how-does-performance-relate-to-hardware">How Does Performance Relate to Hardware?<a class="anchor" aria-label="anchor" href="#how-does-performance-relate-to-hardware"></a></h2>
+</ol></div>
+<div id="nav-tabpanel-2-PerformanceReports" class="tab-pane" aria-labelledby="nav-tab-2-PerformanceReports" role="tabpanel">
+<ul><li>Computing</li>
+<li>Memory</li>
+<li>Communication</li>
+<li>…</li>
+</ul><ol style="list-style-type: decimal"><li>Identify result files (txt, html)</li>
+<li>Look at txt with editor</li>
+<li>Copy html to local computer &amp; open it with browser</li>
+<li>Discuss report on a broad level
+<ul><li>Computing</li>
+<li>Memory</li>
+<li>Communication</li>
+<li>…</li>
+</ul></li>
+</ol></div>
+<div id="nav-tabpanel-2-TBD" class="tab-pane" aria-labelledby="nav-tab-2-TBD" role="tabpanel">
+<p>N/A</p>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="how-does-performance-relate-to-hardware">How Does Performance Relate to Hardware?<a class="anchor" aria-label="anchor" href="#how-does-performance-relate-to-hardware"></a></h2>
 <hr class="half-width"><p>(Following this structure throughout the course, trying to understand
 the performance in these terms)</p>
 <p>Broad dimensions of performance:</p>
@@ -478,7 +605,7 @@ accelerators.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal"><li>CPU (FLOPS) and/or Parallel timeline</li>
 <li>I/O (network)</li>
@@ -492,7 +619,10 @@ accelerators.</p>
 </div>
 </div>
 </section><section><h2 class="section-heading" id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a></h2>
-<hr class="half-width"><p>Leading question: Connection to hardware is quite deep, why does it
+<hr class="half-width"><ul><li>General reports show direction in which to continue
+<ul><li>Specialized tools may be necessary to move on</li>
+</ul></li>
+</ul><p>Leading question: Connection to hardware is quite deep, why does it
 matter? -&gt; Drill deeper, e.g. on NUMA &amp; pinning</p>
 <div id="keypoints1" class="callout keypoints">
 <div class="callout-square">
@@ -573,8 +703,8 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/05_performancereports.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/05_performancereports.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-09-24",
-  "datePublished": "2025-10-28"
+  "dateModified": "2025-10-29",
+  "datePublished": "2025-10-29"
 }
 
   </script><script>

@@ -339,6 +339,18 @@
       <hr></nav><main id="main-content" class="main-content"><h1 class="schedule-heading">Summary and Schedule</h1>
       
 
+<div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>🚧 Under Construction 🚧</p>
+<p>This course is still being constructed—please be patient.</p>
+</div>
+</div>
+</div>
 <p>Outlining the course</p>
 <ul><li>Targeted audience (see learner profiles: New HPC users, Research
 Software Engineers with users on HPC systems, researchers in
@@ -409,22 +421,22 @@ meaning of collected metrics?
  4. <a href="04_scalingstudy.html">Scaling Study</a>
 </td>
 <td>
-How to decide the amount of resources for a job?<br>How does my
+How many resources should we request for a given job?<br>How does our
 application behave at different scales?
 </td>
 </tr><tr><td>
-<span class="visually-hidden">Duration: </span>00h 40m
+<span class="visually-hidden">Duration: </span>01h 40m
 </td>
 <td>
  5. <a href="05_performancereports.html">Performance Overview</a>
 </td>
 <td>
-Why are tools like <code>seff</code> and <code>sacct</code> not
-enough?<br>What steps can I take to assess a jobs performance?<br>What
-popular types of reports exist? (e.g. Roofline)
+Is it enough to look at a jobs walltime?<br>What steps can I take to
+evaluate a jobs performance?<br>What popular types of reports exist?
+(e.g. Roofline)
 </td>
 </tr><tr><td>
-<span class="visually-hidden">Duration: </span>00h 50m
+<span class="visually-hidden">Duration: </span>01h 50m
 </td>
 <td>
  6. <a href="06_pinning.html">Pinning</a>
@@ -435,7 +447,7 @@ performance?<br>How can I see, if pinning resources would
 help?<br>What requirement hints can I give to the scheduler?
 </td>
 </tr><tr><td>
-<span class="visually-hidden">Duration: </span>01h 00m
+<span class="visually-hidden">Duration: </span>02h 00m
 </td>
 <td>
  7. <a href="07_bottlenecks.html">How to identify a bottleneck?</a>
@@ -446,7 +458,7 @@ workflows to evaluate performance?<br>What are some common types of
 bottlenecks?
 </td>
 </tr><tr><td>
-<span class="visually-hidden">Duration: </span>01h 10m
+<span class="visually-hidden">Duration: </span>02h 10m
 </td>
 <td>
  8. <a href="08_accelerators.html">Performance of Accelerators</a>
@@ -456,7 +468,7 @@ What are accelerators?<br>How do they affect my jobs
 performance?<br>How can I measure accelerator utilization?
 </td>
 </tr><tr><td>
-<span class="visually-hidden">Duration: </span>01h 20m
+<span class="visually-hidden">Duration: </span>02h 20m
 </td>
 <td>
  9. <a href="09_nextsteps.html">Next Steps</a>
@@ -466,7 +478,7 @@ What are other patterns of performance bottlenecks?<br>How to evaluate
 an application in more detail?
 </td>
 </tr><tr><td>
-<span class="visually-hidden">Duration: </span>01h 30m
+<span class="visually-hidden">Duration: </span>02h 30m
 </td>
 <td>
 Finish
@@ -525,7 +537,7 @@ what happens in broad terms</li>
   ToDo: Improve prerequisites
   </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
 <div class="accordion-body">
 <p>Link to external resources in prerequisites:</p>
 <ul><li>HPC Intro</li>
@@ -558,7 +570,7 @@ mostly red</p>
   Tell learners how to get access to an HPC System
   </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
 <div class="accordion-body">
 <ul><li>Do they need to apply somewhere?</li>
 <li>Are they eligible to request access to another system?</li>
@@ -609,7 +621,7 @@ discussed in HPC introduction?)</p>
   Windows
   </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
 <ul><li>PuTTY</li>
 <li>
@@ -626,7 +638,7 @@ discussed in HPC introduction?)</p>
   MacOS
   </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
 <div class="accordion-body">
 <ul><li>
 <code>ssh</code> in Terminal.app</li>
@@ -642,7 +654,7 @@ discussed in HPC introduction?)</p>
   Linux
   </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
 <div class="accordion-body">
 <ul><li>
 <code>ssh</code> in Terminal</li>
@@ -668,7 +680,7 @@ Download the [data zip file](https://example.com/FIXME) and unzip it to your Des
   Episodes are tied together with a narrative around the example job
   </h3>
 </button>
-<div id="collapseInstructor3" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor3" aria-labelledby="headingInstructor3">
+<div id="collapseInstructor3" class="accordion-collapse collapse" aria-labelledby="headingInstructor3" data-bs-parent="#accordionInstructor3">
 <div class="accordion-body">
 <ul><li>Needs a specific example job.</li>
 <li>Gradual improvement throughout the course</li>
@@ -817,8 +829,8 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/instructor/index.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/instructor/index.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-10-28",
-  "datePublished": "2025-10-28"
+  "dateModified": "2025-10-29",
+  "datePublished": "2025-10-29"
 }
 
   </script><script>

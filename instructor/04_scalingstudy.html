@@ -118,11 +118,11 @@
   Job Efficiency
 </div>
 
-<aside class="col-md-12 lesson-progress"><div style="width: 33%" class="percentage">
-    33%
+<aside class="col-md-12 lesson-progress"><div style="width: 20%" class="percentage">
+    20%
   </div>
   <div class="progress incubator">
-    <div class="progress-bar incubator" role="progressbar" style="width: 33%" aria-valuenow="33" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
+    <div class="progress-bar incubator" role="progressbar" style="width: 20%" aria-valuenow="20" aria-label="Lesson Progress" aria-valuemin="0" aria-valuemax="100">
     </div>
   </div>
 </aside><div class="container">
@@ -243,9 +243,9 @@
 
     <div id="flush-collapsecurrent" class="accordion-collapse collapse show" aria-labelledby="flush-headingcurrent" data-bs-parent="#accordionFlushcurrent">
       <div class="accordion-body">
-        <ul><li><a href="#what-do-we-look-at">What do we look at?</a></li>
-<li><a href="#parameter-scan">Parameter Scan</a></li>
-<li><a href="#analyzing-results">Analyzing results</a></li>
+        <ul><li><a href="#what-is-scaling">What is Scaling?</a></li>
+<li><a href="#speedup-and-efficiency">Speedup and Efficiency</a></li>
+<li><a href="#if-scaling-is-limited-why-are-there-larger-hpc-systems">If scaling is limited, why are there larger HPC systems?</a></li>
 <li><a href="#summary">Summary</a></li>
         </ul></div><!--/div.accordion-body-->
     </div><!--/div.accordion-collapse-->
@@ -356,13 +356,13 @@
       </div>
       <hr></nav><main id="main-content" class="main-content"><div class="container lesson-content">
         <h1>Scaling Study</h1>
-        <p>Last updated on 2025-09-24 |
+        <p>Last updated on 2025-10-29 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/04_scalingstudy.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 
 
 
-        <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 10 minutes</p>
+        <p>Estimated time: <i aria-hidden="true" data-feather="clock"></i> 70 minutes</p>
 
         <div class="text-end">
           <button role="button" aria-pressed="false" tabindex="0" id="expand-code" class="pull-right" data-expand="Expand All Solutions " data-collapse="Collapse All Solutions "> Expand All Solutions <i aria-hidden="true" data-feather="plus"></i></button>
@@ -377,8 +377,8 @@
 <div class="card-body">
 <div class="inner">
 <h3 class="card-title">Questions</h3>
-<ul><li>How to decide the amount of resources for a job?</li>
-<li>How does my application behave at different scales?</li>
+<ul><li>How many resources should we request for a given job?</li>
+<li>How does our application behave at different scales?</li>
 </ul></div>
 </div>
 </div>
@@ -406,64 +406,12 @@
 title picture!</li>
 <li>Requesting resources with bigger systems requires a project proposal
 with an estimate of the resource demand</li>
-<li>Colleague told us that this can be answered with a scaling
-study</li>
-<li>What is it? How could we do one?</li>
 </ul><p>What we’re doing here:</p>
 <ul><li>Vary number of cores</li>
 <li>Which metrics are most useful?</li>
 <li>Define speedup</li>
 <li>Visualize results</li>
-</ul></div>
-</div>
-</div>
-</div>
-<section><h2 class="section-heading" id="what-do-we-look-at">What do we look at?<a class="anchor" aria-label="anchor" href="#what-do-we-look-at"></a></h2>
-<hr class="half-width"><ul><li>Amdahl’s vs. Gustavsons’s law / strong and weak scaling</li>
-<li>Walltime, Speedup, efficiency</li>
-</ul><div id="discussion-what-dimensions-can-we-look-at" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<span class="callout-header">Discussion</span>
-<div id="discussion-what-dimensions-can-we-look-at" class="callout-inner">
-<h3 class="callout-title">Discussion: What dimensions can we look
-at?</h3>
-<div class="callout-content">
-<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
-<div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
-  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
-</button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
-<div class="accordion-body">
-<ul><li>CPUs</li>
-<li>Nodes</li>
-<li>Workload/problem size</li>
-</ul></div>
-</div>
-</div>
-</div>
-<div id="exercise-factors-effecting-scaling" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<span class="callout-header">Discussion</span>
-<div id="exercise-factors-effecting-scaling" class="callout-inner">
-<h3 class="callout-title">Exercise: Factors effecting scaling</h3>
-<div class="callout-content">
-<ul><li>How serial portion of the code effects the scaling? (May be a
-numerical would help)</li>
-<li>If we have a infinte number of workers or processes doing a higy
-parallel code which is 99% is parallized but 1% is serial execution. The
-speedup will be 100. What is a ideal limit to the speedup.</li>
-<li>How the communication effects the scaling?</li>
-</ul></div>
-</div>
-</div>
-</div>
-</div>
-</div>
+</ul><p>ToDo:</p>
 <ul><li>Define example payload
 <ul><li>Long enough to be significant</li>
 <li>Short enough to be feasible for a quick study</li>
@@ -478,77 +426,194 @@ speedup will be 100. What is a ideal limit to the speedup.</li>
 <li>Choose limits (e.g. 1, 2, 4, … cores), within reasonable size for
 given Cluster</li>
 <li>Beyond nodes? Set to one node?</li>
-</ul></section><section><h2 class="section-heading" id="parameter-scan">Parameter Scan<a class="anchor" aria-label="anchor" href="#parameter-scan"></a></h2>
-<hr class="half-width"><ul><li>Take measurements
-<ul><li>Use <code>time</code> and repeating measurements (something like 3
-or 10)</li>
-<li>Vary scaling parameter</li>
-</ul></li>
-</ul><div id="accordionInstructor2" class="accordion instructor-note accordion-flush">
+</ul></div>
+</div>
+</div>
+</div>
+<p>Panic! The deadline is approaching way too fast and we may not finish
+our project in time. Maybe requesting more resources from our clusters
+scheduler does the trick? How could we know if it helps and by how
+much?</p>
+<section><h2 class="section-heading" id="what-is-scaling">What is Scaling?<a class="anchor" aria-label="anchor" href="#what-is-scaling"></a></h2>
+<hr class="half-width"><div id="accordionInstructor2" class="accordion instructor-note accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
-  <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> ToDo: Advanced details in pinning </h3>
+  <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Todo: show, don’t tell </h3>
 </button>
 <div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
 <div class="accordion-body">
-<p>The below excercise could be the best place to also introduce about
-mpre detailed pinning options The results of below challenge are also
-dpendent on the pinning options</p>
+
 </div>
 </div>
 </div>
 </div>
-<div id="exercise-run-the-example-with-different--n" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<span class="callout-header">Discussion</span>
-<div id="exercise-run-the-example-with-different--n" class="callout-inner">
-<h3 class="callout-title">Exercise: Run the Example with different
--n</h3>
-<div class="callout-content">
-<ul><li>1, 2, 4, 8, 16, 32, … cores and same workload</li>
-<li>Take <code>time</code> measurements (ideally multiple and with
-<code>--exclusive</code>)</li>
-</ul></div>
-</div>
-</div>
-</section><section><h2 class="section-heading" id="analyzing-results">Analyzing results<a class="anchor" aria-label="anchor" href="#analyzing-results"></a></h2>
-<hr class="half-width"><div id="exercise-plot-the-scaling" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<span class="callout-header">Discussion</span>
-<div id="exercise-plot-the-scaling" class="callout-inner">
-<h3 class="callout-title">Exercise: Plot the scaling</h3>
-<div class="callout-content">
-<ul><li>Plot it against <code>time</code>
+<p>Answer: how much does it help to add more CPU cores, if I keep the
+problem sized fixed? (Translates to: samples per pixel, number of
+pixels, same scene) Vary the number of CPU cores and look at behaviour
+with <code>time</code>, <code>seff</code>, <code>sacct</code></p>
+<ul><li>Prepare script to use <code>${SLURM_NTASKS}</code> in
+<code>mpirun -n</code> and <code>time</code>.</li>
+<li>Live coding, executing on single node (-N 1) and motivate <span class="math inline">\(2^N\)</span>:
+<ul><li>Run with 1 core as baseline (can we reuse value from before?)</li>
+<li>Run with 2 cores</li>
+<li>Run with 4 cores</li>
+<li>Run with 8 cores</li>
+<li>Run with 16 cores</li>
+</ul></li>
+<li>Compare wall times, and some <code>seff</code>, <code>sacct</code>
+metrics</li>
+<li>Use grep to quickly compare executions qualitatively</li>
+<li>See need to compare it in a clearer way</li>
+<li>List times</li>
+<li>Introduce “strong scaling”</li>
+<li>Introduce Speedup</li>
+<li>Calculate Speedup for examples above</li>
+<li>Exercise to extend executions and gather all speedups</li>
+<li>Draw speedup vs. <span class="math inline">\(N\)</span>
 </li>
-<li>Calculate speedup with respect to baseline with 1 core</li>
+<li>Observe overhead &amp; compare to perfect scaling</li>
+<li>Introduce Amdahls Law</li>
+</ul><p>Answer: Why go in steps of <span class="math inline">\(2^n\)</span>?
+Often aligns well to available resources (number of cores etc.), also a
+bit of tradition</p>
+<p>List times in csv file:</p>
+<pre class="csv"><code>time,ntasks,size
+909.241,2,1600
+462.018,4,1600
+245.603,8,1600
+124.328,16,1600</code></pre>
+<p><strong>Strong scaling</strong> is limited by parallelizable
+fraction. At some point adding more cores does not help. =&gt; Amdahls
+law. picture of serial and parallel fractions w.r.t Amdahls law.</p>
+<p>The <em>Speedup</em> metric is often used to compare the execution
+with different amounts of resources. Speedup answers the question</p>
+<blockquote>
+<p>How much faster is the application with <span class="math inline">\(N\)</span> parallel processes/threads, compared to
+the serial execution with <span class="math inline">\(1\)</span>
+process/threads?</p>
+</blockquote>
+<p>It’s defined through the comparison of wall times <span class="math inline">\(T(p)\)</span> of the application with <span class="math inline">\(p\)</span> parallel processes: <span class="math display">\[S = \frac{T(1)}{T(N)}\]</span> Here, <span class="math inline">\(T(1)\)</span> is the wall time for a sequential
+execution, and <span class="math inline">\(T(N)\)</span> is the
+execution with <span class="math inline">\(N\)</span> parallel
+processes.</p>
+<p>Plot results (Black board, prepared python script, piece of
+paper?)</p>
+<p>Additionally, adding more CPU cores can actively slow down the
+process. Each process introduces some communication overhead. Between
+processes, and if it is distributed among multiple servers/worker nodes,
+also between processes through the network.</p>
+<div id="exercise-continue-scaling-study" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div id="exercise-continue-scaling-study" class="callout-inner">
+<h3 class="callout-title">Exercise: Continue scaling study</h3>
+<div class="callout-content">
+<ul><li>Continue with 32, 64, and 128 cores</li>
+<li>Go beyond single node, use all cores of two nodes</li>
+<li>Take <code>time</code> measurements (maybe: ideally multiple and
+with <code>--exclusive</code>)</li>
+<li>Prepare a list of results in a csv with the format (what’s ntasks,
+what’s size?):</li>
+</ul><p>Questions:</p>
+<ul><li>Can we “see” the network between both nodes?</li>
+<li>Is there a slow down already?</li>
+<li>What does it tell about the parallelization of the application?</li>
+</ul><p>Some points may be:</p>
+<ul><li>How serial portion of the code effects the scaling?</li>
+<li>If we have a infinite number of workers or processes doing a highly
+parallel code which is 99% is parallelized but 1% is serial execution.
+The speedup will be 100. What is the ideal limit to speedup?</li>
+<li>How the communication affects the scaling?</li>
 </ul></div>
 </div>
 </div>
-<ul><li>What’s a good working point? How</li>
-<li>Overhead</li>
-<li>Efficiency: not wasting cores if adding them doesn’t do much</li>
-</ul></section><section><h2 class="section-heading" id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a></h2>
-<hr class="half-width"><p>What’s a good working point for our example (at a given
-workload)?</p>
-<div id="accordionInstructor3" class="accordion instructor-note accordion-flush">
+</section><section><h2 class="section-heading" id="speedup-and-efficiency">Speedup and Efficiency<a class="anchor" aria-label="anchor" href="#speedup-and-efficiency"></a></h2>
+<hr class="half-width"><p>Different representation of the info above. Answers: how much does it
+help to add more cores?</p>
+<p>Define efficiency w.r.t speedup.</p>
+<div id="exercise-speedup-and-efficiency" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div id="exercise-speedup-and-efficiency" class="callout-inner">
+<h3 class="callout-title">Exercise: Speedup and Efficiency</h3>
+<div class="callout-content">
+<p>Plot efficiency and make a guess when adding more cores is not worth
+it.</p>
+</div>
+</div>
+</div>
+<div id="discussion-when-should-we-stop-adding-cpu-cores" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div id="discussion-when-should-we-stop-adding-cpu-cores" class="callout-inner">
+<h3 class="callout-title">Discussion: When should we stop adding CPU
+cores?</h3>
+<div class="callout-content">
+<p>Discuss the previous (potentially subjective) results and decide on a
+good approach in the group.</p>
+<p>Depends on X, Y, and Z. Could be around #N cores. It’s an
+optimization problem!</p>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="if-scaling-is-limited-why-are-there-larger-hpc-systems">If scaling is limited, why are there larger HPC systems?<a class="anchor" aria-label="anchor" href="#if-scaling-is-limited-why-are-there-larger-hpc-systems"></a></h2>
+<hr class="half-width"><p>What if the project benefits from increasing the problem size:</p>
+<ul><li>More detail/resolution may lead to more accurate result.</li>
+<li>More repetitions may improve statistics</li>
+</ul><p>Scaling up the problem size, while also scaling up the compute
+resources (CPU cores) is called weak scaling.</p>
+<p>=&gt; Gustafsons Law</p>
+<div id="exercise-weak-scaling" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div id="exercise-weak-scaling" class="callout-inner">
+<h3 class="callout-title">Exercise: Weak scaling</h3>
+<div class="callout-content">
+<ul><li>Run with 1, 2, 4, 8, 16, 32, 64 on single node</li>
+<li>Increase problem size at the same time by same fraction
+(e.g. 800x800 pixels on 1 core, 1131x1131 on 2 cores, 1600x1600 on 4,
+<span class="math inline">\(\sqrt{640000 \times N}\)</span> on <span class="math inline">\(N\)</span> cores)</li>
+<li>Take <code>time</code> measurements (maybe: ideally multiple and
+with <code>--exclusive</code>)</li>
+</ul><p>How does it scale now? Would we benefit from increasing the problem
+size in this case?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor3" aria-expanded="false" aria-controls="collapseInstructor3">
-  <h3 class="accordion-header" id="headingInstructor3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> ToDo </h3>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseInstructor3" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor3" aria-labelledby="headingInstructor3">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
-<p>Note on compute time application that need estimate of required
-compute resources and touch on scaling behavior here? Could be important
-for one type of learner, if this is given in a context like HPC.NRW.
-Optional for many others, but maybe interesting.</p>
+<p>Maybe not, if picture is good enough</p>
 </div>
 </div>
 </div>
 </div>
+</section><section><h2 class="section-heading" id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a></h2>
+<hr class="half-width"><p>What is scaling? What’s a good working point for our example (at a
+given workload)?</p>
+<p>What’s a good working point? When is a overhead setting in? Not the
+same for all kinds of applications!</p>
+<p>Requests for computational time (project proposals) may require
+scaling study.</p>
+<p>Recollect scaling study: compared change of wall time with number of
+cores and computational workload. We can look at any parameter this way
+and study the impact on walltime, CPU utilization, FLOPS, memory
+utilization, communication, output size on disk with respect to any
+parameter of our job or our application.</p>
+<p><a href="https://carpentries-incubator.github.io/hpc-workflows-jube/" class="external-link">Reproducible
+HPC workflows using JUBE</a></p>
 <p>Leading question: <code>time</code> and scheduler tools still don’t
 provide a complete picture, what other ways are there? -&gt; Introduce
 third party tools to get a good performance overview</p>
@@ -560,11 +625,14 @@ third party tools to get a good performance overview</p>
 <div class="callout-inner">
 <div class="callout-content">
 <ul><li>Jobs behave differently with varying resources and workloads</li>
-<li>Scaling study is necessary to proof a certain behavior of the
-application</li>
+<li>Scaling study is necessary to check behavior of the application</li>
 <li>Good working points defined by sections where more cores still
 provide sufficient speedup, but no costs due to overhead etc.
 occurs</li>
+<li>Amdahl’s law: speedup is limited by serial fraction of the
+program</li>
+<li>Gustafson’s law: more resources still help, if larger workloads can
+be used</li>
 </ul></div>
 </div>
 </div>
@@ -630,8 +698,8 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/instructor/04_scalingstudy.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/instructor/04_scalingstudy.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-09-24",
-  "datePublished": "2025-10-28"
+  "dateModified": "2025-10-29",
+  "datePublished": "2025-10-29"
 }
 
   </script><script>
