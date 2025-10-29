@@ -6,8 +6,8 @@ exercises: 0
 
 :::::::::::::::::::::::::::::::::::::: questions 
 
-- Why are tools like `seff` and `sacct` not enough?
-- What steps can I take to assess a jobs performance?
+- Is it enough to look at a jobs walltime?
+- What steps can I take to evaluate a jobs performance?
 - What popular types of reports exist? (e.g. Roofline)
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
@@ -48,19 +48,97 @@ What we're doing here:
 
 
 ## Workflow
-- Define sampling and tracing
-- Describe common approaches
 
-## Tools
+- Previously checked scaling behavior by looking at walltime
+- what if we would count other things while our job is running? Could be
+   - CPU utilization
+   - FLOPS
+   - Memory uitilization
+   - ...
+- Two possible ways to look at this data with respect to time:
+   1. *tracing*: over time
+   2. *sampling*: accumulated results at the end
+- Third-party tools to measure these things - you can use them with your jobs
+
+:::::::::::::::::::::::::: instructor
+## Pick a main tool
+
+We go with three alternatives here, pick one an stick to it throughout your course, but highlight that there are alternatives and learners may not have access to certain tools on any cluster.
+
+:::::::::::::::::::::::::::::::::::::
+
+
+::: callout
+
+Here you can choose between three alternative perspectives on our job:
+
+1. [*ClusterCockpit*](https://clustercockpit.org/): A job monitoring service available on many of our clusters. Needs to be centrally maintained by your HPC administration team.
+1. [*Linaro Forge Performance Reports*](https://docs.linaroforge.com/25.0.4/html/forge/performance_reports/index.html): A commercial application providing a single page performance overview of your job. Your cluster may have licenses available.
+1. *TBD*: A free, open source tool/set of tools, to get a general performance overview of your job.
+
 Performance counters and permissions, may require `--exclusive`, depends on system! Look at documentation / talk to your administrators / support.
 ```
 cap_perfmon,cap_sys_ptrace,cap_syslog=ep
 kernel.perf_event_paranoid
 ```
 
+:::
+
+Live coding:
+
+- Set up the main tool. How do I access it? How can I use it with my job?
+- Run snowman with 8 cores
+
+::: group-tab
+
+### ClusterCockpit
+
+1. Setup: webpage & login. An conditions on when it is enabled in your particular cluster?
+2. If always enabled: figure out jobid of previous 8-core job from Episode 4
+
+### Performance Reports
+
+1. (Check for licenses?)
+2. Setup: load software modules
+3. Submit job with `perf-report`
+
+### TBD
+
+N/A
+
+:::
+
 ## General report
-- General reports show direction in which to continue
-   - Specialized tools may be necessary
+
+::: group-tab
+
+### ClusterCockpit
+
+1. Go to webpage
+2. Navigate to the job
+3. Discuss overall info on a broad level
+   - Job meta data
+   - Footprint
+   - Roofline plot
+   - Detailed plots
+   - Tabled statistics
+
+### Performance Reports
+
+1. Identify result files (txt, html)
+2. Look at txt with editor
+3. Copy html to local computer & open it with browser
+4. Discuss report on a broad level
+   - Computing
+   - Memory
+   - Communication
+   - ...
+
+### TBD
+
+N/A
+
+:::
 
 
 ## How Does Performance Relate to Hardware?
@@ -143,6 +221,9 @@ Maybe not the best questions, also missing something for accelerators.
 
 
 ## Summary
+
+- General reports show direction in which to continue
+   - Specialized tools may be necessary to move on
 
 :::::::::::::::::::::::::: challenge
 ## Exercise:

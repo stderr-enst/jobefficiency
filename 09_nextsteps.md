@@ -24,6 +24,10 @@ After completing this episode, participants should be able to …
 :::::::::::::::::::::::::: instructor
 ## Intention: Provide a roadmap learners could follow
 
+**Most important:** enable users to translate from example workload to their own code! Guide on how to translate learning goals and key points to their situation. Additionally, provide some info on where and how to dig deeper, if there is interest (application profiling, etc.)
+
+All ideas in this episode may need to be reworked, since they were made with the outlook in mind, not so much to help learners transfer insight
+
 Narrative:
 
 - Start with picture of beautiful title slide of the talk with the snowman picture
