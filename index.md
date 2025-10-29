@@ -2,6 +2,13 @@
 site: sandpaper::sandpaper_site
 ---
 
+:::::: callout
+🚧 Under Construction 🚧
+
+This course is still being constructed---please be patient.
+
+::::::::::::::::::
+
 Outlining the course
 
 - Targeted audience (see learner profiles: New HPC users, Research Software Engineers with users on HPC systems, researchers in HPC.NRW)
