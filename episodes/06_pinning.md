@@ -127,6 +127,8 @@ Explanation:
 ## How to achieve?
 ## Exercise: Understanding Process and Thread Binding
 
+Pinning (or binding) means locking a process or thread to a specific hardware resource such as a CPU core, socket, or NUMA region. Without pinning, the operating system may move tasks between cores, which can reduce cache reuse and increase memory latency, directly diminishes performance.
+
 In this exercise we will explore how MPI process and thread binding works. We will try binding to **core**, **socket**, and **numa**, and observe timings and bindings.
 
 :::::::::::::::::::::::::: instructor
@@ -167,7 +169,6 @@ Questions:
 
 **Binding* is locking your MPI processes/threads to a specific resource which prevents from moving it around from one to another.
 
-:::::::::::::::::::::::::: instructor
 ## Mapping vs. Binding Analogy
 
 Think of running MPI processes and threads like booking seats for a group of friends:
@@ -181,7 +182,6 @@ Think of running MPI processes and threads like booking seats for a group of fri
   - Similarly, `--bind-to` pins each MPI process or thread to a specific core or hardware unit to avoid movement.
 
 This analogy helps illustrate why **mapping defines placement** and **binding enforces it**.
-:::::::::::::::::::::::::::::::::::::
 
 We will use `--bind-to core` (the smallest hardware unit) and `--map-by` to distribute MPI processes across sockets or NUMA or node regions efficiently.
 
@@ -206,7 +206,7 @@ Binding processes to the smallest unit (core) is recommended because:
 
 :::::::::::::::::::::::::: challenge
 ## Exercise
-Use the given best practices above for  `-n 8` and `-threads=1/4`  and answer following questions
+Use the given best practices above for case 1: `-n 8`, `-threads=1` and case 2: `-n 8`, `-threads=4` and answer following questions
 
 Questions:
 - How many cores does the both jobs use?
