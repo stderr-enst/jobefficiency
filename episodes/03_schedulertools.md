@@ -38,6 +38,12 @@ What we're doing here:
 - Introduce simple relation to hardware, what does RSS, CPU, Disk read/write and their utilization mean?
 - Point out what's missing from a complete picture
 
+Note:
+
+- `seff` is an optional SLURM tool. It does not come standard with every
+  SLURM installation. Therefore, make sure beforehand that this tool is
+  available for the students.
+
 :::::::::::::::::::::::::::::::::::::
 
 
@@ -56,14 +62,25 @@ to select which job it displays information about. That means we need
 to run a job first to get a job identifier we can query SLURM about.
 Then we can ask about the efficiency of the job.
 
-```bash
-cat > render_snowman.sbatch << _EOF
+The `sbatch` command is used to submit a job. It takes a job script as
+an argument. The job script contains the resource requests, such as the
+amount of time needed for the calculation, the number of nodes, the
+number of tasks per node, and so on. It also contains the commands to
+execute the calculations.
+
+Using your favorite editor, create the job script `render_snowman.sbatch`
+with the contents below.
+```input
 #!/usr/bin/bash
 #SBATCH --time=01:00:00
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=4
 mpirun -np 4 snowman 800 3
-_EOF
+```
+Next submit the job with `sbatch`, and see what `seff` says about
+the job with the following commands.
+
+```bash
 jobid=$(sbatch --parsable render_snowman.sbatch)
 seff $jobid
 ```
@@ -98,7 +115,8 @@ from `seff` shows basic statistics about the job, such as
   * `Memory Utilized` the aggregate memory usage
   * `Memory Efficiency` the actual memory usage as a percentage of the total avaialable memory
 
-Clearly this job took a lot less time
+Looking at the `Job Wall-clock time` it shows that the job took just under 2
+minutes. Therefore this job took a lot less time
 than the one hour we asked for. This can be problematic as the scheduler looks
 for time windows when it can fit a job in. Long running jobs cannot be squeezed
 in as easily as short running jobs. As a result, jobs that request a long time
@@ -113,21 +131,22 @@ the job needs, but not go overboard here. As the job elapse time depends on
 many machine conditions, including congestion in the data communication, disk
 access, operating system jitter, and so on, you might want to ask for a
 substantial buffer. Nevertheless, asking for more than twice as much time as
-job is expected to need is clearly senseless.
+job is expected to need is usually doesn't make sense.
 
 Another thing is that SLURM by default reserves a certain amount of memory per
 core. In this case the actual memory usage is just a fraction of that amount.
-We could reduce the memory allocation by explicitly asking for less.
-
-```bash
-cat > render_snowman.sbatch << _EOF
+We could reduce the memory allocation by explicitly asking for less, as shown
+below, by modifying the `render_snowman.sbatch` job script.
+```input
 #!/usr/bin/bash
 #SBATCH --time=01:00:00
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=4
 #SBATCH --mem=100MB
 mpirun -np 4 snowman 800 3
-_EOF
+```
+
+```bash
 jobid=$(sbatch --parsable render_snowman.sbatch)
 seff $jobid
 ```
@@ -171,6 +190,18 @@ keeping these limitations of `seff` in mind.
 
 The `seff` command cannot give you any information about the I/O performance of
 your job. You have to use the `sacct` command for that.
+
+::::::::::::::::Instructor
+Note that the information `sacct` can provide depends on the information
+that SLURM stores on a given machine. By default this includes Billing, CPU,
+Energy, Memory, Node, FS/Disk, Pages and VMem. Additional information is
+available only when SLURM is configured to collect it. These additional
+trackable resources are listed in `AccountingStorageTRES`. For I/O
+`fs/lustre` is commonly useful, and for the interconnect communication
+`ic/ofed` is required. The setting `AccountingStorageTRES` is found in
+`slurm.conf`. Unfortunately there doesn't seem to be a way to get `sacct`
+to print the optional trackable resources.
+::::::::::::::::::::::::::
 
 The `sacct` command shows data stored in the job accounting database. You can
 query the data of any of your previously run jobs. Just like with `seff` you
@@ -245,8 +276,10 @@ JobID           JobName  Partition    Account  AllocCPUS      State ExitCode
 310002.exte+     extern             project_a          4  COMPLETED      0:0
 ```
 
-Clearly this does not provide any information beyond what we already could
-extract. To get more specific data we need to explicitly ask for the information
+Using `sacct` with the `--jobs` flag is just another way to select which jobs
+we want more information about. In itself it does not provide any additional
+information.
+To get more specific data we need to explicitly ask for the information
 we want. As SLURM collects a broad range of data about every job it is worth
 to evaluate what the most relevant items are.
 
