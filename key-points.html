@@ -468,7 +468,21 @@ behavior</li>
 </ul></section><section id="06_pinning"><h2 class="section-heading"><a href="06_pinning.html">Pinning</a></h2>
 <hr class="half-width">
 <ul>
-<li>C</li>
+<li><p><strong>Always check how pinning works</strong><br>
+Use verbose reporting (e.g., <code>--report-bindings</code>) to see how
+MPI processes and threads are mapped to cores and sockets.</p></li>
+<li><p><strong>Documentation is your friend</strong><br>
+For OpenMPI with <code>mpirun</code>, consult the manual: <a href="https://www.open-mpi.org/doc/v4.1/man1/mpirun.1.php" class="external-link">https://www.open-mpi.org/doc/v4.1/man1/mpirun.1.php</a></p></li>
+<li><p><strong>Know your hardware</strong><br>
+Understanding the number of sockets, cores per socket, and NUMA regions
+on your cluster helps you make effective binding decisions.</p></li>
+<li><p><strong>Avoid oversubscription</strong><br>
+Assigning more threads or processes than available cores hurts
+performance — it causes contention and idle waits.</p></li>
+<li><p><strong>Recommended practice for OpenMPI</strong><br>
+Use <code>--bind-to core</code> along with <code>--map-by</code> to
+control placement and threads per process to maximize
+throughput.</p></li>
 </ul></section><section id="07_bottlenecks"><h2 class="section-heading"><a href="07_bottlenecks.html">How to identify a bottleneck?</a></h2>
 <hr class="half-width">
 <ul>
@@ -550,8 +564,8 @@ vendor-related, …</li>
   "url": "https://stderr-enst.github.io/jobefficiency/key-points.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/key-points.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-10-29",
-  "datePublished": "2025-10-29"
+  "dateModified": "2025-10-31",
+  "datePublished": "2025-10-31"
 }
 
   </script><script>

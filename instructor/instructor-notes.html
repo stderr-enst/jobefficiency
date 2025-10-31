@@ -635,6 +635,42 @@ reports and their perspective on hardware</p>
 simulator</a> and have similar diagrams as an independent “offline”
 version in this course</p>
 <hr>
+<br><h3 id="06_pinning-headingInstructor3">
+<a href="06_pinning.html#headingInstructor3">Note: Login to the compute job</a><a class="anchor" aria-label="anchor" href="#06_pinning-headingInstructor3"></a>
+</h3>
+<p>This is cluster specific. It can possibly be done in two ways: 1.
+<code>srun --pty --overlap --jobid=&lt;jobid&gt; /bin/bash</code> 2.
+Check on which node job runs and login to the node via SSH</p>
+<hr>
+<br><h3 id="06_pinning-headingInstructor4">
+<a href="06_pinning.html#headingInstructor4">TODO: Show an animation</a><a class="anchor" aria-label="anchor" href="#06_pinning-headingInstructor4"></a>
+</h3>
+<ul>
+<li>current behavior with overlapping threads on the same core.</li>
+<li>Expected behavior when threads are pinned to separate cores.</li>
+</ul>
+<hr>
+<br><h3 id="06_pinning-headingInstructor5">
+<a href="06_pinning.html#headingInstructor5">Note</a><a class="anchor" aria-label="anchor" href="#06_pinning-headingInstructor5"></a>
+</h3>
+<ul>
+<li>This exercise assumes the following hardware setup:
+<ul>
+<li>Dual-socket system (2 sockets, 48 cores per socket, 8 NUMA regions,
+96 cores total).<br>
+</li>
+<li>Each MPI process can use multiple threads (<code>-threads</code>)
+for parallel execution.</li>
+</ul>
+</li>
+<li>The idea is to <strong>demonstrate oversubscription</strong> by
+giving more MPI processes than available sockets or NUMA regions, or by
+over-allocating threads per domain.<br>
+</li>
+<li>You are free to adjust <code>-n</code> and <code>-threads</code>
+based on your cluster.</li>
+</ul>
+<hr>
 <br></section><section id="07_bottlenecks"><h2 class="section-heading"><a href="07_bottlenecks.html">How to identify a bottleneck?</a></h2>
 <hr class="half-width">
 <h3 id="07_bottlenecks-headingInstructor1">
@@ -769,8 +805,8 @@ many levels)</li>
   "url": "https://stderr-enst.github.io/jobefficiency/instructor/instructor-notes.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/instructor/instructor-notes.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-10-29",
-  "datePublished": "2025-10-29"
+  "dateModified": "2025-10-31",
+  "datePublished": "2025-10-31"
 }
 
   </script><script>
