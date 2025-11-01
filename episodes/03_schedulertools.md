@@ -56,6 +56,8 @@ a history of jobs that have been run and how they behaved. The information
 that is collected can be queried by the job owner to learn about how
 the job utilized the resources it was given.
 
+### The `seff` tool
+
 The `seff` command can be used to learn about how efficiently your job
 has run. The `seff` command takes the job identifier as an argument
 to select which job it displays information about. That means we need
@@ -131,12 +133,27 @@ the job needs, but not go overboard here. As the job elapse time depends on
 many machine conditions, including congestion in the data communication, disk
 access, operating system jitter, and so on, you might want to ask for a
 substantial buffer. Nevertheless, asking for more than twice as much time as
-job is expected to need is usually doesn't make sense.
+job is expected to need, usually doesn't make sense.
 
 Another thing is that SLURM by default reserves a certain amount of memory per
 core. In this case the actual memory usage is just a fraction of that amount.
-We could reduce the memory allocation by explicitly asking for less, as shown
-below, by modifying the `render_snowman.sbatch` job script.
+We could reduce the memory allocation by explicitly asking for less
+by modifying the `render_snowman.sbatch` job script.
+
+:::::::::::::::::::: challenge
+
+Edit the batch file to reduce the amount of memory requested for the
+job. Note that the amount of memory per node can be requested with the
+`--mem=` argument. The amount of memory is specified by a number followed by
+a unit. The units can represent kilobtytes (KB), megabytes (MB),
+gigabytes (GB). For the calculations we are doing here 100 megabytes per
+node is more than sufficient. Submit the job, and inspect the efficiency
+with `seff`. What is the memory usage efficiency you get?
+
+:::::::: solution
+
+The batch file after adding the memory request becomes.
+
 ```input
 #!/usr/bin/bash
 #SBATCH --time=01:00:00
@@ -145,6 +162,8 @@ below, by modifying the `render_snowman.sbatch` job script.
 #SBATCH --mem=100MB
 mpirun -np 4 snowman 800 3
 ```
+
+Submit this jobscript, as before, with the following command.
 
 ```bash
 jobid=$(sbatch --parsable render_snowman.sbatch)
@@ -164,6 +183,13 @@ Job Wall-clock time: 00:01:58
 Memory Utilized: 50.35 MB
 Memory Efficiency: 50.35% of 100.00 MB (100.00 MB/node)
 ```
+
+The output of `seff` shows that about 50% of requested memory
+was used.
+
+::::::::::::::::::::::::::
+
+:::::::::::::::::::::::::::::::
 
 Now we see that a much larger fraction of the allocated memory has been
 used. Normally you would not worry too much about the memory request. Lately
@@ -190,6 +216,8 @@ keeping these limitations of `seff` in mind.
 
 The `seff` command cannot give you any information about the I/O performance of
 your job. You have to use the `sacct` command for that.
+
+### The `sacct` tool
 
 ::::::::::::::::Instructor
 Note that the information `sacct` can provide depends on the information
@@ -227,6 +255,12 @@ JobID           JobName  Partition    Account  AllocCPUS      State ExitCode
 310002.exte+     extern             project_a          4  COMPLETED      0:0
 ```
 
+In the output every job is shown three times here. This is because `sacct`
+lists one line for the primary job entry, followed by a line for every job
+step. A job step corresponds to an `mpirun` or `srun` command. The `extern`
+line corresponds to all work that is done outside of SLURM's control,
+for example an `ssh` command that runs something somewhere else.
+
 Note that by default `sacct` only lists the jobs that have been run today. You
 can use the `--starttime` option to list all jobs that have been run since
 the given start date. For example, try running
@@ -260,6 +294,9 @@ JobID           JobName  Partition    Account  AllocCPUS      State ExitCode
 310002.batch      batch             project_a          4  COMPLETED      0:0
 310002.exte+     extern             project_a          4  COMPLETED      0:0
 ```
+
+You may want to change the date of `2025-09-25` to something more sensible
+when you work through this tutorial.
 
 With the job ID you can ask `sacct` for information about a specific job
 as in
@@ -312,15 +349,40 @@ to evaluate what the most relevant items are.
 - `MaxDiskWrite`, the Maximum amount of data written to disk.
 - `ConsumedEnergy`, the amount of energy consumed by the job if that information  was collected. If that data is not collected the energy consumption will be
   reported as 0.
-- `AveCPUFreq`, the average CPU frequency of all tasks in a job. In general the
+- `AveCPUFreq`, the average CPU frequency of all tasks in a job, given in kHz. In general the
   higher the clock frequency of the processor the faster the calculation runs.
   The exception is if the application is memory bandwidth limited and the data
   cannot be moved to processor fast enough to keep it busy. In that case
   modern hardware might throttle the frequency. This saves energy as the power
-  consumption scales linearly with the clock frequency.
+  consumption scales linearly with the clock frequency, but doesn't slow
+  the calculation down as the processor was having to wait for data anyway.
 
-We can explicitly select the data elements that we are interested in. To select
-all of the above variables run
+We can explicitly select the data elements that we are interested in. To
+see how long the job took to complete run
+
+```bash
+sacct --jobs=310002 --format=Elapsed
+```
+
+```output
+   Elapsed
+----------
+  00:01:58
+  00:01:58
+  00:01:58
+```
+
+::::::::::::::::::: challenge
+
+Request information regarding all of the above variables from `sacct`.
+Note that the `--format` flag takes a comma separated list. Note that
+the result shows that more data is read than written, even though
+the program generates and write an image, and reads no data at all.
+Why would that be?
+
+::::::::: solution
+
+To query all of the above variable run
 
 ```bash
 sacct --jobs=310002 --format=MaxRSS,AveRSS,MaxPages,AvePages,AllocCPUS,Elapsed,MaxDiskRead,MaxDiskWrite,ConsumedEnergy,AveCPUFreq
@@ -334,6 +396,19 @@ sacct --jobs=310002 --format=MaxRSS,AveRSS,MaxPages,AvePages,AllocCPUS,Elapsed,M
          0          0        0          0          4   00:01:58        0.01M        0.00M              0         3M
 ```
 
+Note that although the program we have run generates an image and writes that
+to a file, there is also a none zero amount of data read. The writing part
+is associated with the image file the program writes. The reading part is
+not associated with anything that the program does, as it doesn't read
+anything from disk. It is instead associated with the fact that the operating
+system has to read the program itself to execute it.
+
+:::::::::
+
+:::::::::::::
+
+## Shortcomings
+
 While `sacct` provides a lot of information it is clearly incomplete. For
 example, the information is for the entire calculation. Variations in the
 metrics as a function of time throughout the job are not available.
@@ -343,17 +418,120 @@ at the HPC center and might not be available. So while we might be able to
 glean some indications for different types of performance problems, for a
 proper analysis more detailed information is needed.
 
+## Summary
 
-## Shortcomings
-- Not enough info about e.g. I/O, no timeline of metrics during job execution, ...
-   - I/O may be available, but likely only for local disks
-   - => no parallel FS
-   - => no network
-- Energy demand may be missing or wrong
-   - Depends on available features
-   - Doesn't estimate energy for network switches, cooling, etc.
-- => trying other tools! (motivation for subsequent episodes)
+This episode introduced the SLURM tools `seff` and `sacct` to get a high
+level perspective on a job's performance. As these tools just use the statistics
+that SLURM collected on a job as it ran, they can always be used without
+any special preparation.
 
+::::::::::::::::::::::: challenge
+
+So far we have just considered our initial calculation using 4 cores.
+To run the calculation faster we could consider using more cores.
+Run the same calculation on 8, 16, 32 and 64 cores as well. Collect
+and compare the results from `sacct` and see how the job performance
+changes.
+
+::::::: solution
+
+The machine these calculations have been run on has 112 core
+per node. So we can double the number of cores from 4 until
+64 and stay within one node. If we go to two nodes then some
+of the communication between tasks will have to go across the
+interconnect. At that point the performance characteristics
+might change in a discontinuous manner. Hence we try to
+avoid doing that.
+
+Alternatively you might scale the calculation across multiple
+nodes, for example 2, 4, 8, 16 nodes. With 112 cores per node
+you would have to make sure that the calculation is large enough
+for such a large number of cores to make sense.
+
+Create `render_snowman.04.sbatch` with
+
+```input
+#!/usr/bin/bash
+#SBATCH --time=00:05:00
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=4
+#SBATCH --mem=100MB
+mpirun -np 4 snowman 800 3
+```
+
+Create `render_snowman.08.sbatch` with
+
+```input
+#!/usr/bin/bash
+#SBATCH --time=00:05:00
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=8
+#SBATCH --mem=100MB
+mpirun -np 8 snowman 800 3
+```
+
+Create `render_snowman.16.sbatch` with
+
+```input
+#!/usr/bin/bash
+#SBATCH --time=00:05:00
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=16
+#SBATCH --mem=100MB
+mpirun -np 16 snowman 800 3
+```
+
+Create `render_snowman.32.sbatch` with
+
+```input
+#!/usr/bin/bash
+#SBATCH --time=00:05:00
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=32
+#SBATCH --mem=100MB
+mpirun -np 32 snowman 800 3
+```
+
+Create `render_snowman.64.sbatch` with
+
+```input
+#!/usr/bin/bash
+#SBATCH --time=00:05:00
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=64
+#SBATCH --mem=100MB
+mpirun -np 64 snowman 800 3
+```
+
+Next we submit this whole set of calculations
+
+```bash
+jobid04=$(sbatch --parsable render_snowman.04.sbatch)
+jobid08=$(sbatch --parsable render_snowman.08.sbatch)
+jobid16=$(sbatch --parsable render_snowman.16.sbatch)
+jobid32=$(sbatch --parsable render_snowman.32.sbatch)
+jobid64=$(sbatch --parsable render_snowman.64.sbatch)
+```
+
+After the jobs are completed we can run
+
+```bash
+seff $jobid04
+seff $jobid08
+seff $jobid16
+seff $jobid32
+seff $jobid64
+```
+
+and
+
+```bash
+sacct --jobs=$jobid04,$jobid08,$jobid16,$jobid32,$jobid64 \
+      --format=MaxRSS,AveRSS,MaxPages,AvePages,AllocCPUS,Elapsed,MaxDiskRead,MaxDiskWrite,ConsumedEnergy,AveCPUFreq
+```
+:::::::
+
+:::::::::::::::::::::::
 
 :::::::::::::::::::::::::: instructor
 ## ToDo
