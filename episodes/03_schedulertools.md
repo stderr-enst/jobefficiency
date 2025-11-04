@@ -77,7 +77,7 @@ with the contents below.
 #SBATCH --time=01:00:00
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=4
-mpirun -np 4 snowman 800 3
+mpirun -np 4 raytracer -width=800 -heigt=800 -spp=128 -alloc_mode=3
 ```
 Next submit the job with `sbatch`, and see what `seff` says about
 the job with the following commands.
@@ -160,7 +160,7 @@ The batch file after adding the memory request becomes.
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=4
 #SBATCH --mem=100MB
-mpirun -np 4 snowman 800 3
+mpirun -np 4 raytracer -width=800 -height=800 -spp=128 -alloc_mode=3
 ```
 
 Submit this jobscript, as before, with the following command.
@@ -219,7 +219,7 @@ your job. You have to use the `sacct` command for that.
 
 ### The `sacct` tool
 
-::::::::::::::::Instructor
+:::::::::::::::: instructor
 Note that the information `sacct` can provide depends on the information
 that SLURM stores on a given machine. By default this includes Billing, CPU,
 Energy, Memory, Node, FS/Disk, Pages and VMem. Additional information is
@@ -409,7 +409,7 @@ system has to read the program itself to execute it.
 
 ## Shortcomings
 
-While `sacct` provides a lot of information it is clearly incomplete. For
+While `sacct` provides a lot of information it is still incomplete. For
 example, the information is for the entire calculation. Variations in the
 metrics as a function of time throughout the job are not available.
 Communication between different MPI processes is not recorded. The collection
@@ -429,7 +429,7 @@ any special preparation.
 
 So far we have just considered our initial calculation using 4 cores.
 To run the calculation faster we could consider using more cores.
-Run the same calculation on 8, 16, 32 and 64 cores as well. Collect
+Run the same calculation on 8, 16, and 32 cores as well. Collect
 and compare the results from `sacct` and see how the job performance
 changes.
 
@@ -448,87 +448,80 @@ nodes, for example 2, 4, 8, 16 nodes. With 112 cores per node
 you would have to make sure that the calculation is large enough
 for such a large number of cores to make sense.
 
-Create `render_snowman.04.sbatch` with
+Create `running_snowmen.sh` with
 
 ```input
 #!/usr/bin/bash
-#SBATCH --time=00:05:00
-#SBATCH --nodes=1
-#SBATCH --tasks-per-node=4
-#SBATCH --mem=100MB
-mpirun -np 4 snowman 800 3
+for nn in 4 8 16 32; do
+    id=`sbatch --parsable --time=00:12:00 --nodes=1 --tasks-per-node=$nn --ntasks-per-core=1 render_snowman.sh`
+    echo "ntasks $nn jobid $id"
+done
 ```
 
-Create `render_snowman.08.sbatch` with
+Create `render_snowman.sh` with
 
 ```input
 #!/usr/bin/bash
-#SBATCH --time=00:05:00
-#SBATCH --nodes=1
-#SBATCH --tasks-per-node=8
-#SBATCH --mem=100MB
-mpirun -np 8 snowman 800 3
-```
-
-Create `render_snowman.16.sbatch` with
-
-```input
-#!/usr/bin/bash
-#SBATCH --time=00:05:00
-#SBATCH --nodes=1
-#SBATCH --tasks-per-node=16
-#SBATCH --mem=100MB
-mpirun -np 16 snowman 800 3
-```
-
-Create `render_snowman.32.sbatch` with
-
-```input
-#!/usr/bin/bash
-#SBATCH --time=00:05:00
-#SBATCH --nodes=1
-#SBATCH --tasks-per-node=32
-#SBATCH --mem=100MB
-mpirun -np 32 snowman 800 3
-```
-
-Create `render_snowman.64.sbatch` with
-
-```input
-#!/usr/bin/bash
-#SBATCH --time=00:05:00
-#SBATCH --nodes=1
-#SBATCH --tasks-per-node=64
-#SBATCH --mem=100MB
-mpirun -np 64 snowman 800 3
+export START=`pwd`
+# Create a sub-directory for this job if it doesn't exist already
+mkdir -p $START/test.$SLURM_NTASKS
+cd $START/test.$SLURM_NTASKS
+# The -spp flag ensures we have enough samples per ray such that the job
+# on 32 cores takes longer than 30s. Slurm by default is configured such
+# that job data is collected every 30s. If the job finishes in less than
+# that Slurm might fail to collect some of the data about the job.
+mpirun -np $SLURM_NTASKS raytracer -width=800 -height=800 -spp 1024 -threads=1 -alloc_mode=3 -png=rendered_snowman.png
 ```
 
 Next we submit this whole set of calculations
 
 ```bash
-jobid04=$(sbatch --parsable render_snowman.04.sbatch)
-jobid08=$(sbatch --parsable render_snowman.08.sbatch)
-jobid16=$(sbatch --parsable render_snowman.16.sbatch)
-jobid32=$(sbatch --parsable render_snowman.32.sbatch)
-jobid64=$(sbatch --parsable render_snowman.64.sbatch)
+./running_snowmen.sh
+```
+
+producing
+
+```output
+ntasks 4 jobid 349291
+ntasks 8 jobid 349292
+ntasks 16 jobid 349293
+ntasks 32 jobid 349294
 ```
 
 After the jobs are completed we can run
 
 ```bash
-seff $jobid04
-seff $jobid08
-seff $jobid16
-seff $jobid32
-seff $jobid64
-```
-
-and
-
-```bash
-sacct --jobs=$jobid04,$jobid08,$jobid16,$jobid32,$jobid64 \
+sacct --jobs=349291,349292,349293,349294 \
       --format=MaxRSS,AveRSS,MaxPages,AvePages,AllocCPUS,Elapsed,MaxDiskRead,MaxDiskWrite,ConsumedEnergy,AveCPUFreq
 ```
+
+to produce
+
+```output
+    MaxRSS     AveRSS MaxPages   AvePages  AllocCPUS    Elapsed  MaxDiskRead MaxDiskWrite ConsumedEnergy AveCPUFreq
+---------- ---------- -------- ---------- ---------- ---------- ------------ ------------ -------------- ----------
+                                                   4   00:09:35                                        0
+   142676K    142676K        1          1          4   00:09:35        7.75M        0.72M              0       743K
+         0          0        0          0          4   00:09:35        0.01M        0.00M              0      2.61M
+                                                   8   00:05:01                                        0
+   289024K    289024K        0          0          8   00:05:01       10.15M        1.45M              0       960K
+         0          0        0          0          8   00:05:02        0.01M        0.00M              0      2.42M
+                                                  16   00:02:21                                        0
+   563972K    563972K       93         93         16   00:02:21       15.00M        2.94M              0      1.03M
+         0          0        0          0         16   00:02:21        0.01M        0.00M              0      2.99M
+                                                  32   00:01:14                                        0
+  1082540K   1082540K      260        260         32   00:01:14       24.83M        6.07M              0      1.08M
+         0          0        0          0         32   00:01:14        0.01M        0.00M              0         3M
+```
+
+Note that the elapse time goes down as the number of cores increases, which is reasonable as more cores
+normally can get the job done quicker. The amount of data read also increases as every MPI rank has to
+read the executable and all associated shared libraries. The volume of data written is harder to understand.
+Every run produces an image file `rendered_snowman.png` that is about 100KB in size. This file is written
+just by the root MPI rank. This cannot explain the increase in data written with increasing numbers of cores.
+The increasing number of page faults with increasing numbers of cores suggests that paging memory to disk
+is responsible for the majority of data written.
+
 :::::::
 
 :::::::::::::::::::::::
@@ -540,20 +533,3 @@ Can / should we cover I/O and energy metrics at this point?
 E.g. use something like `beegfs-ctl` to get a rough estimate of parallel FS performance.
 Use pidstat etc. to get numbers on node-local I/O (and much more)
 :::::::::::::::::::::::::::::::::::::
-
-
-## Summary
-
-:::::::::::::::::::::::::: challenge
-## Exercise:
-::::::::::::::::::::::::::::::::::::
-
-Leading question: Is there a systematic approach to study a jobs performance at different scales? -> Scaling study
-
-:::::::::::::::::::::::::::::::::::::: keypoints
-- `sacct` and `seff` for first results
-- Small scaling study, maximum of X% overhead is "still good" (larger resource req. vs. speedup)
-- Getting a feel for scale of the HPC system, e.g. "is 64 cores a lot?", how large is my job in comparison?
-- CPU and Memory Utilization
-- Core-h and relationship to power efficiency
-::::::::::::::::::::::::::::::::::::::::::::::::
