@@ -741,7 +741,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-02_resourcerequirements"><p>Content from <a href="02_resourcerequirements.html">Resource Requirements</a></p>
 <hr>
-<p>Last updated on 2025-09-24 |
+<p>Last updated on 2025-11-05 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/02_resourcerequirements.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -785,6 +785,34 @@ any links that you are not going to use.
 just guess and start with some combinations. Next identify slower, or
 failed (OOM, timelimit) and choose the best What does that say about
 efficiency?</p>
+<div id="what-is-a-scheduler-and-why-do-we-need-one" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="what-is-a-scheduler-and-why-do-we-need-one" class="callout-inner">
+<h3 class="callout-title">What is a scheduler and why do we need
+one?</h3>
+<div class="callout-content">
+<p>HPC machines offer a large amount of compute power but are too
+expensive for a single person or a small research group. Therefore, HPC
+machines are deployed as shared resources with substantional user
+communities ranging from dozens to thousands of users. In such a
+scenario you need a way to manage who gets to run which calculation on
+what part of the machine at what time. A scheduler is a software package
+to let users request resources for a job. It creates the schedule of
+what job gets to run on what resources and when.</p>
+<p>Historically, there have been many schedulers, for example, <a href="https://www.ibm.com/products/load-balancer" class="external-link"><code>Loadbalancer</code></a>,
+<a href="https://docs.oracle.com/cd/E19279-01/820-3257-12/n1ge.html" class="external-link"><code>GridEngine</code></a>,
+<a href="https://www.openpbs.org/" class="external-link"><code>PBS</code></a>, <a href="https://docs.adaptivecomputing.com/maui/" class="external-link"><code>Maui</code></a>,
+and others. In the early 2000s the development of “<a href="https://doi.org/10.1007/10968987_3" class="external-link">SLURM</a>: Simple Linux
+Utility for Resource Management” began. With the rise of Linux on HPC
+systems SLURM has become a widely used scheduling system. For that
+reason this course assumes that SLURM is available on your HPC
+system.</p>
+</div>
+</div>
+</div>
 <div id="exercise-starting-somewhere" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
@@ -978,7 +1006,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-03_schedulertools"><p>Content from <a href="03_schedulertools.html">Scheduler Tools</a></p>
 <hr>
-<p>Last updated on 2025-09-24 |
+<p>Last updated on 2025-11-05 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/03_schedulertools.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -1016,81 +1044,543 @@ metrics of their jobs.</li>
 <section><h2 class="section-heading" id="scheduler-tools">Scheduler Tools<a class="anchor" aria-label="anchor" href="#scheduler-tools"></a>
 </h2>
 <hr class="half-width">
+<p>A scheduler performs important tasks such as accepting and scheduling
+jobs, monitoring job status, starting user applications, cleaning up
+jobs that have finished or exceeded their allocated time. The scheduler
+also keeps a history of jobs that have been run and how they behaved.
+The information that is collected can be queried by the job owner to
+learn about how the job utilized the resources it was given.</p>
+<div class="section level3">
+<h3 id="the-seff-tool">The <code>seff</code> tool<a class="anchor" aria-label="anchor" href="#the-seff-tool"></a>
+</h3>
+<p>The <code>seff</code> command can be used to learn about how
+efficiently your job has run. The <code>seff</code> command takes the
+job identifier as an argument to select which job it displays
+information about. That means we need to run a job first to get a job
+identifier we can query SLURM about. Then we can ask about the
+efficiency of the job.</p>
+<p>The <code>sbatch</code> command is used to submit a job. It takes a
+job script as an argument. The job script contains the resource
+requests, such as the amount of time needed for the calculation, the
+number of nodes, the number of tasks per node, and so on. It also
+contains the commands to execute the calculations.</p>
+<p>Using your favorite editor, create the job script
+<code>render_snowman.sbatch</code> with the contents below.</p>
+<pre class="input"><code>#!/usr/bin/bash
+#SBATCH --time=01:00:00
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=4
+mpirun -np 4 raytracer -width=800 -heigt=800 -spp=128 -alloc_mode=3</code></pre>
+<p>Next submit the job with <code>sbatch</code>, and see what
+<code>seff</code> says about the job with the following commands.</p>
+<div class="codewrapper sourceCode" id="cb2">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="va">jobid</span><span class="op">=</span><span class="va">$(</span><span class="ex">sbatch</span> <span class="at">--parsable</span> render_snowman.sbatch<span class="va">)</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="ex">seff</span> <span class="va">$jobid</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Job ID: 309489
+Cluster: bigiron
+User/Group: usr123/grp123
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 4
+CPU Utilized: 00:07:43
+CPU Efficiency: 98.93% of 00:07:48 core-walltime
+Job Wall-clock time: 00:01:57
+Memory Utilized: 35.75 MB
+Memory Efficiency: 0.20% of 17.58 GB (4.39 GB/core)</code></pre>
+</div>
+<p>The job script we created asks for 4 CPUs for an hour. After
+submitting the job script we need to wait until the job has finished as
+<code>seff</code> can only report sensible statistics after the job is
+completed. The report from <code>seff</code> shows basic statistics
+about the job, such as</p>
 <ul>
-<li>
-<code>sacct</code>
+<li>The resources the job was given
 <ul>
-<li>
-<code>MaxRSS</code>, <code>AvgRSS</code>
-</li>
-<li>
-<code>MaxPages</code>, <code>AvgPages</code>
-</li>
-<li>
-<code>AvgCPU</code>, <code>AllocCPUS</code>
-</li>
-<li>`ElapsedI</li>
-<li>
-<code>MaxDiskRead</code>, AvgDiskRead`,</li>
-<li>
-<code>MaxDiskWrite</code>, <code>AvgDiskWrite</code>
-</li>
-<li><code>energy</code></li>
+<li>the number of nodes</li>
+<li>the number of cores per node</li>
+<li>the amount of memory per core</li>
 </ul>
 </li>
+<li>The amount of resources used
+<ul>
 <li>
-<code>seff</code>
-<ul>
-<li>Utilization of time allocation</li>
-<li>Utilization of allocated CPUs (is 100% &lt;=&gt; efficient? Not if
-calculations are redundant etc.!)</li>
-<li>Utilization of allocated memory</li>
+<code>CPU Utilized</code> the aggregate CPU time (the time the job
+took times the number of CPUs allocated)</li>
+<li>
+<code>CPU Efficiency</code> the actual CPU usage as a percentage of
+the total available CPU capacity</li>
+<li>
+<code>Job Wall-clock time</code> the time the job took from start to
+finish</li>
+<li>
+<code>Memory Utilized</code> the aggregate memory usage</li>
+<li>
+<code>Memory Efficiency</code> the actual memory usage as a
+percentage of the total avaialable memory</li>
 </ul>
 </li>
-</ul></section><section><h2 class="section-heading" id="shortcomings">Shortcomings<a class="anchor" aria-label="anchor" href="#shortcomings"></a>
-</h2>
-<hr class="half-width">
-<ul>
-<li>Not enough info about e.g. I/O, no timeline of metrics during job
-execution, …
-<ul>
-<li>I/O may be available, but likely only for local disks</li>
-<li>=&gt; no parallel FS</li>
-<li>=&gt; no network</li>
 </ul>
-</li>
-<li>Energy demand may be missing or wrong
-<ul>
-<li>Depends on available features</li>
-<li>Doesn’t estimate energy for network switches, cooling, etc.</li>
-</ul>
-</li>
-<li>=&gt; trying other tools! (motivation for subsequent episodes)</li>
-</ul></section><section><h2 class="section-heading" id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
-</h2>
-<hr class="half-width">
-<p>Leading question: Is there a systematic approach to study a jobs
-performance at different scales? -&gt; Scaling study</p>
-<div id="keypoints1" class="callout keypoints">
+<p>Looking at the <code>Job Wall-clock time</code> it shows that the job
+took just under 2 minutes. Therefore this job took a lot less time than
+the one hour we asked for. This can be problematic as the scheduler
+looks for time windows when it can fit a job in. Long running jobs
+cannot be squeezed in as easily as short running jobs. As a result, jobs
+that request a long time to complete typically have to wait longer
+before they can be started. Therefore asking for more than 10 times as
+much time as the job really needs, simply means that you will have to
+wait longer for the job to start. On the other hand you do not want to
+ask for too little time. Few things are more annoying than waiting for a
+long running calculation to finish, just to see the job being killed
+right before the end because it would have needed a couple of minutes
+more than you asked for. So the best approach is to ask for more time
+than the job needs, but not go overboard here. As the job elapse time
+depends on many machine conditions, including congestion in the data
+communication, disk access, operating system jitter, and so on, you
+might want to ask for a substantial buffer. Nevertheless, asking for
+more than twice as much time as job is expected to need, usually doesn’t
+make sense.</p>
+<p>Another thing is that SLURM by default reserves a certain amount of
+memory per core. In this case the actual memory usage is just a fraction
+of that amount. We could reduce the memory allocation by explicitly
+asking for less by modifying the <code>render_snowman.sbatch</code> job
+script.</p>
+<div id="challenge1" class="callout challenge">
 <div class="callout-square">
-<i class="callout-icon" data-feather="key"></i>
+<i class="callout-icon" data-feather="zap"></i>
 </div>
-<span class="callout-header">Key Points</span>
+<span class="callout-header">Challenge</span>
 <div class="callout-inner">
+<h3 class="callout-title">Challenge</h3>
 <div class="callout-content">
+<p>Edit the batch file to reduce the amount of memory requested for the
+job. Note that the amount of memory per node can be requested with the
+<code>--mem=</code> argument. The amount of memory is specified by a
+number followed by a unit. The units can represent kilobtytes (KB),
+megabytes (MB), gigabytes (GB). For the calculations we are doing here
+100 megabytes per node is more than sufficient. Submit the job, and
+inspect the efficiency with <code>seff</code>. What is the memory usage
+efficiency you get?</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution1" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
+  <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
+</button>
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div class="accordion-body">
+<p>The batch file after adding the memory request becomes.</p>
+<pre class="input"><code>#!/usr/bin/bash
+#SBATCH --time=01:00:00
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=4
+#SBATCH --mem=100MB
+mpirun -np 4 raytracer -width=800 -height=800 -spp=128 -alloc_mode=3</code></pre>
+<p>Submit this jobscript, as before, with the following command.</p>
+<div class="codewrapper sourceCode" id="cb5">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb5-1"><a href="#cb5-1" tabindex="-1"></a><span class="va">jobid</span><span class="op">=</span><span class="va">$(</span><span class="ex">sbatch</span> <span class="at">--parsable</span> render_snowman.sbatch<span class="va">)</span></span>
+<span id="cb5-2"><a href="#cb5-2" tabindex="-1"></a><span class="ex">seff</span> <span class="va">$jobid</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>Job ID: 310002
+Cluster: bigiron
+User/Group: usr123/grp123
+State: COMPLETED (exit code 0)
+Nodes: 1
+Cores per node: 4
+CPU Utilized: 00:07:43
+CPU Efficiency: 98.09% of 00:07:52 core-walltime
+Job Wall-clock time: 00:01:58
+Memory Utilized: 50.35 MB
+Memory Efficiency: 50.35% of 100.00 MB (100.00 MB/node)</code></pre>
+</div>
+<p>The output of <code>seff</code> shows that about 50% of requested
+memory was used.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Now we see that a much larger fraction of the allocated memory has
+been used. Normally you would not worry too much about the memory
+request. Lately HPC clusters are used more for machine learning work
+loads which tend to require a lot of memory. Their memory requirements
+per core might actually be so large that they cannot use all the cores
+in a node. So there may be spare cores available for jobs that need
+little memory. In such a scenario tightening the memory allocation up
+could allow the scheduler to start your job early. How much milage you
+might get from this depends on the job mix at the HPC site where you run
+your calculations.</p>
+<p>Note that the CPU utilization is reported as almost 100%, but this
+just means that the CPU was busy with your job 100% of the time. It does
+not mean that this time was well spent. For example, every parallel
+program has some serial parts to the code. Typically those parts are
+executed redundantly on all cores, which is wasteful but not reflected
+in the CPU efficiency. Also, this number does not reflect how well the
+capabilities of the CPU are used. If your CPU offers vector
+instructions, for example, but your code does not use them then your
+code will just run slow. The CPU efficiency will still show that the CPU
+was busy 100% of the time even though the program is just running at a
+fraction of the speed it could achieve if it fully exploited the
+hardware capabilities. It is worth keeping these limitations of
+<code>seff</code> in mind.</p>
+<p>The <code>seff</code> command cannot give you any information about
+the I/O performance of your job. You have to use the <code>sacct</code>
+command for that.</p>
+</div>
+<div class="section level3">
+<h3 id="the-sacct-tool">The <code>sacct</code> tool<a class="anchor" aria-label="anchor" href="#the-sacct-tool"></a>
+</h3>
+
+<p>The <code>sacct</code> command shows data stored in the job
+accounting database. You can query the data of any of your previously
+run jobs. Just like with <code>seff</code> you will need to provide the
+job ID to query the accounting database. Rather than keeping track of
+all your jobs yourself you can ask <code>sacct</code> to provide you
+with an overview of the jobs you have run.</p>
+<div class="codewrapper sourceCode" id="cb7">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="ex">sacct</span></span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>JobID           JobName  Partition    Account  AllocCPUS      State ExitCode
+------------ ---------- ---------- ---------- ---------- ---------- --------
+309902       render_sn+  STD-s-96h  project_a          4  COMPLETED      0:0
+309902.batch      batch             project_a          4  COMPLETED      0:0
+309902.exte+     extern             project_a          4  COMPLETED      0:0
+309903       render_sn+  STD-s-96h  project_a          4  COMPLETED      0:0
+309903.batch      batch             project_a          4  COMPLETED      0:0
+309903.exte+     extern             project_a          4  COMPLETED      0:0
+310002       render_sn+  STD-s-96h  project_a          4  COMPLETED      0:0
+310002.batch      batch             project_a          4  COMPLETED      0:0
+310002.exte+     extern             project_a          4  COMPLETED      0:0</code></pre>
+</div>
+<p>In the output every job is shown three times here. This is because
+<code>sacct</code> lists one line for the primary job entry, followed by
+a line for every job step. A job step corresponds to an
+<code>mpirun</code> or <code>srun</code> command. The
+<code>extern</code> line corresponds to all work that is done outside of
+SLURM’s control, for example an <code>ssh</code> command that runs
+something somewhere else.</p>
+<p>Note that by default <code>sacct</code> only lists the jobs that have
+been run today. You can use the <code>--starttime</code> option to list
+all jobs that have been run since the given start date. For example, try
+running</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="ex">sacct</span> <span class="at">--starttime</span><span class="op">=</span>2025-09-25</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>JobID           JobName  Partition    Account  AllocCPUS      State ExitCode
+------------ ---------- ---------- ---------- ---------- ---------- --------
+308755       snowman.s+  STD-s-96h  project_a         16  COMPLETED      0:0
+308755.batch      batch             project_a         16  COMPLETED      0:0
+308755.exte+     extern             project_a         16  COMPLETED      0:0
+308756       snowman.s+  STD-s-96h  project_a          4  COMPLETED      0:0
+308756.batch      batch             project_a          4  COMPLETED      0:0
+308756.exte+     extern             project_a          4  COMPLETED      0:0
+309486       interacti+  STD-s-96h  project_a          4     FAILED      1:0
+309486.exte+     extern             project_a          4  COMPLETED      0:0
+309486.0          prted             project_a          4  COMPLETED      0:0
+309489       render_sn+  STD-s-96h  project_a          4  COMPLETED      0:0
+309489.batch      batch             project_a          4  COMPLETED      0:0
+309489.exte+     extern             project_a          4  COMPLETED      0:0
+309902       render_sn+  STD-s-96h  project_a          4  COMPLETED      0:0
+309902.batch      batch             project_a          4  COMPLETED      0:0
+309902.exte+     extern             project_a          4  COMPLETED      0:0
+309903       render_sn+  STD-s-96h  project_a          4  COMPLETED      0:0
+309903.batch      batch             project_a          4  COMPLETED      0:0
+309903.exte+     extern             project_a          4  COMPLETED      0:0
+310002       render_sn+  STD-s-96h  project_a          4  COMPLETED      0:0
+310002.batch      batch             project_a          4  COMPLETED      0:0
+310002.exte+     extern             project_a          4  COMPLETED      0:0</code></pre>
+</div>
+<p>You may want to change the date of <code>2025-09-25</code> to
+something more sensible when you work through this tutorial.</p>
+<p>With the job ID you can ask <code>sacct</code> for information about
+a specific job as in</p>
+<div class="codewrapper sourceCode" id="cb11">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb11-1"><a href="#cb11-1" tabindex="-1"></a><span class="ex">sacct</span> <span class="at">--jobs</span><span class="op">=</span>310002</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>JobID           JobName  Partition    Account  AllocCPUS      State ExitCode
+------------ ---------- ---------- ---------- ---------- ---------- --------
+310002       render_sn+  STD-s-96h  project_a          4  COMPLETED      0:0
+310002.batch      batch             project_a          4  COMPLETED      0:0
+310002.exte+     extern             project_a          4  COMPLETED      0:0</code></pre>
+</div>
+<p>Using <code>sacct</code> with the <code>--jobs</code> flag is just
+another way to select which jobs we want more information about. In
+itself it does not provide any additional information. To get more
+specific data we need to explicitly ask for the information we want. As
+SLURM collects a broad range of data about every job it is worth to
+evaluate what the most relevant items are.</p>
 <ul>
 <li>
-<code>sacct</code> and <code>seff</code> for first results</li>
-<li>Small scaling study, maximum of X% overhead is “still good” (larger
-resource req. vs. speedup)</li>
-<li>Getting a feel for scale of the HPC system, e.g. “is 64 cores a
-lot?”, how large is my job in comparison?</li>
-<li>CPU and Memory Utilization</li>
-<li>Core-h and relationship to power efficiency</li>
+<code>MaxRSS</code>, <code>AveRSS</code>, or the Maximum or Average
+Resident Size Set (RSS). The RSS is the memory allocated by a program
+that is actually resident in the main memory of the computer. If the
+computer gets low on memory then the virtual memory manager can extend
+the apparently available memory by moving some of the data from memory
+to disk. This is done entirely transparently to the application, but the
+data that has been moved to disk is no longer resident in main memory.
+As a result accessing it will be slower because it needs to retrieved
+from disk first. Therefore if the RSS is small compared to the total
+amount of memory the program uses this might affect the performance of
+the program.</li>
+<li>
+<code>MaxPages</code>, <code>AvePages</code>, or the Maximum or
+Average number of Page Faults. These quantities are related to the
+Resident Size Sets. When the program tries to access data that is not
+resident in main memory this triggers a page fault. The virtual memory
+manager responds to a page fault by retrieving the accessed data from
+disk (and potentially migrating other data to disk to make space). These
+operations are typically costly. Therefore high numbers of page faults
+typically correspond to a significant reduction in the program’s
+performance. For example, the CPU utilization might drop from as high as
+98% to as low as 2% due to page faults. For that reason some HPC
+machines are configured to kill your job if the application generates a
+high rate of page faults.</li>
+<li>
+<code>AllocCPUS</code> is the number of CPUs allocated for the
+job.</li>
+<li>
+<code>Elapsed</code> is the amount of wall clock time it took to
+complete the job. I.e. the amount of time that passed between the start
+and finish of the job.</li>
+<li>
+<code>MaxDiskRead</code>, the Maximum amount of data read from
+disk.</li>
+<li>
+<code>MaxDiskWrite</code>, the Maximum amount of data written to
+disk.</li>
+<li>
+<code>ConsumedEnergy</code>, the amount of energy consumed by the
+job if that information was collected. If that data is not collected the
+energy consumption will be reported as 0.</li>
+<li>
+<code>AveCPUFreq</code>, the average CPU frequency of all tasks in a
+job, given in kHz. In general the higher the clock frequency of the
+processor the faster the calculation runs. The exception is if the
+application is memory bandwidth limited and the data cannot be moved to
+processor fast enough to keep it busy. In that case modern hardware
+might throttle the frequency. This saves energy as the power consumption
+scales linearly with the clock frequency, but doesn’t slow the
+calculation down as the processor was having to wait for data
+anyway.</li>
 </ul>
+<p>We can explicitly select the data elements that we are interested in.
+To see how long the job took to complete run</p>
+<div class="codewrapper sourceCode" id="cb13">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb13-1"><a href="#cb13-1" tabindex="-1"></a><span class="ex">sacct</span> <span class="at">--jobs</span><span class="op">=</span>310002 <span class="at">--format</span><span class="op">=</span>Elapsed</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code><span>   <span class="va">Elapsed</span></span>
+<span><span class="op">-</span><span class="op">-</span><span class="op">-</span><span class="op">-</span><span class="op">-</span><span class="op">-</span><span class="op">-</span><span class="op">-</span><span class="op">-</span><span class="op">-</span></span>
+<span>  <span class="fl">00</span><span class="op">:</span><span class="fl">01</span><span class="op">:</span><span class="fl">58</span></span>
+<span>  <span class="fl">00</span><span class="op">:</span><span class="fl">01</span><span class="op">:</span><span class="fl">58</span></span>
+<span>  <span class="fl">00</span><span class="op">:</span><span class="fl">01</span><span class="op">:</span><span class="fl">58</span></span></code></pre>
+</div>
+<div id="challenge2" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge</h3>
+<div class="callout-content">
+<p>Request information regarding all of the above variables from
+<code>sacct</code>. Note that the <code>--format</code> flag takes a
+comma separated list. Note that the result shows that more data is read
+than written, even though the program generates and write an image, and
+reads no data at all. Why would that be?</p>
 </div>
 </div>
 </div>
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div class="accordion-body">
+<p>To query all of the above variable run</p>
+<div class="codewrapper sourceCode" id="cb15">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb15-1"><a href="#cb15-1" tabindex="-1"></a><span class="ex">sacct</span> <span class="at">--jobs</span><span class="op">=</span>310002 <span class="at">--format</span><span class="op">=</span>MaxRSS,AveRSS,MaxPages,AvePages,AllocCPUS,Elapsed,MaxDiskRead,MaxDiskWrite,ConsumedEnergy,AveCPUFreq</span></code></pre>
+</div>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>    MaxRSS     AveRSS MaxPages   AvePages  AllocCPUS    Elapsed  MaxDiskRead MaxDiskWrite ConsumedEnergy AveCPUFreq
+---------- ---------- -------- ---------- ---------- ---------- ------------ ------------ -------------- ----------
+                                                   4   00:01:58                                        0
+    51556K     51556K      132        132          4   00:01:58        6.91M        0.72M              0         3M
+         0          0        0          0          4   00:01:58        0.01M        0.00M              0         3M</code></pre>
+</div>
+<p>Note that although the program we have run generates an image and
+writes that to a file, there is also a none zero amount of data read.
+The writing part is associated with the image file the program writes.
+The reading part is not associated with anything that the program does,
+as it doesn’t read anything from disk. It is instead associated with the
+fact that the operating system has to read the program itself to execute
+it.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section><section><h2 class="section-heading" id="shortcomings">Shortcomings<a class="anchor" aria-label="anchor" href="#shortcomings"></a>
+</h2>
+<hr class="half-width">
+<p>While <code>sacct</code> provides a lot of information it is still
+incomplete. For example, the information is for the entire calculation.
+Variations in the metrics as a function of time throughout the job are
+not available. Communication between different MPI processes is not
+recorded. The collection of the energy consumption depends on the
+hardware and system configuration at the HPC center and might not be
+available. So while we might be able to glean some indications for
+different types of performance problems, for a proper analysis more
+detailed information is needed.</p>
+</section><section><h2 class="section-heading" id="summary">Summary<a class="anchor" aria-label="anchor" href="#summary"></a>
+</h2>
+<hr class="half-width">
+<p>This episode introduced the SLURM tools <code>seff</code> and
+<code>sacct</code> to get a high level perspective on a job’s
+performance. As these tools just use the statistics that SLURM collected
+on a job as it ran, they can always be used without any special
+preparation.</p>
+<div id="challenge3" class="callout challenge">
+<div class="callout-square">
+<i class="callout-icon" data-feather="zap"></i>
+</div>
+<span class="callout-header">Challenge</span>
+<div class="callout-inner">
+<h3 class="callout-title">Challenge</h3>
+<div class="callout-content">
+<p>So far we have just considered our initial calculation using 4 cores.
+To run the calculation faster we could consider using more cores. Run
+the same calculation on 8, 16, and 32 cores as well. Collect and compare
+the results from <code>sacct</code> and see how the job performance
+changes.</p>
+</div>
+</div>
+</div>
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
+</button>
+<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div class="accordion-body">
+<p>The machine these calculations have been run on has 112 core per
+node. So we can double the number of cores from 4 until 64 and stay
+within one node. If we go to two nodes then some of the communication
+between tasks will have to go across the interconnect. At that point the
+performance characteristics might change in a discontinuous manner.
+Hence we try to avoid doing that.</p>
+<p>Alternatively you might scale the calculation across multiple nodes,
+for example 2, 4, 8, 16 nodes. With 112 cores per node you would have to
+make sure that the calculation is large enough for such a large number
+of cores to make sense.</p>
+<p>Create <code>running_snowmen.sh</code> with</p>
+<pre class="input"><code>#!/usr/bin/bash
+for nn in 4 8 16 32; do
+    id=`sbatch --parsable --time=00:12:00 --nodes=1 --tasks-per-node=$nn --ntasks-per-core=1 render_snowman.sh`
+    echo "ntasks $nn jobid $id"
+done</code></pre>
+<p>Create <code>render_snowman.sh</code> with</p>
+<pre class="input"><code>#!/usr/bin/bash
+export START=`pwd`
+# Create a sub-directory for this job if it doesn't exist already
+mkdir -p $START/test.$SLURM_NTASKS
+cd $START/test.$SLURM_NTASKS
+# The -spp flag ensures we have enough samples per ray such that the job
+# on 32 cores takes longer than 30s. Slurm by default is configured such
+# that job data is collected every 30s. If the job finishes in less than
+# that Slurm might fail to collect some of the data about the job.
+mpirun -np $SLURM_NTASKS raytracer -width=800 -height=800 -spp 1024 -threads=1 -alloc_mode=3 -png=rendered_snowman.png</code></pre>
+<p>Next we submit this whole set of calculations</p>
+<div class="codewrapper sourceCode" id="cb19">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb19-1"><a href="#cb19-1" tabindex="-1"></a><span class="ex">./running_snowmen.sh</span></span></code></pre>
+</div>
+<p>producing</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>ntasks 4 jobid 349291
+ntasks 8 jobid 349292
+ntasks 16 jobid 349293
+ntasks 32 jobid 349294</code></pre>
+</div>
+<p>After the jobs are completed we can run</p>
+<div class="codewrapper sourceCode" id="cb21">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb21-1"><a href="#cb21-1" tabindex="-1"></a><span class="ex">sacct</span> <span class="at">--jobs</span><span class="op">=</span>349291,349292,349293,349294 <span class="dt">\</span></span>
+<span id="cb21-2"><a href="#cb21-2" tabindex="-1"></a>      <span class="at">--format</span><span class="op">=</span>MaxRSS,AveRSS,MaxPages,AvePages,AllocCPUS,Elapsed,MaxDiskRead,MaxDiskWrite,ConsumedEnergy,AveCPUFreq</span></code></pre>
+</div>
+<p>to produce</p>
+<div class="codewrapper">
+<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="output" tabindex="0"><code>    MaxRSS     AveRSS MaxPages   AvePages  AllocCPUS    Elapsed  MaxDiskRead MaxDiskWrite ConsumedEnergy AveCPUFreq
+---------- ---------- -------- ---------- ---------- ---------- ------------ ------------ -------------- ----------
+                                                   4   00:09:35                                        0
+   142676K    142676K        1          1          4   00:09:35        7.75M        0.72M              0       743K
+         0          0        0          0          4   00:09:35        0.01M        0.00M              0      2.61M
+                                                   8   00:05:01                                        0
+   289024K    289024K        0          0          8   00:05:01       10.15M        1.45M              0       960K
+         0          0        0          0          8   00:05:02        0.01M        0.00M              0      2.42M
+                                                  16   00:02:21                                        0
+   563972K    563972K       93         93         16   00:02:21       15.00M        2.94M              0      1.03M
+         0          0        0          0         16   00:02:21        0.01M        0.00M              0      2.99M
+                                                  32   00:01:14                                        0
+  1082540K   1082540K      260        260         32   00:01:14       24.83M        6.07M              0      1.08M
+         0          0        0          0         32   00:01:14        0.01M        0.00M              0         3M</code></pre>
+</div>
+<p>Note that the elapse time goes down as the number of cores increases,
+which is reasonable as more cores normally can get the job done quicker.
+The amount of data read also increases as every MPI rank has to read the
+executable and all associated shared libraries. The volume of data
+written is harder to understand. Every run produces an image file
+<code>rendered_snowman.png</code> that is about 100KB in size. This file
+is written just by the root MPI rank. This cannot explain the increase
+in data written with increasing numbers of cores. The increasing number
+of page faults with increasing numbers of cores suggests that paging
+memory to disk is responsible for the majority of data written.</p>
+</div>
+</div>
+</div>
+</div>
+
 <!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
@@ -1302,7 +1792,7 @@ size in this case?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <p>Maybe not, if picture is good enough</p>
 </div>
@@ -1647,7 +2137,7 @@ accelerators.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>CPU (FLOPS) and/or Parallel timeline</li>
@@ -1776,7 +2266,7 @@ cases? - Is the increase in threads providing a speedup as expected?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ul>
 <li>Observation: The computation times are almost the same.</li>
@@ -1815,7 +2305,7 @@ made?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Only 8 cores are active instead of 16</p>
 </div>
@@ -1866,7 +2356,7 @@ process/thread counts to better utilize the hardware in Case 2?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <ul>
 <li>MPI and thread pinning is hardware-aware.</li>
@@ -1989,7 +2479,7 @@ with 4 threads?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <ul>
 <li>8 and 32</li>
@@ -2299,8 +2789,8 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/aio.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/aio.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-11-04",
-  "datePublished": "2025-11-04"
+  "dateModified": "2025-11-05",
+  "datePublished": "2025-11-05"
 }
 
   </script><script>

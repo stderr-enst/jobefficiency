@@ -494,9 +494,31 @@ Disk I/O, Network I/O?)</li>
 read/write and their utilization mean?</li>
 <li>Point out what’s missing from a complete picture</li>
 </ul>
+<p>Note:</p>
+<ul>
+<li>
+<code>seff</code> is an optional SLURM tool. It does not come
+standard with every SLURM installation. Therefore, make sure beforehand
+that this tool is available for the students.</li>
+</ul>
 <hr>
 <br><h3 id="03_schedulertools-headingInstructor2">
-<a href="03_schedulertools.html#headingInstructor2">ToDo</a><a class="anchor" aria-label="anchor" href="#03_schedulertools-headingInstructor2"></a>
+<a href="03_schedulertools.html#headingInstructor2">Instructor Note</a><a class="anchor" aria-label="anchor" href="#03_schedulertools-headingInstructor2"></a>
+</h3>
+<p>Note that the information <code>sacct</code> can provide depends on
+the information that SLURM stores on a given machine. By default this
+includes Billing, CPU, Energy, Memory, Node, FS/Disk, Pages and VMem.
+Additional information is available only when SLURM is configured to
+collect it. These additional trackable resources are listed in
+<code>AccountingStorageTRES</code>. For I/O <code>fs/lustre</code> is
+commonly useful, and for the interconnect communication
+<code>ic/ofed</code> is required. The setting
+<code>AccountingStorageTRES</code> is found in <code>slurm.conf</code>.
+Unfortunately there doesn’t seem to be a way to get <code>sacct</code>
+to print the optional trackable resources.</p>
+<hr>
+<br><h3 id="03_schedulertools-headingInstructor3">
+<a href="03_schedulertools.html#headingInstructor3">ToDo</a><a class="anchor" aria-label="anchor" href="#03_schedulertools-headingInstructor3"></a>
 </h3>
 <p>Can / should we cover I/O and energy metrics at this point?</p>
 <p>E.g. use something like <code>beegfs-ctl</code> to get a rough
@@ -805,8 +827,8 @@ many levels)</li>
   "url": "https://stderr-enst.github.io/jobefficiency/instructor/instructor-notes.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/instructor/instructor-notes.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-11-04",
-  "datePublished": "2025-11-04"
+  "dateModified": "2025-11-05",
+  "datePublished": "2025-11-05"
 }
 
   </script><script>
