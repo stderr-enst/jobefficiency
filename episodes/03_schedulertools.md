@@ -86,7 +86,11 @@ with the contents below.
 #SBATCH --time=01:00:00
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=4
-mpirun -np 4 raytracer -width=800 -heigt=800 -spp=128 -alloc_mode=3
+
+# Possibly a "module load ..." command to load required libraries
+# Depends on your particular HPC system
+
+mpirun -np 4 raytracer -width=800 -height=800 -spp=128 -alloc_mode=3
 ```
 Next submit the job with `sbatch`, and see what `seff` says about
 the job with the following commands.
