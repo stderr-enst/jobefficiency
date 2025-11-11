@@ -130,6 +130,14 @@ from `seff` shows basic statistics about the job, such as
   * `Memory Utilized` the aggregate memory usage
   * `Memory Efficiency` the actual memory usage as a percentage of the total avaialable memory
 
+
+::: instructor
+
+# Todo: give clear recommendation of what to aim for?
+Maybe 80% of job time?
+
+::::::::::::::
+
 Looking at the `Job Wall-clock time` it shows that the job took just under 2
 minutes. Therefore this job took a lot less time
 than the one hour we asked for. This can be problematic as the scheduler looks
@@ -173,6 +181,10 @@ The batch file after adding the memory request becomes.
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=4
 #SBATCH --mem=100MB
+
+# Possibly a "module load ..." command to load required libraries
+# Depends on your particular HPC system
+
 mpirun -np 4 raytracer -width=800 -height=800 -spp=128 -alloc_mode=3
 ```
 
@@ -475,6 +487,10 @@ Create `render_snowman.sh` with
 
 ```input
 #!/usr/bin/bash
+
+# Possibly a "module load ..." command to load required libraries
+# Depends on your particular HPC system
+
 export START=`pwd`
 # Create a sub-directory for this job if it doesn't exist already
 mkdir -p $START/test.$SLURM_NTASKS
