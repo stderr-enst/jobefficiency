@@ -435,7 +435,29 @@ hardware, size)</li>
 <li>Optimal time-to-solution by minimizing batch queue times and
 maximizing parallelism</li>
 </ul></section><section id="03_schedulertools"><h2 class="section-heading"><a href="03_schedulertools.html">Scheduler Tools</a></h2>
-<hr class="half-width"></section><section id="04_scalingstudy"><h2 class="section-heading"><a href="04_scalingstudy.html">Scaling Study</a></h2>
+<hr class="half-width">
+<ul>
+<li>Schedulers provide tools for a high level view on our jobs,
+e.g. <code>sacct</code> and <code>seff</code>
+</li>
+<li>Important basic performance metrics we can gather this way are:
+<ul>
+<li>
+<strong>CPU Utilization</strong>, often as fraction of
+<code>time where CPU was active</code>/<code>elapsed time of the job</code>
+</li>
+<li>
+<strong>Memory utilization</strong>, often measured as <em>Resident
+Set Size</em> (RSS) and number of <em>Pages</em>
+</li>
+</ul>
+</li>
+<li>
+<code>sacct</code> can also provide metrics about disk I/O and
+energy consumption</li>
+<li>Metrics through <code>sacct</code> are accumulated for the whole job
+runtime and may be too broad for more specific insight</li>
+</ul></section><section id="04_scalingstudy"><h2 class="section-heading"><a href="04_scalingstudy.html">Scaling Study</a></h2>
 <hr class="half-width">
 <ul>
 <li>Jobs behave differently with varying resources and workloads</li>

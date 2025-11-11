@@ -503,7 +503,23 @@ that this tool is available for the students.</li>
 </ul>
 <hr>
 <br><h3 id="03_schedulertools-headingInstructor2">
-<a href="03_schedulertools.html#headingInstructor2">Instructor Note</a><a class="anchor" aria-label="anchor" href="#03_schedulertools-headingInstructor2"></a>
+<a href="03_schedulertools.html#headingInstructor2">Todo: give clear recommendation of what to aim for?</a><a class="anchor" aria-label="anchor" href="#03_schedulertools-headingInstructor2"></a>
+</h3>
+<p>Maybe 80% of job time?</p>
+<hr>
+<br><h3 id="03_schedulertools-headingInstructor3">
+<a href="03_schedulertools.html#headingInstructor3">Todo: potential issue?</a><a class="anchor" aria-label="anchor" href="#03_schedulertools-headingInstructor3"></a>
+</h3>
+<p>Running this on our cluster and adding a module load command resulted
+in 600MB of memory required. My guess is, this is due to cgroups_v2 and
+Page caches being counted towards the job as well, so loading the
+modules might spike the resource requirements as well?</p>
+<p>Maybe we should play it safe and use a larger value in the following
+exercise. But we also want to teach not overdoing it, so it’d be good if
+we can find a useful but generic compromise here</p>
+<hr>
+<br><h3 id="03_schedulertools-headingInstructor4">
+<a href="03_schedulertools.html#headingInstructor4">Instructor Note</a><a class="anchor" aria-label="anchor" href="#03_schedulertools-headingInstructor4"></a>
 </h3>
 <p>Note that the information <code>sacct</code> can provide depends on
 the information that SLURM stores on a given machine. By default this
@@ -517,13 +533,35 @@ commonly useful, and for the interconnect communication
 Unfortunately there doesn’t seem to be a way to get <code>sacct</code>
 to print the optional trackable resources.</p>
 <hr>
-<br><h3 id="03_schedulertools-headingInstructor3">
-<a href="03_schedulertools.html#headingInstructor3">ToDo</a><a class="anchor" aria-label="anchor" href="#03_schedulertools-headingInstructor3"></a>
+<br><h3 id="03_schedulertools-headingInstructor5">
+<a href="03_schedulertools.html#headingInstructor5">Todo: extend the following list and examples to include CPU</a><a class="anchor" aria-label="anchor" href="#03_schedulertools-headingInstructor5"></a>
 </h3>
-<p>Can / should we cover I/O and energy metrics at this point?</p>
-<p>E.g. use something like <code>beegfs-ctl</code> to get a rough
-estimate of parallel FS performance. Use pidstat etc. to get numbers on
-node-local I/O (and much more)</p>
+<p>To reconstruct the CPU utilization reported by <code>seff</code>: -
+<code>TotalCPU</code>/<code>CPUTime</code> should give the percentage -
+Could also mention <code>UserCPU</code> and <code>SystemCPU</code> and
+discuss the difference? Both result in <code>TotalCPU</code></p>
+<p>Maybe remove <code>AveCPUFreq</code> instead, or do we try to teach
+something specific about it?</p>
+<p>Don’t forget to change the example output of all <code>sacct</code>s
+in the following examples/challenges!</p>
+<hr>
+<br><h3 id="03_schedulertools-headingInstructor6">
+<a href="03_schedulertools.html#headingInstructor6">Give more insight in the collected sacct metrics</a><a class="anchor" aria-label="anchor" href="#03_schedulertools-headingInstructor6"></a>
+</h3>
+<ul>
+<li>
+<code>AllocCPUS</code>: number of CPU cores we requested for the
+job</li>
+<li>
+<code>MaxRSS</code> = <code>AveRSS</code>: low fluctuation in
+memory, data is held throughout the whole job</li>
+<li>
+<code>MaxPages</code> &amp; <code>AvePages</code>: number of pages
+loaded into memory</li>
+<li>
+<code>MaxDiskRead</code>: Data read from disk by the application,
+but also to start the application.</li>
+</ul>
 <hr>
 <br></section><section id="04_scalingstudy"><h2 class="section-heading"><a href="04_scalingstudy.html">Scaling Study</a></h2>
 <hr class="half-width">
