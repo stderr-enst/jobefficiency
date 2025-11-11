@@ -64,6 +64,15 @@ to select which job it displays information about. That means we need
 to run a job first to get a job identifier we can query SLURM about.
 Then we can ask about the efficiency of the job.
 
+::: callout
+
+`seff` is an optional SLURM tool for more convenient access to `saact`. It does not come standard with every SLURM installation.
+Your particular HPC system may or may not provide it. Check for it's availability on your login nodes, or consult your cluster documentation or support staff.
+
+Other third party alternatives, e.g. [reportseff](https://github.com/troycomi/reportseff/), can be installed with default user permissions.
+
+:::::::::::
+
 The `sbatch` command is used to submit a job. It takes a job script as
 an argument. The job script contains the resource requests, such as the
 amount of time needed for the calculation, the number of nodes, the
