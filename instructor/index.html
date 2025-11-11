@@ -367,7 +367,8 @@ to requested hardware (minimal resource requirements, maximum resource
 utilization)</li>
 <li>Sharpen awareness for importance to avoid wasting time/energy on a
 shared system</li>
-<li>Teach common concepts and terms of performance</li>
+<li>Teach common concepts and terms of performance on a beginner
+level</li>
 <li>First steps into performance optimizations (cluster-, node-, and
 application level)</li>
 </ul></li>
@@ -375,9 +376,10 @@ application level)</li>
 <ul><li>Working on HPC Systems (Batch system, shared file systems, software
 modules, …)</li>
 <li>Performance of scheduled batch jobs</li>
-<li>Application performance is touched (related to job efficiency), but
-in-depth is outside of the scope. Next steps point towards deeper
-performance analyses, e.g. with tracers and profilers</li>
+<li>Application performance is only addressed briefly (related to job
+efficiency), but in-depth is outside of the scope. Episode “Next Steps”
+should point towards deeper performance analyses, e.g. with tracers and
+profilers, and how to get started there</li>
 </ul></li>
 </ul><!--
 Place links that you need to refer to multiple times across pages here. Delete
@@ -433,7 +435,6 @@ application behave at different scales?
 <td>
 Is it enough to look at a jobs walltime?<br>What steps can I take to
 evaluate a jobs performance?<br>What popular types of reports exist?
-(e.g. Roofline)
 </td>
 </tr><tr><td>
 <span class="visually-hidden">Duration: </span>01h 50m
@@ -532,17 +533,15 @@ what happens in broad terms</li>
 <div id="accordionInstructor1" class="accordion instructor-note accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor1" aria-expanded="false" aria-controls="collapseInstructor1">
-  <h3 class="accordion-header" id="headingInstructor1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
-  ToDo: Improve prerequisites
-  </h3>
+  <h3 class="accordion-header" id="headingInstructor1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> ToDo: Improve prerequisites </h3>
 </button>
-<div id="collapseInstructor1" class="accordion-collapse collapse" aria-labelledby="headingInstructor1" data-bs-parent="#accordionInstructor1">
+<div id="collapseInstructor1" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor1" aria-labelledby="headingInstructor1">
 <div class="accordion-body">
 <p>Link to external resources in prerequisites:</p>
 <ul><li>HPC Intro</li>
 <li>HPC Shell</li>
 <li>HPC.NRW</li>
+<li>Maybe Python for plotting performance data?</li>
 <li>Amount of knowledge about MPI, OpenMPI, CUDA, etc.?
 <ul><li>Don’t require in-depth MPI knowledge, but some basic understanding
 might be necessary?</li>
@@ -565,12 +564,9 @@ mostly red</p>
 <div id="accordionInstructor2" class="accordion instructor-note accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor2" aria-expanded="false" aria-controls="collapseInstructor2">
-  <h3 class="accordion-header" id="headingInstructor2">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
-  Tell learners how to get access to an HPC System
-  </h3>
+  <h3 class="accordion-header" id="headingInstructor2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Tell learners how to get access to an HPC System </h3>
 </button>
-<div id="collapseInstructor2" class="accordion-collapse collapse" aria-labelledby="headingInstructor2" data-bs-parent="#accordionInstructor2">
+<div id="collapseInstructor2" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor2" aria-labelledby="headingInstructor2">
 <div class="accordion-body">
 <ul><li>Do they need to apply somewhere?</li>
 <li>Are they eligible to request access to another system?</li>
@@ -588,10 +584,15 @@ learn how to access and use a compute cluster of that scale.</p>
 <ul><li>Executive summary of typical HPC workflow? Or refer to other HPCC
 courses that cover this</li>
 <li>“HPC etiquette”
-<ul><li>E.g. don’t run benchmarks on login node</li>
-<li>Don’t disturb jobs on shared nodes</li>
+<ul><li>E.g. don’t run benchmarks and other computationally heavy workloads
+on login node. Emphasise their purpose</li>
+<li>Don’t disturb jobs on shared nodes (&lt;– this phrasing is hard to
+grasp for newcomers and should be avoided. It will block them from
+trying things if they are afraid to break anything. Maybe this is more
+the responsibility of admins and users should just be aware that they
+may affect other users?)</li>
 </ul></li>
-<li>Setup of example for performance studies</li>
+<li>Setup of belows workflow example (next section)</li>
 </ul><div id="common-software-on-hpc-systems" class="callout discussion">
 <div class="callout-square">
 <i class="callout-icon" data-feather="message-circle"></i>
@@ -616,12 +617,9 @@ discussed in HPC introduction?)</p>
 <div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
-  <h3 class="accordion-header" id="headingSpoiler1">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  Windows
-  </h3>
+  <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Windows </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
 <div class="accordion-body">
 <ul><li>PuTTY</li>
 <li>
@@ -633,12 +631,9 @@ discussed in HPC introduction?)</p>
 <div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
-  <h3 class="accordion-header" id="headingSpoiler2">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  MacOS
-  </h3>
+  <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> MacOS </h3>
 </button>
-<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div id="collapseSpoiler2" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler2" aria-labelledby="headingSpoiler2">
 <div class="accordion-body">
 <ul><li>
 <code>ssh</code> in Terminal.app</li>
@@ -649,12 +644,9 @@ discussed in HPC introduction?)</p>
 <div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
-  <h3 class="accordion-header" id="headingSpoiler3">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div>
-  Linux
-  </h3>
+  <h3 class="accordion-header" id="headingSpoiler3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Linux </h3>
 </button>
-<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler3" aria-labelledby="headingSpoiler3">
 <div class="accordion-body">
 <ul><li>
 <code>ssh</code> in Terminal</li>
@@ -675,12 +667,9 @@ Download the [data zip file](https://example.com/FIXME) and unzip it to your Des
 <div id="accordionInstructor3" class="accordion instructor-note accordion-flush">
 <div class="accordion-item">
 <button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor3" aria-expanded="false" aria-controls="collapseInstructor3">
-  <h3 class="accordion-header" id="headingInstructor3">
-  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div>
-  Episodes are tied together with a narrative around the example job
-  </h3>
+  <h3 class="accordion-header" id="headingInstructor3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Episodes are tied together with a narrative around the example job </h3>
 </button>
-<div id="collapseInstructor3" class="accordion-collapse collapse" aria-labelledby="headingInstructor3" data-bs-parent="#accordionInstructor3">
+<div id="collapseInstructor3" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor3" aria-labelledby="headingInstructor3">
 <div class="accordion-body">
 <ul><li>Needs a specific example job.</li>
 <li>Gradual improvement throughout the course</li>
@@ -707,7 +696,9 @@ first episodes</li>
 </div>
 <div class="section level4">
 <h4 id="cpu-build">CPU Build<a class="anchor" aria-label="anchor" href="#cpu-build"></a></h4>
-<p>Prepare the out-of-source build:</p>
+<p>The example workload can perform calculations on CPUs, potentially
+across multiple nodes using MPI for communication. To prepare the
+out-of-source build:</p>
 <div class="codewrapper sourceCode" id="cb2">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
@@ -725,10 +716,52 @@ dependencies:</p>
 How exactly the modules are named and what has to be loaded can very
 much depend on the specific configuration of your cluster. In this case
 it looks like this:</p>
+<div id="accordionInstructor4" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor4" aria-expanded="false" aria-controls="collapseInstructor4">
+  <h3 class="accordion-header" id="headingInstructor4">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> Instructor Note </h3>
+</button>
+<div id="collapseInstructor4" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor4" aria-labelledby="headingInstructor4">
+<div class="accordion-body">
+<p>Show learners how to prepare their environment on your particular HPC
+system. This also serves as a reminder on how to work with software
+modules in general.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="callout1" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>The details of how you load different versions of compilers and
+libraries very much depend on your particular HPC system. Follow the
+instructor or consult your sites documentation or support staff in case
+of questions!</p>
+</div>
+</div>
+</div>
 <div class="codewrapper sourceCode" id="cb3">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb3-1"><a href="#cb3-1" tabindex="-1"></a><span class="ex">module</span> load 2025 GCC/13.2.0 OpenMPI/4.1.6 buildenv/default Boost/1.83.0 CMake/3.27.6 libpng/1.6.40</span></code></pre>
+</div>
+<div id="accordionInstructor5" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor5" aria-expanded="false" aria-controls="collapseInstructor5">
+  <h3 class="accordion-header" id="headingInstructor5">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> TODO: Introduce job script </h3>
+</button>
+<div id="collapseInstructor5" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor5" aria-labelledby="headingInstructor5">
+<div class="accordion-body">
+<p>To build and run on worker nodes instead of login resources!
+Alternatively, be explicit about this issue and that the following
+example works anywhere, if dependencies are available.</p>
+</div>
+</div>
+</div>
 </div>
 <p>Finally build and run the code</p>
 <div class="codewrapper sourceCode" id="cb4">
@@ -738,7 +771,7 @@ it looks like this:</p>
 <span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="fu">cmake</span> <span class="at">--build</span> . <span class="at">--parallel</span></span>
 <span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">mpirun</span> <span class="at">-n</span> 4 ./raytracer <span class="at">-width</span><span class="op">=</span>512 <span class="at">-height</span><span class="op">=</span>512 <span class="at">-spp</span><span class="op">=</span>128 <span class="at">-threads</span><span class="op">=</span>1 <span class="at">-png</span><span class="op">=</span>snowman.png</span></code></pre>
 </div>
-<p>This is</p>
+<p>The <code>mpirun</code> command is</p>
 <ul><li>starting the raytracer, with a prepared scene,</li>
 <li>calculating the raytraced picture with <span class="math inline">\(N
 = 4\)</span> MPI processes, each using a single thread
@@ -749,12 +782,24 @@ samples per pixel (<code>-spp=128</code>) in each MPI process,</li>
 picture to <span class="math inline">\(512\)</span> pixel, and
 finally</li>
 <li>storing the picture as <code>snowman.png</code>.</li>
-</ul><p>More on what a raytracer is and how it works. How does it
+</ul><div id="accordionInstructor6" class="accordion instructor-note accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button instructor-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseInstructor6" aria-expanded="false" aria-controls="collapseInstructor6">
+  <h3 class="accordion-header" id="headingInstructor6">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="edit-2"></i></div> TODO: More context? </h3>
+</button>
+<div id="collapseInstructor6" class="accordion-collapse collapse" data-bs-parent="#accordionInstructor6" aria-labelledby="headingInstructor6">
+<div class="accordion-body">
+<p>More on what a raytracer is and how it works. How does it
 parallelize?</p>
+</div>
+</div>
+</div>
+</div>
 </div>
 <div class="section level4">
 <h4 id="cuda-build">CUDA Build<a class="anchor" aria-label="anchor" href="#cuda-build"></a></h4>
-<p>Prepare the out-of-source build:</p>
+<p>The example workflow can also utilize Nvidia GPUs via CUDA. It
+requires a separate build, prepare it with:</p>
 <div class="codewrapper sourceCode" id="cb5">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
