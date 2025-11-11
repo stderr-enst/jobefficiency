@@ -66,6 +66,8 @@ Then we can ask about the efficiency of the job.
 
 ::: callout
 
+# `seff` may not be available
+
 `seff` is an optional SLURM tool for more convenient access to `saact`. It does not come standard with every SLURM installation.
 Your particular HPC system may or may not provide it. Check for it's availability on your login nodes, or consult your cluster documentation or support staff.
 
@@ -251,8 +253,18 @@ the time even though the program is just running at a fraction of the speed
 it could achieve if it fully exploited the hardware capabilities. It is worth
 keeping these limitations of `seff` in mind.
 
+::: callout
+
+# Good utilization does not imply efficiency
+Measuring close to 100% CPU utilization does not say anything about how useful the calculations are.
+It's merely stating, that the CPU was mostly busy with calculations, instead of waiting for data or running idle, waiting for other conditions to occur.
+
+Good CPU utilization is only efficient, if it runs only "useful" calculations that contribute with new results towards an intended goal.
+
+:::::::::::
+
 The `seff` command cannot give you any information about the I/O performance of
-your job. You have to use the `sacct` command for that.
+your job. You have to use other approaches for that, and `sacct` may be one of them.
 
 ### The `sacct` tool
 
@@ -334,6 +346,7 @@ JobID           JobName  Partition    Account  AllocCPUS      State ExitCode
 
 You may want to change the date of `2025-09-25` to something more sensible
 when you work through this tutorial.
+Note that some HPC systems may limit the range of such a request to a maximum of, for example, 30 days to avoid overloading the slurm database with too large requests.
 
 With the job ID you can ask `sacct` for information about a specific job
 as in
@@ -356,6 +369,20 @@ information.
 To get more specific data we need to explicitly ask for the information
 we want. As SLURM collects a broad range of data about every job it is worth
 to evaluate what the most relevant items are.
+
+::: instructor
+
+# Todo: extend the following list and examples to include CPU
+
+To reconstruct the CPU utilization reported by `seff`:
+- `TotalCPU`/`CPUTime` should give the percentage
+- Could also mention `UserCPU` and `SystemCPU` and discuss the difference? Both result in `TotalCPU`
+
+Maybe remove `AveCPUFreq` instead, or do we try to teach something specific about it?
+
+Don't forget to change the example output of all `sacct`s in the following examples/challenges!
+
+::::::::::::::
 
 - `MaxRSS`, `AveRSS`, or the Maximum or Average Resident Size Set (RSS). The
   RSS is the memory allocated by a program that is actually resident in the
@@ -384,8 +411,7 @@ to evaluate what the most relevant items are.
   the amount of time that passed between the start and finish of the job.
 - `MaxDiskRead`, the Maximum amount of data read from disk.
 - `MaxDiskWrite`, the Maximum amount of data written to disk.
-- `ConsumedEnergy`, the amount of energy consumed by the job if that information  was collected. If that data is not collected the energy consumption will be
-  reported as 0.
+- `ConsumedEnergy`, the amount of energy consumed by the job if that information  was collected. The data may not be collected on your particular HPC system and is reported as 0.
 - `AveCPUFreq`, the average CPU frequency of all tasks in a job, given in kHz. In general the
   higher the clock frequency of the processor the faster the calculation runs.
   The exception is if the application is memory bandwidth limited and the data
@@ -411,8 +437,8 @@ sacct --jobs=310002 --format=Elapsed
 
 ::::::::::::::::::: challenge
 
-Request information regarding all of the above variables from `sacct`.
-Note that the `--format` flag takes a comma separated list. Note that
+Request information regarding all of the above variables from `sacct`, including `JobID`.
+Note that the `--format` flag takes a comma separated list. Also note that
 the result shows that more data is read than written, even though
 the program generates and write an image, and reads no data at all.
 Why would that be?
@@ -433,25 +459,40 @@ sacct --jobs=310002 --format=MaxRSS,AveRSS,MaxPages,AvePages,AllocCPUS,Elapsed,M
          0          0        0          0          4   00:01:58        0.01M        0.00M              0         3M
 ```
 
-Note that although the program we have run generates an image and writes that
+Although the program we have run generates an image and writes that
 to a file, there is also a none zero amount of data read. The writing part
 is associated with the image file the program writes. The reading part is
 not associated with anything that the program does, as it doesn't read
 anything from disk. It is instead associated with the fact that the operating
-system has to read the program itself to execute it.
+system has to read the program itself and it's dependencies to execute it.
 
 :::::::::
 
 :::::::::::::
 
+
+::: instructor
+
+# Give more insight in the collected `sacct` metrics
+
+- `AllocCPUS`: number of CPU cores we requested for the job
+- `MaxRSS` = `AveRSS`: low fluctuation in memory, data is held throughout the whole job
+- `MaxPages` & `AvePages`: number of pages loaded into memory
+- `MaxDiskRead`: Data read from disk by the application, but also to start the application.
+
+::::::::::::::
+
 ## Shortcomings
 
-While `sacct` provides a lot of information it is still incomplete. For
-example, the information is for the entire calculation. Variations in the
+While `seff` and `sacct` provide a lot of information it is still incomplete. For
+example, the information is accumulated for the entire calculation. Variations in the
 metrics as a function of time throughout the job are not available.
 Communication between different MPI processes is not recorded. The collection
 of the energy consumption depends on the hardware and system configuration
-at the HPC center and might not be available. So while we might be able to
+at the HPC center and might not be available. We are also often missing reliable measurements
+for I/O via the interconnect between nodes and the parallel file system.
+
+So while we might be able to
 glean some indications for different types of performance problems, for a
 proper analysis more detailed information is needed.
 
@@ -464,7 +505,7 @@ any special preparation.
 
 ::::::::::::::::::::::: challenge
 
-So far we have just considered our initial calculation using 4 cores.
+So far we have considered our initial calculation using 4 cores.
 To run the calculation faster we could consider using more cores.
 Run the same calculation on 8, 16, and 32 cores as well. Collect
 and compare the results from `sacct` and see how the job performance
@@ -567,10 +608,13 @@ is responsible for the majority of data written.
 
 :::::::::::::::::::::::
 
-:::::::::::::::::::::::::: instructor
-## ToDo
-Can / should we cover I/O and energy metrics at this point?
+:::::::::::::::::::::::::::::::::::::: keypoints
 
-E.g. use something like `beegfs-ctl` to get a rough estimate of parallel FS performance.
-Use pidstat etc. to get numbers on node-local I/O (and much more)
-:::::::::::::::::::::::::::::::::::::
+- Schedulers provide tools for a high level view on our jobs, e.g. `sacct` and `seff`
+- Important basic performance metrics we can gather this way are:
+  - **CPU Utilization**, often as fraction of `time where CPU was active`/`elapsed time of the job`
+  - **Memory utilization**, often measured as *Resident Set Size* (RSS) and number of *Pages*
+- `sacct` can also provide metrics about disk I/O and energy consumption 
+- Metrics through `sacct` are accumulated for the whole job runtime and may be too broad for more specific insight
+
+::::::::::::::::::::::::::::::::::::::::::::::::
