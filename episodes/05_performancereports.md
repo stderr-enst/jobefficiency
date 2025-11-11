@@ -8,7 +8,7 @@ exercises: 0
 
 - Is it enough to look at a jobs walltime?
 - What steps can I take to evaluate a jobs performance?
-- What popular types of reports exist? (e.g. Roofline)
+- What popular types of reports exist?
 
 ::::::::::::::::::::::::::::::::::::::::::::::::
 
@@ -41,7 +41,7 @@ Narrative:
 What we're doing here:
 
 - Get a complete picture
-- Introduce missing metrics / definitions
+- Introduce missing metrics / definitions, and popular representations of data, e.g. Roofline
 - Relate to hardware on the same level of detail
 
 :::::::::::::::::::::::::::::::::::::
