@@ -161,6 +161,18 @@ core. In this case the actual memory usage is just a fraction of that amount.
 We could reduce the memory allocation by explicitly asking for less
 by modifying the `render_snowman.sbatch` job script.
 
+::: instructor
+
+# Todo: potential issue?
+
+Running this on our cluster and adding a module load command resulted in 600MB of memory required.
+My guess is, this is due to cgroups_v2 and Page caches being counted towards the job as well, so loading the modules might spike the resource requirements as well?
+
+Maybe we should play it safe and use a larger value in the following exercise.
+But we also want to teach not overdoing it, so it'd be good if we can find a useful but generic compromise here
+
+::::::::::::::
+
 :::::::::::::::::::: challenge
 
 Edit the batch file to reduce the amount of memory requested for the
