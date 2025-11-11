@@ -36,6 +36,7 @@ Link to external resources in prerequisites:
 - HPC Intro
 - HPC Shell
 - HPC.NRW
+- Maybe Python for plotting performance data?
 - Amount of knowledge about MPI, OpenMPI, CUDA, etc.?
   - Don't require in-depth MPI knowledge, but some basic understanding might be necessary?
 
@@ -68,9 +69,9 @@ Refer to the [HPC Introduction lessons](https://nesi.github.io/hpc-intro/) to le
 
 - Executive summary of typical HPC workflow? Or refer to other HPCC courses that cover this
 - "HPC etiquette"
-   - E.g. don't run benchmarks on login node
-   - Don't disturb jobs on shared nodes
-- Setup of example for performance studies
+   - E.g. don't run benchmarks and other computationally heavy workloads on login node. Emphasise their purpose
+   - Don't disturb jobs on shared nodes (<-- this phrasing is hard to grasp for newcomers and should be avoided. It will block them from trying things if they are afraid to break anything. Maybe this is more the responsibility of admins and users should just be aware that they may affect other users?)
+- Setup of belows workflow example (next section)
 
 
 :::::::::::::::::::::::::::::::::::::::::: discussion 
@@ -145,7 +146,8 @@ cd SnowmanRaytracer
 ```
 
 #### CPU Build
-Prepare the out-of-source build:
+The example workload can perform calculations on CPUs, potentially across multiple nodes using MPI for communication.
+To prepare the out-of-source build:
 
 ```bash
 cd ..
@@ -164,9 +166,31 @@ In HPC systems this often happens through loading software modules.
 How exactly the modules are named and what has to be loaded can very much depend on the specific configuration of your cluster.
 In this case it looks like this:
 
+::: instructor
+
+Show learners how to prepare their environment on your particular HPC system.
+This also serves as a reminder on how to work with software modules in general.
+
+::::::::::::::
+
+::: callout
+
+The details of how you load different versions of compilers and libraries very much depend on your particular HPC system.
+Follow the instructor or consult your sites documentation or support staff in case of questions!
+
+:::::::::::
+
 ```bash
 module load 2025 GCC/13.2.0 OpenMPI/4.1.6 buildenv/default Boost/1.83.0 CMake/3.27.6 libpng/1.6.40
 ```
+
+::: instructor
+
+# TODO: Introduce job script
+To build and run on worker nodes instead of login resources!
+Alternatively, be explicit about this issue and that the following example works anywhere, if dependencies are available.
+
+::::::::::::::
 
 Finally build and run the code
 
@@ -176,7 +200,7 @@ cmake --build . --parallel
 mpirun -n 4 ./raytracer -width=512 -height=512 -spp=128 -threads=1 -png=snowman.png
 ```
 
-This is
+The `mpirun` command is
 
 - starting the raytracer, with a prepared scene,
 - calculating the raytraced picture with $N = 4$ MPI processes, each using a single thread (`-threads=1`),
@@ -184,11 +208,17 @@ This is
 - setting `height` and `width` of the resulting picture to $512$ pixel, and finally
 - storing the picture as `snowman.png`.
 
+::: instructor
+
+# TODO: More context?
 More on what a raytracer is and how it works.
 How does it parallelize?
 
+::::::::::::::
+
 #### CUDA Build
-Prepare the out-of-source build:
+The example workflow can also utilize Nvidia GPUs via CUDA.
+It requires a separate build, prepare it with:
 
 ```bash
 cd ..
