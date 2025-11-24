@@ -16,7 +16,7 @@ exercises: 0
 
 After completing this episode, participants should be able to …
 
-- Use simple timing commands provided by `time`, `date` and the Bash-shell.
+- Use timing commands provided by `time`, `date` and the Bash-shell.
 - Understand the benefits of efficient jobs in terms of runtime and numerical accuracy.
 - Have developed some awareness about the overall high energy consumption of HPC.
 
@@ -54,8 +54,8 @@ What we're doing here:
 -->
 
 ## Background
-Job efficieny, as defined by Oxford’s English Dictionaries, is *the ratio of the useful work performed by a machine [...] to the total energy expended or heat taken in*. In a computer/HPC context, the useful work
-is the entirety of all calculations to be performed by our heat-generating machines (computers). Doing this eficiently thus translates to maximizing the calculations completed in some limited time span while minimizing the heat output. In more extreme words, we want to avoid running big computers for *nothing but hot air*.
+Job efficieny, as defined by Oxford’s English Dictionaries, is *the ratio of the useful work performed by a machine [...] to the total energy expended or heat taken in*. In a high-performance-computing (HPC) context, the useful work
+is the entirety of all calculations to be performed by our (heat-generating) computers. Doing this eficiently thus translates to maximizing the calculations completed in some limited time span while minimizing the heat output. In more extreme words, we want to avoid running big computers for *nothing but hot air*.
 
 One may object that a single user's job may hardly have an effect on an HPC system's power usage since such systems are in power-on state 24/7 anyway.
 The same may be argued about air travel. The plane will take off
@@ -82,7 +82,8 @@ sys	0m0.000s
 ```
 The `time` command shall be our first performance-measuring tool. `time`has become a bit
 of a *hello-world* equivalent in HPC contexts.
-This command gives you a breakdown of how your program uses CPU and wall-clock time.
+This command gives you a breakdown of how your program uses CPU (Central Processing Unit)
+and wall-clock time. 
 The standard output of `time` reports three fields, *real*, *user* and *sys*:
 
 +------+-------------------------------------------------------------------------------+
@@ -139,7 +140,7 @@ In fact, this gives us a super accurate stopwatch when used like this:
 ```bash
 date +%s.%N
 ```
-This reports a point in time as a number of seconds elapsed since a fixed reference point.
+reports a point in time as a number of seconds elapsed since a fixed reference point.
 Such a referenced time point is also referred to as Epoch time, where,
 according to the manpage, the (default) reference point is the
 beginning of the year 1970 (*1970-01-01 00:00 UTC*).
@@ -151,12 +152,12 @@ followed by 9 digits after the decimal point.
 ::::::::::::: challenge
 ### An accurate stopwatch: `date`
 You can use the construct`date +%s.%N`on the command line or in a Bash script 
-by storing Epoch time as a variable:
+to save some starting time point as a variable:
 ```bash
 start=$(date +%s.%N)
 ```
 This gives you a stopwatch by setting a start time, running some **command(s)**, and
-then storing the Epoch time after **command(s)** into a second variable.
+then storing the end (Epoch) time after **command(s)** into a second variable.
 Differencing the two Epoch times produces the elapsed time. 
 Give this a try with the`sleep`command in between.
 
@@ -188,7 +189,7 @@ parts of a longer script.
 another accurate timing method.
 :::::::::::::
 
-## Example for an inefficient job
+## Part 1: Example for an inefficient job
 After warming up with some timing methods, let's analyze the efficiency of a
 small script that makes our computer sweat a bit more than the`sleep`command.
 Have a look at the following Bash shell 7-liner.
@@ -218,7 +219,7 @@ so the output of the final`echo`line is the total, $\sum_{i=1}^{1000}i^{1.5}$.
 ::::::::::::: challenge
 ### Identify the inefficient pieces
 In the above Bash script, the`for`loop invokes the `bc`calculator twice during
-every loop iteration. Compared to other methods to be investigated below, this 
+every loop iteration. Compared to another method to be investigated below, this 
 method is rather slow. Any idea why that is the case?
 
 :::: hint
@@ -239,7 +240,7 @@ that is, calling the`bc`tool so many times.
 Going back to our air-travel analogy, the summation of 1000 numbers shall be
 equivalent to having a total of 1000 passengers board a large plane.
 When total boarding time counts, an inefficient boarding procedure would involve
-every passenger loading two carry-on pieces. Many of you may have experienced,
+every passenger loading two carryon pieces. Many of you may have experienced,
 how stuffing an excessive number of baggage pieces into the overhead compartments
 can slow things down in the plane's aisles,
 similar to the overhead due to the 2000 (two for each loop iteration)`bc`sub-processes
@@ -287,7 +288,7 @@ echo Sum=$sum runtime1=$SECONDS runtime2=`echo "$end - $start" | bc -l`
 A remedy to the inefficiencies we found inside the`for`loop of`sum.bash`is to avoid the
 spawning of many sub-processes that are caused by repetitively calling`bc`.
 In other words, ideally, the many sub-processes conflate into one.
-In terms of the airplane analogy, we want people to store all their carry-on
+In terms of the airplane analogy, we want people to store all their carryon
 pieces in a big container, where its subsequent loading onto the plane is a single process,
 as opposed to every passenger running a proprietary sub-process.
 Unifying the`for`loop's individual sub-processes can be achieved using 
@@ -297,9 +298,10 @@ seq 1 1000 | awk '{s+=$1^1.5} END {printf("Sum=%.6f\n",s)}'
 ```
 In this method, the loop, arithmetic, and accumulation all happen inside a 
 single`awk`process. Consequently, the math is done natively in memory, almost
-completely free of overhead. No need to understand every detail, just note that`awk`is
-a powerful tool which implicitly treats line input, here given by`seq 1 1000`, like
-a loop associated with a single process.
+completely free of overhead.
+
+In case you feel somewhat awkward with the`awk`syntax, no worries. No need to understand`awk`at this point. Just note that it is a powerful tool which implicitly treats line input, here given by`seq 1 1000`, like a loop associated with a single process. The example shall be a placeholder for a common scenario, where potentially large efficiency gains can be achieved by replacing 
+inefficient math implementations by numerically optimized software *libraries*.
 
 ::::::::::::: challenge
 ### Evaluate the runtime improvement
@@ -307,11 +309,11 @@ Compare the runtimes of the summation script`sum.bash`versus the one-liner which
 uses`awk`.
 
 :::: hint
-The Bash keyword`time` is sufficient to see the runtime difference.
+The Bash keyword`time`is sufficient to see the runtime difference.
 ::::
 
 :::: solution
-You can use`time` for both summation methods,
+You can use`time`for both summation methods,
 ```bash
 time ./sum.bash
 time seq 1 1000 | awk '{s+=$1^1.5} END {printf("Sum=%.6f\n",s)}'
@@ -328,8 +330,16 @@ hour on a supercomputer for which one has to pay a usage fee on a per-hour basis
 If implemented poorly, an already small overhead increase, say by a factor of 2, 
 would render this computing job expensive, both in terms of time and money.
 
+### CPU-bound versus memory-bound
+The above runtime comparisons merely look at calculation speed, which depends on
+CPU processing speed. Such a task is thus called *CPU-bound*. 
+On the other hand, the peformance of a *memory-bound* process is limited by the speed of memory access. This happens when the CPU spends most of its time waiting for data to be fetched from memory (RAM), cache, or storage, causing its execution pipeline to stall. Optimization of memory-bound tasks addresses performance bottlenecks due
+to data transfer speeds rather than calculation speeds.
+Finally, when data transfer involves a high percentage of disk or network access, 
+disk speed or networking speed becomes a limiting factor, rendering a process *I/O-bound*.
+
 ::::::::::::: keypoints
-- Compute job efficiency boils down to staying as CPU-bound as possible, that is,
+- Efficiency for calculation-heavy jobs boils down to staying as CPU-bound as possible, that is,
   avoiding as much overhead as possible.
 - Overhead essentially distracts a CPU (or GPU) from its main job, that is, the
   ratio $\frac{useful\;work}{total\;energy\;expended}$ decreases.
@@ -339,16 +349,19 @@ would render this computing job expensive, both in terms of time and money.
   - repetitive I/O operations, 
   - slow memory access due to non-optimal addressing,
   - process contention owing to too many sub-processes spawned at once.
-
+- For memory-bound and I/O-bound jobs, efficiency revolves around fine-tuning of those parameters that
+  dictate data-transfer speed rather than calculation speed.
+- Which hardware piece (CPU, memory, disk, network, etc.) poses the limiting factor, 
+  depends on the nature of a particular application.
 - Whether in scripted or compiled programs, runtime measurements can help isolate
   inefficient program components. Debuggers also offer such tools. 
 :::::::::::::
 
-## A different animal: numerical inefficiency
+### A different animal: numerical (in)efficiency
 Inefficient computing is not only limited to being unneccessarily slow.
-It can also entail avoidable numerical inaccuracies.
+It can also entail avoidable numerical inaccuracies as well as excessive accuracies.
 Our summation implementation using Bash +`bc`exemplifies a case
-of such inaccuracies.
+for an inaccuracy.
 
 The internal accuracy of`bc`is defined by an adjustable parameter`scale`which
 defines how some operations use digits after the decimal point. The default value of`scale`is 0.
@@ -397,10 +410,54 @@ compared to the “true” value.
   reference results.
 :::::::::::::
 
+## Part 2: A hungry animal - HPC power consumption
+The *HP* (high performace) in HPC refers to the fact that the employed computer hardware
+is able to do a lot of multitasking, also called parallel computing.
+Parallel programming essentially exploits the CPU's multitasking ability.
+Therefore, a lot of HPC-efficiency aspects revolve
+around keeping everyone in a CPU's multitasking team equally busy.
+We will look at some of those aspects in the course of later episodes.
 
-## Some facts about HPC power consumption
-Let's consider a typical parallel scientific-computing job. Parallel computing jobs employ multiple cores of a CPU simultaneously.
-Our job exemplified here is deemed too large for one CPU, so it will employ multiple CPUs, which in turn are distributed across nodes.
+### The more the merrier: CPU/GPU cores
+Common parallel-computing jobs employ multiple cores of a CPU, or even multiple CPUs, simultaneously. 
+A core is a processing unit within a CPU that independently executes instructions. These days (as of 2025), typical CPUs are quad-core (4 cores), octa-core (8 cores), and so on. High-end gaming CPUs often have 16+ cores, HPC cluster nodes feature multiple CPUs,
+oftentimes with 64+ cores each; and all these numbers keep going up.
+
+Nowadays, almost all HPC centers are also equipped with GPU (Graphics Processing Unit)
+hardware. The number of GPU cores varies greatly depending on the model, ranging from a few hundred in low-end GPU cards to over 16,000 in high-end ones.
+
+### Measuring parallel runtime: core hours
+Owing to the inherent parallelism in the HPC world, people came up with some
+measure which takes the *granularity* into account when allocating not only 
+runtime but also the number of requested cores.
+The unit **core hour** (**core-h**) represents the usage of one CPU core for one hour and
+scales with core count.
+For example, assume you have a monthly allocation of 500 core-h, with
+a fee incurred when exceeding that quota.
+So with 500 core-h, you could run a one-hour parallel job utilizing 500 CPU cores for free.
+Or, in the other extreme, if your program does not or cannot multitask, 
+you could run a single-core job for 500 hours, provided you won't forget at the end
+what this job was about.
+
+:::::::::::::::::::::::::: callout
+So far, the focus has been on core number and hours for
+HPC resource allocation. Keep in mind, however, that the HPC resource portfolio involves
+other hardware components as well:
+
+- Memory: There are (whether parallel or not) jobs, that request a large amount of memory (RAM).
+For example, some mathematical solution methods for large equation systems do not allow
+the compartmentalization of the total required memory across CPU cores, that is, 
+many-core processes need to know each other's memory chunks. HPC centers usually have large-memory nodes assigned for such applications.
+- Storage: Other applications process huge amounts of data, think of genomics or climate
+modelling, which can involve terabytes or even petabytes of data to be stored and analyzed.
+
+::::::::::::::::::::::::::
+
+### A typical HPC computing job
+Like in the automotive world, high performance
+means high power, which in turn involves a high energy demand. 
+Let's consider a typical parallel scientific-computing job to be run in some HPC center.
+Our example job shall be deemed too large for one CPU, so it employs multiple CPUs, which in turn are distributed across nodes.
 Node power usage is measured in W=Watt, which is the SI unit of power and corresponds to the rate of consumption of energy in an electric circuit.
 One compute node with a 64-core CPU can consume between 300 W in idle state, and 900 W (maximum load) for air-cooled systems, whereas this range is roughly 250-850 W for the slightly more efficient liquid-cooled systems. For comparison, an average coffee maker consumes between 800 W (drip coffee maker) and 1500 W (espresso machine). 
 Our computing job shall then use these resources:
@@ -414,16 +471,43 @@ Our computing job shall then use these resources:
   * Extra power per node: 600 W
 - Total extra power: 12 nodes × 600 W × 12 hours = 86,400 Wh = 86.4 kWh
 
-The unit Wh (Watt-hours) measures energy, so 86,400 Wh is the energy that a 86,400 W powerful machine consumes in one hour.
+::::::::::::: challenge
+### How many core hours does this job involve?
+HPC centers have different job *queues* for different kinds of computing jobs.
+For example, a queue named *big-jobs* may be reserved for jobs exceeding a total
+of 1024 parallel processes = *tasks*. Another queue named *big-mem* may accomodate tasks
+with high memory demands by giving access to high-memory nodes
+(e.g., 512 GB, 1 TB, or more RAM per compute node).
+
+Let's assume, you have three job queues available, all with identical memory layout:
+
+- `small-jobs`: Total task count of up to 511.
+- `medium-jobs`: Total task count 512-1023.
+- `big-jobs`: Total task count of 1024 or more.
+
+When submitting the above computing job, in which queue would it end up?
+
+:::: hint
+The total number of tasks results from the product *cores-per-node* $\times$ *nodes*. 
+::::
+
+:::: solution
+The total number of tasks is *cores-per-node* $\times$ *nodes* = $64\times 12 = 768$, which
+would put the job into the`medium-jobs`queue.
+::::
+:::::::::::::
+
+### What are Watt hours?
+The unit Wh (Watt-hours) measures energy, so 86,400 Wh is the energy that a 86,400 W (or 86.4 kW, k=kilo) powerful machine consumes in one hour.
 Back to coffee, brewing one cup needs 50-100 Wh, depending on preparation time and method.
 So, running your 12-node HPC job for 12 hours is equivalent to brewing between 864 and 1,728 cups of coffee.
-For those of us who don't drink coffee, assuming 100% conversion efficiency from our compute job's heat to mechanical energy (which is unrealistic),
-you could lift an average African elephant (~6 tons) about 5,285 meters straight up, not quite to the top but in sight of Mount Kilimanjaro’s (5,895 m) summit.
+For those of us who don't drink coffee, assuming 100% conversion efficiency from our compute job's heat to mechanical energy, which is unrealistic,
+we could lift an average African elephant (~6 tons) about 5,285 meters straight up, not quite to the top but in sight of Mount Kilimanjaro’s (5,895 m) summit.
 
 ### Power-consuming hardware pieces
 Note that the focus is on **extra** power, that is, beyond the CPU's idle state. Attributing our job's extra power only to CPU usage underestimates its footprint. 
 In practice, the actual delta from idle to full load will vary based on the load posed on other hardware components.
-Therefore, it may be enlightening to shed some light onto those other hardware components that start gearing up after hitting that Enter key which submits the above kind of HPC job. 
+Therefore, it is interesting to shed some light onto those other hardware components that start gearing up after hitting that Enter key which submits the above kind of HPC job. 
 
 - CPUs consume power through two main processes:
   1. Dynamic power consumption: It is caused by the constant switching of transistors and is influenced by the CPU's clock frequency and voltage.
@@ -450,7 +534,21 @@ before submitting an energy-intense HPC job. If all passengers care about effici
 
 :::::::::::::::::::::::::::::::::::::: keypoints
 - Large-scaling computing is power hungry, so we want to use the energy wisely.
-- Computing job efficiency goes beyond individual gain in runtime as shared resources are used more effectively, that is, the ratio $\frac{useful\;work}{total\;energy\;expended}\approx\frac{number\;of\;users}{total\;energy\;expended}$ goes up.
+- Computing job efficiency goes beyond individual gain in runtime as shared resources are used more effectively, that is, the ratio $\frac{useful\;work}{total\;energy\;expended}\sim\frac{number\;of\;users}{total\;energy\;expended}$ goes up.
 - While CPUs, GPUs and their cooling consume most power, other hardware components add to the overall energy footprint.
 - As shown in the next episodes, you have more *power* than it may be expected over controlling job efficiency and thus overall energy footprint.
 ::::::::::::::::::::::::::::::::::::::
+
+## So what's next?
+The following episodes will put a number of these introductory thoughts 
+into concrete action by looking at some efficiency aspects around 
+a compute-intense graphical program.
+While it is not directly an action-loaded video game, it does contain essential
+pieces thereof, because it uses the technique of ray tracing.
+
+Ray tracing is a technique that simulates how light travels in a 3D scene to create 
+realistic images. It simulates the behaviour of light in terms of optical effects like
+reflection, refraction, shadows, absorption, etc. 
+The underlying calculations involve real-world physics, 
+which makes them computationally expensive. So are you ready for running a ray tracer 
+on HPC hardware?
