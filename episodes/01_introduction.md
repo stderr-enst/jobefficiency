@@ -416,7 +416,7 @@ is able to do a lot of multitasking, also called parallel computing.
 Parallel programming essentially exploits the CPU's multitasking ability.
 Therefore, a lot of HPC-efficiency aspects revolve
 around keeping everyone in a CPU's multitasking team equally busy.
-We will look at some of those aspects in the course of later episodes.
+We will look at some of those aspects during the course of later episodes.
 
 ### The more the merrier: CPU/GPU cores
 Common parallel-computing jobs employ multiple cores of a CPU, or even multiple CPUs, simultaneously. 
@@ -486,14 +486,18 @@ Let's assume, you have three job queues available, all with identical memory lay
 - `big-jobs`: Total task count of 1024 or more.
 
 When submitting the above computing job, in which queue would it end up?
+And, if there would be a charge of 1 Cent per core-h, what is the total
+cost in €?
 
 :::: hint
-The total number of tasks results from the product *cores-per-node* $\times$ *nodes*. 
+The total number of tasks results from the product *cores-per-node* $\times$ *nodes*.
+Total core hours is the task count multiplied by the job's requested time in hours. 
 ::::
 
 :::: solution
 The total number of tasks is *cores-per-node* $\times$ *nodes* = $64\times 12 = 768$, which
 would put the job into the`medium-jobs`queue.
+The HPC center would bill us for $64\times 12\times 12 = 9216$ core hours, hence €92.16.
 ::::
 :::::::::::::
 
