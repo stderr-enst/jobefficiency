@@ -575,38 +575,25 @@ title picture!</li>
 <li>Requesting resources with bigger systems requires a project proposal
 with an estimate of the resource demand</li>
 </ul>
-<p>What we’re doing here:</p>
-<ul>
-<li>Vary number of cores</li>
-<li>Which metrics are most useful?</li>
-<li>Define speedup</li>
-<li>Visualize results</li>
-</ul>
-<p>ToDo:</p>
-<ul>
-<li>Define example payload
-<ul>
-<li>Long enough to be significant</li>
-<li>Short enough to be feasible for a quick study</li>
-</ul>
-</li>
-<li>Identify dimension for scaling study, e.g.
-<ul>
-<li>number of processes (on a single node)</li>
-<li>number of processes (across nodes)</li>
-<li>number of nodes involved (network-communication boundary)</li>
-<li>size of workload</li>
-<li>Decide on number of processes across node, fixed workload size</li>
-</ul>
-</li>
-<li>Choose limits (e.g. 1, 2, 4, … cores), within reasonable size for
-given Cluster</li>
-<li>Beyond nodes? Set to one node?</li>
-</ul>
 <hr>
 <br><h3 id="04_scalingstudy-headingInstructor2">
-<a href="04_scalingstudy.html#headingInstructor2">Todo: show, don’t tell</a><a class="anchor" aria-label="anchor" href="#04_scalingstudy-headingInstructor2"></a>
+<a href="04_scalingstudy.html#headingInstructor2">Slurm Reservation and specific Hardware?</a><a class="anchor" aria-label="anchor" href="#04_scalingstudy-headingInstructor2"></a>
 </h3>
+<p>You may need to reserve a set of resources for the course, such that
+enough resources for the following exercises are available. This is
+especially important for <code>--exclusive</code> access.</p>
+<p>In that case, show how to use
+<code>--reservation=reservationname</code> to submit jobs.</p>
+<p>It may be a good idea to point out the particular hardware of your
+cluster / partition to emphasize how many cores are available on a
+single node and when the scaling study goes beyond a single node.</p>
+<hr>
+<br><h3 id="04_scalingstudy-headingInstructor3">
+<a href="04_scalingstudy.html#headingInstructor3">Todo: show, don’t tell</a><a class="anchor" aria-label="anchor" href="#04_scalingstudy-headingInstructor3"></a>
+</h3>
+<p>info dump below in this section</p>
+<p>Maybe be more specific about which overheads and how we can see
+them?</p>
 <hr>
 <br></section><section id="05_performancereports"><h2 class="section-heading"><a href="05_performancereports.html">Performance Overview</a></h2>
 <hr class="half-width">
@@ -866,8 +853,8 @@ many levels)</li>
   "url": "https://stderr-enst.github.io/jobefficiency/instructor/instructor-notes.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/instructor/instructor-notes.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-11-25",
-  "datePublished": "2025-11-25"
+  "dateModified": "2025-11-26",
+  "datePublished": "2025-11-26"
 }
 
   </script><script>
