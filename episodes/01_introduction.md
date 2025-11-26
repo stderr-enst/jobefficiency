@@ -16,7 +16,7 @@ exercises: 0
 
 After completing this episode, participants should be able to …
 
-- Use timing commands provided by `time`, `date` and the Bash-shell.
+- Use timing commands provided by `time`and`date`.
 - Understand the benefits of efficient jobs in terms of runtime and numerical accuracy.
 - Have developed some awareness about the overall high energy consumption of HPC.
 
@@ -100,7 +100,8 @@ The standard output of `time` reports three fields, *real*, *user* and *sys*:
 The above`sleep`command abstains from any kind of math, I/O, or other work that
 would show up in *user* or *sys* time, hence these entries show (almost) zero.
 
-:::::::::::::::::::::::::: callout
+:::::::::::::::::::::::::: spoiler
+### time or /usr/bin/time? that's the question
 The`time`commmand is both a keyword directly built into the Bash shell
 as well as an executable file, usually residing under`/usr/bin/time`. While very similar, they are
 not exactly the same. Shell/Bash keywords take
@@ -115,58 +116,44 @@ At last, you can prefix the shell keyword with a backslash in order to stop Bash
 so`\time sleep 2`will revert to`/usr/bin/time`.
 ::::::::::::::::::::::::::
 
-### Give me a second: `SECONDS`
-Bash offers another stopwatch. Try this:
-```bash
-SECONDS=0 && sleep 2 && echo $SECONDS
-```
-Here, we initiate the Bash-internal variable`SECONDS`to zero, then take a 2-second nap, and
-finally print out the number of elapsed seconds. Note that`&&`in between the commands is
-a way of creating a command sequence.
-
-:::::::::::::::::::::::::: callout
-While useful,`SECONDS`is a stopwatch without the ability of counting tenths of seconds,
-that is,
-```bash
-SECONDS=0 && sleep 1.6 && echo $SECONDS
-```
-will also report 2 seconds. Therefore, this method is less useful when a more
-accurate timing is required.
-::::::::::::::::::::::::::
-
-### Let's have a `date`
+### Time for a `date`
 The`date`command, as its manpage (`man date`) says, prints or sets the system date and time.
 In fact, this gives us a super accurate stopwatch when used like this:
 ```bash
 date +%s.%N
 ```
 reports a point in time as a number of seconds elapsed since a fixed reference point.
-Such a referenced time point is also referred to as Epoch time, where,
-according to the manpage, the (default) reference point is the
-beginning of the year 1970 (*1970-01-01 00:00 UTC*).
 
-While`%s`invokes Epoch time output, the additional specifier`%N`enforces an 
+:::: spoiler
+### Epoch time
+A referenced time point is also referred to as Epoch time, where,
+according to the manpage of`date`, the (default) reference point is the
+beginning of the year 1970, given as "1970-01-01 00:00 UTC".
+::::
+
+While`%s`invokes output of a referenc**ed** time, the additional specifier`%N`enforces an 
 accuracy down to nanoseconds. Give it a try and you will see a large number (of seconds)
 followed by 9 digits after the decimal point.
 
 ::::::::::::: challenge
 ### An accurate stopwatch: `date`
 You can use the construct`date +%s.%N`on the command line or in a Bash script 
-to save some starting time point as a variable:
+to save start and end time points as a variable:
 ```bash
 start=$(date +%s.%N)
+# ... run some command(s)
+end=$(date +%s.%N)
 ```
 This gives you a stopwatch by setting a start time, running some **command(s)**, and
-then storing the end (Epoch) time after **command(s)** into a second variable.
-Differencing the two Epoch times produces the elapsed time. 
+then storing the end time after **command(s)** into a second variable.
+Differencing the two times produces the elapsed time. 
 Give this a try with the`sleep`command in between.
 
 :::: hint
-Differencing two numbers (as produced above via`date`) can be done, among other ways, like this:
+Differencing two numbers can be done, among other ways, using the`bc`calculator tool:
 ```bash
 echo "$end - $start" | bc -l
 ```
-which uses the`bc`calculator tool.
 ::::
 
 :::: solution
@@ -175,18 +162,6 @@ start=$(date +%s.%N) && sleep 2 && end=$(date +%s.%N) && echo "$end - $start" | 
 ```
 ::::
 
-:::::::::::::
-
-::::::::::::: keypoints
-- Different methods exist for timing our compute jobs or portions thereof.
-- `time`is useful if only one command, which could of course be given as a lenghty script,
-is to be timed from the command line: `time ./mylongscript.bash`.
-- Using the builtin Bash variable`SECONDS` is useful for timing command
-sequences within Bash scripts, when an accuracy of seconds suffices. Note that
-`SECONDS=0` resets this internal timer, in case you want to time different
-parts of a longer script.
-- Differencing two Epoch-time measurements set via`date +%s.%N` provides
-another accurate timing method.
 :::::::::::::
 
 ## Part 1: Example for an inefficient job
@@ -200,7 +175,7 @@ for i in $(seq 1 1000); do
   val=`echo "e(1.5 * l(${i}))" | bc -l`
   sum=$(echo "$sum + $val" | bc -l)
 done
-echo Sum=$sum runtime=$SECONDS seconds
+echo Sum=$sum
 ```
 Copy-paste this to a file, say`sum.bash`, and make it executable via
 ```bash
@@ -248,11 +223,7 @@ that hinder the data stream inside the CPU's "aisles".
 
 ::::::::::::: challenge
 ### Let's pull out our stopwatches
-You may have noticed the runtime output using`SECONDS`in the last line of`sum.bash`,
-providing a rather crude runtime measurement. By the way, an initialization
-`SECONDS=0` is not needed as it happens (once) internally at script invocation.
-Using one of the other timers introduced above, can you get a more accurate runtime
-measurement?
+Using either`time`or`date`, can you get a runtime measurement?
 
 :::: hint
 You can precede any command with`time`. If you want to use`date`,
@@ -279,7 +250,7 @@ for i in $(seq 1 1000); do
   sum=$(echo "$sum + $val" | bc -l)
 done
 end=$(date +%s.%N) # set end time
-echo Sum=$sum runtime1=$SECONDS runtime2=`echo "$end - $start" | bc -l`
+echo Sum=$sum runtime=`echo "$end - $start" | bc -l`
 ```
 ::::
 :::::::::::::
@@ -330,6 +301,7 @@ hour on a supercomputer for which one has to pay a usage fee on a per-hour basis
 If implemented poorly, an already small overhead increase, say by a factor of 2, 
 would render this computing job expensive, both in terms of time and money.
 
+:::: spoiler
 ### CPU-bound versus memory-bound
 The above runtime comparisons merely look at calculation speed, which depends on
 CPU processing speed. Such a task is thus called *CPU-bound*. 
@@ -337,43 +309,31 @@ On the other hand, the peformance of a *memory-bound* process is limited by the 
 to data transfer speeds rather than calculation speeds.
 Finally, when data transfer involves a high percentage of disk or network access, 
 disk speed or networking speed becomes a limiting factor, rendering a process *I/O-bound*.
+::::
 
-::::::::::::: keypoints
-- Efficiency for calculation-heavy jobs boils down to staying as CPU-bound as possible, that is,
-  avoiding as much overhead as possible.
-- Overhead essentially distracts a CPU (or GPU) from its main job, that is, the
-  ratio $\frac{useful\;work}{total\;energy\;expended}$ decreases.
-- Too many external system calls can cause time-consuming overhead in an application. 
-  Examples for CPU-cycle wasting overhead are
-
-  - repetitive I/O operations, 
-  - slow memory access due to non-optimal addressing,
-  - process contention owing to too many sub-processes spawned at once.
-- For memory-bound and I/O-bound jobs, efficiency revolves around fine-tuning of those parameters that
-  dictate data-transfer speed rather than calculation speed.
-- Which hardware piece (CPU, memory, disk, network, etc.) poses the limiting factor, 
-  depends on the nature of a particular application.
-- Whether in scripted or compiled programs, runtime measurements can help isolate
-  inefficient program components. Debuggers also offer such tools. 
-:::::::::::::
-
-### A different animal: numerical (in)efficiency
 Inefficient computing is not only limited to being unneccessarily slow.
-It can also entail avoidable numerical inaccuracies as well as excessive accuracies.
-Our summation implementation using Bash +`bc`exemplifies a case
-for an inaccuracy.
+It can also entail the scenario where an excessive accuracy can lead to
+unneccessary runtime increases. Without going into details, in computing, accuracy
+depends on the *precision* of the numbers that are being processed by the CPU. The higher
+the precision, the fewer calculations can be processed within a fixed time.
+On the other hand, an insufficient precision can render lengthy calculations useless.
+The degree of precision is application dependent.
 
+Our summation implementation using Bash +`bc`exemplifies the case
+of an inaccurate calculation. When running the two summation methods in the previous challenge,
+have a look at the actual summation results.
+
+<!---
 The internal accuracy of`bc`is defined by an adjustable parameter`scale`which
 defines how some operations use digits after the decimal point. The default value of`scale`is 0.
 During each`bc`call within the summation loop of`sum.bash`, the intermediate result is rounded 
 according to the current setting of`scale`. An insufficiently low precision setting
 leads to an accumulation of rounding errors over many loop iterations,
-rendering the final result (like a sum or product) erroneous.
+rendering the final result (like a sum or product) erroneous.--->
 
 ::::::::::::: challenge
 ### Compare numerical results
-When running the two summation methods in the previous challenge, have a look at the actual
-summation results. Which of the two end results do you think is more accurate and why?
+Which of the two end results do you think is more accurate and why?
 Is the erroneous result smaller or larger and why?
 
 :::: hint
@@ -396,21 +356,7 @@ compared to the “true” value.
 ::::
 :::::::::::::
 
-::::::::::::: keypoints
-- Numerical (in)accuracy is another form of computational (in)efficiency.
-- An insufficient accuracy can render computations useless; an excessive accuracy can lead to
-  unneccessary runtime increases.
-- Finding the optimal accuracy in terms of compute speed and requested precision for
-  numerical applications usually involves fine-tuning of corresponding parameters in
-  your scripts or compiled programs.
-- Rounding errors can accumulate within loop iterations; they can also propagate to
-  other program components via passing affected sums, products, etc.
-- Errors owing to round-off are oftentimes a good first guess when some iterative
-  calculation's numerical output initially looks good but then appears to deviate from expected 
-  reference results.
-:::::::::::::
-
-## Part 2: A hungry animal - HPC power consumption
+## Part 2: About HPC power consumption
 The *HP* (high performace) in HPC refers to the fact that the employed computer hardware
 is able to do a lot of multitasking, also called parallel computing.
 Parallel programming essentially exploits the CPU's multitasking ability.
@@ -424,7 +370,9 @@ A core is a processing unit within a CPU that independently executes instruction
 oftentimes with 64+ cores each; and all these numbers keep going up.
 
 Nowadays, almost all HPC centers are also equipped with GPU (Graphics Processing Unit)
-hardware. The number of GPU cores varies greatly depending on the model, ranging from a few hundred in low-end GPU cards to over 16,000 in high-end ones.
+hardware. Such hardware is optimal for jobs where *many cores* is
+more important than fewer powerful cores.  
+The number of GPU cores varies greatly depending on the model, ranging from a few hundred in low-end GPU cards to over 16,000 in high-end ones.
 
 ### Measuring parallel runtime: core hours
 Owing to the inherent parallelism in the HPC world, people came up with some
@@ -439,7 +387,8 @@ Or, in the other extreme, if your program does not or cannot multitask,
 you could run a single-core job for 500 hours, provided you won't forget at the end
 what this job was about.
 
-:::::::::::::::::::::::::: callout
+:::::::::::::::::::::::::: spoiler
+### Other HPC resource types
 So far, the focus has been on core number and hours for
 HPC resource allocation. Keep in mind, however, that the HPC resource portfolio involves
 other hardware components as well:
@@ -487,7 +436,7 @@ Let's assume, you have three job queues available, all with identical memory lay
 
 When submitting the above computing job, in which queue would it end up?
 And, if there would be a charge of 1 Cent per core-h, what is the total
-cost in €?
+cost in € (1€ = 100 Cents)?
 
 :::: hint
 The total number of tasks results from the product *cores-per-node* $\times$ *nodes*.
@@ -508,6 +457,7 @@ So, running your 12-node HPC job for 12 hours is equivalent to brewing between 8
 For those of us who don't drink coffee, assuming 100% conversion efficiency from our compute job's heat to mechanical energy, which is unrealistic,
 we could lift an average African elephant (~6 tons) about 5,285 meters straight up, not quite to the top but in sight of Mount Kilimanjaro’s (5,895 m) summit.
 
+:::: spoiler
 ### Power-consuming hardware pieces
 Note that the focus is on **extra** power, that is, beyond the CPU's idle state. Attributing our job's extra power only to CPU usage underestimates its footprint. 
 In practice, the actual delta from idle to full load will vary based on the load posed on other hardware components.
@@ -532,15 +482,23 @@ and return to their idle state sooner.
    - Max load: Cooling can consume ~50–70% of total power (depends on liquid- or air-cooled systems).
 
    Cooling is essential because all electrical circuits generate heat during operation. Under heavy computational loads, insufficiently cooled CPUs and GPUs exceed their safe temperature limits. 
+::::
 
 These considerations hopefully highlight why there is benefit in identifying potential efficiency bottlenecks
-before submitting an energy-intense HPC job. If all passengers care about efficient job design, i.e., the total baggage load, more can simultaneously jump onto the HPC workhorse.
+before submitting an energy-intense HPC job. If all passengers care about efficient job design, i.e., the total baggage load, more can simultaneously jump onto the HPC plane.
 
+<!---
+ Use timing commands provided by `time`and`date`.
+- Understand the benefits of efficient jobs in terms of runtime and numerical accuracy.
+- Have developed some awareness about the overall high energy consumption of HPC.
+--->
 :::::::::::::::::::::::::::::::::::::: keypoints
-- Large-scaling computing is power hungry, so we want to use the energy wisely.
-- Computing job efficiency goes beyond individual gain in runtime as shared resources are used more effectively, that is, the ratio $\frac{useful\;work}{total\;energy\;expended}\sim\frac{number\;of\;users}{total\;energy\;expended}$ goes up.
-- While CPUs, GPUs and their cooling consume most power, other hardware components add to the overall energy footprint.
-- As shown in the next episodes, you have more *power* than it may be expected over controlling job efficiency and thus overall energy footprint.
+- Using a *stopwatch* like`time`gives you a first tool to log actual versus expected runtimes; it is also useful for carrying out runtime comparisons.
+- Most HPC centers offer sophisticated tools for measuring various performance metrics. Knowing one or a couple of those tools will make you a better *HPC-plumber*.
+- Which hardware piece (CPU, memory/RAM, disk, network, etc.) poses a limiting factor, 
+  depends on the nature of a particular application.
+- Large-scaling computing is power hungry, so we want to use the energy wisely. As shown in the next episodes, you have more *power* than it may be expected over controlling job efficiency and thus overall energy footprint.
+- Computing job efficiency goes beyond individual gain in runtime as shared resources are used more effectively, that is, the ratio $\frac{useful\;work}{total\;energy\;expended}\sim\frac{number\;of\;users}{total\;energy\;expended}$ improves.
 ::::::::::::::::::::::::::::::::::::::
 
 ## So what's next?
@@ -554,5 +512,20 @@ Ray tracing is a technique that simulates how light travels in a 3D scene to cre
 realistic images. It simulates the behaviour of light in terms of optical effects like
 reflection, refraction, shadows, absorption, etc. 
 The underlying calculations involve real-world physics, 
-which makes them computationally expensive. So are you ready for running a ray tracer 
-on HPC hardware?
+which makes them computationally expensive - a perfect HPC case.
+So are you ready for running a ray tracer on HPC hardware?
+Here is a basic run script, which you can copy-paste for now. We will go into
+more details later.
+```
+#!/usr/bin/bash
+#SBATCH --time=01:00:00
+#SBATCH --nodes=1
+#SBATCH --tasks-per-node=4
+
+# Put in the same "module load ..." command when building the raytracer program
+time mpirun -np 4 raytracer -width=800 -height=800 -spp=128 -alloc_mode=3
+```
+Check the`time`output at the end of the job's output
+file (named something like `slurm-<NUMBER>.out`). You will notice that *user* time is
+by a certain factor larger than *real* time. Any guess which number in the
+`mpirun`line corresponds roughly to that factor?
