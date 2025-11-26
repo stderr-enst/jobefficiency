@@ -137,7 +137,6 @@ Download the [data zip file](https://example.com/FIXME) and unzip it to your Des
 :::::::::::::::::::::::::::::::::::::
 
 
-
 Get the code:
 
 ```bash
@@ -189,6 +188,10 @@ module load 2025 GCC/13.2.0 OpenMPI/4.1.6 buildenv/default Boost/1.83.0 CMake/3.
 # TODO: Introduce job script
 To build and run on worker nodes instead of login resources!
 Alternatively, be explicit about this issue and that the following example works anywhere, if dependencies are available.
+
+Is the description here compatible / identical to the repo readme?
+
+Discuss output of the application & `scp` to copy the output png
 
 ::::::::::::::
 
