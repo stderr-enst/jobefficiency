@@ -407,23 +407,21 @@
 <section id="01_introduction"><h2 class="section-heading"><a href="01_introduction.html">Introduction</a></h2>
 <hr class="half-width">
 <ul>
-<li>Absolute vs. relative performance measurements
-<ul>
-<li>
-<code>time</code> to establish a baseline</li>
-<li>Estimating energy consumption</li>
-</ul>
-</li>
-<li>Job performance affects you as a user</li>
-<li>Core-h and very rough energy estimate</li>
-<li>Different perspectives on efficiency
-<ul>
-<li>Definitions: wall/human-time, compute-time, time-to-solution, energy
-(costs / environment), Money, opportunity cost (less research
-output)</li>
-</ul>
-</li>
-<li>Relationship between performance and computer hardware</li>
+<li>Using a <em>stopwatch</em> like<code>time</code>gives you a first
+tool to log actual versus expected runtimes; it is also useful for
+carrying out runtime comparisons.</li>
+<li>Most HPC centers offer sophisticated tools for measuring various
+performance metrics. Knowing one or a couple of those tools will help a
+lot in tuning your applications.</li>
+<li>Which hardware piece (CPU, memory/RAM, disk, network, etc.) poses a
+limiting factor, depends on the nature of a particular application.</li>
+<li>Large-scale computing is power hungry, so we want to use the energy
+wisely. As shown in the next episodes, you have more <em>power</em> than
+it may be expected over controlling job efficiency and thus overall
+energy footprint.</li>
+<li>Computing job efficiency goes beyond individual gain in runtime as
+shared resources are used more effectively, that is, the ratio <span class="math inline">\(\frac{useful\;work}{total\;energy\;expended}\sim\frac{number\;of\;users}{total\;energy\;expended}\)</span>
+improves.</li>
 </ul></section><section id="02_resourcerequirements"><h2 class="section-heading"><a href="02_resourcerequirements.html">Resource Requirements</a></h2>
 <hr class="half-width">
 <ul>
@@ -580,8 +578,8 @@ vendor-related, …</li>
   "url": "https://stderr-enst.github.io/jobefficiency/instructor/key-points.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/instructor/key-points.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-11-26",
-  "datePublished": "2025-11-26"
+  "dateModified": "2025-11-27",
+  "datePublished": "2025-11-27"
 }
 
   </script><script>
