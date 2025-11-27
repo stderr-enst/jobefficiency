@@ -172,7 +172,7 @@ Have a look at the following Bash shell 7-liner.
 #!/bin/bash
 sum=0
 for i in $(seq 1 1000); do
-  val=`echo "e(1.5 * l(${i}))" | bc -l`
+  val=`echo "e(2 * l(${i}))" | bc -l`
   sum=$(echo "$sum + $val" | bc -l)
 done
 echo Sum=$sum
@@ -185,11 +185,11 @@ The main part of this shell script consists of a`for`statement which
 runs a loop over 1000 iterations; note that`seq 1 1000`creates the number 
 sequence ($i=1,2,3,...,1000$). Inside the `for`loop the`bc`calculator tool is employed.
 The first statement inside the loop (`val=...`) prints the expression
-`e(1.5 * l(${i}))`, which is `bc`-talk for the expression
-$i^{1.5}$ because of the relation $i^x=e^{x\cdot \ln(i)}$, for example
-$e^{1.5\cdot\ln(3)}=3^{1.5}$, where ln is the natural logarithm.
-The second statement inside the loop (`sum=...`) accumulates the expressions `val=`$i^{1.5}$ into`sum`,
-so the output of the final`echo`line is the total, $\sum_{i=1}^{1000}i^{1.5}$.
+`e(2 * l(${i}))`, which is `bc`-talk for the expression
+$i^2$ because of the relation $i^x=e^{x\cdot \ln(i)}$, for example
+$e^{2\cdot\ln(3)}=3^2$, where ln is the natural logarithm.
+The second statement inside the loop (`sum=...`) accumulates the expressions `val=`$i^2$ into`sum`,
+so the output of the final`echo`line is the total, $\sum_{i=1}^{1000}i^2$.
 
 ::::::::::::: challenge
 ### Identify the inefficient pieces
@@ -223,11 +223,11 @@ that hinder the data stream inside the CPU's "aisles".
 
 ::::::::::::: challenge
 ### Let's pull out our stopwatches
-Using either`time`or`date`, can you get a runtime measurement?
+Using either`time`or`date`, can you get a runtime measurement for`sum.bash`?
 
 :::: hint
 You can precede any command with`time`. If you want to use`date`,
-remember that`start=$(date +%s.%N)`lets you store the (Epoch) time and`&&`lets 
+remember that`now=$(date +%s.%N)`lets you store the current time point and`&&`lets 
 you join commands together.
 ::::
 
@@ -246,7 +246,7 @@ Another option is to place`date`inside the script`sum.bash`,
 start=$(date +%s.%N) # set start time
 sum=0
 for i in $(seq 1 1000); do
-  val=`echo "e(1.5 * l(${i}))" | bc -l`
+  val=`echo "e(2 * l(${i}))" | bc -l`
   sum=$(echo "$sum + $val" | bc -l)
 done
 end=$(date +%s.%N) # set end time
@@ -262,22 +262,19 @@ In other words, ideally, the many sub-processes conflate into one.
 In terms of the airplane analogy, we want people to store all their carryon
 pieces in a big container, where its subsequent loading onto the plane is a single process,
 as opposed to every passenger running a proprietary sub-process.
-Unifying the`for`loop's individual sub-processes can be achieved using 
-yet another tool,`awk`,
+Collapsing things into one sub-processes can be achieved by
+replacing the external loop by a`bc`-internal one:
 ```bash
-seq 1 1000 | awk '{s+=$1^1.5} END {printf("Sum=%.6f\n",s)}'
+echo "s=0; for(i=1; i<=1000; i++)s+=i^2; s" | bc -l
 ```
-In this method, the loop, arithmetic, and accumulation all happen inside a 
-single`awk`process. Consequently, the math is done natively in memory, almost
-completely free of overhead.
-
-In case you feel somewhat awkward with the`awk`syntax, no worries. No need to understand`awk`at this point. Just note that it is a powerful tool which implicitly treats line input, here given by`seq 1 1000`, like a loop associated with a single process. The example shall be a placeholder for a common scenario, where potentially large efficiency gains can be achieved by replacing 
-inefficient math implementations by numerically optimized software *libraries*.
+In this method, to be called the *one-liner*, the loop, arithmetic,
+and accumulation are free of the overhead.
+This example shall be a placeholder for a common scenario, where potentially large efficiency gains can be achieved by replacing inefficient math implementations by numerically
+optimized software *libraries*.
 
 ::::::::::::: challenge
 ### Evaluate the runtime improvement
-Compare the runtimes of the summation script`sum.bash`versus the one-liner which
-uses`awk`.
+Compare the runtimes of the summation script`sum.bash`versus the one-liner.
 
 :::: hint
 The Bash keyword`time`is sufficient to see the runtime difference.
@@ -287,14 +284,14 @@ The Bash keyword`time`is sufficient to see the runtime difference.
 You can use`time`for both summation methods,
 ```bash
 time ./sum.bash
-time seq 1 1000 | awk '{s+=$1^1.5} END {printf("Sum=%.6f\n",s)}'
+time echo "s=0; for(i=1; i<=1000; i++)s+=i^2; s" | bc -l
 ```
 ::::
 :::::::::::::
 
 While it depends a bit on the employed hardware, one will notice that
-the`awk`process runs roughly 1000 times faster than`sum.bash`.
-Of course, we can live with this inefficiency when our summation is just needed
+the one-liner runs roughly 1000 times faster than`sum.bash`.
+Of course, one could live with this inefficiency when it is just needed
 once in a while and the script's overall runtime amounts to just a few seconds.
 However, imagine some large-scale computing job that is supposed to finish within an 
 hour on a supercomputer for which one has to pay a usage fee on a per-hour basis.
@@ -308,20 +305,21 @@ CPU processing speed. Such a task is thus called *CPU-bound*.
 On the other hand, the peformance of a *memory-bound* process is limited by the speed of memory access. This happens when the CPU spends most of its time waiting for data to be fetched from memory (RAM), cache, or storage, causing its execution pipeline to stall. Optimization of memory-bound tasks addresses performance bottlenecks due
 to data transfer speeds rather than calculation speeds.
 Finally, when data transfer involves a high percentage of disk or network access, 
-disk speed or networking speed becomes a limiting factor, rendering a process *I/O-bound*.
+disk/networking speed becomes a limiting factor, rendering a process *I/O-bound*.
 ::::
 
+### To be precise: Numerical efficiency
 Inefficient computing is not only limited to being unneccessarily slow.
 It can also entail the scenario where an excessive accuracy can lead to
-unneccessary runtime increases. Without going into details, in computing, accuracy
-depends on the *precision* of the numbers that are being processed by the CPU. The higher
-the precision, the fewer calculations can be processed within a fixed time.
-On the other hand, an insufficient precision can render lengthy calculations useless.
-The degree of precision is application dependent.
-
-Our summation implementation using Bash +`bc`exemplifies the case
-of an inaccurate calculation. When running the two summation methods in the previous challenge,
-have a look at the actual summation results.
+unneccessary runtime increases. Without going into details, let's just keep in mind
+that in computing, accuracy
+depends on the *precision* of the numbers that are being processed by the CPU. 
+Precision essentially governs how many digits after the decimal point are accounted
+for in mathematical operations.
+The higher the precision, the fewer calculations can be processed within a fixed time.
+On the other hand, within that same time, the CPU can crank through more low-precision
+numbers; however, an insufficient precision can render lengthy calculations useless.
+The optimal degree of precision, in terms of computing efficiency, is application dependent. 
 
 <!---
 The internal accuracy of`bc`is defined by an adjustable parameter`scale`which
@@ -333,6 +331,9 @@ rendering the final result (like a sum or product) erroneous.--->
 
 ::::::::::::: challenge
 ### Compare numerical results
+Our summation implementation via`sum.bash`exemplifies the case
+of an inaccurate calculation. When running the two summation methods in the previous challenge,
+have a look at the actual summation results.
 Which of the two end results do you think is more accurate and why?
 Is the erroneous result smaller or larger and why?
 
@@ -343,16 +344,21 @@ or 2) Baggage pieces are stored and retrieved collectively.
 ::::
 
 :::: solution
-The Bash-`bc`method and the`awk`process return the final sums, respectively,
+The method`sum.bash`, using the external`for`loop, and the one-liner return
+the final sums, respectively,
 ```
-12664913.748614 # bc
-12664925.956336 # awk
+103075329  # bc, external loop (sum.bash)
+333833500  # bc, internal loop (one-liner)
 ```
-which may vary on your machine.
-The second (`awk`) result is more accurate as it is not affected by propagating
-rounding errors. While the Bash-`bc`method repeatedly sums values through external calls,
-small rounding truncations accumulate at every step. Hence, the final sum drifts downward
-compared to the “true” value.
+where the first result may vary on your machine.
+The method`sum.bash`is affected by the setting of the
+`bc`-internal parameter`scale`which defines how some operations, here the
+exponential function **e(...)** and logarithm **ln(...)** use digits 
+after the decimal point. The default value of`scale`is 0, which basically leads to
+truncations after the decimal point, so rounding errors accumulate at every loop iteration.
+Hence, the final sum drifts downward (by a lot) compared to the second (true) value.
+Of course,`scale`can be increased. The manpage of`bc`actually says that it is
+"an arbitrary precision calculator language".
 ::::
 :::::::::::::
 
@@ -494,10 +500,10 @@ before submitting an energy-intense HPC job. If all passengers care about effici
 --->
 :::::::::::::::::::::::::::::::::::::: keypoints
 - Using a *stopwatch* like`time`gives you a first tool to log actual versus expected runtimes; it is also useful for carrying out runtime comparisons.
-- Most HPC centers offer sophisticated tools for measuring various performance metrics. Knowing one or a couple of those tools will make you a better *HPC-plumber*.
+- Most HPC centers offer sophisticated tools for measuring various performance metrics. Knowing one or a couple of those tools will help a lot in tuning your applications.
 - Which hardware piece (CPU, memory/RAM, disk, network, etc.) poses a limiting factor, 
   depends on the nature of a particular application.
-- Large-scaling computing is power hungry, so we want to use the energy wisely. As shown in the next episodes, you have more *power* than it may be expected over controlling job efficiency and thus overall energy footprint.
+- Large-scale computing is power hungry, so we want to use the energy wisely. As shown in the next episodes, you have more *power* than it may be expected over controlling job efficiency and thus overall energy footprint.
 - Computing job efficiency goes beyond individual gain in runtime as shared resources are used more effectively, that is, the ratio $\frac{useful\;work}{total\;energy\;expended}\sim\frac{number\;of\;users}{total\;energy\;expended}$ improves.
 ::::::::::::::::::::::::::::::::::::::
 
