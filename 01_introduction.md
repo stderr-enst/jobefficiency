@@ -50,12 +50,20 @@ What we're doing here:
 
 :::::::::::::::::::::::::::::::::::::
 
+::: instructor
+# TODO: Possible to highlight individual benefits of efficient jobs more?
+Maybe good to also address perspective of "why should I care".
+You get more out of your fair share.
+Shorter iteration times => more/better insight
+...
+::::::::::::::
+
 <!---the ratio of the useful work performed by a machine or in a process to the total energy expended or heat taken in
 -->
 
 ## Background
-Job efficieny, as defined by Oxford’s English Dictionaries, is *the ratio of the useful work performed by a machine [...] to the total energy expended or heat taken in*. In a high-performance-computing (HPC) context, the useful work
-is the entirety of all calculations to be performed by our (heat-generating) computers. Doing this eficiently thus translates to maximizing the calculations completed in some limited time span while minimizing the heat output. In more extreme words, we want to avoid running big computers for *nothing but hot air*.
+Job efficiency, as defined by Oxford’s English Dictionaries, is *the ratio of the useful work performed by a machine [...] to the total energy expended or heat taken in*. In a high-performance-computing (HPC) context, the useful work
+is the entirety of all calculations to be performed by our (heat-generating) computers. Doing this efficiently thus translates to maximizing the calculations completed in some limited time span while minimizing the heat output. In more extreme words, we want to avoid running big computers for *nothing but hot air*.
 
 One may object that a single user's job may hardly have an effect on an HPC system's power usage since such systems are in power-on state 24/7 anyway.
 The same may be argued about air travel. The plane will take off
@@ -102,14 +110,34 @@ would show up in *user* or *sys* time, hence these entries show (almost) zero.
 
 :::::::::::::::::::::::::: spoiler
 ### time or /usr/bin/time? that's the question
-The`time`commmand is both a keyword directly built into the Bash shell
+The`time`command is both a keyword directly built into the Bash shell
 as well as an executable file, usually residing under`/usr/bin/time`. While very similar, they are
 not exactly the same. Shell/Bash keywords take
 precedence, so preceding a command with`time`invokes the shell keyword. Therefore, if you want
 to force the usage of`/usr/bin/time`, you would do
+
 ```bash
-/usr/bin/time sleep 2
+# Explicitly calling the `time` binary
+$ /usr/bin/time sleep 2
+0.00user 0.00system 0:02.00elapsed 0%CPU (0avgtext+0avgdata 2176maxresident)k
+0inputs+0outputs (0major+90minor)pagefaults 0swaps
+
+# Compare the output to the Bash built-in:
+$ time sleep 2
+
+real	0m2,003s
+user	0m0,001s
+sys	0m0,003s
+
+# Yet another output of `time` in zsh, an alternative shell implementation to bash
+$ time sleep 2
+sleep 2  0,00s user 0,00s system 0% cpu 2,003 total
 ```
+
+Notice the different output formatting.
+All tools provide similar insight, but the formatting and exact information may differ.
+So, if you saw something that looks different from the bash built-in command, this may be why!
+
 Further note, that shell keyword documentation is invoked via`help <KEYWORD>`, for example
 `help time`, while most executables have manual pages, e.g.,`man time`.
 At last, you can prefix the shell keyword with a backslash in order to stop Bash from evaluating it,
@@ -131,7 +159,7 @@ according to the manpage of`date`, the (default) reference point is the
 beginning of the year 1970, given as "1970-01-01 00:00 UTC".
 ::::
 
-While`%s`invokes output of a referenc**ed** time, the additional specifier`%N`enforces an 
+While`%s`invokes output of a referenced time, the additional specifier`%N`enforces an 
 accuracy down to nanoseconds. Give it a try and you will see a large number (of seconds)
 followed by 9 digits after the decimal point.
 
@@ -158,7 +186,13 @@ echo "$end - $start" | bc -l
 
 :::: solution
 ```bash
-start=$(date +%s.%N) && sleep 2 && end=$(date +%s.%N) && echo "$end - $start" | bc -l
+#!/usr/bin/env bash
+
+start=$(date +%s.%N)
+sleep 2
+end=$(date +%s.%N)
+
+echo "$end - $start" | bc -l
 ```
 ::::
 
@@ -181,8 +215,8 @@ Copy-paste this to a file, say`sum.bash`, and make it executable via
 ```bash
 chmod u+x sum.bash
 ```
-The main part of this shell script consists of a`for`statement which
-runs a loop over 1000 iterations; note that`seq 1 1000`creates the number 
+The main part of this shell script consists of a`for`statement which is calculating the sum of all
+squares $i^2$ for 1000 iterations; note that`seq 1 1000`creates the number 
 sequence ($i=1,2,3,...,1000$). Inside the `for`loop the`bc`calculator tool is employed.
 The first statement inside the loop (`val=...`) prints the expression
 `e(2 * l(${i}))`, which is `bc`-talk for the expression
@@ -190,6 +224,12 @@ $i^2$ because of the relation $i^x=e^{x\cdot \ln(i)}$, for example
 $e^{2\cdot\ln(3)}=3^2$, where ln is the natural logarithm.
 The second statement inside the loop (`sum=...`) accumulates the expressions `val=`$i^2$ into`sum`,
 so the output of the final`echo`line is the total, $\sum_{i=1}^{1000}i^2$.
+
+::: instructor
+#TODO: Can we use `time` and `date` to find the issue with the subshells?
+
+Better to teach a way to find the issue, than staring at the script and thinking about it
+::::::::::::::
 
 ::::::::::::: challenge
 ### Identify the inefficient pieces
@@ -302,16 +342,24 @@ would render this computing job expensive, both in terms of time and money.
 ### CPU-bound versus memory-bound
 The above runtime comparisons merely look at calculation speed, which depends on
 CPU processing speed. Such a task is thus called *CPU-bound*. 
-On the other hand, the peformance of a *memory-bound* process is limited by the speed of memory access. This happens when the CPU spends most of its time waiting for data to be fetched from memory (RAM), cache, or storage, causing its execution pipeline to stall. Optimization of memory-bound tasks addresses performance bottlenecks due
+On the other hand, the performance of a *memory-bound* process is limited by the speed of memory access. This happens when the CPU spends most of its time waiting for data to be fetched from memory (RAM), cache, or storage, causing its execution pipeline to stall. Optimization of memory-bound tasks addresses performance bottlenecks due
 to data transfer speeds rather than calculation speeds.
 Finally, when data transfer involves a high percentage of disk or network access, 
 disk/networking speed becomes a limiting factor, rendering a process *I/O-bound*.
 ::::
 
 ### To be precise: Numerical efficiency
-Inefficient computing is not only limited to being unneccessarily slow.
+::: instructor
+# TODO: Maybe move discussion eleswere?
+Quality and necessity of calculations are important factors in efficiency. Redundant calculations are inefficient, for example.
+This section may be still too much of a detour from the introduction, at least in its current form.
+May be a chance to shorten the episode as well
+::::::::::::::
+
+
+Inefficient computing is not only limited to being unnecessarily slow.
 It can also entail the scenario where an excessive accuracy can lead to
-unneccessary runtime increases. Without going into details, let's just keep in mind
+unnecessary runtime increases. Without going into details, let's just keep in mind
 that in computing, accuracy
 depends on the *precision* of the numbers that are being processed by the CPU. 
 Precision essentially governs how many digits after the decimal point are accounted
@@ -369,6 +417,11 @@ Parallel programming essentially exploits the CPU's multitasking ability.
 Therefore, a lot of HPC-efficiency aspects revolve
 around keeping everyone in a CPU's multitasking team equally busy.
 We will look at some of those aspects during the course of later episodes.
+
+::: instructor
+# TODO: Add actions / live-coding to sections below?
+Maybe too much info vs. too little activity, currently?
+::::::::::::::
 
 ### The more the merrier: CPU/GPU cores
 Common parallel-computing jobs employ multiple cores of a CPU, or even multiple CPUs, simultaneously. 
@@ -500,16 +553,14 @@ before submitting an energy-intense HPC job. If all passengers care about effici
 --->
 :::::::::::::::::::::::::::::::::::::: keypoints
 - Using a *stopwatch* like`time`gives you a first tool to log actual versus expected runtimes; it is also useful for carrying out runtime comparisons.
-- Most HPC centers offer sophisticated tools for measuring various performance metrics. Knowing one or a couple of those tools will help a lot in tuning your applications.
-- Which hardware piece (CPU, memory/RAM, disk, network, etc.) poses a limiting factor, 
-  depends on the nature of a particular application.
+- Which hardware piece (CPU, memory/RAM, disk, network, etc.) poses a limiting factor, depends on the nature of a particular application.
 - Large-scale computing is power hungry, so we want to use the energy wisely. As shown in the next episodes, you have more *power* than it may be expected over controlling job efficiency and thus overall energy footprint.
 - Computing job efficiency goes beyond individual gain in runtime as shared resources are used more effectively, that is, the ratio $\frac{useful\;work}{total\;energy\;expended}\sim\frac{number\;of\;users}{total\;energy\;expended}$ improves.
 ::::::::::::::::::::::::::::::::::::::
 
 ## So what's next?
 The following episodes will put a number of these introductory thoughts 
-into concrete action by looking at some efficiency aspects around 
+into concrete action by looking at efficiency aspects around 
 a compute-intense graphical program.
 While it is not directly an action-loaded video game, it does contain essential
 pieces thereof, because it uses the technique of ray tracing.
@@ -519,9 +570,8 @@ realistic images. It simulates the behaviour of light in terms of optical effect
 reflection, refraction, shadows, absorption, etc. 
 The underlying calculations involve real-world physics, 
 which makes them computationally expensive - a perfect HPC case.
-So are you ready for running a ray tracer on HPC hardware?
-Here is a basic run script, which you can copy-paste for now. We will go into
-more details later.
+
+Here is a basic run script:
 ```
 #!/usr/bin/bash
 #SBATCH --time=01:00:00
@@ -529,9 +579,16 @@ more details later.
 #SBATCH --tasks-per-node=4
 
 # Put in the same "module load ..." command when building the raytracer program
-time mpirun -np 4 raytracer -width=800 -height=800 -spp=128 -alloc_mode=3
+
+time mpirun -np 4 raytracer -width=800 -height=800 -spp=128
 ```
+
 Check the`time`output at the end of the job's output
 file (named something like `slurm-<NUMBER>.out`). You will notice that *user* time is
-by a certain factor larger than *real* time. Any guess which number in the
-`mpirun`line corresponds roughly to that factor?
+by a certain factor larger than *real* time. 
+
+::: discussion
+Why is the `user` timer larger than the `real` time, and what does it mean?
+
+Any guess which number in the `mpirun`line corresponds roughly to that factor?
+::::::::::::::
