@@ -405,7 +405,7 @@
         
 <section id="aio-01_introduction"><p>Content from <a href="01_introduction.html">Introduction</a></p>
 <hr>
-<p>Last updated on 2025-11-27 |
+<p>Last updated on 2025-12-12 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/01_introduction.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -448,14 +448,15 @@ consumption of HPC.</li>
 <section><h2 class="section-heading" id="background">Background<a class="anchor" aria-label="anchor" href="#background"></a>
 </h2>
 <hr class="half-width">
-<p>Job efficieny, as defined by Oxford’s English Dictionaries, is
+<p>Job efficiency, as defined by Oxford’s English Dictionaries, is
 <em>the ratio of the useful work performed by a machine […] to the total
 energy expended or heat taken in</em>. In a high-performance-computing
 (HPC) context, the useful work is the entirety of all calculations to be
-performed by our (heat-generating) computers. Doing this eficiently thus
-translates to maximizing the calculations completed in some limited time
-span while minimizing the heat output. In more extreme words, we want to
-avoid running big computers for <em>nothing but hot air</em>.</p>
+performed by our (heat-generating) computers. Doing this efficiently
+thus translates to maximizing the calculations completed in some limited
+time span while minimizing the heat output. In more extreme words, we
+want to avoid running big computers for <em>nothing but hot
+air</em>.</p>
 <p>One may object that a single user’s job may hardly have an effect on
 an HPC system’s power usage since such systems are in power-on state
 24/7 anyway. The same may be argued about air travel. The plane will
@@ -532,8 +533,8 @@ time, hence these entries show (almost) zero.</p>
 </button>
 <div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
 <div class="accordion-body">
-<p>The<code>time</code>commmand is both a keyword directly built into
-the Bash shell as well as an executable file, usually residing
+<p>The<code>time</code>command is both a keyword directly built into the
+Bash shell as well as an executable file, usually residing
 under<code>/usr/bin/time</code>. While very similar, they are not
 exactly the same. Shell/Bash keywords take precedence, so preceding a
 command with<code>time</code>invokes the shell keyword. Therefore, if
@@ -542,8 +543,26 @@ do</p>
 <div class="codewrapper sourceCode" id="cb4">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="ex">/usr/bin/time</span> sleep 2</span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="co"># Explicitly calling the `time` binary</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="ex">$</span> /usr/bin/time sleep 2</span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="ex">0.00user</span> 0.00system 0:02.00elapsed 0%CPU <span class="er">(</span><span class="ex">0avgtext+0avgdata</span> 2176maxresident<span class="kw">)</span><span class="ex">k</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a><span class="ex">0inputs+0outputs</span> <span class="er">(</span><span class="ex">0major+90minor</span><span class="kw">)</span><span class="ex">pagefaults</span> 0swaps</span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="co"># Compare the output to the Bash built-in:</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="ex">$</span> time sleep 2</span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="ex">real</span>	0m2,003s</span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="ex">user</span>	0m0,001s</span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="ex">sys</span>	0m0,003s</span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="co"># Yet another output of `time` in zsh, an alternative shell implementation to bash</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="ex">$</span> time sleep 2</span>
+<span id="cb4-15"><a href="#cb4-15" tabindex="-1"></a><span class="fu">sleep</span> 2  0,00s user 0,00s system 0% cpu 2,003 total</span></code></pre>
 </div>
+<p>Notice the different output formatting. All tools provide similar
+insight, but the formatting and exact information may differ. So, if you
+saw something that looks different from the bash built-in command, this
+may be why!</p>
 <p>Further note, that shell keyword documentation is invoked
 via<code>help &lt;KEYWORD&gt;</code>, for example
 <code>help time</code>, while most executables have manual pages,
@@ -585,10 +604,10 @@ UTC”.</p>
 </div>
 </div>
 </div>
-<p>While<code>%s</code>invokes output of a referenc<strong>ed</strong>
-time, the additional specifier<code>%N</code>enforces an accuracy down
-to nanoseconds. Give it a try and you will see a large number (of
-seconds) followed by 9 digits after the decimal point.</p>
+<p>While<code>%s</code>invokes output of a referenced time, the
+additional specifier<code>%N</code>enforces an accuracy down to
+nanoseconds. Give it a try and you will see a large number (of seconds)
+followed by 9 digits after the decimal point.</p>
 <div id="an-accurate-stopwatch-date" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -643,7 +662,13 @@ the<code>bc</code>calculator tool:</p>
 <div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="va">start</span><span class="op">=</span><span class="va">$(</span><span class="fu">date</span> +%s.%N<span class="va">)</span> <span class="kw">&amp;&amp;</span> <span class="fu">sleep</span> 2 <span class="kw">&amp;&amp;</span> <span class="va">end</span><span class="op">=</span><span class="va">$(</span><span class="fu">date</span> +%s.%N<span class="va">)</span> <span class="kw">&amp;&amp;</span> <span class="bu">echo</span> <span class="st">"</span><span class="va">$end</span><span class="st"> - </span><span class="va">$start</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">bc</span> <span class="at">-l</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co">#!/usr/bin/env bash</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="va">start</span><span class="op">=</span><span class="va">$(</span><span class="fu">date</span> +%s.%N<span class="va">)</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="fu">sleep</span> 2</span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a><span class="va">end</span><span class="op">=</span><span class="va">$(</span><span class="fu">date</span> +%s.%N<span class="va">)</span></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a></span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a><span class="bu">echo</span> <span class="st">"</span><span class="va">$end</span><span class="st"> - </span><span class="va">$start</span><span class="st">"</span> <span class="kw">|</span> <span class="fu">bc</span> <span class="at">-l</span></span></code></pre>
 </div>
 </div>
 </div>
@@ -676,7 +701,8 @@ executable via</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb10-1"><a href="#cb10-1" tabindex="-1"></a><span class="fu">chmod</span> u+x sum.bash</span></code></pre>
 </div>
 <p>The main part of this shell script consists of
-a<code>for</code>statement which runs a loop over 1000 iterations; note
+a<code>for</code>statement which is calculating the sum of all squares
+<span class="math inline">\(i^2\)</span> for 1000 iterations; note
 that<code>seq 1 1000</code>creates the number sequence (<span class="math inline">\(i=1,2,3,...,1000\)</span>). Inside the
 <code>for</code>loop the<code>bc</code>calculator tool is employed. The
 first statement inside the loop (<code>val=...</code>) prints the
@@ -689,6 +715,7 @@ where ln is the natural logarithm. The second statement inside the loop
 <code>val=</code><span class="math inline">\(i^2\)</span>
 into<code>sum</code>, so the output of the final<code>echo</code>line is
 the total, <span class="math inline">\(\sum_{i=1}^{1000}i^2\)</span>.</p>
+
 <div id="identify-the-inefficient-pieces" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -899,7 +926,7 @@ computing job expensive, both in terms of time and money.</p>
 <div class="accordion-body">
 <p>The above runtime comparisons merely look at calculation speed, which
 depends on CPU processing speed. Such a task is thus called
-<em>CPU-bound</em>. On the other hand, the peformance of a
+<em>CPU-bound</em>. On the other hand, the performance of a
 <em>memory-bound</em> process is limited by the speed of memory access.
 This happens when the CPU spends most of its time waiting for data to be
 fetched from memory (RAM), cache, or storage, causing its execution
@@ -916,10 +943,11 @@ limiting factor, rendering a process <em>I/O-bound</em>.</p>
 <div class="section level3">
 <h3 id="to-be-precise-numerical-efficiency">To be precise: Numerical efficiency<a class="anchor" aria-label="anchor" href="#to-be-precise-numerical-efficiency"></a>
 </h3>
-<p>Inefficient computing is not only limited to being unneccessarily
+
+<p>Inefficient computing is not only limited to being unnecessarily
 slow. It can also entail the scenario where an excessive accuracy can
-lead to unneccessary runtime increases. Without going into details,
-let’s just keep in mind that in computing, accuracy depends on the
+lead to unnecessary runtime increases. Without going into details, let’s
+just keep in mind that in computing, accuracy depends on the
 <em>precision</em> of the numbers that are being processed by the CPU.
 Precision essentially governs how many digits after the decimal point
 are accounted for in mathematical operations. The higher the precision,
@@ -1004,6 +1032,7 @@ CPU’s multitasking ability. Therefore, a lot of HPC-efficiency aspects
 revolve around keeping everyone in a CPU’s multitasking team equally
 busy. We will look at some of those aspects during the course of later
 episodes.</p>
+
 <div class="section level3">
 <h3 id="the-more-the-merrier-cpugpu-cores">The more the merrier: CPU/GPU cores<a class="anchor" aria-label="anchor" href="#the-more-the-merrier-cpugpu-cores"></a>
 </h3>
@@ -1252,9 +1281,6 @@ the HPC plane.</p>
 <li>Using a <em>stopwatch</em> like<code>time</code>gives you a first
 tool to log actual versus expected runtimes; it is also useful for
 carrying out runtime comparisons.</li>
-<li>Most HPC centers offer sophisticated tools for measuring various
-performance metrics. Knowing one or a couple of those tools will help a
-lot in tuning your applications.</li>
 <li>Which hardware piece (CPU, memory/RAM, disk, network, etc.) poses a
 limiting factor, depends on the nature of a particular application.</li>
 <li>Large-scale computing is power hungry, so we want to use the energy
@@ -1273,33 +1299,46 @@ improves.</li>
 </h2>
 <hr class="half-width">
 <p>The following episodes will put a number of these introductory
-thoughts into concrete action by looking at some efficiency aspects
-around a compute-intense graphical program. While it is not directly an
+thoughts into concrete action by looking at efficiency aspects around a
+compute-intense graphical program. While it is not directly an
 action-loaded video game, it does contain essential pieces thereof,
 because it uses the technique of ray tracing.</p>
 <p>Ray tracing is a technique that simulates how light travels in a 3D
 scene to create realistic images. It simulates the behaviour of light in
 terms of optical effects like reflection, refraction, shadows,
 absorption, etc. The underlying calculations involve real-world physics,
-which makes them computationally expensive - a perfect HPC case. So are
-you ready for running a ray tracer on HPC hardware? Here is a basic run
-script, which you can copy-paste for now. We will go into more details
-later.</p>
+which makes them computationally expensive - a perfect HPC case.</p>
+<p>Here is a basic run script:</p>
 <pre><code>#!/usr/bin/bash
 #SBATCH --time=01:00:00
 #SBATCH --nodes=1
 #SBATCH --tasks-per-node=4
 
 # Put in the same "module load ..." command when building the raytracer program
-time mpirun -np 4 raytracer -width=800 -height=800 -spp=128 -alloc_mode=3</code></pre>
+
+time mpirun -np 4 raytracer -width=800 -height=800 -spp=128</code></pre>
 <p>Check the<code>time</code>output at the end of the job’s output file
 (named something like <code>slurm-&lt;NUMBER&gt;.out</code>). You will
 notice that <em>user</em> time is by a certain factor larger than
-<em>real</em> time. Any guess which number in the
-<code>mpirun</code>line corresponds roughly to that factor? <!--
+<em>real</em> time.</p>
+<div id="discussion1" class="callout discussion">
+<div class="callout-square">
+<i class="callout-icon" data-feather="message-circle"></i>
+</div>
+<span class="callout-header">Discussion</span>
+<div class="callout-inner">
+<div class="callout-content">
+<p>Why is the <code>user</code> timer larger than the <code>real</code>
+time, and what does it mean?</p>
+<p>Any guess which number in the <code>mpirun</code>line corresponds
+roughly to that factor?</p>
+</div>
+</div>
+</div>
+<!--
 Place links that you need to refer to multiple times across pages here. Delete
 any links that you are not going to use.
- --></p>
+ -->
 </section></section><section id="aio-02_resourcerequirements"><p>Content from <a href="02_resourcerequirements.html">Resource Requirements</a></p>
 <hr>
 <p>Last updated on 2025-11-05 |
@@ -2239,7 +2278,7 @@ any links that you are not going to use.
  -->
 </section></section><section id="aio-04_scalingstudy"><p>Content from <a href="04_scalingstudy.html">Scaling Study</a></p>
 <hr>
-<p>Last updated on 2025-11-26 |
+<p>Last updated on 2025-12-12 |
 
         <a href="https://github.com/stderr-enst/jobefficiency/edit/main/episodes/04_scalingstudy.md" class="external-link">Edit this page <i aria-hidden="true" data-feather="edit"></i></a></p>
 <div class="text-end">
@@ -2294,26 +2333,56 @@ processors.</p>
 <pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="co">#!/usr/bin/bash</span></span>
 <span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="co">#SBATCH --time=01:00:00</span></span>
 <span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="co">#SBATCH --nodes=1</span></span>
-<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#SBATCH --mem=2GB</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="co">#SBATCH --mem-per-cpu=200MB</span></span>
 <span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a></span>
-<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="ex">module</span> load 2025 GCC/13.2.0 OpenMPI/4.1.6 buildenv/default Boost/1.83.0 CMake/3.27.6 libpng/1.6.40</span>
-<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="bu">time</span> mpirun <span class="at">-n</span> <span class="va">${SLURM_NTASKS}</span> ./build/raytracer <span class="at">-width</span><span class="op">=</span>1024 <span class="at">-height</span><span class="op">=</span>1024 <span class="at">-spp</span><span class="op">=</span>256 <span class="at">-png</span> <span class="st">"</span><span class="va">$(</span><span class="fu">date</span> +%Y-%m-%d_%H%M%S<span class="va">)</span><span class="st">.png"</span></span></code></pre>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="co"># The `module load` command you had to load for building the raytracer</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="ex">module</span> load 2025 GCC/13.2.0 OpenMPI/4.1.6 buildenv/default Boost/1.83.0 CMake/3.27.6 libpng/1.6.40</span>
+<span id="cb1-8"><a href="#cb1-8" tabindex="-1"></a></span>
+<span id="cb1-9"><a href="#cb1-9" tabindex="-1"></a><span class="bu">time</span> mpirun <span class="at">--</span> ./raytracer <span class="at">-width</span><span class="op">=</span>800 <span class="at">-height</span><span class="op">=</span>800 <span class="at">-spp</span><span class="op">=</span>128 <span class="at">-png</span> <span class="st">"</span><span class="va">$(</span><span class="fu">date</span> +%Y-%m-%d_%H%M%S<span class="va">)</span><span class="st">.png"</span></span></code></pre>
 </div>
 <p>we can manually run such a scaling study by submitting multiple jobs.
-Here we use the environment variable <code>${SLURM_NTASKS}</code>, which
-is set by Slurm to the number of tasks during job submission. Let’s
-start some measurements:</p>
+In OpenMPI versions 4 and 5 the number of Slurm tasks is automatically
+picked up, so we do not set <code>-n</code> or <code>-np</code> of
+<code>mpirun</code>. We use <code>--</code> to separate the arguments of
+<code>mpirun</code> – none in this case – from the MPI application
+<code>raytracer</code> and its arguments. Otherwise you may experience
+errors in some versions of OpenMPI 5, where <code>mpirun</code>
+misinterprets the arguments of <code>raytracer</code> as its own.</p>
+<div id="scaling-other-resources-with-number-of-cpu-cores" class="callout">
+<div class="callout-square">
+<i class="callout-icon" data-feather="bell"></i>
+</div>
+<span class="callout-header">Callout</span>
+<div id="scaling-other-resources-with-number-of-cpu-cores" class="callout-inner">
+<h3 class="callout-title">Scaling other resources with number of CPU
+cores</h3>
+<div class="callout-content">
+<p>When scaling the resources outside of the job script, e.g. with
+<code>sbatch --ntasks=X ...</code>, as done above, we make sure to scale
+other resource requirements with the number of parallel processors. In
+this case, <code>--mem-per-cpu=200MB</code> is necessary, since
+<code>--mem</code> results in a fixed memory limit, independent of the
+number of processes.</p>
+<p>For example, if each MPI process needs <span class="math inline">\(100\,\)</span>MB, requesting <span class="math inline">\(2\,\)</span>GB would only be enough for up to 20
+MPI processes.</p>
+<p>Forgetting a limit like this is a common pitfall in this
+situation.</p>
+</div>
+</div>
+</div>
+<p>Let’s start some measurements with <span class="math inline">\(1\)</span>, <span class="math inline">\(2\)</span>, <span class="math inline">\(4\)</span>, and <span class="math inline">\(8\)</span> tasks:</p>
+
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
 <pre class="output" tabindex="0"><code>$ sbatch --ntasks 1 render_snowman.sbatch
-Submitted batch job 15462593
+Submitted batch job 16142767
 $ sbatch --ntasks 2 render_snowman.sbatch
-Submitted batch job 15462596
+Submitted batch job 16142768
 $ sbatch --ntasks 4 render_snowman.sbatch
-Submitted batch job 15462597
+Submitted batch job 16142769
 $ sbatch --ntasks 8 render_snowman.sbatch
-Submitted batch job 15462598</code></pre>
+Submitted batch job 16142770</code></pre>
 </div>
 <p>Now we have to wait until all four jobs are finished.</p>
 <div id="regular-update-of-squeue" class="callout">
@@ -2328,10 +2397,8 @@ Submitted batch job 15462598</code></pre>
 <p>You can use <code>squeue --me -i 30</code> to get an update of all of
 your jobs every 30 seconds.</p>
 <p>If you don’t need a more regular update, it is good practice to keep
-the interval on the order of 30s to a couple of minutes. This will ease
-the load on the Slurm servers in situations where potentially hundreds
-of users access the information for many thousand jobs at the same
-time.</p>
+the interval on the order of 30s to a couple of minutes, just to be nice
+to Slurms server resources.</p>
 </div>
 </div>
 </div>
@@ -2340,16 +2407,14 @@ wall clock time of all four jobs:</p>
 <div class="codewrapper">
 <h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="output" tabindex="0"><code>$ grep "real" slurm-1546259*.out
-slurm-15462593.out:real	6m52.719s
-slurm-15462596.out:real	3m24.359s
-slurm-15462597.out:real	1m41.754s
-slurm-15462598.out:real	0m51.534s</code></pre>
+<pre class="output" tabindex="0"><code>slurm-16142767.out:real       2m7.218s
+slurm-16142768.out:real       1m7.443s
+slurm-16142769.out:real       0m32.584s
+slurm-16142770.out:real       0m17.480s</code></pre>
 </div>
-<p>The real-, wallclock-, time is decreasing significantly each time we
-double the number of Slurm tasks. From this, we feel that doubling the
-number of CPU cores really is a winning strategy!</p>
-
+<p>The real-time is decreasing significantly each time we double the
+number of Slurm tasks. From this, we feel that doubling the number of
+CPU cores really is a winning strategy!</p>
 <div id="exercise-continue-scaling-study-to-larger-values" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -2362,25 +2427,21 @@ values</h3>
 <p>Run the same scaling study and continue it for even larger number of
 <code>--ntasks</code>, e.g. 16, 32, 64, 128. So far, we have been using
 <code>--nodes=1</code> to stay on a single node. At which point are your
-MPI processes distributed across more than one node? Use Slurm
-commandline tools to find out the how many CPU cores – in our case
-equivalent to the number of one-core MPI processes – are available on a
-single node. You may have to increase the number of nodes
-<code>--nodes</code>, if you want to go beyond that limitation.</p>
+MPI processes distributed across more than one node? Use Slurm command
+line tools to find out the how many CPU cores (MPI processes) are
+available on a single node. You may have to increase the number of nodes
+with <code>--nodes</code>, if you want to go beyond that limit.</p>
 <p>Gather your <code>real</code> time results and place them in a
 <code>.csv</code> file. Here is an example for our previous
 measurements:</p>
 <pre class="csv"><code>ntasks,time
-1,412.719
-2,204.359
-4,101.754
-8,51.534
+1,127.218
+2,67.443
+4,32.584
+8,17.480
 ...</code></pre>
 <p>How much does each doubling of the CPU resources help with running
-the parallel raytracer? You can also use <code>seff</code> to answer
-that question!</p>
-<p>COMPARE <code>real</code> TIME WITH JOB WALLCLOCK TIMES! DECIDE WHAT
-TO GO WITH!</p>
+the parallel raytracer?</p>
 </div>
 </div>
 </div>
@@ -2389,7 +2450,7 @@ TO GO WITH!</p>
 <button class="accordion-button hint-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseHint1" aria-expanded="false" aria-controls="collapseHint1">
   <h4 class="accordion-header" id="headingHint1"> Give me a hint </h4>
 </button>
-<div id="collapseHint1" class="accordion-collapse collapse" data-bs-parent="#accordionHint1" aria-labelledby="headingHint1">
+<div id="collapseHint1" class="accordion-collapse collapse" aria-labelledby="headingHint1" data-bs-parent="#accordionHint1">
 <div class="accordion-body">
 <p>You can use <code>sinfo</code> to find out the node names of your
 particular Slurm partition. Then use <code>scontrol</code> to show all
@@ -2404,25 +2465,27 @@ number of CPU (cores) available on that node.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
-<p>PUT RESULTING TIMES HERE!</p>
+<pre class="csv"><code>ntasks,time
+1,127.218
+2,67.443
+4,32.584
+8,17.480
+16,10.251
+32,7.257
+64,8.044
+128,8.575</code></pre>
+<p>Using <code>grep "real" slurm-*.out</code>, we can see the execution
+time is halved in the beginning, with each doubling of the CPU cores.
+However, somewhere between <span class="math inline">\(8\)</span> and
+<span class="math inline">\(16\)</span> cores, we start to see less and
+less improvement.</p>
 <p>Adding more resources does not help indefinitely. At some point the
 overhead of managing the calculation in separate tasks outweighs the
 benefit of parallel calculation. There is too little to do in each tasks
 and the overhead starts to dominate.</p>
-<p>With <code>seff</code> and <code>grep</code> we can see a lower CPU
-efficiency with each doubling of the number of tasks:</p>
-<div class="codewrapper">
-<h3 class="code-label">OUTPUT<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
-</h3>
-<pre class="output" tabindex="0"><code>$ for jobid in 15462593 15462596 15462597 15462598; do seff $jobid&amp;&amp; echo "" ; done | grep "CPU Efficiency"
-CPU Efficiency: 97.85% of 00:06:59 core-walltime
-CPU Efficiency: 95.73% of 00:07:02 core-walltime
-CPU Efficiency: 91.90% of 00:07:12 core-walltime
-CPU Efficiency: 84.27% of 00:07:44 core-walltime</code></pre>
-</div>
-<p>So at some point adding more CPU cores will not help us.</p>
+<p>At some point adding more CPU cores does not help us anymore.</p>
 </div>
 </div>
 </div>
@@ -2464,18 +2527,22 @@ Therefore, the best results are achieved by taking the mean and standard
 deviations of repeated measurements for the same configuration. The
 measured minimum also has strong informative value, since it proofs the
 best observed behavior.</p>
+<p>Keep in mind, <code>--exclusive</code> will always request all
+resources of a given node, even if only few cores are used. In these
+cases, tools like <code>seff</code> show worse resource utilization
+results, since measurements are done with respect to all booked
+resources.</p>
 </div>
 </div>
 </div>
-<p>A scaling study can in fact be done with respect to different
-application parameters and circumstances. For example, what is the
-execution time when we change the <em>workload</em>, e.g. a larger
-number of pixels, samples per pixels, or a more complex scene? How much
-does a communication overhead change, if we change the number of
-involved nodes while keeping the workload and number of tasks fixed,
-i.e. changing the <em>network communication surface</em>? Different
-scaling studies like these can help to identify pressure points that
-affect the applications performance.</p>
+<p>Scaling studies can be done with respect to different application and
+job parameters. For example, what is the execution time when we change
+the <em>workload</em>, e.g. a larger number of pixels, samples per
+pixels, or a more complex scene? How much does a communication overhead
+change, if we change the number of involved nodes while keeping the
+workload and number of tasks fixed, i.e. changing the <em>network
+communication surface</em>? Scaling studies like these can help identify
+pressure points that affect the applications performance.</p>
 <p>Scaling studies typically occur in a <em>preparation phase</em> where
 the application is evaluated with a representative example workload.
 Once a good configuration is found, we know the application is running
@@ -2491,42 +2558,100 @@ potential energy- and carbon footprint becomes much larger.</p>
 <hr class="half-width">
 <p>To quantitatively and empirically study the scaling behavior of a
 given application, it is common to look at the <em>speedup</em> and
-<em>efficiency</em> <em>Speedup</em> is a metric to compare the
-execution times with different amounts of resources. It answers the
-question</p>
+<em>efficiency</em> with respect to adding more parallel processors.</p>
+<p><em>Speedup</em> is a metric to compare the execution times with
+different amounts of resources. It answers the question</p>
 <blockquote>
-<p>How much faster is the application with <span class="math inline">\(N\)</span> parallel processes (threads), compared
-to the serial execution with <span class="math inline">\(1\)</span>
-process (threads)?</p>
+<p>How much faster is the application with <span class="math inline">\(N\)</span> parallel processes/threads, compared to
+the serial execution with <span class="math inline">\(1\)</span>
+process/thread)?</p>
 </blockquote>
 <p>It is defined by the comparison of wall times <span class="math inline">\(T(N)\)</span> of the application with <span class="math inline">\(N\)</span> parallel processes: <span class="math display">\[S(N) = \frac{T(1)}{T(N)}\]</span> Here, <span class="math inline">\(T(1)\)</span> is the wall time for a sequential
 execution, and <span class="math inline">\(T(N)\)</span> is the
 execution with <span class="math inline">\(N\)</span> parallel
-processes.</p>
+processes. For <span class="math inline">\(2\)</span> processes, we
+observe a speedup of <span class="math inline">\(S(2) =
+\frac{127.218}{67.443} \approx 1.89\)</span></p>
 <p><em>Efficiency</em> in this context is defined as <span class="math display">\[\eta(N) = \frac{S(N)}{N}\]</span> with speedup
 <span class="math inline">\(S(N)\)</span> and describes by how much
 additional parallel processes, <span class="math inline">\(N\)</span>,
 deviate from the theoretical linear optimum.</p>
-<div id="exercise-calculate-speedup-and-efficency" class="callout discussion">
+<div id="exercise-calculate-speedup-and-efficency" class="callout challenge">
 <div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
+<i class="callout-icon" data-feather="zap"></i>
 </div>
-<span class="callout-header">Discussion</span>
+<span class="callout-header">Challenge</span>
 <div id="exercise-calculate-speedup-and-efficency" class="callout-inner">
 <h3 class="callout-title">Exercise: Calculate Speedup and Efficency</h3>
 <div class="callout-content">
-<p>RUN WITH WALL-CLOCK TIMES &amp; CPU EFFICIENCY INSTEAD!</p>
+<p>Extend the <code>.csv</code> file of your measurements from above
+with a <code>speedup</code> and <code>efficiency</code> column. It may
+look like this:</p>
 <pre class="csv"><code>ntasks,time,speedup,efficiency
-1,412.719,1.00,1.00
-2,204.359,2.02,1.01
-4,101.754,4.06,1.015
-8,51.534,8.01,1.00125
+1,127.218,1.00,1.00
+2,67.443,1.89,0.94
+4,32.584,3.90,0.98
+8,17.480,7.28,0.91
 ...</code></pre>
+<p>You may want to use any data visualization tool, e.g. python or
+spreadsheets, to visualize the data.</p>
+<p>What number of processes may be a good working point for the
+raytracer with <span class="math inline">\(800 \times 800\)</span> pixel
+and <span class="math inline">\(128\)</span> samples per pixel?</p>
 </div>
 </div>
 </div>
-<p>So far, we kept the workload size fixed to <span class="math inline">\(1024 \times 1024\)</span> pixels and <span class="math inline">\(256\)</span> samples per pixel for the same scene
-with three snowmen. The diminishing returns for adding more and more
+<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
+  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+</button>
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
+<div class="accordion-body">
+<p>For all of our measurements, the speedup and efficiencies are</p>
+<pre class="csv"><code>ntasks,time,speedup,efficiency
+1,127.218,1.00,1.00
+2,67.443,1.89,0.94
+4,32.584,3.90,0.98
+8,17.480,7.28,0.91
+16,10.251,12.41,0.78
+32,7.257,17.53,0.55
+64,8.044,15.82,0.25
+128,8.575,14.84,0.12</code></pre>
+<p>Plotting the speedup and efficiency helps with identifying a good
+working point:</p>
+<figure><img src="fig/strong_scaling.png" alt="Speedup and efficiency of strong scaling example" class="figure mx-auto d-block"><div class="figcaption">Speedup and efficiency of strong scaling
+example</div>
+</figure><p>The 16th processor is still close to 80% efficient. The corresponding
+speedup is less than the theoretical optimum, which is visualized by a
+red line of slope <span class="math inline">\(1\)</span>.</p>
+<p>There is no exact optimum and the best working point is open for
+discussion. However, it would be difficult to justify additional cores,
+if their contribution to speedup is only 50% efficient or even less.</p>
+</div>
+</div>
+</div>
+</div>
+<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
+  <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> (Optional) plotting our .csvs </h3>
+</button>
+<div id="collapseSpoiler1" class="accordion-collapse collapse" aria-labelledby="headingSpoiler1" data-bs-parent="#accordionSpoiler1">
+<div class="accordion-body">
+<p>If you have experience with python, you can use our <a href="files/plot_scaling_from_csvs.py">python script</a> to create the
+same plots as above, but for your own data. It depends on
+<code>numpy</code>, <code>pandas</code>, and <code>matplotlib</code>, so
+make sure to prepare a corresponding python environment.</p>
+<p>The script expects your <code>.csv</code> files to be called
+<code>strong.csv</code> and <code>weak.csv</code>, and be placed in the
+same directory.</p>
+</div>
+</div>
+</div>
+</div>
+<p>So far, we kept the workload size fixed to <span class="math inline">\(800 \times 800\)</span> pixels and <span class="math inline">\(128\)</span> samples per pixel for the same scene
+with three snowman. The diminishing returns for adding more and more
 parallel processors leads to a famous observation. The speedup of a
 program through parallelization is limited by the execution time of the
 serial fraction that is not parallelizable. No application is 100%
@@ -2535,7 +2660,6 @@ only affect the parallelizable section. In the best case, the execution
 time gets reduced to the serial fraction of the application.</p>
 <p>An application is said to <em>scale strongly</em>, if adding more
 cores significantly reduces the execution time.</p>
-<p>INSERT PICTURES OF AMDAHLS FRACTIONS HERE</p>
 <div id="amdahls-law" class="callout">
 <div class="callout-square">
 <i class="callout-icon" data-feather="bell"></i>
@@ -2546,27 +2670,13 @@ cores significantly reduces the execution time.</p>
 </h3>
 <div class="callout-content">
 <p>The speedup of a program through parallelization is limited by the
-execution time of the serial fraction that is not parallelizable.
-Speedup <span class="math inline">\(S\)</span>, with <span class="math inline">\(N\)</span> processors, <span class="math inline">\(s\)</span> the time for the serial fraction, and
-<span class="math inline">\(p\)</span>, the time for parallel fraction:
-<span class="math display">\[S(N) = \frac{s+p}{s+\frac{p}{N}} =
-\frac{1}{s + \frac{p}{N}} \Rightarrow \lim_{N\rightarrow \infty}  S(N) =
+execution time of the serial fraction that is not parallelizable. For a
+given execution time <span class="math inline">\(T(N) = s +
+\frac{p}{N}\)</span>, with <span class="math inline">\(s\)</span> the
+time for the serial fraction, and <span class="math inline">\(p\)</span>, the time for parallel fraction,
+speedup <span class="math inline">\(S\)</span> is defined as <span class="math display">\[S(N) = \frac{s+p}{s+\frac{p}{N}} = \frac{1}{s +
+\frac{p}{N}} \Rightarrow \lim_{N\rightarrow \infty}  S(N) =
 \frac{1}{s}\]</span></p>
-</div>
-</div>
-</div>
-<div id="exercise-speedup-and-efficiency" class="callout discussion">
-<div class="callout-square">
-<i class="callout-icon" data-feather="message-circle"></i>
-</div>
-<span class="callout-header">Discussion</span>
-<div id="exercise-speedup-and-efficiency" class="callout-inner">
-<h3 class="callout-title">Exercise: Speedup and Efficiency</h3>
-<div class="callout-content">
-<p>Plot results (Black board, prepared python script, piece of paper?)
-Draw speedup &amp; efficiency vs. <span class="math inline">\(N\)</span>
-Plot efficiency and make a guess when adding more cores is not worth
-it.</p>
 </div>
 </div>
 </div>
@@ -2579,17 +2689,18 @@ it.</p>
 <h3 class="callout-title">Discussion: When should we stop adding CPU
 cores?</h3>
 <div class="callout-content">
-<p>Discuss the previous (potentially subjective) results and decide on a
-good approach in the group.</p>
-<p>Depends on X, Y, and Z. Could be around #N cores. It’s an
-optimization problem!</p>
+<p>Discuss your previous results and decide on a good working point. How
+many cores are still usefully reducing the execution time.</p>
+<p>What other factors could affect your decision, e.g. available
+hardware and corresponding waiting times.</p>
 </div>
 </div>
 </div>
-</section><section><h2 class="section-heading" id="if-scaling-is-limited-why-are-there-larger-hpc-systems">If scaling is limited, why are there larger HPC systems?<a class="anchor" aria-label="anchor" href="#if-scaling-is-limited-why-are-there-larger-hpc-systems"></a>
+</section><section><h2 class="section-heading" id="if-scaling-is-limited-why-are-there-larger-hpc-systems-weak-scaling-">If scaling is limited, why are there larger HPC systems? Weak
+scaling.<a class="anchor" aria-label="anchor" href="#if-scaling-is-limited-why-are-there-larger-hpc-systems-weak-scaling-"></a>
 </h2>
 <hr class="half-width">
-<p>We observed that for a fixed problem size adding more parallel
+<p>For a fixed problem size, we observed that adding more parallel
 processors can only help up to a certain point. But what if the project
 benefits from increasing the workload size? Does a higher resolution,
 more accuracy, or more statistics, etc., improve our insights and
@@ -2621,36 +2732,92 @@ for parallel fraction:</p>
 </div>
 </div>
 </div>
-<p>To scale the workload of the snowmen raytracer, we can multiply the
-number of parallel MPI processes, <code>${SLURM_NTASKS}</code>, with the
-intended samples per pixel (<code>-spp=256</code>). For a single
-process, the whole <span class="math inline">\(1024 \times 1024\)</span>
-pixel picture is calculated in a single MPI process with 256 per pixel.
-Running with two MPI processes, both have to calculate half the number
-of pixels, but twice the amount of samples per pixel.</p>
-<div class="codewrapper sourceCode" id="cb7">
+<p>To scale the workload of the snowman raytracer, we can increase the
+number of calculated pixels with the same factor with which we increase
+the number of parallel processors. For one processor we have <span class="math inline">\(800 \times 800 = 640000\)</span> pixel. That means
+for two processors we need a height and a width of <span class="math inline">\(\sqrt{2 \times 640000} = 1131.371 \approx
+1131\)</span>. And similarly increasing the number of pixels for <span class="math inline">\(--ntasks=4\)</span> and so on.</p>
+<p>The job script could look like this:</p>
+<div class="codewrapper sourceCode" id="cb8">
 <h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
 </h3>
-<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb7-1"><a href="#cb7-1" tabindex="-1"></a><span class="co">#!/usr/bin/bash</span></span>
-<span id="cb7-2"><a href="#cb7-2" tabindex="-1"></a><span class="co">#SBATCH --time=01:00:00</span></span>
-<span id="cb7-3"><a href="#cb7-3" tabindex="-1"></a><span class="co">#SBATCH --nodes=1</span></span>
-<span id="cb7-4"><a href="#cb7-4" tabindex="-1"></a><span class="co">#SBATCH --mem=2GB</span></span>
-<span id="cb7-5"><a href="#cb7-5" tabindex="-1"></a></span>
-<span id="cb7-6"><a href="#cb7-6" tabindex="-1"></a><span class="ex">module</span> load 2025 GCC/13.2.0 OpenMPI/4.1.6 buildenv/default Boost/1.83.0 CMake/3.27.6 libpng/1.6.40</span>
-<span id="cb7-7"><a href="#cb7-7" tabindex="-1"></a></span>
-<span id="cb7-8"><a href="#cb7-8" tabindex="-1"></a><span class="va">SPP</span><span class="op">=</span><span class="st">"$[</span><span class="va">${SLURM_NTASKS}</span><span class="st">*256]"</span></span>
-<span id="cb7-9"><a href="#cb7-9" tabindex="-1"></a></span>
-<span id="cb7-10"><a href="#cb7-10" tabindex="-1"></a><span class="bu">time</span> mpirun <span class="at">-n</span> <span class="va">${SLURM_NTASKS}</span> ./build/raytracer <span class="at">-width</span><span class="op">=</span>1024 <span class="at">-height</span><span class="op">=</span>1024 <span class="at">-spp</span><span class="op">=</span><span class="va">${SPP}</span> <span class="at">-png</span> <span class="st">"</span><span class="va">$(</span><span class="fu">date</span> +%Y-%m-%d_%H%M%S<span class="va">)</span><span class="st">.png"</span></span></code></pre>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb8-1"><a href="#cb8-1" tabindex="-1"></a><span class="co">#!/usr/bin/bash</span></span>
+<span id="cb8-2"><a href="#cb8-2" tabindex="-1"></a><span class="co">#SBATCH --time=01:00:00</span></span>
+<span id="cb8-3"><a href="#cb8-3" tabindex="-1"></a><span class="co">#SBATCH --nodes=1</span></span>
+<span id="cb8-4"><a href="#cb8-4" tabindex="-1"></a><span class="co">#SBATCH --mem-per-cpu=3800MB</span></span>
+<span id="cb8-5"><a href="#cb8-5" tabindex="-1"></a></span>
+<span id="cb8-6"><a href="#cb8-6" tabindex="-1"></a><span class="ex">module</span> load 2025 GCC/13.2.0 OpenMPI/4.1.6 buildenv/default Boost/1.83.0 CMake/3.27.6 libpng/1.6.40</span>
+<span id="cb8-7"><a href="#cb8-7" tabindex="-1"></a></span>
+<span id="cb8-8"><a href="#cb8-8" tabindex="-1"></a><span class="co"># Create associative array</span></span>
+<span id="cb8-9"><a href="#cb8-9" tabindex="-1"></a><span class="bu">declare</span> <span class="at">-A</span> <span class="va">pixel</span></span>
+<span id="cb8-10"><a href="#cb8-10" tabindex="-1"></a><span class="va">pixel</span><span class="op">[</span><span class="dv">1</span><span class="op">]=</span><span class="st">"800"</span></span>
+<span id="cb8-11"><a href="#cb8-11" tabindex="-1"></a><span class="va">pixel</span><span class="op">[</span><span class="dv">2</span><span class="op">]=</span><span class="st">"1131"</span></span>
+<span id="cb8-12"><a href="#cb8-12" tabindex="-1"></a><span class="va">pixel</span><span class="op">[</span><span class="dv">4</span><span class="op">]=</span><span class="st">"1600"</span></span>
+<span id="cb8-13"><a href="#cb8-13" tabindex="-1"></a><span class="va">pixel</span><span class="op">[</span><span class="dv">8</span><span class="op">]=</span><span class="st">"2263"</span></span>
+<span id="cb8-14"><a href="#cb8-14" tabindex="-1"></a><span class="va">pixel</span><span class="op">[</span><span class="dv">16</span><span class="op">]=</span><span class="st">"3200"</span></span>
+<span id="cb8-15"><a href="#cb8-15" tabindex="-1"></a><span class="va">pixel</span><span class="op">[</span><span class="dv">32</span><span class="op">]=</span><span class="st">"4526"</span></span>
+<span id="cb8-16"><a href="#cb8-16" tabindex="-1"></a><span class="va">pixel</span><span class="op">[</span><span class="dv">64</span><span class="op">]=</span><span class="st">"6400"</span></span>
+<span id="cb8-17"><a href="#cb8-17" tabindex="-1"></a></span>
+<span id="cb8-18"><a href="#cb8-18" tabindex="-1"></a><span class="bu">time</span> mpirun <span class="at">--</span> ./build/raytracer <span class="at">-width</span><span class="op">=</span><span class="va">${pixel</span><span class="op">[</span><span class="va">${SLURM_NTASKS}</span><span class="op">]</span><span class="va">}</span> <span class="at">-height</span><span class="op">=</span><span class="va">${pixel</span><span class="op">[</span><span class="va">${SLURM_NTASKS}</span><span class="op">]</span><span class="va">}</span> <span class="at">-spp</span><span class="op">=</span>128 <span class="at">-threads</span><span class="op">=</span>1 <span class="at">-png</span> <span class="st">"</span><span class="va">$(</span><span class="fu">date</span> +%Y-%m-%d_%H%M%S<span class="va">)</span><span class="st">.png"</span></span></code></pre>
 </div>
-<p>Increasing the samples per pixels can be a qualitative improvement to
-the final result, since more effort is put into the calculation of the
-raytraced picture. In practice, there is a cutoff, beyond which no
-reasonable improvement is to be expected. This is a question about
-accuracy, error margins, and overall quality, which can only be answered
-in the specific context of each research project. If there is no real
-improvement by increasing the workload, running a weakly scaling
-application is really just wasting valuable computational time and
-energy.</p>
+<div id="accordionSpoiler2" class="accordion spoiler-accordion accordion-flush">
+<div class="accordion-item">
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler2" aria-expanded="false" aria-controls="collapseSpoiler2">
+  <h3 class="accordion-header" id="headingSpoiler2">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Different ways of scaling workloads: spp </h3>
+</button>
+<div id="collapseSpoiler2" class="accordion-collapse collapse" aria-labelledby="headingSpoiler2" data-bs-parent="#accordionSpoiler2">
+<div class="accordion-body">
+<p>To scale the workload of the snowman raytracer, we can multiply the
+number of parallel MPI processes, <code>${SLURM_NTASKS}</code>, with the
+samples per pixel (starting from <code>-spp=128</code>). For a single
+process, the whole <span class="math inline">\(800 \times 800\)</span>
+pixel picture is calculated in a single MPI process with 128 per pixel.
+Running with two MPI processes, both have to calculate half the number
+of pixels, but twice the amount of samples per pixel.</p>
+<div class="codewrapper sourceCode" id="cb9">
+<h3 class="code-label">BASH<i aria-hidden="true" data-feather="chevron-left"></i><i aria-hidden="true" data-feather="chevron-right"></i>
+</h3>
+<pre class="sourceCode bash" tabindex="0"><code class="sourceCode bash"><span id="cb9-1"><a href="#cb9-1" tabindex="-1"></a><span class="co">#!/usr/bin/bash</span></span>
+<span id="cb9-2"><a href="#cb9-2" tabindex="-1"></a><span class="co">#SBATCH --time=01:00:00</span></span>
+<span id="cb9-3"><a href="#cb9-3" tabindex="-1"></a><span class="co">#SBATCH --nodes=1</span></span>
+<span id="cb9-4"><a href="#cb9-4" tabindex="-1"></a><span class="co">#SBATCH --mem-per-cpu=500MB</span></span>
+<span id="cb9-5"><a href="#cb9-5" tabindex="-1"></a></span>
+<span id="cb9-6"><a href="#cb9-6" tabindex="-1"></a><span class="ex">module</span> load 2025 GCC/13.2.0 OpenMPI/4.1.6 buildenv/default Boost/1.83.0 CMake/3.27.6 libpng/1.6.40</span>
+<span id="cb9-7"><a href="#cb9-7" tabindex="-1"></a></span>
+<span id="cb9-8"><a href="#cb9-8" tabindex="-1"></a><span class="va">SPP</span><span class="op">=</span><span class="st">"$[</span><span class="va">${SLURM_NTASKS}</span><span class="st">*128]"</span></span>
+<span id="cb9-9"><a href="#cb9-9" tabindex="-1"></a></span>
+<span id="cb9-10"><a href="#cb9-10" tabindex="-1"></a><span class="bu">time</span> mpirun <span class="at">--</span> ./build/raytracer <span class="at">-width</span><span class="op">=</span>800 <span class="at">-height</span><span class="op">=</span>800 <span class="at">-spp</span><span class="op">=</span><span class="va">${SPP}</span> <span class="at">-threads</span><span class="op">=</span>1 <span class="at">-png</span> <span class="st">"</span><span class="va">$(</span><span class="fu">date</span> +%Y-%m-%d_%H%M%S<span class="va">)</span><span class="st">.png"</span></span></code></pre>
+</div>
+<figure><img src="fig/spp128.png" alt="Three snowmen in 800x800 with 128 samples per pixel" class="figure mx-auto d-block"><div class="figcaption">Three snowmen in 800x800 with 128 samples per
+pixel</div>
+</figure><figure><img src="fig/spp8192.png" alt="Three snowmen in 800x800 with 8192 samples per pixel" class="figure mx-auto d-block"><div class="figcaption">Three snowmen in 800x800 with 8192 samples per
+pixel</div>
+</figure><p>In direct comparison, and zooming in really close, you can see more
+noise in the first image, e.g. in the shadows. One could argue that we
+passed the point of diminishing returns, though. Is a <span class="math inline">\(64\times\)</span> increase in computational cost
+worth the observed quality improvement? For the samples per pixel, we
+seem to not benefit much from weak scaling. Larger resolutions, by
+increasing the number of pixels, is the more useful dimension to
+increase in this case.</p>
+</div>
+</div>
+</div>
+</div>
+<p>Increasing the resolution may be worth the effort, if we have a use
+for a larger, more detailed picture. In practice, there is a cutoff,
+beyond which no reasonable improvement is to be expected. This is a
+question about accuracy, error margins, and overall quality, which can
+only be answered in the specific context of each research project. If
+there is no real improvement by increasing the workload, running a
+weakly scaling application is really just wasting valuable computational
+time and energy.</p>
+<p>If we increase the workload at the rate as our number of parallel
+processes (<span class="math inline">\(N\)</span>) our speedup is
+defined as <span class="math display">\[S_{\text{weak}}(N) =
+\frac{T(1)}{T(N)} \times N\]</span> since we do <span class="math inline">\(N\)</span> times more work with <span class="math inline">\(N\)</span> processors, compared to our reference
+<span class="math inline">\(T(N=1)\)</span>. Efficiency is still defined
+as <span class="math display">\[\eta_{\text{weak}}(N) =
+\frac{S_{\text{weak}}(N)}{N} = \frac{T(1)}{T(N)}\]</span></p>
 <div id="exercise-weak-scaling" class="callout challenge">
 <div class="callout-square">
 <i class="callout-icon" data-feather="zap"></i>
@@ -2659,20 +2826,19 @@ energy.</p>
 <div id="exercise-weak-scaling" class="callout-inner">
 <h3 class="callout-title">Exercise: Weak scaling</h3>
 <div class="callout-content">
-<p>Repeat the previous scaling study and increase the samples per pixel
+<p>Repeat the previous scaling study and increase the number of pixels
 accordingly to study the raytracers weak scaling behavior.</p>
 <ul>
 <li>Run with 1, 2, 4, 8, 16, 32, 64 MPI processes on single node</li>
-<li>Increase the samples per pixel by the same fraction</li>
 <li>Take <code>time</code> measurements and consider running with
 <code>--exclusive</code> to ensure more reliable results.</li>
 <li>Create a <code>.csv</code> file and run the plotting script</li>
 </ul>
-<p>UPDATE CSV AND PLOTTING</p>
-<pre class="csv"><code>ntasks,spp,time,speedup,efficiency
-1,256,
-2,512,
-4,1024,
+<pre class="csv"><code>ntasks,pixel,time,speedup,efficiency
+1,800,123.162
+2,1131,122.562
+4,1600,124.522
+8,2263,125.606
 ...</code></pre>
 <p>How well does the application scale with an increasing workload size?
 Do you see a qualitative difference in the resulting <code>.png</code>
@@ -2681,15 +2847,35 @@ costs?</p>
 </div>
 </div>
 </div>
-<div id="accordionSolution2" class="accordion challenge-accordion accordion-flush">
+<div id="accordionSolution3" class="accordion challenge-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
-  <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
+<button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
+  <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
-<p>INCLUDE CSV AND PLOTTED PICTURE COMPARE SPP PNGS HERE, IS IT WORTH
-IT?</p>
+<pre class="csv"><code>ntasks,pixel,time,speedup,efficiency
+1,800,123.162
+2,1131,122.562
+4,1600,124.522
+8,2263,125.606
+16,3200,125.803
+32,4526,130.137
+64,6400,138.636</code></pre>
+<p>The scaling behavior is reaching an asymptotic limit, where each
+additional processor is contributing with the same efficiency to the
+increased workload.</p>
+<figure><img src="fig/weak_scaling.png" alt="Speedup and efficiency of weak scaling example" class="figure mx-auto d-block"><div class="figcaption">Speedup and efficiency of weak scaling
+example</div>
+</figure><p>Weakly scaling jobs can make efficient use of a huge amount of
+resources.</p>
+<p>The most important question is, if an increased workload is producing
+useful results. Here, we have the rendered picture of <a href="fig/pixel800.png">three snowmen in 800x800 with 128 samples per
+pixel</a> and <a href="fig/pixel6400.png">three snowmen in 6400x6400
+with 128 samples per pixel</a>. The second image has a much higher
+resolution. However, going way beyond <span class="math inline">\(6400
+\times 6400\)</span> pixels is probably not very meaningful, unless you
+are trying to print the worlds largest ad boards or similar.</p>
 </div>
 </div>
 </div>
@@ -2708,12 +2894,12 @@ can be submitted to the HPC system.</p>
 <p>If the application has good <em>strong scaling</em> behavior, adding
 more cores leads to an effective improvement in execution time. We
 observe diminishing returns of adding more cores to a fixed-size
-problem, so there is an optimal number of parallel processors for a
-given application configuration. (Amdahls Law)</p>
-<p>If increasing the workload size leads to better results, because of
-improved accuracy and quality, that can be used in the project at hand,
-we can study the <em>weak scaling</em> behavior and increase the
-workload size by the same factor of increasing parallel processors.</p>
+problem, so there is a (subjective) optimal number of parallel
+processors for a given application configuration. (Amdahls Law)</p>
+<p>If increasing the workload size leads to better results, maybe
+because of improved accuracy and quality, we can study the <em>weak
+scaling</em> behavior and increase the workload size by the same factor
+of increasing parallel processors.</p>
 <p>A good working point depends on the availability of resources,
 specifics of the underlying hardware, the particular application, and a
 particular configuration for the application. For that reason, scaling
@@ -2722,12 +2908,12 @@ prove an efficient execution of a given application.</p>
 <p>We can study the impact of any parameter on metrics like, for
 example, walltime, CPU utilization, FLOPS, memory utilization,
 communication, output size on disk, and so on.</p>
-<div id="accordionSpoiler1" class="accordion spoiler-accordion accordion-flush">
+<div id="accordionSpoiler3" class="accordion spoiler-accordion accordion-flush">
 <div class="accordion-item">
-<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler1" aria-expanded="false" aria-controls="collapseSpoiler1">
-  <h3 class="accordion-header" id="headingSpoiler1">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Automating Scaling Studies </h3>
+<button class="accordion-button spoiler-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSpoiler3" aria-expanded="false" aria-controls="collapseSpoiler3">
+  <h3 class="accordion-header" id="headingSpoiler3">  <div class="note-square"><i aria-hidden="true" class="callout-icon" data-feather="eye"></i></div> Automating Scaling Studies </h3>
 </button>
-<div id="collapseSpoiler1" class="accordion-collapse collapse" data-bs-parent="#accordionSpoiler1" aria-labelledby="headingSpoiler1">
+<div id="collapseSpoiler3" class="accordion-collapse collapse" aria-labelledby="headingSpoiler3" data-bs-parent="#accordionSpoiler3">
 <div class="accordion-body">
 <p>If you find yourself repeating similar measurements over and over
 again, you may be interested in an automation approach. This can be done
@@ -2905,7 +3091,7 @@ job?</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-1" class="tab-content">
-<div id="nav-tabpanel-1-ClusterCockpit" class="tab-pane show active" aria-labelledby="nav-tab-1-ClusterCockpit" role="tabpanel">
+<div id="nav-tabpanel-1-ClusterCockpit" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-1-ClusterCockpit">
 <ol style="list-style-type: decimal">
 <li>Setup: webpage &amp; login. An conditions on when it is enabled in
 your particular cluster?</li>
@@ -2913,7 +3099,7 @@ your particular cluster?</li>
 Episode 4</li>
 </ol>
 </div>
-<div id="nav-tabpanel-1-PerformanceReports" class="tab-pane" aria-labelledby="nav-tab-1-PerformanceReports" role="tabpanel">
+<div id="nav-tabpanel-1-PerformanceReports" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-PerformanceReports">
 <ol style="list-style-type: decimal">
 <li>(Check for licenses?)</li>
 <li>Setup: load software modules</li>
@@ -2921,7 +3107,7 @@ Episode 4</li>
 </li>
 </ol>
 </div>
-<div id="nav-tabpanel-1-TBD" class="tab-pane" aria-labelledby="nav-tab-1-TBD" role="tabpanel">
+<div id="nav-tabpanel-1-TBD" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-1-TBD">
 <p>N/A</p>
 </div>
 </div>
@@ -2948,7 +3134,7 @@ Episode 4</li>
 </button>
 </div>
 </nav><div id="nav-tabContent-2" class="tab-content">
-<div id="nav-tabpanel-2-ClusterCockpit" class="tab-pane show active" aria-labelledby="nav-tab-2-ClusterCockpit" role="tabpanel">
+<div id="nav-tabpanel-2-ClusterCockpit" class="tab-pane show active" role="tabpanel" aria-labelledby="nav-tab-2-ClusterCockpit">
 <ul>
 <li>Job meta data</li>
 <li>Footprint</li>
@@ -2970,7 +3156,7 @@ Episode 4</li>
 </li>
 </ol>
 </div>
-<div id="nav-tabpanel-2-PerformanceReports" class="tab-pane" aria-labelledby="nav-tab-2-PerformanceReports" role="tabpanel">
+<div id="nav-tabpanel-2-PerformanceReports" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-PerformanceReports">
 <ul>
 <li>Computing</li>
 <li>Memory</li>
@@ -2991,7 +3177,7 @@ Episode 4</li>
 </li>
 </ol>
 </div>
-<div id="nav-tabpanel-2-TBD" class="tab-pane" aria-labelledby="nav-tab-2-TBD" role="tabpanel">
+<div id="nav-tabpanel-2-TBD" class="tab-pane" role="tabpanel" aria-labelledby="nav-tab-2-TBD">
 <p>N/A</p>
 </div>
 </div>
@@ -3072,7 +3258,7 @@ accelerators.</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
 <div class="accordion-body">
 <ol style="list-style-type: decimal">
 <li>CPU (FLOPS) and/or Parallel timeline</li>
@@ -3201,7 +3387,7 @@ cases? - Is the increase in threads providing a speedup as expected?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution1" aria-expanded="false" aria-controls="collapseSolution1">
   <h4 class="accordion-header" id="headingSolution1"> Show me the solution </h4>
 </button>
-<div id="collapseSolution1" class="accordion-collapse collapse" data-bs-parent="#accordionSolution1" aria-labelledby="headingSolution1">
+<div id="collapseSolution1" class="accordion-collapse collapse" aria-labelledby="headingSolution1" data-bs-parent="#accordionSolution1">
 <div class="accordion-body">
 <ul>
 <li>Observation: The computation times are almost the same.</li>
@@ -3240,7 +3426,7 @@ made?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution2" aria-expanded="false" aria-controls="collapseSolution2">
   <h4 class="accordion-header" id="headingSolution2"> Show me the solution </h4>
 </button>
-<div id="collapseSolution2" class="accordion-collapse collapse" data-bs-parent="#accordionSolution2" aria-labelledby="headingSolution2">
+<div id="collapseSolution2" class="accordion-collapse collapse" aria-labelledby="headingSolution2" data-bs-parent="#accordionSolution2">
 <div class="accordion-body">
 <p>Only 8 cores are active instead of 16</p>
 </div>
@@ -3291,7 +3477,7 @@ process/thread counts to better utilize the hardware in Case 2?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution3" aria-expanded="false" aria-controls="collapseSolution3">
   <h4 class="accordion-header" id="headingSolution3"> Show me the solution </h4>
 </button>
-<div id="collapseSolution3" class="accordion-collapse collapse" data-bs-parent="#accordionSolution3" aria-labelledby="headingSolution3">
+<div id="collapseSolution3" class="accordion-collapse collapse" aria-labelledby="headingSolution3" data-bs-parent="#accordionSolution3">
 <div class="accordion-body">
 <ul>
 <li>MPI and thread pinning is hardware-aware.</li>
@@ -3414,7 +3600,7 @@ with 4 threads?</p>
 <button class="accordion-button solution-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSolution4" aria-expanded="false" aria-controls="collapseSolution4">
   <h4 class="accordion-header" id="headingSolution4"> Show me the solution </h4>
 </button>
-<div id="collapseSolution4" class="accordion-collapse collapse" data-bs-parent="#accordionSolution4" aria-labelledby="headingSolution4">
+<div id="collapseSolution4" class="accordion-collapse collapse" aria-labelledby="headingSolution4" data-bs-parent="#accordionSolution4">
 <div class="accordion-body">
 <ul>
 <li>8 and 32</li>
@@ -3726,8 +3912,8 @@ any links that you are not going to use.
   "url": "https://stderr-enst.github.io/jobefficiency/aio.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/aio.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-12-09",
-  "datePublished": "2025-12-09"
+  "dateModified": "2025-12-12",
+  "datePublished": "2025-12-12"
 }
 
   </script><script>
