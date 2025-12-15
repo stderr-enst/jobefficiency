@@ -474,32 +474,81 @@ well</p>
 <br></section><section id="02_resourcerequirements"><h2 class="section-heading"><a href="02_resourcerequirements.html">Resource Requirements</a></h2>
 <hr class="half-width">
 <h3 id="02_resourcerequirements-headingInstructor1">
-<a href="02_resourcerequirements.html#headingInstructor1">Objective: Vary one parameter and compare to baseline</a><a class="anchor" aria-label="anchor" href="#02_resourcerequirements-headingInstructor1"></a>
+<a href="02_resourcerequirements.html#headingInstructor1">Instructor Note</a><a class="anchor" aria-label="anchor" href="#02_resourcerequirements-headingInstructor1"></a>
 </h3>
-<p>Narrative:</p>
+<p>This discussion highly depends on the management philosophy of the
+cluster available to the learners. Some examples:</p>
 <ul>
-<li>We didn’t use the HPC system in a while</li>
-<li>Not sure how many resources we need and what our HPC system even
-offer</li>
-<li>How could I look it up again?</li>
-<li>What were the parameters of scheduled jobs again?</li>
-<li>What’s a good first guess for the resources I need for an individual
-render?</li>
-</ul>
-<p>What we’re doing here:</p>
-<ul>
-<li>Learn about Slurm job parameters</li>
-<li>Develop intuition about job size with respect to the cluster</li>
-<li>First impression of whats a “good” amount of resources to request
-for a job</li>
+<li>A partition with a high number of cores large amounts of memory per
+node is probably intended for SMP calculations.</li>
+<li>A partition with a lot of nodes that each have only a (relatively)
+small number of cores and memory is probably intended for MPI
+calculations.</li>
+<li>A partition with powerful GPUs, but only a small amount of CPU cores
+is likely intended for jobs where the majority of the work is offloaded
+to the GPUs.</li>
+<li>A partition with less powerful GPUs but more CPU cores and memory is
+likely intended for hybrid workloads.</li>
 </ul>
 <hr>
 <br><h3 id="02_resourcerequirements-headingInstructor2">
-<a href="02_resourcerequirements.html#headingInstructor2">ToDo</a><a class="anchor" aria-label="anchor" href="#02_resourcerequirements-headingInstructor2"></a>
+<a href="02_resourcerequirements.html#headingInstructor2">Instructor Note</a><a class="anchor" aria-label="anchor" href="#02_resourcerequirements-headingInstructor2"></a>
 </h3>
-<p>This section is just an info dump, how do we make it useful and
-approachable? What’s a useful exercise? Maybe put info here in other
-sections?</p>
+<p>The learners should realize that the per-user average they calculate
+here is very synthetic:</p>
+<ul>
+<li>Many users do not use their full share of resources, which leaves
+room for others to use more.</li>
+<li>The average we calculate is only an average over long periods of
+time. Short term you can usually use much more.</li>
+<li>Not all users are equal. For example, if some research groups have
+contributed to the funding of the cluster, they should also get more
+resources than those who did not.</li>
+<li>The world is not perfectly fair. Especially on larger clusters, HPC
+resources have to be requested via project proposals. Those who write
+more / better proposals can use more resources.</li>
+</ul>
+<hr>
+<br><h3 id="02_resourcerequirements-headingInstructor3">
+<a href="02_resourcerequirements.html#headingInstructor3">Instructor Note</a><a class="anchor" aria-label="anchor" href="#02_resourcerequirements-headingInstructor3"></a>
+</h3>
+<p>For the next section, the exact memory requirements depend on the
+cluster configuration (e.g., the MPI backends used). You might have to
+adapt these numbers for your local cluster to see the out-of-memory
+behavior.</p>
+<hr>
+<br><h3 id="02_resourcerequirements-headingInstructor4">
+<a href="02_resourcerequirements.html#headingInstructor4">Instructor Note</a><a class="anchor" aria-label="anchor" href="#02_resourcerequirements-headingInstructor4"></a>
+</h3>
+<p>At this point you might want to point out to your audience that for
+certain applications it can be disastrous for performance to set the
+memory constraint too tightly. The reason is that the memory limit
+enforced by Slurm does not only affect the resident set size of all the
+processes in the job allocation, but also the memory used for caching
+(e.g., file pages). If the allocation runs out of memory for the cache,
+it will have to evict memory pages to disk, which can cause I/O
+operations and new memory allocations to block for longer than usual. If
+the application makes heavy use of this cache (e.g., repeated read
+and/or write operations on the same file) and the memory pressure in the
+allocation is high, you can even run into a <em>cache thrashing</em>
+situation, where the job spends the majority of its time swapping data
+in and out of system memory and thus slows down to a crawl.</p>
+<hr>
+<br><h3 id="02_resourcerequirements-headingInstructor5">
+<a href="02_resourcerequirements.html#headingInstructor5">Instructor Note</a><a class="anchor" aria-label="anchor" href="#02_resourcerequirements-headingInstructor5"></a>
+</h3>
+<p>This error message was generated with OpenMPI. Other MPI
+implementations might produce different messages.</p>
+<hr>
+<br><h3 id="02_resourcerequirements-headingInstructor6">
+<a href="02_resourcerequirements.html#headingInstructor6">Instructor Note</a><a class="anchor" aria-label="anchor" href="#02_resourcerequirements-headingInstructor6"></a>
+</h3>
+<p>At this point you can present some scheduling strategies specific to
+your cluster. For the sake of time, you have likely reserved some
+resources for the course participants such that their jobs start
+instantly. Now would be a good time to show them the harsh reality of
+HPC scheduling on a contested partition and demonstrate that a major
+part of using an HPC cluster is waiting for your jobs to start.</p>
 <hr>
 <br></section><section id="03_schedulertools"><h2 class="section-heading"><a href="03_schedulertools.html">Scheduler Tools</a></h2>
 <hr class="half-width">
@@ -885,8 +934,8 @@ many levels)</li>
   "url": "https://stderr-enst.github.io/jobefficiency/instructor/instructor-notes.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/instructor/instructor-notes.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-12-12",
-  "datePublished": "2025-12-12"
+  "dateModified": "2025-12-15",
+  "datePublished": "2025-12-15"
 }
 
   </script><script>

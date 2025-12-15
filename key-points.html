@@ -421,13 +421,21 @@ improves.</li>
 </ul></section><section id="02_resourcerequirements"><h2 class="section-heading"><a href="02_resourcerequirements.html">Resource Requirements</a></h2>
 <hr class="half-width">
 <ul>
-<li>Estimate resource requirements and request them in terms the
-scheduler understands</li>
-<li>Be aware of your job in relation to the whole system (available
-hardware, size)</li>
-<li>Aim for a good match between requested and utilized resources</li>
-<li>Optimal time-to-solution by minimizing batch queue times and
-maximizing parallelism</li>
+<li>Your cluster might seem to have an enormous amout of computing
+resources, but these resources are a shared good. You should only use as
+much as you need.</li>
+<li>Resource requests are a promise to the scheduler to not use more
+than a specific amount of resources. If you break your promise to the
+scheduler and try to use more resources, terrible things will happen.
+<ul>
+<li>Overstepping memory or time allocations will result in your job
+being terminated.</li>
+<li>Oversubscribing CPU cores will at best do nothing and at worst
+diminish performance.</li>
+</ul>
+</li>
+<li>Finding the minimal resource requirements takes a bit of trial and
+error. Slurm collects a lot of useful metrics to aid you in this.</li>
 </ul></section><section id="03_schedulertools"><h2 class="section-heading"><a href="03_schedulertools.html">Scheduler Tools</a></h2>
 <hr class="half-width">
 <ul>
@@ -576,8 +584,8 @@ vendor-related, …</li>
   "url": "https://stderr-enst.github.io/jobefficiency/key-points.html",
   "identifier": "https://stderr-enst.github.io/jobefficiency/key-points.html",
   "dateCreated": "2025-03-28",
-  "dateModified": "2025-12-12",
-  "datePublished": "2025-12-12"
+  "dateModified": "2025-12-15",
+  "datePublished": "2025-12-15"
 }
 
   </script><script>
